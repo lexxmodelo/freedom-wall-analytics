@@ -1,0 +1,77 @@
+[2026-05-01 18:45:40] INFO     ======================================================================
+[2026-05-01 18:45:40] INFO     Freedom Wall Scraper v1.0.0
+[2026-05-01 18:45:40] INFO     Mode: playwright | Cookies: cookies.json
+[2026-05-01 18:45:40] INFO     ======================================================================
+[2026-05-01 18:45:40] INFO     Targets: ['SLU']
+[2026-05-01 18:45:40] INFO     Target posts per page: 200
+[2026-05-01 18:45:40] INFO     Loaded 8 cookies — authenticated mode ON (timeout=1800s, max_scrolls=800, delay=4-9s)
+[2026-05-01 18:45:40] INFO     ==================================================
+[2026-05-01 18:45:40] INFO     Processing 1/1: SLU
+[2026-05-01 18:45:40] INFO     ============================================================
+[2026-05-01 18:45:40] INFO     Starting scrape for SLU
+[2026-05-01 18:45:40] INFO     [SLU] Trying strategy: desktop
+[2026-05-01 18:45:40] INFO     [SLU][desktop] Injected 8 session cookies
+[2026-05-01 18:45:40] INFO     [SLU][desktop] Navigating to https://www.facebook.com/p/SLU-Freedom-Wall-61563510362403/
+[2026-05-01 18:45:48] INFO     [SLU][desktop] Clicked Posts tab via span:has-text('Posts')
+[2026-05-01 18:45:51] INFO     [SLU][desktop] Scroll 1: +2 new (total 2) [0s elapsed]
+[2026-05-01 18:46:22] INFO     [SLU][desktop] Scroll 5: +4 new (total 7) [31s elapsed]
+[2026-05-01 18:46:28] INFO     [SLU][desktop] Scroll 6: +4 new (total 11) [37s elapsed]
+[2026-05-01 18:46:49] INFO     [SLU][desktop] Scroll 9: +2 new (total 13) [58s elapsed]
+[2026-05-01 18:49:30] INFO     [SLU][desktop] Scroll 28: +2 new (total 22) [219s elapsed]
+[2026-05-01 18:50:29] INFO     [SLU][desktop] Scroll 33: +2 new (total 26) [278s elapsed]
+[2026-05-01 18:50:46] INFO     [SLU][desktop] Scroll 34: +6 new (total 32) [295s elapsed]
+[2026-05-01 18:51:12] INFO     [SLU][desktop] Scroll 36: +2 new (total 34) [321s elapsed]
+[2026-05-01 18:51:29] INFO     [SLU][desktop] Scroll 37: +3 new (total 37) [338s elapsed]
+[2026-05-01 18:52:12] INFO     [SLU][desktop] Scroll 39: +14 new (total 51) [381s elapsed]
+[2026-05-01 18:52:22] INFO     [SLU][desktop] Scroll 40: +5 new (total 56) [391s elapsed]
+[2026-05-01 18:52:32] INFO     [SLU][desktop] Scroll 41: +1 new (total 57) [401s elapsed]
+[2026-05-01 18:53:03] INFO     [SLU][desktop] Scroll 44: +2 new (total 60) [432s elapsed]
+[2026-05-01 18:53:30] INFO     [SLU][desktop] Scroll 46: +2 new (total 62) [459s elapsed]
+[2026-05-01 18:54:09] INFO     [SLU][desktop] Scroll 50: +2 new (total 65) [498s elapsed]
+[2026-05-01 18:55:02] INFO     [SLU][desktop] Scroll 55: +4 new (total 71) [551s elapsed]
+[2026-05-01 18:55:11] INFO     [SLU][desktop] Scroll 56: +2 new (total 73) [560s elapsed]
+[2026-05-01 18:55:30] INFO     [SLU][desktop] Scroll 58: +3 new (total 77) [579s elapsed]
+[2026-05-01 18:55:57] INFO     [SLU][desktop] Scroll 60: +2 new (total 80) [606s elapsed]
+[2026-05-01 18:56:10] INFO     [SLU][desktop] Scroll 61: +1 new (total 81) [619s elapsed]
+[2026-05-01 18:56:28] INFO     [SLU][desktop] Scroll 63: +2 new (total 84) [637s elapsed]
+[2026-05-01 18:56:40] INFO     [SLU][desktop] Scroll 64: +2 new (total 86) [650s elapsed]
+[2026-05-01 18:57:09] INFO     [SLU][desktop] Scroll 67: +2 new (total 90) [678s elapsed]
+[2026-05-01 18:57:19] INFO     [SLU][desktop] Scroll 68: +4 new (total 94) [688s elapsed]
+[2026-05-01 18:57:43] INFO     [SLU][desktop] Scroll 70: +2 new (total 97) [712s elapsed]
+[2026-05-01 18:58:15] INFO     [SLU][desktop] Scroll 72: +4 new (total 101) [744s elapsed]
+[2026-05-01 18:58:48] INFO     [SLU][desktop] Scroll 74: +3 new (total 105) [777s elapsed]
+[2026-05-01 18:59:06] INFO     [SLU][desktop] Scroll 75: +3 new (total 108) [795s elapsed]
+[2026-05-01 19:00:45] INFO     [SLU][desktop] Scroll 81: +1 new (total 114) [894s elapsed]
+[2026-05-01 19:01:07] INFO     [SLU][desktop] Scroll 82: +4 new (total 118) [916s elapsed]
+[2026-05-01 19:01:29] INFO     [SLU][desktop] Scroll 83: +5 new (total 123) [938s elapsed]
+[2026-05-01 19:01:50] INFO     [SLU][desktop] Scroll 84: +2 new (total 125) [959s elapsed]
+[2026-05-01 19:02:25] INFO     [SLU][desktop] Scroll 86: +2 new (total 128) [994s elapsed]
+[2026-05-01 19:03:17] INFO     [SLU][desktop] Scroll 89: +2 new (total 132) [1046s elapsed]
+[2026-05-01 19:03:59] INFO     [SLU][desktop] Scroll 91: +1 new (total 134) [1088s elapsed]
+[2026-05-01 19:05:05] INFO     [SLU][desktop] Scroll 95: +3 new (total 140) [1154s elapsed]
+[2026-05-01 19:05:25] INFO     [SLU][desktop] Scroll 96: +2 new (total 142) [1175s elapsed]
+[2026-05-01 19:06:07] INFO     [SLU][desktop] Scroll 98: +4 new (total 147) [1216s elapsed]
+[2026-05-01 19:06:38] INFO     [SLU][desktop] Scroll 100: +3 new (total 151) [1248s elapsed]
+[2026-05-01 19:06:55] INFO     [SLU][desktop] Scroll 101: +2 new (total 153) [1264s elapsed]
+[2026-05-01 19:07:22] INFO     [SLU][desktop] Scroll 102: +2 new (total 155) [1291s elapsed]
+[2026-05-01 19:07:56] INFO     [SLU][desktop] Scroll 103: +3 new (total 158) [1326s elapsed]
+[2026-05-01 19:08:38] INFO     [SLU][desktop] Scroll 104: +2 new (total 160) [1367s elapsed]
+[2026-05-01 19:09:16] INFO     [SLU][desktop] Scroll 105: +10 new (total 170) [1405s elapsed]
+[2026-05-01 19:09:48] INFO     [SLU][desktop] Scroll 106: +9 new (total 179) [1437s elapsed]
+[2026-05-01 19:10:11] INFO     [SLU][desktop] Scroll 107: +2 new (total 181) [1460s elapsed]
+[2026-05-01 19:11:07] INFO     [SLU][desktop] Scroll 109: +4 new (total 186) [1516s elapsed]
+[2026-05-01 19:11:48] INFO     [SLU][desktop] Scroll 110: +7 new (total 193) [1557s elapsed]
+[2026-05-01 19:12:30] INFO     [SLU][desktop] Scroll 111: +5 new (total 198) [1599s elapsed]
+[2026-05-01 19:13:51] INFO     [SLU][desktop] Scroll 113: +2 new (total 201) [1680s elapsed]
+[2026-05-01 19:13:51] INFO     [SLU][desktop] Target reached: 201 posts
+[2026-05-01 19:13:57] INFO     [SLU] Strategy 'desktop' yielded 201 posts
+[2026-05-01 19:13:57] INFO     [SLU] Final: 201 posts via 'desktop' in 1698s — status: target_reached
+[2026-05-01 19:13:57] INFO     [SLU] Saved to C:\Users\Alex Evan\Documents\Research\scraper_project\data\SLU.json (201 posts)
+[2026-05-01 19:13:57] INFO     ======================================================================
+[2026-05-01 19:13:57] INFO     SCRAPE COMPLETE
+[2026-05-01 19:13:57] INFO       Mode: playwright | Authenticated: True
+[2026-05-01 19:13:57] INFO       Pages: 1 attempted, 1 with data
+[2026-05-01 19:13:57] INFO       Total posts: 201
+[2026-05-01 19:13:57] INFO       Duration: 1698s (28.3 min)
+[2026-05-01 19:13:57] INFO       Summary: C:\Users\Alex Evan\Documents\Research\scraper_project\data\scrape_summary.json
+[2026-05-01 19:13:57] INFO     ======================================================================

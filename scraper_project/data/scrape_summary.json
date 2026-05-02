@@ -1,0 +1,17 @@
+{
+  "scrape_timestamp": "2026-05-03T00:20:23.164885+08:00",
+  "scraper_version": "1.0.0",
+  "authenticated": true,
+  "total_pages_attempted": 1,
+  "total_pages_with_data": 0,
+  "total_posts_collected": 0,
+  "duration_seconds": 128.5,
+  "pages": [
+    {
+      "code": "FW-04",
+      "posts": 0,
+      "status": "no_data",
+      "strategy": "none"
+    }
+  ]
+}

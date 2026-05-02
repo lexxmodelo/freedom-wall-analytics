@@ -1,0 +1,36 @@
+[2026-05-01 19:33:36] INFO     ======================================================================
+[2026-05-01 19:33:36] INFO     Freedom Wall Scraper v1.0.0
+[2026-05-01 19:33:36] INFO     Mode: playwright | Cookies: cookies.json
+[2026-05-01 19:33:36] INFO     ======================================================================
+[2026-05-01 19:33:36] INFO     Targets: ['SLU']
+[2026-05-01 19:33:36] INFO     Target posts per page: 30
+[2026-05-01 19:33:36] INFO     Loaded 8 cookies — authenticated mode ON (timeout=1800s, max_scrolls=800, delay=4-9s)
+[2026-05-01 19:33:36] INFO     ==================================================
+[2026-05-01 19:33:36] INFO     Processing 1/1: SLU
+[2026-05-01 19:33:36] INFO     ============================================================
+[2026-05-01 19:33:36] INFO     Starting scrape for SLU
+[2026-05-01 19:33:36] INFO     [SLU] Trying strategy: desktop
+[2026-05-01 19:33:37] INFO     [SLU][desktop] Injected 8 session cookies
+[2026-05-01 19:33:37] INFO     [SLU][desktop] Navigating to https://www.facebook.com/p/SLU-Freedom-Wall-61563510362403/
+[2026-05-01 19:33:44] INFO     [SLU][desktop] Clicked Posts tab via span:has-text('Posts')
+[2026-05-01 19:33:48] INFO     [SLU][desktop] Scroll 1: +3 new (total 3) [1s elapsed]
+[2026-05-01 19:33:54] INFO     [SLU][desktop] Scroll 2: +3 new (total 6) [7s elapsed]
+[2026-05-01 19:34:03] INFO     [SLU][desktop] Scroll 3: +4 new (total 10) [16s elapsed]
+[2026-05-01 19:34:09] INFO     [SLU][desktop] Scroll 4: +4 new (total 14) [22s elapsed]
+[2026-05-01 19:34:26] INFO     [SLU][desktop] Scroll 6: +3 new (total 18) [39s elapsed]
+[2026-05-01 19:34:37] INFO     [SLU][desktop] Scroll 7: +3 new (total 21) [50s elapsed]
+[2026-05-01 19:34:48] INFO     [SLU][desktop] Scroll 8: +4 new (total 25) [61s elapsed]
+[2026-05-01 19:35:07] INFO     [SLU][desktop] Scroll 10: +3 new (total 29) [80s elapsed]
+[2026-05-01 19:35:16] INFO     [SLU][desktop] Scroll 11: +3 new (total 32) [89s elapsed]
+[2026-05-01 19:35:16] INFO     [SLU][desktop] Target reached: 32 posts
+[2026-05-01 19:35:17] INFO     [SLU] Strategy 'desktop' yielded 32 posts
+[2026-05-01 19:35:17] INFO     [SLU] Final: 32 posts via 'desktop' in 101s — status: target_reached
+[2026-05-01 19:35:17] INFO     [SLU] Saved to C:\Users\Alex Evan\Documents\Research\scraper_project\data\SLU.json (32 posts)
+[2026-05-01 19:35:17] INFO     ======================================================================
+[2026-05-01 19:35:17] INFO     SCRAPE COMPLETE
+[2026-05-01 19:35:17] INFO       Mode: playwright | Authenticated: True
+[2026-05-01 19:35:17] INFO       Pages: 1 attempted, 1 with data
+[2026-05-01 19:35:17] INFO       Total posts: 32
+[2026-05-01 19:35:17] INFO       Duration: 101s (1.7 min)
+[2026-05-01 19:35:17] INFO       Summary: C:\Users\Alex Evan\Documents\Research\scraper_project\data\scrape_summary.json
+[2026-05-01 19:35:17] INFO     ======================================================================

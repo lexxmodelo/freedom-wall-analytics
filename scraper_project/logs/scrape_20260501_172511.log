@@ -1,0 +1,35 @@
+[2026-05-01 17:25:11] INFO     ======================================================================
+[2026-05-01 17:25:11] INFO     Freedom Wall Scraper v1.0.0
+[2026-05-01 17:25:11] INFO     Mode: playwright | Cookies: cookies.json
+[2026-05-01 17:25:11] INFO     ======================================================================
+[2026-05-01 17:25:11] INFO     Targets: ['SLU']
+[2026-05-01 17:25:11] INFO     Target posts per page: 100
+[2026-05-01 17:25:11] INFO     Loaded 5 cookies — authenticated mode ON (timeout=1800s, max_scrolls=800, delay=4-9s)
+[2026-05-01 17:25:11] INFO     ==================================================
+[2026-05-01 17:25:11] INFO     Processing 1/1: SLU
+[2026-05-01 17:25:11] INFO     ============================================================
+[2026-05-01 17:25:11] INFO     Starting scrape for SLU
+[2026-05-01 17:25:11] INFO     [SLU] Trying strategy: desktop
+[2026-05-01 17:25:24] INFO     [SLU][desktop] Injected 5 session cookies
+[2026-05-01 17:25:24] INFO     [SLU][desktop] Navigating to https://www.facebook.com/p/SLU-Freedom-Wall-61563510362403/
+[2026-05-01 17:25:28] INFO     [SLU] Dismissed login modal via div[role='dialog'] [aria-label='Close']
+[2026-05-01 17:25:31] INFO     [SLU][desktop] Clicked Posts tab via a:has-text('Posts')
+[2026-05-01 17:25:35] INFO     [SLU][desktop] Scroll 1: +10 new (total 10) [1s elapsed]
+[2026-05-01 17:25:50] ERROR    [SLU][desktop] Error during scraping: Page.evaluate: Execution context was destroyed, most likely because of a navigation
+[2026-05-01 17:25:50] INFO     [SLU] Strategy 'desktop' yielded 10 posts
+[2026-05-01 17:25:50] INFO     [SLU] Trying strategy: basic_mobile
+[2026-05-01 17:25:51] INFO     [SLU][basic_mobile] Injected 5 session cookies
+[2026-05-01 17:25:51] INFO     [SLU][basic_mobile] Loading page 1
+[2026-05-01 17:25:54] INFO     [SLU][basic_mobile] Page 1: +0 new (total 0)
+[2026-05-01 17:25:54] INFO     [SLU][basic_mobile] No new posts on this page — stopping
+[2026-05-01 17:25:54] INFO     [SLU] Strategy 'basic_mobile' yielded 0 posts
+[2026-05-01 17:25:54] INFO     [SLU] Final: 10 posts via 'desktop' in 43s — status: partial_collected
+[2026-05-01 17:25:54] INFO     [SLU] Saved to C:\Users\Alex Evan\Documents\Research\scraper_project\data\SLU.json (10 posts)
+[2026-05-01 17:25:54] INFO     ======================================================================
+[2026-05-01 17:25:54] INFO     SCRAPE COMPLETE
+[2026-05-01 17:25:54] INFO       Mode: playwright | Authenticated: True
+[2026-05-01 17:25:54] INFO       Pages: 1 attempted, 1 with data
+[2026-05-01 17:25:54] INFO       Total posts: 10
+[2026-05-01 17:25:54] INFO       Duration: 43s (0.7 min)
+[2026-05-01 17:25:54] INFO       Summary: C:\Users\Alex Evan\Documents\Research\scraper_project\data\scrape_summary.json
+[2026-05-01 17:25:54] INFO     ======================================================================

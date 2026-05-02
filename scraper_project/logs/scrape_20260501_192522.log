@@ -1,0 +1,35 @@
+[2026-05-01 19:25:22] INFO     ======================================================================
+[2026-05-01 19:25:22] INFO     Freedom Wall Scraper v1.0.0
+[2026-05-01 19:25:22] INFO     Mode: playwright | Cookies: cookies.json
+[2026-05-01 19:25:22] INFO     ======================================================================
+[2026-05-01 19:25:22] INFO     Targets: ['SLU']
+[2026-05-01 19:25:22] INFO     Target posts per page: 30
+[2026-05-01 19:25:22] INFO     Loaded 8 cookies — authenticated mode ON (timeout=1800s, max_scrolls=800, delay=4-9s)
+[2026-05-01 19:25:22] INFO     ==================================================
+[2026-05-01 19:25:22] INFO     Processing 1/1: SLU
+[2026-05-01 19:25:22] INFO     ============================================================
+[2026-05-01 19:25:22] INFO     Starting scrape for SLU
+[2026-05-01 19:25:22] INFO     [SLU] Trying strategy: desktop
+[2026-05-01 19:25:23] INFO     [SLU][desktop] Injected 8 session cookies
+[2026-05-01 19:25:23] INFO     [SLU][desktop] Navigating to https://www.facebook.com/p/SLU-Freedom-Wall-61563510362403/
+[2026-05-01 19:25:30] INFO     [SLU][desktop] Clicked Posts tab via span:has-text('Posts')
+[2026-05-01 19:28:23] INFO     [SLU][desktop] No new posts after 25 scrolls — stopping
+[2026-05-01 19:28:23] INFO     [SLU] Strategy 'desktop' yielded 0 posts
+[2026-05-01 19:28:23] INFO     [SLU] Trying strategy: basic_mobile
+[2026-05-01 19:28:24] INFO     [SLU][basic_mobile] Injected 8 session cookies
+[2026-05-01 19:28:24] INFO     [SLU][basic_mobile] Loading page 1
+[2026-05-01 19:28:25] ERROR    [SLU][basic_mobile] Error: Page.goto: net::ERR_ABORTED at https://mbasic.facebook.com/SLU-Freedom-Wall-61563510362403/
+Call log:
+  - navigating to "https://mbasic.facebook.com/SLU-Freedom-Wall-61563510362403/", waiting until "domcontentloaded"
+
+[2026-05-01 19:28:25] INFO     [SLU] Strategy 'basic_mobile' yielded 0 posts
+[2026-05-01 19:28:25] INFO     [SLU] Final: 0 posts via 'none' in 183s — status: no_data
+[2026-05-01 19:28:25] INFO     [SLU] Saved to C:\Users\Alex Evan\Documents\Research\scraper_project\data\SLU.json (0 posts)
+[2026-05-01 19:28:25] INFO     ======================================================================
+[2026-05-01 19:28:25] INFO     SCRAPE COMPLETE
+[2026-05-01 19:28:25] INFO       Mode: playwright | Authenticated: True
+[2026-05-01 19:28:25] INFO       Pages: 1 attempted, 0 with data
+[2026-05-01 19:28:25] INFO       Total posts: 0
+[2026-05-01 19:28:25] INFO       Duration: 183s (3.1 min)
+[2026-05-01 19:28:25] INFO       Summary: C:\Users\Alex Evan\Documents\Research\scraper_project\data\scrape_summary.json
+[2026-05-01 19:28:25] INFO     ======================================================================
