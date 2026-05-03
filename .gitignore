@@ -55,3 +55,4 @@ scraper_project/cookies.json
 # Scraper runtime artifacts
 scraper_project/debug_screenshots/
 scraper_project/data/*_session.json
+data/

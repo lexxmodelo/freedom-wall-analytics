@@ -2,7 +2,7 @@
 
 **For:** Research team members running the scraper on their own machine  
 **Maintained by:** Alexx Evan Modelo, SLU CS  
-**Last updated:** 2026-05-02
+**Last updated:** 2026-05-04
 
 ---
 
@@ -46,7 +46,7 @@ Open Command Prompt, navigate to the scraper folder, then run:
 
 ```cmd
 cd C:\Users\YourName\Documents\Research\scraper_project
-pip install playwright beautifulsoup4 tqdm pandas
+pip install playwright beautifulsoup4 tqdm pandas httpx
 python -m playwright install chromium
 ```
 
@@ -107,16 +107,18 @@ python main.py --cookies cookies.json --targets SLU --target-posts 50
 
 You should see a progress bar like this:
 ```
-[SLU]  32%|████████          | 32/100 posts [01:24<02:45, 2.1s/post, scroll=12, stale=0]
+[SLU]  32%|████████          | 32/100 posts [01:24<02:45, 2.1s/post, net=8, scroll=12, sess=1, stale=0]
 ```
 
 - **32/100** — posts collected so far out of the target
 - **01:24** — time elapsed
 - **02:45** — estimated time remaining
-- **scroll=12** — how many times it has scrolled
+- **net=8** — posts captured passively from Facebook's network responses (not from DOM scraping)
+- **scroll=12** — how many times it has scrolled in the current browser session
+- **sess=1** — which browser session you're on (the scraper relaunches Chrome roughly every 100 scrolls)
 - **stale=0** — consecutive scrolls with no new posts (0 = healthy, content still loading)
 
-When done, check the `data/` folder — you should see `SLU.json`.
+When done, check the `data/` folder — you should see `SLU.json` (final) and `SLU.jsonl` (live log).
 
 ---
 
@@ -156,10 +158,12 @@ The scraper runs in the background. You can minimize the Command Prompt window.
 
 - **Do not close the Command Prompt** — this will stop the scraper
 - Do not put the laptop to sleep during a run
-- The scraper saves progress automatically every 200 posts — if it crashes, you won't lose everything
+- Progress auto-saves every 30 seconds to `data/{CODE}.jsonl` — if it crashes, just rerun the same command and it resumes from where it left off
 
-**Estimated time per page:** 1.5–2 hours for 4,000 posts  
-**Estimated total (all 10 pages):** 15–20 hours (run one or two pages at a time)
+**About the periodic restart.** Roughly every 100 scrolls you'll see a line like `Restart cycle #1 — relaunching browser` followed by a brief pause and `Fast-forward in progress…`. This is the scraper deliberately recycling Chrome to sidestep the freeze that would otherwise hit at 200–600 scrolls. After a fast-forward (~1–2 minutes) it resumes collecting. **Don't stop the run when you see this** — it's working as designed.
+
+**Estimated time per page:** 1.5–2.5 hours for 4,000 posts (the periodic restarts trade a little speed for not freezing on slower machines)  
+**Estimated total (all 10 pages):** 15–25 hours (run one or two pages at a time)
 
 ---
 
@@ -169,10 +173,12 @@ All output goes to the `data/` folder inside the scraper directory.
 
 | File | What It Is |
 |------|-----------|
-| `data/SLU.json` | Final results for SLU (appears when scrape finishes) |
-| `data/SLU_checkpoint.json` | Auto-saved backup every 200 posts (appears mid-run) |
+| `data/SLU.json` | **Final deliverable** — full results with metadata, written when the scrape finishes. This is the file you send to the team lead. |
+| `data/SLU.jsonl` | **Live append-only log** — one post per line, written every 30 seconds during the run. Used for crash recovery; rerunning the same command picks up here. |
 | `data/scrape_summary.json` | Summary of all pages scraped in a session |
 | `logs/scrape_YYYYMMDD_HHMMSS.log` | Detailed log of the entire run |
+
+> Older versions of the scraper used `data/SLU_checkpoint.json`. If you see that file from a previous run, the scraper will read it once and convert it into `SLU.jsonl` automatically — no manual action needed.
 
 ### What Each JSON Post Looks Like
 
@@ -218,7 +224,16 @@ Run the install commands from Step 3 again. Make sure you're in the right folder
 - Do not open heavy applications while scraping
 
 ### Progress bar shows very high ETA (50+ hours)
-This should not happen with the current version. If it does, stop the run (`Ctrl+C`), wait 30 seconds, and restart. The checkpoint file will resume from where you left off in the next version (not yet implemented — just restart the page).
+This is usually a transient slow patch right after a restart cycle (the fast-forward through duplicate posts is slow before it crosses into new content). Wait a minute or two — once fast-forward completes, the ETA recalculates and drops. If it stays stuck for more than 5 minutes, stop the run (`Ctrl+C`) and just rerun the same command — the scraper resumes from `data/{CODE}.jsonl` automatically.
+
+### "Restart cycle" appears every few minutes
+This is normal — the scraper recycles the browser roughly every 100 scrolls to avoid freezing. Each cycle adds ~1–2 minutes of fast-forward overhead but prevents the run from dying. Let it run.
+
+### The scraper stops with "ScrollWatchdog fired" or freezes
+The watchdog detects when Chrome stops responding and saves what it collected. This shouldn't happen with the current 100-scroll restart cap, but if it does:
+1. Check `data/{CODE}.jsonl` — your collected posts are still there
+2. Rerun the same command — it resumes from the JSONL
+3. If it freezes repeatedly on the same scroll, contact the team lead with your `logs/` folder
 
 ---
 
@@ -256,12 +271,12 @@ python main.py --cookies cookies.json --output-dir C:\MyResults
 
 - [ ] Python installed and `python --version` works
 - [ ] Scraper folder copied to the machine
-- [ ] `pip install playwright beautifulsoup4 tqdm pandas` done
+- [ ] `pip install playwright beautifulsoup4 tqdm pandas httpx` done
 - [ ] `python -m playwright install chromium` done
 - [ ] Google Chrome installed
 - [ ] `python extract_cookies.py` done — "Cookies saved" message appeared
 - [ ] Quick test passed: `python main.py --cookies cookies.json --targets SLU --target-posts 50`
-- [ ] `data/SLU.json` exists with posts inside
+- [ ] `data/SLU.json` exists with posts inside (and `data/SLU.jsonl` next to it)
 
 ---
 

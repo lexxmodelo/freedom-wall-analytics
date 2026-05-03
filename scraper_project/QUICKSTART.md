@@ -34,7 +34,7 @@ Restart VS Code after installing.
 Run these two commands in the terminal, one at a time:
 
 ```
-pip install playwright beautifulsoup4 tqdm pandas
+pip install playwright beautifulsoup4 tqdm pandas httpx
 ```
 ```
 python -m playwright install chromium
@@ -91,21 +91,26 @@ A menu appears:
 
 The progress bar will show up:
 ```
-[FW-02]  45%|████████          | 1800/4000 [28:14<32:01, 1.6s/post, scroll=312, stale=0]
+[FW-02]  45%|████████          | 1800/4000 [28:14<32:01, 1.6s/post, scroll=87, sess=1, stale=0]
 ```
 
-Leave the terminal running. It takes roughly **1–1.5 hours** per page.  
+Leave the terminal running. It takes roughly **1.5–2 hours** per page.  
 Results are saved to the `data/` folder when done.
+
+> **Note — restart cycles are normal.** Roughly every 100 scrolls you'll see `Restart cycle #1 — relaunching browser` and a brief pause while it relaunches. This is the scraper deliberately recycling the browser to avoid Chrome freezing. Don't stop the run — it's working as designed.
+
+> **If your run crashes or you stop it,** just rerun the same command. The scraper resumes from `data/{CODE}.jsonl` automatically and only collects what's missing.
 
 ---
 
 ## That's it
 
-Your output file will be at:
+Your output files will be at:
 ```
-data/FW-02.json   (or whichever page you picked)
+data/FW-02.json     ← final deliverable (sent to team lead)
+data/FW-02.jsonl    ← live append-only log (kept in case you want to resume)
 ```
 
-Send that file to the team lead when it's done.
+Send the `.json` file to the team lead when it's done.
 
 ---

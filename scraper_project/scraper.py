@@ -428,7 +428,7 @@ class _SessionRestarter:
     def fast_forward_via_extractor(self, page, extractor, code: str,
                                    max_scrolls: int = 2000,
                                    max_seconds: int = 600,
-                                   target_fresh_posts: int = 30,
+                                   target_fresh_posts: int = 15,
                                    watchdog=None) -> bool:
         """Yield-driven fast-forward.
 
@@ -506,6 +506,9 @@ class FacebookScraper:
         self._cookies: list[dict] = []
         self._session_state: dict = {}   # localStorage saved by extract_cookies.py
         self._cdp_sessions: dict = {}    # cache CDP sessions per-page id
+        # Per-target sets of post_id strings already appended to {code}.jsonl —
+        # prevents the same post from being re-appended on every 30s checkpoint.
+        self._jsonl_written_ids: dict[str, set[str]] = {}
         if config.cookie_file and os.path.exists(config.cookie_file):
             self._load_cookies(config.cookie_file)
 
@@ -859,6 +862,8 @@ class FacebookScraper:
     def _run_strategy(self, strategy: str, url: str, code: str) -> list[dict]:
         if strategy == "desktop":
             return self._desktop_strategy(url, code)
+        if strategy == "basic_mobile_httpx":
+            return self._basic_mobile_strategy_httpx(url, code)
         if strategy == "basic_mobile":
             return self._basic_mobile_strategy(url, code)
         logger.warning("Unknown strategy: %s", strategy)
@@ -922,28 +927,30 @@ class FacebookScraper:
         # session_state file (loaded later inside the playwright block) carries
         # the cursor set so the cursor-driven fast-forward can skip the
         # duplicate prefix on first session.
-        _ckpt_path = os.path.join(self.cfg.output_dir, f"{code}_checkpoint.json")
-        if os.path.exists(_ckpt_path):
-            try:
-                with open(_ckpt_path, "r", encoding="utf-8") as _cf:
-                    _ckpt = json.load(_cf)
-                _prev_posts = _ckpt.get("posts") or []
-                for _p in _prev_posts:
-                    _t = _p.get("text") or ""
-                    if not _t:
-                        continue
-                    _h = post_hash(_t)
-                    if _h in seen_hashes:
-                        continue
-                    seen_hashes.add(_h)
-                    posts.append(_p)
-                if posts:
-                    logger.info(
-                        "[%s] Resumed from checkpoint: %d posts pre-loaded into dedupe set",
-                        code, len(posts),
-                    )
-            except Exception as _exc:
-                logger.warning("[%s] Could not resume checkpoint: %s", code, _exc)
+        try:
+            _prev_posts = self._checkpoint_load(code)
+        except Exception as _exc:
+            logger.warning("[%s] Could not resume checkpoint: %s", code, _exc)
+            _prev_posts = []
+        if _prev_posts:
+            _written = self._jsonl_written_ids.setdefault(code, set())
+            for _p in _prev_posts:
+                _t = _p.get("text") or ""
+                if not _t:
+                    continue
+                _h = post_hash(_t)
+                if _h in seen_hashes:
+                    continue
+                seen_hashes.add(_h)
+                _pid = _p.get("post_id") or _h[:16]
+                _p["post_id"] = _pid
+                _written.add(_pid)
+                posts.append(_p)
+            if posts:
+                logger.info(
+                    "[%s] Resumed from checkpoint: %d posts pre-loaded into dedupe set",
+                    code, len(posts),
+                )
 
         with sync_playwright() as pw:
             browser, context = self._launch_desktop_session(pw, code)
@@ -1398,6 +1405,16 @@ class FacebookScraper:
                     except Exception:
                         pass
 
+        # Final flush so the JSONL is the complete record. Without this, the
+        # last partial window (since the most recent 30s checkpoint) would
+        # only live in the {code}.json deliverable; on resume tomorrow the
+        # JSONL would be stale and we'd re-scrape that window.
+        if posts:
+            try:
+                self._checkpoint_save(posts, code)
+            except Exception as exc:
+                logger.warning("[%s] Final checkpoint flush failed: %s", code, exc)
+
         return posts, seen_hashes
 
     def _capture_prefreeze_screenshot(self, page: Page, code: str, scroll_n: int) -> None:
@@ -1422,13 +1439,315 @@ class FacebookScraper:
 
     # ── Checkpointing ────────────────────────────────────────────────────────
 
+    def _checkpoint_path(self, code: str) -> str:
+        return os.path.join(self.cfg.output_dir, f"{code}.jsonl")
+
+    def _legacy_checkpoint_path(self, code: str) -> str:
+        return os.path.join(self.cfg.output_dir, f"{code}_checkpoint.json")
+
     def _checkpoint_save(self, posts: list[dict], code: str) -> None:
-        """Write current posts to disk for crash recovery."""
-        path = os.path.join(self.cfg.output_dir, f"{code}_checkpoint.json")
+        """Append-only JSONL checkpoint.
+
+        One post per line; survives mid-write crashes (a torn final line is
+        skipped on load). Tracks per-target written post_ids in memory so
+        repeated calls only append the delta since the previous call.
+        """
+        path = self._checkpoint_path(code)
         os.makedirs(self.cfg.output_dir, exist_ok=True)
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump({"posts": posts}, f, ensure_ascii=False, indent=2)
-        logger.info("[%s] Checkpoint: %d posts -> %s", code, len(posts), path)
+        written = self._jsonl_written_ids.setdefault(code, set())
+        appended = 0
+        with open(path, "a", encoding="utf-8") as f:
+            for p in posts:
+                pid = p.get("post_id") or post_hash(p.get("text", ""))[:16]
+                if not pid or pid in written:
+                    continue
+                # Persist post_id back onto the dict so downstream consumers
+                # see the same id we deduped against.
+                p["post_id"] = pid
+                f.write(json.dumps(p, ensure_ascii=False) + "\n")
+                written.add(pid)
+                appended += 1
+        if appended:
+            logger.info(
+                "[%s] Checkpoint: +%d new posts (total=%d) -> %s",
+                code, appended, len(written), path,
+            )
+
+    def _checkpoint_load(self, code: str) -> list[dict]:
+        """Read JSONL checkpoint, tolerating a torn final line.
+
+        Migrates a legacy {code}_checkpoint.json once if present and the JSONL
+        does not yet exist.
+        """
+        jsonl_path = self._checkpoint_path(code)
+        legacy_path = self._legacy_checkpoint_path(code)
+
+        if not os.path.exists(jsonl_path) and os.path.exists(legacy_path):
+            try:
+                with open(legacy_path, "r", encoding="utf-8") as f:
+                    legacy = json.load(f)
+                legacy_posts = legacy.get("posts") or []
+                if legacy_posts:
+                    os.makedirs(self.cfg.output_dir, exist_ok=True)
+                    with open(jsonl_path, "w", encoding="utf-8") as f:
+                        for p in legacy_posts:
+                            pid = p.get("post_id") or post_hash(p.get("text", ""))[:16]
+                            if not pid:
+                                continue
+                            p["post_id"] = pid
+                            f.write(json.dumps(p, ensure_ascii=False) + "\n")
+                    logger.info(
+                        "[%s] Migrated legacy checkpoint: %d posts -> %s",
+                        code, len(legacy_posts), jsonl_path,
+                    )
+            except Exception as exc:
+                logger.warning("[%s] Legacy checkpoint migration failed: %s", code, exc)
+
+        if not os.path.exists(jsonl_path):
+            return []
+
+        posts: list[dict] = []
+        with open(jsonl_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                posts.append(json.loads(line))
+            except json.JSONDecodeError:
+                # Tolerate a torn final line (mid-write crash). Anything mid-file
+                # is unexpected; log and skip.
+                if i == len(lines) - 1:
+                    logger.warning("[%s] Skipping torn final checkpoint line", code)
+                else:
+                    logger.warning("[%s] Skipping malformed checkpoint line %d", code, i)
+        return posts
+
+    # ── Strategy 0: mbasic via httpx (freeze-proof primary) ───────────────────
+
+    @staticmethod
+    def _to_mbasic_url(url: str) -> str:
+        """Transform a desktop FB URL into its mbasic equivalent."""
+        import re as _re
+        p_match = _re.search(r"facebook\.com/p/[^/]*?-(\d{10,})", url)
+        if p_match:
+            return f"https://mbasic.facebook.com/profile.php?id={p_match.group(1)}"
+        return url.replace("www.facebook.com", "mbasic.facebook.com")
+
+    def _cookies_to_httpx(self):
+        """Convert Playwright-format cookies to an httpx.Cookies jar."""
+        import httpx
+        jar = httpx.Cookies()
+        for c in self._cookies:
+            domain = c.get("domain", "")
+            if "facebook.com" not in domain:
+                continue
+            jar.set(
+                c["name"],
+                c["value"],
+                domain=domain.lstrip("."),
+                path=c.get("path", "/"),
+            )
+        return jar
+
+    def _basic_mobile_strategy_httpx(self, url: str, code: str) -> list[dict]:
+        """Pure-HTTP scrape of mbasic.facebook.com — no Playwright, no CDP, no V8.
+
+        Eliminates the freeze cliff entirely on this path: every freeze cause
+        (CDP IPC stall, DOM accumulation, V8 fragmentation) is in the browser,
+        and there is no browser here. mbasic is server-rendered HTML; the
+        existing BasicMobileParser already handles the same body Playwright
+        would have produced via page.content().
+        """
+        try:
+            import httpx
+        except ImportError:
+            logger.warning(
+                "[%s][basic_mobile_httpx] httpx not installed — falling through to next strategy",
+                code,
+            )
+            return []
+
+        posts: list[dict] = []
+        seen_hashes: set[str] = set()
+
+        # Pre-load any prior checkpoint so we resume on the same JSONL stream
+        # the desktop strategy would have used.
+        try:
+            for _p in self._checkpoint_load(code):
+                _t = _p.get("text") or ""
+                if not _t:
+                    continue
+                _h = post_hash(_t)
+                if _h in seen_hashes:
+                    continue
+                seen_hashes.add(_h)
+                _pid = _p.get("post_id") or _h[:16]
+                _p["post_id"] = _pid
+                self._jsonl_written_ids.setdefault(code, set()).add(_pid)
+                posts.append(_p)
+            if posts:
+                logger.info(
+                    "[%s][basic_mobile_httpx] Resumed checkpoint: %d posts pre-loaded",
+                    code, len(posts),
+                )
+        except Exception as exc:
+            logger.warning("[%s][basic_mobile_httpx] Resume failed: %s", code, exc)
+
+        mobile_url = self._to_mbasic_url(url)
+        cookies = self._cookies_to_httpx() if self._cookies else None
+        if cookies:
+            logger.info(
+                "[%s][basic_mobile_httpx] Using %d cookies (authenticated)",
+                code, len(self._cookies),
+            )
+
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Linux; Android 13; Pixel 7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/125.0.0.0 Mobile Safari/537.36"
+            ),
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        }
+
+        deadline = time.monotonic() + self.cfg.page_timeout_seconds
+        max_pages = self.cfg.mbasic_max_pages
+        pages_loaded = 0
+        consecutive_empty = 0
+        _last_checkpoint_t = time.monotonic()
+        current_url: Optional[str] = mobile_url
+        blocked = False
+
+        try:
+            with httpx.Client(
+                cookies=cookies,
+                headers=headers,
+                follow_redirects=True,
+                timeout=30.0,
+                http2=False,
+            ) as client:
+                while current_url and pages_loaded < max_pages:
+                    if time.monotonic() > deadline:
+                        logger.info("[%s][basic_mobile_httpx] Timeout reached", code)
+                        break
+
+                    try:
+                        resp = client.get(current_url)
+                    except httpx.HTTPError as exc:
+                        logger.warning(
+                            "[%s][basic_mobile_httpx] Request failed: %s — falling through",
+                            code, exc,
+                        )
+                        blocked = True
+                        break
+
+                    if resp.status_code >= 400:
+                        logger.warning(
+                            "[%s][basic_mobile_httpx] HTTP %d — falling through",
+                            code, resp.status_code,
+                        )
+                        blocked = True
+                        break
+
+                    final_host = (resp.url.host or "").lower()
+                    if final_host and final_host != "mbasic.facebook.com":
+                        logger.warning(
+                            "[%s][basic_mobile_httpx] Redirected to %s — falling through",
+                            code, final_host,
+                        )
+                        blocked = True
+                        break
+
+                    body = resp.text or ""
+                    # Block sentinels can appear deep in the body (mbasic's
+                    # browser-not-supported template puts the message ~9 KB in
+                    # after a wall of inline CSS). Scan the full body.
+                    body_lower = body.lower()
+                    if "not available on this browser" in body_lower:
+                        logger.warning(
+                            "[%s][basic_mobile_httpx] mbasic UA-gated (browser-not-supported page) — falling through",
+                            code,
+                        )
+                        blocked = True
+                        break
+                    if (
+                        "you must log in" in body_lower
+                        or "/checkpoint/" in str(resp.url)
+                        or "captcha" in body_lower
+                    ):
+                        logger.warning(
+                            "[%s][basic_mobile_httpx] Login/checkpoint wall — falling through",
+                            code,
+                        )
+                        blocked = True
+                        break
+
+                    page_posts, next_url = BasicMobileParser.parse_page(body)
+
+                    new_count = 0
+                    for p in page_posts:
+                        h = post_hash(p.get("text", ""))
+                        if h in seen_hashes:
+                            continue
+                        seen_hashes.add(h)
+                        p["post_id"] = h[:16]
+                        posts.append(p)
+                        new_count += 1
+
+                    pages_loaded += 1
+                    logger.info(
+                        "[%s][basic_mobile_httpx] Page %d: +%d new (total %d)",
+                        code, pages_loaded, new_count, len(posts),
+                    )
+
+                    # Time-debounced checkpoint (matches desktop cadence).
+                    _now = time.monotonic()
+                    if new_count > 0 and (_now - _last_checkpoint_t) >= 30:
+                        self._checkpoint_save(posts, code)
+                        _last_checkpoint_t = _now
+
+                    if len(posts) >= self.cfg.target_posts:
+                        logger.info("[%s][basic_mobile_httpx] Target reached", code)
+                        break
+
+                    if new_count == 0:
+                        consecutive_empty += 1
+                        if consecutive_empty >= 2:
+                            logger.info(
+                                "[%s][basic_mobile_httpx] Two consecutive empty pages — stopping",
+                                code,
+                            )
+                            break
+                    else:
+                        consecutive_empty = 0
+
+                    if not next_url:
+                        logger.info("[%s][basic_mobile_httpx] No next-link — feed exhausted", code)
+                        break
+
+                    current_url = next_url
+                    random_sleep(
+                        self.cfg.mbasic_request_delay_min,
+                        self.cfg.mbasic_request_delay_max,
+                    )
+        except Exception as exc:
+            logger.error("[%s][basic_mobile_httpx] Error: %s", code, exc)
+
+        # Final flush to JSONL so the next strategy (if any) sees them too.
+        if posts:
+            self._checkpoint_save(posts, code)
+
+        if blocked:
+            logger.info(
+                "[%s][basic_mobile_httpx] Blocked path — %d posts collected before fallthrough",
+                code, len(posts),
+            )
+
+        return posts
 
     # ── Strategy 2: mbasic (Basic Mobile) ────────────────────────────────────
 

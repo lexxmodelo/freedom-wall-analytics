@@ -55,11 +55,13 @@ class ScraperConfig:
 
     # --- Freeze-proof architecture (network interception + periodic restart) ---
     network_intercept_mode: bool = True       # passive collector on /api/graphql/ responses
-    # Empirically: hard freeze at ~scroll 600 even with low heap (CDP IPC stall,
-    # not heap exhaustion). Restart at 500 leaves comfortable margin and lets
-    # session 1 yield ~1400+ posts reliably before cursor-driven session 2.
-    max_scrolls_per_session: int = 500
-    session_restart_threshold: int = 500      # alias-style: restart trigger for clarity in logs
+    # Empirically: hard freeze at ~scroll 600 even with low heap on the owner's
+    # machine, but other users freeze at 220-500 due to CDP IPC throughput
+    # variance (Chrome version, single-core CPU, ProactorEventLoop buffering).
+    # Restart at 100 stays well below every observed freeze cliff. Trade-off:
+    # more fast-forward overhead per cycle, mitigated by target_fresh_posts=15.
+    max_scrolls_per_session: int = 100
+    session_restart_threshold: int = 100      # alias-style: restart trigger for clarity in logs
     memory_check_interval: int = 25           # CDP HeapProfiler.collectGarbage + heap log cadence
     heap_pressure_mb: int = 700               # backstop: restart early if heap_used exceeds this (MB)
     network_alive_window_secs: float = 12.0   # treat extractor as alive if a response arrived within this window
@@ -114,10 +116,23 @@ class ScraperConfig:
     output_dir: str = os.path.join(os.path.dirname(__file__), "data")
     log_dir: str = os.path.join(os.path.dirname(__file__), "logs")
 
+    # --- mbasic httpx tuning (Strategy 0) ---
+    mbasic_request_delay_min: float = 3.0
+    mbasic_request_delay_max: float = 6.0
+    mbasic_max_pages: int = 200              # cap pages per target (auth and unauth)
+
     # --- Strategies (ordered by preference) ---
+    # As of 2026-05-04, mbasic.facebook.com is gated by Facebook's UA
+    # detection: every UA tested returns either a "browser not supported"
+    # error or an intent:// Play Store redirect. The httpx and Playwright
+    # mbasic paths therefore short-circuit (returning 0 posts within ~1.5 s)
+    # and the desktop path is the only working one. The mbasic strategies
+    # are kept after desktop as cheap probes — if Facebook ever re-enables
+    # mbasic for our UA, they'll start succeeding without code changes.
     strategies: list = field(default_factory=lambda: [
-        "desktop",     # www.facebook.com — full JS rendering
-        "basic_mobile", # mbasic.facebook.com — minimal JS, simpler DOM
+        "desktop",             # www.facebook.com — full JS rendering (currently the only working path)
+        "basic_mobile_httpx",  # mbasic via plain HTTP — currently UA-gated, kept as cheap probe
+        "basic_mobile",        # mbasic via Playwright — currently UA-gated, last-resort
     ])
 
     scraper_version: str = "1.0.0"
