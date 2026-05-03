@@ -53,6 +53,17 @@ class ScraperConfig:
     # --- Per-page time cap ---
     page_timeout_seconds: int = 600          # raised to 28800 (8h) in auth mode
 
+    # --- Freeze-proof architecture (network interception + periodic restart) ---
+    network_intercept_mode: bool = True       # passive collector on /api/graphql/ responses
+    # Empirically: hard freeze at ~scroll 600 even with low heap (CDP IPC stall,
+    # not heap exhaustion). Restart at 500 leaves comfortable margin and lets
+    # session 1 yield ~1400+ posts reliably before cursor-driven session 2.
+    max_scrolls_per_session: int = 500
+    session_restart_threshold: int = 500      # alias-style: restart trigger for clarity in logs
+    memory_check_interval: int = 25           # CDP HeapProfiler.collectGarbage + heap log cadence
+    heap_pressure_mb: int = 700               # backstop: restart early if heap_used exceeds this (MB)
+    network_alive_window_secs: float = 12.0   # treat extractor as alive if a response arrived within this window
+
     # --- Authentication (cookie-based) ---
     cookie_file: Optional[str] = None        # path to cookies.json from extract_cookies.py
     authenticated: bool = False              # set automatically when cookies are loaded
@@ -67,6 +78,13 @@ class ScraperConfig:
     # --- Browser ---
     headless: bool = True
     browser_channel: Optional[str] = "chrome"  # use system Chrome (Playwright-bundled Chromium fails headed on Win11+Py3.14)
+
+    # --- Headed debug mode (opt-in via --headed CLI flag) ---
+    headed: bool = False                     # master flag; True forces headless=False + debug behaviors
+    debug_screenshots: bool = False          # capture screenshots scrolls 35-70 every 5
+    debug_screenshot_dir: str = os.path.join(os.path.dirname(__file__), "debug_screenshots")
+    debug_evaluate_timeout_ms: int = 15_000  # reserved: Playwright Python evaluate() has no timeout kwarg
+    js_heap_size_mb: int = 2048              # V8 --max_old_space_size (was hardcoded 512)
     user_agent: str = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "

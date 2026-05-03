@@ -224,7 +224,9 @@ def main():
     if args.cookies:
         config.cookie_file = args.cookies
     if args.headed:
+        config.headed = True
         config.headless = False
+        config.debug_screenshots = True
     if args.target_posts:
         config.target_posts = args.target_posts
     if args.output_dir:
