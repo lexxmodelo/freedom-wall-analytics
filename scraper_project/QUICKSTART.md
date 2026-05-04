@@ -89,17 +89,21 @@ A menu appears:
 - Press Enter again to keep the default target (4,000 posts)
 - Type **Y** to confirm and start
 
-The progress bar will show up:
+You'll see logging like this (one line per pagination request, ~3 posts each):
 ```
-[FW-02]  45%|████████          | 1800/4000 [28:14<32:01, 1.6s/post, scroll=87, sess=1, stale=0]
+[SLU][graphql_httpx] harvesting tokens...
+[SLU][graphql_httpx] harvested tokens: friendly=ProfileCometTimelineFeedRefetchQuery ...
+[SLU][graphql_httpx] iter=10 total=30 (+3) next_cursor=Cg8Ob3JnYW5pY...
+[SLU][graphql_httpx] iter=20 total=60 (+3) next_cursor=Cg8Ob3JnYW5pY...
+[SLU] Checkpoint: +30 new posts (total=60) -> data/SLU.jsonl
 ```
 
-Leave the terminal running. It takes roughly **1.5–2 hours** per page.  
+Leave the terminal running. It takes roughly **1–1.5 hours** per page (4,000 posts).  
 Results are saved to the `data/` folder when done.
 
-> **Note — restart cycles are normal.** Roughly every 100 scrolls you'll see `Restart cycle #1 — relaunching browser` and a brief pause while it relaunches. This is the scraper deliberately recycling the browser to avoid Chrome freezing. Don't stop the run — it's working as designed.
+> **Two-phase scraping.** Each run starts with a brief Chrome session (~15 s) to capture Facebook's pagination tokens, then runs the rest as direct API calls — no scrolling, no DOM. Chrome stays open as a thin HTTP client. Total memory is bounded at ~1.5 GB regardless of post count.
 
-> **If your run crashes or you stop it,** just rerun the same command. The scraper resumes from `data/{CODE}.jsonl` automatically and only collects what's missing.
+> **If your run crashes or you stop it,** just rerun the same command. The scraper resumes from `data/{CODE}.jsonl` automatically. The first ~30 minutes after a resume show `+0` posts per iteration — that's the scraper fast-forwarding past the posts you already have. It will start adding new content again once it crosses your previous high-water mark.
 
 ---
 

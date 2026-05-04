@@ -347,3 +347,77 @@
   - This makes the scraper self-healing: even after a corrupted profile, it continues using cookie-auth without any manual intervention.
 - **Files modified:** `scraper.py` (lines 185–245)
 - **Status:** DONE
+
+---
+
+## Phase 7: Apify-style reliability pass + post-mortem fix
+
+### ACTION-030 — Apify-style reliability pass: JSONL checkpoint, cycle-100 cap, mbasic-via-httpx
+- **Time:** 2026-05-04
+- **Motivation:** Cross-machine instability — owner reaches ~1600–1700 posts before Chrome freezes; other researchers freeze between 220–500 even with 16 GB RAM. Root causes (diagnosed): CDP IPC throughput variance across hardware/OS, DOM accumulation as O(N²), V8 heap fragmentation, and bundled-Chromium-vs-system-Chrome version drift. RAM is not the bottleneck — IPC is. A colleague suggested adapting Apify-style techniques (mbasic primary via plain HTTP, append-only checkpoint, smaller browser sessions, optional proxy).
+- **Plan file:** `C:\Users\Alex Evan\docs/plans/scraper_apify_reliability_pass.md`
+- **Changes:**
+  1. **Append-only JSONL checkpointing** (`scraper.py`):
+     - Replaced `_checkpoint_save` (was: full JSON rewrite every 30 s to `{code}_checkpoint.json`) with append-only writes to `data/{code}.jsonl`. Per-target `self._jsonl_written_ids` set deduplicates so repeat calls only append the delta.
+     - Added `_checkpoint_load(code)` — tolerant line-by-line read; skips a torn final line (mid-write crash recovery). One-time migration: if legacy `{code}_checkpoint.json` exists and `{code}.jsonl` doesn't, converts the JSON into JSONL automatically.
+     - Final flush at end of `_desktop_run` so the JSONL is always the durable record (matches the `{code}.json` deliverable).
+     - Resume block at `_desktop_run` start updated to seed both the dedupe set AND `_jsonl_written_ids` from the JSONL.
+  2. **Cycle cap reduced 500 → 100** (`config.py:max_scrolls_per_session`): intent was to stay below every observed freeze cliff (220–500) on slower machines.
+  3. **Fast-forward boundary threshold reduced 30 → 15** (`scraper.py:fast_forward_via_extractor`): cuts fast-forward duplicate slog roughly in half on every restart cycle.
+  4. **mbasic-primary via httpx** (`scraper.py:_basic_mobile_strategy_httpx`, `config.py`): added a pure-HTTP scrape path against `mbasic.facebook.com` using `httpx`. Reuses existing `BasicMobileParser` (no parser changes). Helpers: `_to_mbasic_url`, `_cookies_to_httpx`. Block detection covers HTTP ≥400, redirect off mbasic, login/checkpoint/captcha sentinels. New tunables: `mbasic_request_delay_min/max` (3–6 s), `mbasic_max_pages` (200). Strategy order updated to put `basic_mobile_httpx` ahead of `desktop`.
+  5. **httpx added to `requirements.txt`**.
+- **Files modified:** `scraper.py`, `config.py`, `requirements.txt`, `guide.md`, `QUICKSTART.md`
+- **Tests:**
+  - Smoke (target=50): 52 posts in 64 s, JSONL written, target_reached.
+  - Resume (target=80, JSONL present): "Resumed from checkpoint: 52 posts pre-loaded" → 82 posts final, JSONL = 82 lines.
+  - Long-run (target=300): 302 posts in 378 s, 2 sessions, cycle@100 fired correctly, fast-forward crossed boundary at scroll 118 in 86.8 s.
+  - mbasic httpx isolated: HTTP 200 OK but `mbasic.facebook.com` serves a "Facebook is not available on this browser" error page for every modern UA tested (Pixel 7, desktop Chrome, Firefox, MSIE, Nokia). Older UAs (iPhone Safari old) get redirected to `m.facebook.com` (React-rendered, plain HTTP returns no posts) or `intent://` Play Store deeplinks (Chrome rejects, `net::ERR_ABORTED`). Even Playwright with the same UA fails. **Conclusion: mbasic.facebook.com is currently UA-gated by Facebook for authenticated accounts; the Apify-style mbasic-primary approach does not currently produce posts.** `basic_mobile_httpx` was reordered to run *after* `desktop` (as a cheap probe — ~1.5 s of failed-fast latency before falling through). UA-gate detection (`"not available on this browser"` in body) added so the failure is logged clearly. Implementation will start working immediately if/when Facebook re-opens mbasic.
+- **Status:** DONE — but see ACTION-031 below for the post-mortem on cycle-cap=100.
+
+### ACTION-031 — Post-mortem: revert cycle-cap to 500, add unique-stale guard
+- **Time:** 2026-05-04
+- **Motivation — observed regression on the owner's machine:** A long authenticated SLU run with the new cycle@100 setting reached 1582/4000 posts in 1h15m, then degraded to 54.94 s/post with a 36-hour ETA. Symptom: progress bar showed `scroll=639, sess=7, stale=0` while posts stayed pinned at 1582 even though Chrome was visibly scrolling and `net=2505` GraphQL responses had been captured. Run was visibly stalled but the existing `stale_count` did not fire because of the `network_alive` short-circuit (any GraphQL response within the 12-second window resets stale, even when responses contain only duplicates).
+- **Root cause:** The cycle-100 plan assumed restart overhead was approximately constant. It is not — fast-forward is **O(N)** in `len(seen_hashes)`. Each restart resumes from the top of the feed, so the scraper must scroll past *every previously-collected post* before finding new content. At Facebook's ~2 dup-posts-surfaced-per-scroll, a 1500-post run pays ~750 scrolls of fast-forward overhead per cycle. With a 100-scroll cap, that means each later cycle is ~7× slower than the actual productive work it does. Cycles trended toward yielding fewer than 50 net new posts each, with throughput collapsing asymptotically.
+- **Secondary cause:** `stale_count` is suppressed when `network_alive=True`, which is correct for transient dedup-saturation but wrong for sustained duplicate-only periods (the post-restart fast-forward overlap, end-of-feed, or an approaching CDP/heap freeze). The 30-stale-scroll early-exit therefore could never fire during the pathology, leaving the session stuck.
+- **Fix:**
+  1. **Revert `max_scrolls_per_session` 100 → 500** in `config.py` (and the alias `session_restart_threshold`). 500 is the empirical sweet spot — comfortable margin below the typical freeze cliff on the owner's machine (~1700) and large enough that fast-forward overhead is amortized over many useful scrolls.
+  2. **Add unique-stale guard** in `_desktop_run` — a new counter `unique_stale_count` increments whenever a scroll completes without growing `seen_hashes`. Reset on dedupe-set growth and on session restart. New stop condition: `if unique_stale_count >= cfg.unique_stale_limit (=50): break`. Fires regardless of `network_alive`, so it catches the three real conditions: dedup-saturation post-restart, end-of-feed, and approaching freeze (Chrome serving the same posts).
+  3. **New config knob** `unique_stale_limit: int = 50` (`config.py`).
+  4. **Progress bar postfix** now exposes `ustale=` so researchers can see if the dedupe set is stuck.
+  5. **Existing safeguards retained:** 700 MB heap-pressure backstop, 90 s ScrollWatchdog, normal `stale_scroll_limit=30` (auth) for offline-feed cases.
+- **What is kept from ACTION-030:** JSONL append-only checkpointing (independent win, crash-safe), `target_fresh_posts=15` (smaller fast-forward budget when restarts do happen), mbasic httpx strategy code (currently inert due to UA-gate, ready to activate if mbasic re-opens).
+- **Files modified:** `scraper.py`, `config.py`, `guide.md`, `QUICKSTART.md`
+- **Tests:**
+  - Smoke (target=50, FW-01): 51 posts in 72 s, target_reached. Throughput restored to pre-cap baseline (~52 posts in 64 s).
+  - Syntax/import check: clean. New config values: `max_scrolls_per_session=500`, `session_restart_threshold=500`, `unique_stale_limit=50`.
+- **Trade-off / known risk:** Researchers whose machines actually freeze before scroll 500 will not be protected by the cycle cap alone — they now rely on the heap-pressure trigger (700 MB), unique-stale guard (50 scrolls), and the 90 s ScrollWatchdog. If that turns out to be insufficient, the next iteration is signal-based adaptive cycling (track CDP eval round-trip latency over a window; restart when the median triples). Not implemented now — current trio of signals should cover real-world freeze patterns.
+- **Status:** DONE
+
+### ACTION-032 — `desktop_graphql_httpx`: bypass the freeze cliff entirely
+- **Time:** 2026-05-04
+- **Plan file:** `C:\Users\Alex Evan\docs/plans/scraper_graphql_replay.md`
+- **Motivation:** Even with the ACTION-030/031 mitigations (JSONL checkpoint, 500-scroll cycle cap, unique-stale guard, 700 MB heap-pressure restart, CDP GC), the owner's laptop still freezes at ~1700 posts on long runs. The cliff is hardware-bound — DOM nodes + V8 heap + GraphQL response cache accumulate as the React feed scrolls, until Windows starts paging and the renderer GC-thrashes. Apify and Bright Data don't hit this because they don't run a desktop browser at all — they replay the underlying `/api/graphql/` calls directly with HTTP clients. This action implements the same architecture as a new fourth strategy.
+- **Approach:** Brief Playwright session (~14 s) navigates the target page and harvests one pagination POST to `/api/graphql/` (token bundle: `fb_dtsg`, `lsd`, `jazoest`, `doc_id`, full `variables` JSON, complete header set captured via `request.all_headers()`, and the live cookie jar). The browser is then **kept open as a thin HTTP client** — no further DOM rendering, no scrolling — and the captured request is replayed via Playwright's `context.request.post()` (APIRequestContext) to drive cursor-based pagination. RSS stays bounded at ~100 MB regardless of post count. fb_dtsg is proactively re-harvested every 45 minutes (relaunch Chrome briefly, capture new tokens, close, resume) and reactively on any token-expiry signal.
+- **Why APIRequestContext (not raw httpx):** Raw httpx replay returns FB error 1357054 ("Your Request Couldn't be Processed") even with byte-identical body and headers — Facebook's WAF appears to fingerprint the TLS ClientHello and reject non-Chrome stacks. Playwright's APIRequestContext uses real Chrome's HTTP/TLS stack, inherits the cookie jar (so fr/datr rotations carry over), and passes WAF cleanly. The architecture still avoids the freeze cliff because we never render DOM after harvest.
+- **Files modified / created:**
+  - **NEW** `graphql_httpx.py` — `TokenBundle` dataclass, `harvest_tokens()`, `paginate()`, `should_refresh()`, `close_session()`. ~360 LOC. Reuses `_GraphQLPostExtractor._iter_json_chunks` / `_walk_for_cursors` / `_walk_for_stories` (already `@staticmethod`) so the post dict shape and dedup contract are byte-identical to the desktop strategy.
+  - **NEW** `scripts/test_graphql_httpx.py` — Phase 1 standalone PoC; ~500 LOC including diagnostics. Validates the technique against live FB before integration.
+  - `config.py` — added 7 fields under `# --- GraphQL replay strategy (ACTION-032) ---`. Updated `strategies` default list to put `desktop_graphql_httpx` first; `desktop` becomes the fallback.
+  - `scraper.py` — added `_desktop_graphql_httpx_strategy()` orchestrator (~110 LOC) that handles checkpoint resume, harvest/re-harvest, paginate, close. Added dispatch branch in `_run_strategy`. No changes to `_GraphQLPostExtractor` (its static parsers are reused as-is).
+- **Key debugging path while building the PoC:**
+  1. First harvest captured 0 graphql POSTs → `__user=0` in cookie-side requests revealed that the persistent profile dir was logged out. Fix: force `use_persistent_context=False` and explicitly call `context.add_cookies(self._cookies)`.
+  2. Heuristic too narrow → captured the wrong query (`ProfileCometTilesFeedPaginationQuery`, the photo grid). Fix: priority-based candidate selection favouring `*TimelineFeed*` queries.
+  3. Replay returned `for (;;);{"error":1357054}` even with exact captured bytes. Discovery: `request.headers` returns only client-set headers; `request.all_headers()` returns the complete set Chrome actually sent (including `origin`, `accept`, `sec-fetch-*`). Without those, FB rejects.
+  4. `request.all_headers()` includes HTTP/2 pseudo-headers (`:authority` etc.) which APIRequestContext rejects. Fix: filter out keys starting with `:`.
+  5. After fixes: 102 posts in 80 MB RSS, all HTTP 200, no errors.
+- **Tests:**
+  - **PoC (Phase 1):** `scripts/test_graphql_httpx.py --target SLU --max-posts 100 --max-iterations 50`. Result: 102 unique posts collected, 0 errors, peak RSS 80 MB, 14 s harvest + 65 s replay. Cursor advanced cleanly each iteration; FB returns 3 posts per page on `ProfileCometTimelineFeedRefetchQuery`.
+  - **Integration (Phase 3b):** `python main.py --cookies cookies.json --targets SLU --target-posts 200`. Result: 200 posts in 207 s (3.4 min), strategy=`desktop_graphql_httpx`, status=`target_reached`. JSONL schema matches desktop strategy exactly (keys: `engagement, post_id, post_url, source, text, timestamp_iso, timestamp_raw`; all `source: "graphql"`). Checkpoints fired every 30 s as designed.
+  - **Cliff test v1 (interrupted):** Got to 2715/4000 in 45 min, then proactive token refresh fired and revealed a flaw — the new harvest's cursor pointed back to the top of the feed, so paginate began fast-forwarding through every previously-collected post (~38 min projected, asymptote with the next refresh). Killed the run; preserved the 2706 posts in JSONL.
+  - **Cliff test v2 (PASSED):** After the two fixes (cursor preservation across refreshes; refresh interval 45 → 240 min), restarted from the 2706-post checkpoint. **Final: 4002 posts collected via `desktop_graphql_httpx`, status=`target_reached`, in 3906 s (65.1 min wall clock)**. Verified: JSONL has 4002 lines / 4002 unique by text, all `source: "graphql"`. Schema identical to desktop strategy (keys: `engagement, post_id, post_url, source, text, timestamp_iso, timestamp_raw`). Peak Python RSS ~340 MB, peak Chrome RSS ~1399 MB — *Chrome stayed flat the entire run* (vs desktop strategy where Chrome grows monotonically into the freeze cliff).
+- **Two follow-up fixes during 3c:**
+  1. `paginate()` now takes/returns a `start_cursor: Optional[str]` so the orchestrator threads the latest cursor across token refreshes. Without this, every refresh forces a full fast-forward through `len(posts)` duplicates before productive work resumes — fatal for long runs.
+  2. `graphql_httpx_token_refresh_minutes` default raised 45 → 240 min. fb_dtsg/lsd appear to last for hours in practice; reactive refresh (paginate detects FB error envelope 1357054 / 401 / 403 and signals `token_expired`) catches actual expiry, so proactive refresh need only be a backstop for very long runs.
+- **CLI flag added:** `--strategies` (e.g., `--strategies desktop_graphql_httpx` or `--strategies desktop`) to override `cfg.strategies` for testing a single strategy in isolation.
+- **Cliff bypassed:** The owner's laptop previously froze at ~1700 posts on the desktop strategy. The new strategy reached 4002 without freezing — Chrome RSS stays bounded at ~1.4 GB throughout because no further DOM rendering happens after the brief harvest scrolls. Falls through cleanly to `desktop` on harvest failure (per `max_retries`), so the change is non-regressive.
+- **Status:** DONE — all phases complete (1, 2a–2d, 3b, 3c, 3d).

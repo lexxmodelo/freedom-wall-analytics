@@ -55,13 +55,16 @@ class ScraperConfig:
 
     # --- Freeze-proof architecture (network interception + periodic restart) ---
     network_intercept_mode: bool = True       # passive collector on /api/graphql/ responses
-    # Empirically: hard freeze at ~scroll 600 even with low heap on the owner's
-    # machine, but other users freeze at 220-500 due to CDP IPC throughput
-    # variance (Chrome version, single-core CPU, ProactorEventLoop buffering).
-    # Restart at 100 stays well below every observed freeze cliff. Trade-off:
-    # more fast-forward overhead per cycle, mitigated by target_fresh_posts=15.
-    max_scrolls_per_session: int = 100
-    session_restart_threshold: int = 100      # alias-style: restart trigger for clarity in logs
+    # Restart cap. The earlier 100-scroll cap was reverted (ACTION-031): each
+    # restart's fast-forward overhead grows linearly with the dedupe set size,
+    # so cycling at 100 made long runs progressively slower as more posts
+    # accumulated. 500 is the original empirical sweet spot — comfortable margin
+    # below the typical freeze cliff. Machines that freeze earlier are caught by
+    # signal-based triggers: heap_pressure_mb (700 MB), unique_stale_limit, and
+    # the 90 s ScrollWatchdog.
+    max_scrolls_per_session: int = 500
+    session_restart_threshold: int = 500      # alias-style: restart trigger for clarity in logs
+    unique_stale_limit: int = 50              # end session if seen_hashes hasn't grown in N scrolls (catches dedup-saturation / approaching freeze)
     memory_check_interval: int = 25           # CDP HeapProfiler.collectGarbage + heap log cadence
     heap_pressure_mb: int = 700               # backstop: restart early if heap_used exceeds this (MB)
     network_alive_window_secs: float = 12.0   # treat extractor as alive if a response arrived within this window
@@ -121,6 +124,25 @@ class ScraperConfig:
     mbasic_request_delay_max: float = 6.0
     mbasic_max_pages: int = 200              # cap pages per target (auth and unauth)
 
+    # --- GraphQL replay strategy (ACTION-032) ---
+    # Bypasses the V8/Chrome-RSS freeze cliff by harvesting one pagination
+    # request via a brief Playwright session, then replaying /api/graphql/
+    # POSTs through the same browser's APIRequestContext. The browser
+    # remains open as a thin HTTP client (no further DOM rendering, no
+    # scrolling), so RSS stays bounded at ~100 MB regardless of post count.
+    graphql_httpx_request_delay_min: float = 1.5
+    graphql_httpx_request_delay_max: float = 3.0
+    # fb_dtsg/lsd appear to last for hours in practice. 240 min covers most
+    # real-world runs; reactive refresh (paginate detects FB error envelope
+    # 1357054 or 401/403 and signals token_expired) catches actual expiry.
+    # The previous 45-min default caused fast-forward stalls because each
+    # refresh starts from a fresh cursor at the top of the feed.
+    graphql_httpx_token_refresh_minutes: int = 240
+    graphql_httpx_max_consecutive_errors: int = 5     # bail to fallback strategy after N consecutive failures
+    graphql_httpx_harvest_scrolls: int = 5            # scroll budget during harvest to trigger pagination
+    graphql_httpx_harvest_timeout_seconds: int = 60   # ceiling for token-harvest phase
+    graphql_httpx_max_iterations: int = 5000          # safety cap on the pagination loop
+
     # --- Strategies (ordered by preference) ---
     # As of 2026-05-04, mbasic.facebook.com is gated by Facebook's UA
     # detection: every UA tested returns either a "browser not supported"
@@ -130,7 +152,8 @@ class ScraperConfig:
     # are kept after desktop as cheap probes — if Facebook ever re-enables
     # mbasic for our UA, they'll start succeeding without code changes.
     strategies: list = field(default_factory=lambda: [
-        "desktop",             # www.facebook.com — full JS rendering (currently the only working path)
+        "desktop_graphql_httpx",   # NEW (ACTION-032): brief Playwright harvest + APIRequestContext replay; no DOM, no freeze cliff
+        "desktop",             # FALLBACK: full JS rendering — works to ~1700 posts on slower laptops
         "basic_mobile_httpx",  # mbasic via plain HTTP — currently UA-gated, kept as cheap probe
         "basic_mobile",        # mbasic via Playwright — currently UA-gated, last-resort
     ])

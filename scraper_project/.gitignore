@@ -1,0 +1,32 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# --- Auth + secrets (NEVER COMMIT) ---
+cookies.json
+cookies_state.json
+
+# --- Outputs ---
+data/*.json
+data/*.jsonl
+data/*.json.bak
+logs/*.log
+logs/archive/
+logs/AGENT_ACTIONS.log
+logs/agent_stdout.log
+logs/agent_stderr.log
+debug_screenshots/*.png
+scripts/_poc_*
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Persistent browser profile (extract_cookies.py output) ---
+fb_login_profile/

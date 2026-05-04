@@ -8,7 +8,17 @@
 
 ## What This Does
 
-This tool automatically scrolls through Facebook Freedom Wall pages and saves every post (text, timestamp, reactions) to a JSON file. It runs in the background — you can leave your computer and come back to results.
+This tool collects every post (text, timestamp, reactions) from Facebook Freedom Wall pages and saves them to a JSON file. It runs in the background — you can leave your computer and come back to results.
+
+### How It Works (One-Minute Overview)
+
+The scraper has a **chain of strategies**. It tries them in order; each falls through to the next if it can't deliver:
+
+1. **`desktop_graphql_httpx`** *(default, recommended).* Briefly opens Chrome (~15 s) to capture Facebook's pagination tokens, then closes the browser as a renderer and replays the API calls directly. No scrolling, no DOM, memory stays flat at ~1.5 GB regardless of post count. Reaches 4,000 posts on any laptop.
+2. **`desktop`** *(fallback).* The original full-Chrome approach: scrolls the page, parses the DOM. Works but freezes around 1,700 posts on lower-RAM laptops, which is why it's now a fallback rather than the default.
+3. `basic_mobile_httpx`, `basic_mobile` — *(currently inactive — Facebook is gating mbasic for modern user agents).* Kept as cheap probes in case Facebook re-enables them.
+
+You don't have to pick a strategy — the scraper tries them in order automatically. The `--strategies` flag exists if you want to force a specific one (see Command Reference).
 
 ---
 
@@ -105,18 +115,26 @@ A menu appears. Select `1` (SLU), type `50` for target posts, and confirm.
 python main.py --cookies cookies.json --targets SLU --target-posts 50
 ```
 
-You should see a progress bar like this:
+You should see logging like this:
 ```
-[SLU]  32%|████████          | 32/100 posts [01:24<02:45, 2.1s/post, net=8, scroll=12, sess=1, stale=0]
+[SLU][graphql_httpx] harvesting tokens...
+[SLU][graphql_httpx] harvested tokens: friendly=ProfileCometTimelineFeedRefetchQuery doc_id=2654...
+[SLU][graphql_httpx] iter=10 total=30 (+3) next_cursor=Cg8Ob3JnYW5pY19jdXJzb3IJ
+[SLU][graphql_httpx] iter=20 total=60 (+3) next_cursor=Cg8Ob3JnYW5pY19jdXJzb3IJ
+[SLU] Checkpoint: +30 new posts (total=60) -> data/SLU.jsonl
 ```
 
-- **32/100** — posts collected so far out of the target
-- **01:24** — time elapsed
-- **02:45** — estimated time remaining
-- **net=8** — posts captured passively from Facebook's network responses (not from DOM scraping)
-- **scroll=12** — how many times it has scrolled in the current browser session
-- **sess=1** — which browser session you're on (the scraper relaunches Chrome roughly every 100 scrolls)
-- **stale=0** — consecutive scrolls with no new posts (0 = healthy, content still loading)
+Reading the lines:
+- **`harvesting tokens`** — brief Chrome session (~15 s) to capture pagination tokens
+- **`harvested tokens`** — capture succeeded; the rest of the run is API replay
+- **`iter=N total=M (+K)`** — pagination iteration N has run; collected M posts so far; gained K *new* posts on this iteration. Facebook returns ~3 posts per pagination call.
+- **`+0`** is normal during fast-forward (when resuming a previous run, the scraper paginates past posts you already have — see "Resuming a run" below)
+- **`Checkpoint`** — the `data/{CODE}.jsonl` file just got flushed (every 30 s while new posts arrive)
+
+If `desktop_graphql_httpx` can't harvest tokens (rare — usually means Facebook changed something), you'll see a `falling through to next strategy` line and the scraper switches to the `desktop` (browser-scrolling) path — which is the older approach with `scroll=`/`stale=` progress fields:
+```
+[SLU]  32%|████████          | 32/100 posts [01:24<02:45, 2.1s/post, scroll=12, sess=1, stale=0]
+```
 
 When done, check the `data/` folder — you should see `SLU.json` (final) and `SLU.jsonl` (live log).
 
@@ -160,10 +178,21 @@ The scraper runs in the background. You can minimize the Command Prompt window.
 - Do not put the laptop to sleep during a run
 - Progress auto-saves every 30 seconds to `data/{CODE}.jsonl` — if it crashes, just rerun the same command and it resumes from where it left off
 
-**About the periodic restart.** Roughly every 100 scrolls you'll see a line like `Restart cycle #1 — relaunching browser` followed by a brief pause and `Fast-forward in progress…`. This is the scraper deliberately recycling Chrome to sidestep the freeze that would otherwise hit at 200–600 scrolls. After a fast-forward (~1–2 minutes) it resumes collecting. **Don't stop the run when you see this** — it's working as designed.
+**Resuming a run.** If you stop the scraper (Ctrl+C) or it crashes, just rerun the same command. The scraper reads `data/{CODE}.jsonl`, pre-loads everything you collected, and continues. The first ~5–30 minutes after a resume show `+0` posts per iteration — that's the fast-forward through Facebook's pagination cursors back to your high-water mark. It's not stuck; the dedupe filter is just rejecting posts you already have. Once it crosses your previous total, you'll start seeing `+3` per iteration again.
 
-**Estimated time per page:** 1.5–2.5 hours for 4,000 posts (the periodic restarts trade a little speed for not freezing on slower machines)  
-**Estimated total (all 10 pages):** 15–25 hours (run one or two pages at a time)
+**Token refresh.** Facebook's session tokens (`fb_dtsg`) eventually expire. If they do mid-run, you'll see `tokens aged out` followed by another `harvesting tokens` cycle (~15 s). The default is to proactively refresh after 4 hours, but reactive refresh on actual expiry kicks in earlier if needed. Either way, the run continues without losing posts.
+
+**About browser restarts (fallback strategy only).** If the scraper ever falls through to `desktop` (the old DOM-scrolling strategy), you'll see `Restart cycle #1 — relaunching browser` lines. These are triggered when:
+- The browser hits 500 scrolls in a single session
+- The dedupe set hasn't grown in 50 consecutive scrolls
+- Heap usage exceeds 700 MB
+- The 90-second freeze watchdog fires
+
+This shouldn't normally happen — `desktop_graphql_httpx` is the default and it doesn't scroll-and-render after harvest. If you see fallback restarts, the harvest probably failed; the scraper still works but is now using the slower DOM path. Send the team lead your `logs/` folder if it persists.
+
+**Estimated time per page:** 1–1.5 hours for 4,000 posts (about 1 post/sec via the new strategy)  
+**Estimated total (all 10 pages):** 10–15 hours (run one or two pages at a time)  
+**Memory footprint:** ~1.5 GB total (Chrome stays flat — no growth with post count)
 
 ---
 
@@ -223,17 +252,17 @@ Run the install commands from Step 3 again. Make sure you're in the right folder
 - Run only one scrape at a time
 - Do not open heavy applications while scraping
 
-### Progress bar shows very high ETA (50+ hours)
-This is usually a transient slow patch right after a restart cycle (the fast-forward through duplicate posts is slow before it crosses into new content). Wait a minute or two — once fast-forward completes, the ETA recalculates and drops. If it stays stuck for more than 5 minutes, stop the run (`Ctrl+C`) and just rerun the same command — the scraper resumes from `data/{CODE}.jsonl` automatically.
+### Many `+0` iterations after resuming a run
+This is fast-forward — Facebook's cursor pagination starts at the top of the feed, so the scraper has to walk past every post you already collected before finding new ones. For a 2,000-post resume, expect ~30 minutes of `+0` lines before productive work resumes. Not stuck — the dedupe filter is doing its job.
 
-### "Restart cycle" appears every few minutes
-This is normal — the scraper recycles the browser roughly every 100 scrolls to avoid freezing. Each cycle adds ~1–2 minutes of fast-forward overhead but prevents the run from dying. Let it run.
+### "tokens aged out" or "FB error envelope" mid-run
+The scraper will automatically re-harvest fresh tokens (~15 s) and continue. Nothing for you to do. If re-harvest fails repeatedly (you see `harvest failed (3/3) — falling through`), the scraper switches to the `desktop` fallback strategy, which still works — just slower. Send the team lead your `logs/` folder if this happens.
 
-### The scraper stops with "ScrollWatchdog fired" or freezes
-The watchdog detects when Chrome stops responding and saves what it collected. This shouldn't happen with the current 100-scroll restart cap, but if it does:
-1. Check `data/{CODE}.jsonl` — your collected posts are still there
-2. Rerun the same command — it resumes from the JSONL
-3. If it freezes repeatedly on the same scroll, contact the team lead with your `logs/` folder
+### "harvest failed" → falls through to desktop (DOM-scrolling) strategy
+The `desktop_graphql_httpx` strategy needs a fresh authenticated browser session to capture Facebook's pagination tokens. If your `cookies.json` is stale, the page won't render the authenticated feed and harvest fails. Re-run `python extract_cookies.py` and try again.
+
+### "Restart cycle" appears (only on the `desktop` fallback strategy)
+Restarts are part of the fallback path. If you see them happening regularly, your cookies might be stale (forcing fallback) or Facebook may have changed something that broke the new strategy. Stop the run (`Ctrl+C`), refresh your cookies, and rerun. If it still falls through to desktop, send your `logs/` folder to the team lead.
 
 ---
 
@@ -254,6 +283,10 @@ python main.py --cookies cookies.json --targets SLU --headed
 
 # Custom output folder
 python main.py --cookies cookies.json --output-dir C:\MyResults
+
+# Force a specific strategy (testing/debugging only — defaults are fine)
+python main.py --cookies cookies.json --targets SLU --strategies desktop_graphql_httpx
+python main.py --cookies cookies.json --targets SLU --strategies desktop
 ```
 
 ---

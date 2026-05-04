@@ -88,6 +88,17 @@ def parse_args() -> argparse.Namespace:
         default="",
         help="Facebook cookie string for Apify actor (optional).",
     )
+    parser.add_argument(
+        "--strategies",
+        nargs="+",
+        default=None,
+        help=(
+            "Override the strategy chain (default order: "
+            "desktop_graphql_httpx, desktop, basic_mobile_httpx, basic_mobile). "
+            "Useful for testing a single strategy in isolation, e.g.: "
+            "--strategies desktop_graphql_httpx OR --strategies desktop"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -233,6 +244,8 @@ def main():
         config.output_dir = args.output_dir
     if args.apify_token:
         config.apify_token = args.apify_token
+    if args.strategies:
+        config.strategies = list(args.strategies)
 
     logger = setup_logger(log_dir=config.log_dir)
     logger.info("=" * 70)

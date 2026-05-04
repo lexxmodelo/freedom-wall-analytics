@@ -860,6 +860,8 @@ class FacebookScraper:
     # ── Strategy router ──────────────────────────────────────────────────────
 
     def _run_strategy(self, strategy: str, url: str, code: str) -> list[dict]:
+        if strategy == "desktop_graphql_httpx":
+            return self._desktop_graphql_httpx_strategy(url, code)
         if strategy == "desktop":
             return self._desktop_strategy(url, code)
         if strategy == "basic_mobile_httpx":
@@ -868,6 +870,133 @@ class FacebookScraper:
             return self._basic_mobile_strategy(url, code)
         logger.warning("Unknown strategy: %s", strategy)
         return []
+
+    # ── Strategy 0: Desktop GraphQL replay (ACTION-032) ─────────────────────
+    # Bypasses the V8/Chrome-RSS freeze cliff by harvesting one pagination
+    # request via a brief Playwright session, then replaying /api/graphql/
+    # POSTs through the same browser's APIRequestContext. The browser
+    # remains open as a thin HTTP client (no further DOM rendering, no
+    # scrolling), so RSS stays bounded at ~100 MB regardless of post count.
+    # Falls through to the desktop Playwright strategy on harvest failure.
+
+    def _desktop_graphql_httpx_strategy(self, url: str, code: str) -> list[dict]:
+        import graphql_httpx
+
+        # Resume from any existing checkpoint — same JSONL contract as the
+        # desktop strategy, so a partial run via either strategy can be
+        # continued by the other.
+        posts: list[dict] = []
+        seen_hashes: set[str] = set()
+        try:
+            for _p in self._checkpoint_load(code):
+                _t = _p.get("text") or ""
+                if not _t:
+                    continue
+                _h = post_hash(_t)
+                if _h in seen_hashes:
+                    continue
+                seen_hashes.add(_h)
+                _pid = _p.get("post_id") or _h[:16]
+                _p["post_id"] = _pid
+                self._jsonl_written_ids.setdefault(code, set()).add(_pid)
+                posts.append(_p)
+            if posts:
+                logger.info(
+                    "[%s][graphql_httpx] Resumed checkpoint: %d posts pre-loaded",
+                    code, len(posts),
+                )
+        except Exception as exc:
+            logger.warning("[%s][graphql_httpx] Resume failed: %s", code, exc)
+
+        if not self._cookies:
+            logger.warning(
+                "[%s][graphql_httpx] No cookies loaded — graphql replay "
+                "requires authenticated session; falling through",
+                code,
+            )
+            return posts
+
+        consecutive_harvest_failures = 0
+        tokens = None
+        # Track the latest cursor across refreshes so we resume where we
+        # left off instead of fast-forwarding through every previously-
+        # collected post (which on a 4000-post run would consume the
+        # entire next session). On the first call we pass start_cursor=None
+        # and paginate uses the cursor captured during harvest.
+        last_cursor: Optional[str] = None
+        try:
+            while True:
+                # (Re)harvest tokens.
+                if tokens is None or graphql_httpx.should_refresh(tokens, self.cfg):
+                    if tokens is not None:
+                        graphql_httpx.close_session(tokens)
+                        tokens = None
+                    logger.info("[%s][graphql_httpx] harvesting tokens...", code)
+                    tokens = graphql_httpx.harvest_tokens(
+                        self, self.cfg, code, url, logger=logger,
+                    )
+                    if tokens is None:
+                        consecutive_harvest_failures += 1
+                        logger.warning(
+                            "[%s][graphql_httpx] harvest failed "
+                            "(%d/%d) — falling through to next strategy",
+                            code, consecutive_harvest_failures,
+                            self.cfg.max_retries,
+                        )
+                        if consecutive_harvest_failures >= self.cfg.max_retries:
+                            return posts
+                        # Brief backoff, then retry.
+                        time.sleep(self.cfg.retry_backoff_base
+                                   * (2 ** consecutive_harvest_failures))
+                        continue
+                    consecutive_harvest_failures = 0
+
+                # Drive the pagination loop until target / end-of-feed /
+                # token expiry / errors. Threads last_cursor across refreshes.
+                posts, stop_reason, last_cursor = graphql_httpx.paginate(
+                    self, self.cfg, code, tokens, posts, seen_hashes,
+                    start_cursor=last_cursor,
+                    logger=logger,
+                )
+                logger.info(
+                    "[%s][graphql_httpx] paginate exited: %s "
+                    "(posts=%d/%d)",
+                    code, stop_reason, len(posts), self.cfg.target_posts,
+                )
+
+                if stop_reason in ("target_reached", "end_of_feed"):
+                    break
+                if stop_reason == "token_expired":
+                    # Loop around to re-harvest fresh tokens.
+                    graphql_httpx.close_session(tokens)
+                    tokens = None
+                    continue
+                if stop_reason in ("max_errors", "max_iterations", "killed"):
+                    logger.warning(
+                        "[%s][graphql_httpx] terminal stop_reason=%s — "
+                        "falling through with %d posts collected",
+                        code, stop_reason, len(posts),
+                    )
+                    break
+
+            # Final flush — paginate() checkpoints during the loop, but a
+            # clean exit on target/end-of-feed deserves a guaranteed flush.
+            try:
+                self._checkpoint_save(posts, code)
+            except Exception as exc:
+                logger.warning("[%s][graphql_httpx] final checkpoint: %s",
+                               code, exc)
+            return posts
+        except KeyboardInterrupt:
+            logger.warning("[%s][graphql_httpx] interrupted — flushing %d posts",
+                           code, len(posts))
+            try:
+                self._checkpoint_save(posts, code)
+            except Exception:
+                pass
+            raise
+        finally:
+            graphql_httpx.close_session(tokens)
 
     # ── Strategy 1: Desktop ──────────────────────────────────────────────────
 
@@ -992,6 +1121,13 @@ class FacebookScraper:
                 self._dismiss_chat_popups(page, code)  # navigate may re-open chat tabs
 
                 stale_count = 0
+                # unique_stale_count tracks scrolls since seen_hashes last grew.
+                # Unlike stale_count (suppressed when network_alive), this fires
+                # even when GraphQL keeps returning duplicates — which is the
+                # signature of either dedup-saturation post-restart, end-of-feed,
+                # or an approaching freeze.
+                unique_stale_count = 0
+                last_unique_count = len(seen_hashes)
                 modal_dismiss_count = 0
                 _last_checkpoint_t = time.monotonic()
                 deadline = time.monotonic() + self.cfg.page_timeout_seconds
@@ -1198,9 +1334,21 @@ class FacebookScraper:
                             else:
                                 stale_count += 1
 
+                            # Unique-stale: scrolls since the dedupe set last
+                            # grew, regardless of network_alive. Catches the
+                            # case where Facebook keeps re-serving duplicates
+                            # after a restart, or where the page is approaching
+                            # freeze and stops yielding new content.
+                            if len(seen_hashes) > last_unique_count:
+                                last_unique_count = len(seen_hashes)
+                                unique_stale_count = 0
+                            else:
+                                unique_stale_count += 1
+
                             pbar.set_postfix(
                                 scroll=total_scrolls,
                                 stale=stale_count,
+                                ustale=unique_stale_count,
                                 sess=restarter.cycles + 1,
                                 net=extractor.responses_seen if self.cfg.network_intercept_mode else 0,
                             )
@@ -1273,6 +1421,21 @@ class FacebookScraper:
                                 # logic decide whether a restart resurrects the feed.
                                 tqdm.write(
                                     f"[{code}] {stale_count} stale scrolls — ending session early to attempt restart"
+                                )
+                                break
+
+                            # Unique-stale guard: dedupe set hasn't grown in
+                            # cfg.unique_stale_limit consecutive scrolls. This
+                            # fires even when network_alive=True (which suppresses
+                            # stale_count). Triggers on three real conditions:
+                            # dedup-saturation post-restart, end-of-feed, or an
+                            # approaching CDP/heap freeze where Chrome keeps
+                            # serving the same posts. The session-restart logic
+                            # decides whether to attempt recovery.
+                            if unique_stale_count >= self.cfg.unique_stale_limit:
+                                tqdm.write(
+                                    f"[{code}] {unique_stale_count} unique-stale scrolls "
+                                    f"(seen_hashes={len(seen_hashes)} unchanged) — ending session"
                                 )
                                 break
 
@@ -1365,9 +1528,13 @@ class FacebookScraper:
 
                         self._dismiss_overlays(page, code)
 
-                        # Stale count resets on each new session — give the
+                        # Stale counters reset on each new session — give the
                         # restarted page room to load posts before we judge it.
+                        # last_unique_count is reset to current size so we
+                        # measure growth from this point forward.
                         stale_count = 0
+                        unique_stale_count = 0
+                        last_unique_count = len(seen_hashes)
 
                 except KeyboardInterrupt:
                     tqdm.write(
