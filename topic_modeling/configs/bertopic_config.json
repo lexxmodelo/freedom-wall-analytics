@@ -19,6 +19,7 @@
     }
   },
   "umap": {
+    "_comment": "n_components reverted to 5 on 2026-05-06 (ACTION-028) after empirical sweep showed it was NOT the bottleneck — at n_components=30 the grid still picked 2 clusters because the SCORING preferred few-but-tight over many. Real fix is in the HDBSCAN grid floors (mcs=10, ms=3) plus a min cluster-count constraint in selection.",
     "n_neighbors": 15,
     "n_components": 5,
     "metric": "cosine",
@@ -26,56 +27,64 @@
     "random_state": 42
   },
   "hdbscan_grid": {
-    "_comment": "Three size tiers replacing the old 2-tier scheme. SLU at 3,864 posts now lands in 'medium' instead of 'default', so min_cluster_size=20 is tested — fine enough to surface event-driven topics like a 2-week transport strike (~150 posts) plus sub-events at 30-50 posts.",
+    "_comment": "Grid floors lowered on 2026-05-06 (ACTION-028) after empirical sweep on SLU showed mcs=20+ caps n_clusters at 2-4 because XLM-R-L embeddings have flat density structure. At mcs=10 with ms=3, configs reach 8-22 clusters with low outliers. min_cluster_count_floor (added below) is the hard guardrail.",
     "small_corpus_under_1500": {
       "min_cluster_size": [
+        10,
         15,
-        25,
-        40
+        25
       ],
       "min_samples": [
-        5,
-        10
+        2,
+        3,
+        5
       ]
     },
     "medium_corpus_1500_to_5000": {
       "min_cluster_size": [
+        10,
+        15,
         20,
-        30,
-        50,
-        70
+        30
       ],
       "min_samples": [
+        2,
+        3,
         5,
-        10,
-        15
+        10
       ]
     },
     "default": {
       "min_cluster_size": [
-        30,
+        15,
+        25,
         50,
-        70,
-        100
+        80
       ],
       "min_samples": [
+        2,
+        3,
         5,
-        10,
-        15
+        10
       ]
     },
     "outlier_recovery": {
       "min_cluster_size": [
+        10,
         15,
-        20,
-        25
+        20
       ],
       "min_samples": [
+        2,
         3,
         5
       ]
     }
   },
+  "min_cluster_count_floor": 5,
+  "target_topic_count": 30,
+  "reduce_topics_threshold": 60,
+  "_topic_count_comment": "GRANULAR MODE (ACTION-053): target raised from 15 to 30, threshold from 25 to 60. Rationale: matches the pilot SLU study's behavior (10k+ posts produced 40+ topics including ones with ~10 posts). Thesis discussion benefits from fine-grained topic analysis even if some clusters are small. reduce_topics now only fires on EXTREME over-fragmentation (>60 topics), preserving granular signal for typical corpora. To switch back to merged mode (≤15 topics for cleaner overview), set target_topic_count: 15 and reduce_topics_threshold: 25.",
   "hdbscan_static": {
     "metric": "euclidean",
     "cluster_selection_method": "eom",

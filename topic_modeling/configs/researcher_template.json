@@ -7,7 +7,7 @@
     "SLU_cleaned.json"
   ],
   "rate_limit_rpm": 40,
-  "effective_rpm": 40,
+  "effective_rpm": 25,
   "request_timeout_seconds": 30,
   "max_retries": 5,
   "retry_backoff_min_seconds": 1,

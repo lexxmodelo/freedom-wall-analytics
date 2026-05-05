@@ -10,7 +10,7 @@ If anything in this file is wrong or unclear, ping the lead researcher and edit 
 
 You need:
 
-- **A computer with Python 3.11 or 3.12.** (Python 3.13/3.14 may not have wheels for `torch`/`hdbscan` yet on Windows.) Check with `python --version`.
+- **A computer with Python 3.11, 3.12, or 3.13.** All three are verified working on Windows + Linux (the lead researcher ran the full bake-off on Python 3.13 with `torch 2.6.0+cu124` + `hdbscan 0.8.42` + `bertopic 0.17.4`). **Python 3.14 is too new** — wheels for `torch`/`hdbscan` aren't published yet. Check with `python --version`. If you only have 3.14, install 3.13 from python.org alongside it (use `py -3.13` to select it).
 - **An NVIDIA NIM API key** (free). Get one at https://build.nvidia.com → sign up → click your profile → "API Keys" → generate. Copy the `nvapi-...` string somewhere safe; you'll paste it in a moment.
 - **The cleaned posts** in `../preprocessing/output/` (already there if you cloned the repo).
 - **~10 GB free disk** (for model files + caches) and a **GPU with ≥4 GB VRAM** if you can — otherwise the pipeline auto-falls back to CPU (slower, still works).
@@ -27,24 +27,65 @@ cd "C:\Users\Alex Evan\Documents\Research\topic_modeling"
 
 ### 1. Create a virtual environment
 
+**Windows PowerShell** (two separate commands — `;` is the PowerShell separator, not `&&`):
+
+```powershell
+py -3.13 -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks the activate script ("execution of scripts is disabled"), run this once: `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`, then retry.
+
+**Windows cmd.exe / Git Bash:**
+
 ```bash
-py -3.11 -m venv .venv
+py -3.13 -m venv .venv
 .venv\Scripts\activate
 ```
 
-(On macOS/Linux: `python3.11 -m venv .venv && source .venv/bin/activate`)
+**macOS/Linux:**
 
-You should see `(.venv)` at the start of your prompt.
+```bash
+python3.13 -m venv .venv && source .venv/bin/activate
+```
+
+You should see `(.venv)` at the start of your prompt. If `py -3.13` says "no suitable Python runtime found", install Python 3.13 from python.org (don't go for 3.14 yet — too new for the ML stack).
 
 ### 2. Install the dependencies
 
+**Important:** install `torch` SEPARATELY from PyTorch's CUDA index first. The default `pip install torch` on Windows silently gives you the CPU-only build, which makes XLM-RoBERTa-Large encoding **5–6× slower** (and the bake-off + every per-university run gets stuck on CPU).
+
+**If you have an NVIDIA GPU** (any RTX 20/30/40-series, GTX 16-series, or workstation card):
+
 ```bash
-pip install bertopic sentence-transformers umap-learn hdbscan torch httpx tenacity pyyaml gensim scikit-learn pytest
+pip install torch --index-url https://download.pytorch.org/whl/cu124
+pip install bertopic sentence-transformers umap-learn hdbscan httpx tenacity pyyaml gensim scikit-learn pytest
 ```
 
-This downloads ~3 GB of ML libraries; takes 5–10 minutes on a reasonable connection. If `torch` fails with a "no matching distribution" error, your Python version is too new — install Python 3.11 from python.org and redo this step.
+**If you genuinely have no GPU** (laptop with integrated graphics only):
 
-### 3. Add your API key
+```bash
+pip install torch
+pip install bertopic sentence-transformers umap-learn hdbscan httpx tenacity pyyaml gensim scikit-learn pytest
+# Then in the launcher: option 6 → preset 4 (no GPU) so the pipeline doesn't try cuda
+```
+
+Either path downloads ~3 GB and takes 5–10 minutes on a reasonable connection. If torch fails with "no matching distribution," your Python version is too new — install Python 3.13 from python.org and redo step 1.
+
+### 3. Verify CUDA actually works (skip if no GPU)
+
+```bash
+python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'no GPU')"
+```
+
+You want to see something like `2.6.0+cu124 True NVIDIA GeForce RTX 4050 Laptop GPU`. If it says `2.x.x+cpu` or `cuda available: False` even though you have a GPU, you accidentally got the CPU build — uninstall torch and redo step 2 with the CUDA index URL:
+
+```bash
+pip uninstall -y torch
+pip install torch --index-url https://download.pytorch.org/whl/cu124
+```
+
+### 4. Add your API key
 
 ```bash
 copy .env.example .env
@@ -55,13 +96,13 @@ Paste your `nvapi-...` key after `NVIDIA_NIM_API_KEY=`, save, close. The `.env` 
 
 (If you skip this, the launcher will prompt you to paste the key on first run and save it for you.)
 
-### 4. Smoke-test the install
+### 5. Smoke-test the install
 
 ```bash
 pytest tests/ -v
 ```
 
-You should see **45 passed**. If not, dependencies didn't install cleanly — re-run step 2.
+You should see **50 passed**. If not, dependencies didn't install cleanly — re-run step 2.
 
 ---
 
@@ -198,6 +239,28 @@ Send the zip + a one-line summary: which universities you processed, total time,
 **Do NOT send `.env`** — that's your private API key.
 
 ---
+
+## Topic granularity: too few or too many topics?
+
+The defaults in `configs/bertopic_config.json` produce **granular** results — typically 15–45 topics per university (matching the SLU pilot study's behavior). Small topics with ~10 posts are kept rather than merged. This is good for thesis discussion but produces longer label lists.
+
+If your committee prefers a cleaner overview (~10–15 broad themes per university):
+
+```jsonc
+// In configs/bertopic_config.json:
+"target_topic_count": 15,           // was 30
+"reduce_topics_threshold": 25,      // was 60
+```
+
+This makes BERTopic's `reduce_topics` fire more aggressively, merging similar fine-grained topics by c-TF-IDF cosine similarity.
+
+If you want EVEN more granular results (capture every micro-theme):
+
+```jsonc
+"reduce_topics_threshold": 999,     // never merge
+```
+
+After changing, clear the affected universities' checkpoints (option 5) and re-run option 3.
 
 ## When something goes wrong
 

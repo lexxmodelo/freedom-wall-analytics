@@ -28,4 +28,11 @@ __pycache__/
 .venv/
 venv/
 bakeoff_run.log
-configs/bakeoff_test.json
+test_umap_dim_fix.py
+_test_embeddings_*.npy
+
+# Per-researcher configs (each researcher creates their own from researcher_template.json)
+configs/*.json
+!configs/bertopic_config.json
+!configs/gpu_config.json
+!configs/researcher_template.json

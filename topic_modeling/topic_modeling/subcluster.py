@@ -94,6 +94,14 @@ def merge_subclusters_back(
     that inherits the parent identity). All other sub-cluster IDs get fresh
     topic IDs starting at next_topic_id.
 
+    SAFETY: if sub-clustering produced no real sub-clusters (all -1), leave the
+    parent cluster INTACT instead of annihilating it by mapping every member to
+    -1. This guards against HDBSCAN failing to find sub-density inside a dump
+    cluster when its density is genuinely uniform.
+
+    Similarly, if all members landed in a single sub-cluster (sub_labels all 0),
+    no real split happened — return unchanged.
+
     Returns (new_labels, mapping_dict) where mapping_dict records what got split.
     """
     new_labels = primary_labels.copy()
@@ -102,11 +110,43 @@ def merge_subclusters_back(
     assert len(member_indices) == len(sub_labels), \
         f"member count {len(member_indices)} != sub_label count {len(sub_labels)}"
 
+    unique_sub = set(sub_labels.tolist())
+    real_subclusters = {s for s in unique_sub if s != -1}
+
+    # No real sub-clusters → bail out, keep the parent cluster intact.
+    if len(real_subclusters) == 0:
+        return new_labels, {
+            "dump_cluster_id": dump_cluster_id,
+            "n_members": int(len(member_indices)),
+            "n_subclusters": 0,
+            "n_outliers_in_sub": int((sub_labels == -1).sum()),
+            "new_topic_ids": [],
+            "skipped": True,
+            "skipped_reason": "no real sub-clusters found; parent cluster preserved",
+        }
+
+    # Only one sub-cluster (all the same label) → no useful split, keep intact.
+    if len(real_subclusters) == 1 and -1 not in unique_sub:
+        return new_labels, {
+            "dump_cluster_id": dump_cluster_id,
+            "n_members": int(len(member_indices)),
+            "n_subclusters": 1,
+            "n_outliers_in_sub": 0,
+            "new_topic_ids": [],
+            "skipped": True,
+            "skipped_reason": "single sub-cluster — no meaningful split",
+        }
+
     sub_id_to_topic_id: dict[int, int] = {}
     next_id = next_topic_id
-    for sub in sorted(set(sub_labels.tolist())):
+    for sub in sorted(unique_sub):
         if sub == -1:
-            sub_id_to_topic_id[sub] = -1   # outliers in sub-clustering go to noise
+            # ACTION-055 fix: sub-pass -1 keeps parent cluster id, NOT global -1.
+            # These docs were already in a valid parent cluster; sub-clustering
+            # just couldn't find FINER structure for them. They still belong to
+            # the parent's theme. Mapping to global -1 inflates outlier rate
+            # artificially (MM-PNSEC-1 went from 0.5% → 44% before this fix).
+            sub_id_to_topic_id[sub] = dump_cluster_id
         elif sub == 0:
             sub_id_to_topic_id[sub] = dump_cluster_id   # largest sub keeps parent id
         else:
@@ -116,10 +156,14 @@ def merge_subclusters_back(
     for local_idx, sub in enumerate(sub_labels):
         new_labels[member_indices[local_idx]] = sub_id_to_topic_id[sub]
 
+    new_topic_ids_created = [v for k, v in sub_id_to_topic_id.items() if k > 0]
+    # n_subclusters = parent (1) + new IDs created. -1→parent doesn't add to count.
+    n_subclusters = 1 + len(new_topic_ids_created)
     return new_labels, {
         "dump_cluster_id": dump_cluster_id,
         "n_members": int(len(member_indices)),
-        "n_subclusters": int(sum(1 for v in sub_id_to_topic_id.values() if v != -1)),
-        "n_outliers_in_sub": int(sum(1 for s in sub_labels if s == -1)),
-        "new_topic_ids": [v for k, v in sub_id_to_topic_id.items() if k > 0],
+        "n_subclusters": int(n_subclusters),
+        "n_outliers_in_sub_kept_in_parent": int(sum(1 for s in sub_labels if s == -1)),
+        "new_topic_ids": new_topic_ids_created,
+        "skipped": False,
     }

@@ -157,12 +157,18 @@ def grid_search_hdbscan(
     grid: dict,
     hdbscan_static: dict,
     weights: dict,
+    min_cluster_count_floor: int = 0,
 ) -> tuple[dict, list[dict]]:
     """Returns (best_params_dict, all_results_list).
 
     best_params has keys: min_cluster_size, min_samples, npmi, silhouette,
     outlier_rate, score, plus the UMAP-reduced array stored as `_reduced`
     (numpy array, not JSON-serializable — strip before logging).
+
+    If min_cluster_count_floor > 0, the selection prefers configs with
+    n_clusters >= floor; only falls back to overall best score if NO config
+    in the grid meets the floor. This prevents the score function from
+    picking trivial 2-cluster solutions when more granularity is achievable.
     """
     reduced = run_umap(
         embeddings,
@@ -202,6 +208,27 @@ def grid_search_hdbscan(
             results.append(res)
     if not results:
         raise RuntimeError("Grid search produced no results (empty grid?)")
-    best = max(results, key=lambda r: r["score"])
+
+    # Hard constraint: prefer configs with n_clusters >= floor.
+    # Falls back to overall best if NO config in the grid meets the floor.
+    if min_cluster_count_floor > 0:
+        eligible = [r for r in results if r["n_clusters"] >= min_cluster_count_floor]
+        if eligible:
+            best = max(eligible, key=lambda r: r["score"])
+            log.info("Grid selection: chose mcs=%d ms=%d n_clusters=%d score=%.3f "
+                     "from %d eligible configs (floor=%d)",
+                     best["min_cluster_size"], best["min_samples"],
+                     best["n_clusters"], best["score"],
+                     len(eligible), min_cluster_count_floor)
+        else:
+            best = max(results, key=lambda r: r["score"])
+            log.warning("Grid selection: NO config met n_clusters >= %d floor; "
+                        "falling back to overall best (mcs=%d ms=%d n_clusters=%d)",
+                        min_cluster_count_floor,
+                        best["min_cluster_size"], best["min_samples"],
+                        best["n_clusters"])
+            best["_floor_fallback"] = True
+    else:
+        best = max(results, key=lambda r: r["score"])
     best["_reduced"] = reduced
     return best, results

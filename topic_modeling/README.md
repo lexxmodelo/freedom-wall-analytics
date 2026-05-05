@@ -5,16 +5,27 @@ Per-university BERTopic + decoupled NVIDIA NIM (Llama 3.3 70B Instruct) labeling
 ## Quick Start (per researcher) — interactive
 
 ```bash
-# 1. Install dependencies (in your venv)
-pip install bertopic sentence-transformers umap-learn hdbscan torch httpx tenacity pyyaml gensim scikit-learn pytest
+# 1a. Install GPU torch FIRST from the CUDA index (skip if you have no NVIDIA GPU)
+pip install torch --index-url https://download.pytorch.org/whl/cu124
 
-# 2. Add your NIM API key to .env (the launcher will also prompt you on first run)
+# 1b. Install the rest (NOTE: 'torch' is intentionally absent — already installed above)
+pip install bertopic sentence-transformers umap-learn hdbscan httpx tenacity pyyaml gensim scikit-learn pytest
+
+# 2. Verify CUDA is actually working
+python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+# Want to see "2.6.0+cu124 True". If you see "+cpu" or "False" with a GPU on
+# your machine, redo step 1a — the default 'pip install torch' on Windows
+# silently installs CPU-only and the pipeline runs ~5x slower.
+
+# 3. Add your NIM API key to .env (the launcher will also prompt you on first run)
 cp .env.example .env
 # Edit .env and paste your nvapi-... key. The .env file is git-ignored.
 
-# 3. Launch the interactive menu
+# 4. Launch the interactive menu
 python -m topic_modeling
 ```
+
+For full step-by-step setup (Python version requirements, troubleshooting), see [QUICKSTART.md](QUICKSTART.md).
 
 The launcher walks you through everything:
 

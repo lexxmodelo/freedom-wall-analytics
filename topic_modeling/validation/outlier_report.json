@@ -1,0 +1,43 @@
+{
+  "n_universities": 2,
+  "n_high_outlier": 0,
+  "high_outlier_unis": [],
+  "details": [
+    {
+      "univ_code": "MM-PUB-1",
+      "n_posts": 3578,
+      "outlier_rate": 0.0,
+      "n_topics": 5,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 5,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": true,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": false
+    },
+    {
+      "univ_code": "MM-PNSEC-1",
+      "n_posts": 3963,
+      "outlier_rate": 0.0053,
+      "n_topics": 7,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 7,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    }
+  ]
+}

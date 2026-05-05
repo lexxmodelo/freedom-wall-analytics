@@ -19,7 +19,7 @@ from typing import Any
 
 import numpy as np
 
-from . import cluster, dtm, embed, labeling, subcluster, temporal, topics, validation
+from . import cluster, dtm, embed, labeling, subcluster, summary, temporal, topics, validation
 from .checkpoint import checkpoint_exists, write_checkpoint
 from .dotenv import autoload as autoload_dotenv
 from .io_utils import (append_jsonl, load_json, load_text_lines, load_yaml,
@@ -264,6 +264,7 @@ def process_university(cfg: TopicModelingConfig, fname: str, *, embedder) -> dic
         grid=grid,
         hdbscan_static=cfg.bertopic_cfg["hdbscan_static"],
         weights=cfg.bertopic_cfg["selection_score_weights"],
+        min_cluster_count_floor=cfg.bertopic_cfg.get("min_cluster_count_floor", 0),
     )
     best.pop("_reduced", None)
     log_action(cfg.root / "action_log.md", action_type="GRID_SEARCH",
@@ -296,6 +297,7 @@ def process_university(cfg: TopicModelingConfig, fname: str, *, embedder) -> dic
     # --- PRONG 4: sub-cluster any cluster holding > 20% of corpus ---
     dump_clusters = subcluster.find_dump_clusters(new_topics)
     subcluster_log: list[dict] = []
+    any_real_split = False
     if dump_clusters:
         log.info("Dump clusters detected: %s — running sub-clustering pass", dump_clusters)
         # We need UMAP-reduced rows. Re-running UMAP on the embeddings would be
@@ -317,10 +319,47 @@ def process_university(cfg: TopicModelingConfig, fname: str, *, embedder) -> dic
                 new_topics, dc_id, sub_labels, next_topic_id=next_id,
             )
             subcluster_log.append(info)
+            if not info.get("skipped", False):
+                any_real_split = True
             log_action(cfg.root / "action_log.md", action_type="SUBCLUSTER",
                        title=f"Sub-clustered dump cluster {dc_id} in {univ_code}",
                        configuration={"recovery_params": recovery},
                        outputs=info)
+
+    # If sub-clustering actually changed the assignments, BERTopic's internal
+    # get_topics()/get_representative_docs() are stale — they still reflect the
+    # PRE-sub-cluster state. update_topics() recomputes c-TF-IDF and rep docs
+    # from the new label array so keywords/rep_docs/labels can be extracted for
+    # the new sub-cluster IDs.
+    if any_real_split:
+        log.info("Sub-clustering changed labels — refreshing BERTopic c-TF-IDF via update_topics")
+        try:
+            topic_model.update_topics(docs, topics=new_topics.tolist(),
+                                      vectorizer_model=topic_model.vectorizer_model)
+        except Exception as e:
+            log.warning("update_topics failed (%s); proceeding with stale BERTopic state", e)
+
+    # --- Topic-count reduction: if the grid + sub-clustering produced too many
+    #     fragmented topics (e.g. MM-PSEC-1 with min_samples=2 producing 40+),
+    #     merge similar topics by c-TF-IDF cosine similarity down to target.
+    n_topics_now = len({t for t in new_topics.tolist() if t != -1})
+    reduce_threshold = cfg.bertopic_cfg.get("reduce_topics_threshold", 0)
+    target_count = cfg.bertopic_cfg.get("target_topic_count", 15)
+    if reduce_threshold and n_topics_now > reduce_threshold:
+        log.info("Topic count %d exceeds reduce_topics_threshold %d — merging to target %d",
+                 n_topics_now, reduce_threshold, target_count)
+        try:
+            topic_model.reduce_topics(docs, nr_topics=target_count)
+            # After reduce_topics, BERTopic updates its internal topics_ attribute.
+            new_topics = np.asarray(topic_model.topics_)
+            log_action(cfg.root / "action_log.md", action_type="REDUCE_TOPICS",
+                       title=f"Reduced topics in {univ_code} from {n_topics_now} → {len({t for t in new_topics.tolist() if t != -1})}",
+                       configuration={"target_topic_count": target_count,
+                                      "reduce_threshold": reduce_threshold},
+                       outputs={"n_topics_before": n_topics_now,
+                                "n_topics_after": len({t for t in new_topics.tolist() if t != -1})})
+        except Exception as e:
+            log.warning("reduce_topics failed (%s); keeping pre-reduction labels", e)
 
     final_outlier_rate = float((new_topics == -1).mean())
 
@@ -508,6 +547,17 @@ def run(cfg: TopicModelingConfig) -> dict:
     validation.write_lazy_label_flags(val_dir / "lazy_label_flags.json", all_labels_by_univ)
     validation.intra_researcher_label_check(
         val_dir / "label_consistency_check.json", all_labels_by_univ)
+
+    # Cross-university comparison: human-readable summary across ALL active mappings,
+    # not just this researcher's. Surfaces topic-count variation as a thesis finding
+    # rather than a hidden inconsistency.
+    summary.write_cross_university_summary(
+        root=cfg.root,
+        outputs_dir=cfg.root / "outputs",
+        mapping=cfg.mapping,
+        input_dir=cfg.input_dir,
+        summary_path=val_dir / "cross_university_summary.md",
+    )
 
     elapsed = time.perf_counter() - started
     log_action(cfg.root / "action_log.md", action_type="RUN_COMPLETE",
