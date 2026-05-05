@@ -1,0 +1,9 @@
+PyYAML>=6.0,<7
+py3langid>=0.3,<1
+datasketch>=1.6,<2
+spacy>=3.7,<4
+# en_core_web_lg model: install separately with
+#   python -m spacy download en_core_web_lg
+# (kept off requirements.txt because the wheel URL changes per spaCy release)
+rapidfuzz>=3.9,<4
+pytest>=8,<9

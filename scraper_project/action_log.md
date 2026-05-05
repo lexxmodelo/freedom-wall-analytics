@@ -421,3 +421,85 @@
 - **CLI flag added:** `--strategies` (e.g., `--strategies desktop_graphql_httpx` or `--strategies desktop`) to override `cfg.strategies` for testing a single strategy in isolation.
 - **Cliff bypassed:** The owner's laptop previously froze at ~1700 posts on the desktop strategy. The new strategy reached 4002 without freezing — Chrome RSS stays bounded at ~1.4 GB throughout because no further DOM rendering happens after the brief harvest scrolls. Falls through cleanly to `desktop` on harvest failure (per `max_retries`), so the change is non-regressive.
 - **Status:** DONE — all phases complete (1, 2a–2d, 3b, 3c, 3d).
+
+### ACTION-033 — Repository housekeeping + researcher-facing docs aligned with ACTION-032
+- **Time:** 2026-05-05
+- **Motivation:** After ACTION-032 shipped, the project root had accumulated debug scripts, PoC scratch files, stale screenshots, and a 117 KB agent-monitor log all sitting alongside the production code. Researcher-facing docs (`QUICKSTART.md`, `guide.md`) still described the *old* desktop strategy: tqdm progress format with `scroll=`/`stale=`/`sess=` fields, "1700-post freeze" caveats, restart-cycle troubleshooting that no longer applies to the default path. New researchers following the docs would have been confused by the actual log output.
+- **Folder cleanup (no functional changes):**
+  - **Created** `debug/` directory and moved `debug_dom.py`, `debug_dom2.py`, `debug_dom3.py`, `debug_dom4.py` into it. Added `debug/README.md` explaining how to run them (must be invoked from project root because the scripts open `cookies.json` with a relative path).
+  - **Moved** `AGENT_ACTIONS.log` from project root → `logs/AGENT_ACTIONS.log`. Updated the path in `monitor.sh` (line 6) and `monitor.ps1` (line 7) so the autonomous monitor still appends to the same file.
+  - **Created** `logs/archive/` and moved 60 pre-2026-05-04 `scrape_*.log` files into it. Active `logs/` directory now contains only May 4–5 runs and the agent / cliff-test logs.
+  - **Deleted** `__pycache__/` (×3), PoC scratch files (`scripts/_poc_first_response.bin`, `scripts/_poc_harvest_fail.png`), and 3 stale `debug_screenshots/*.png` artifacts from old freeze-debugging sessions.
+  - **Created** `.gitignore` formalising what should not be committed (`cookies.json`, `cookies_state.json`, `__pycache__/`, `data/*.json{,l}`, `logs/*.log`, `logs/archive/`, `debug_screenshots/*.png`, `scripts/_poc_*`, `fb_login_profile/`, IDE/OS junk).
+- **Smoke test (post-cleanup):** `from scraper import FacebookScraper`, `from config import ScraperConfig`, `import graphql_httpx, parser, utils, apify_scraper, extract_cookies` all succeed; `python main.py --help` shows full usage including the `--strategies` flag from ACTION-032; `python -m py_compile debug/debug_dom*.py` succeeds.
+- **Doc updates — `QUICKSTART.md`:**
+  - Replaced the old tqdm progress example with the new logger-line format (`[graphql_httpx] iter=N total=M (+K)`).
+  - Added a one-paragraph "Two-phase scraping" callout explaining the brief Chrome harvest → API replay architecture and the bounded ~1.5 GB memory ceiling.
+  - Rewrote the "If your run crashes or you stop it" note to warn researchers about the resume-time fast-forward (long stretches of `+0` lines while the dedup filter rejects already-collected posts before reaching new content).
+- **Doc updates — `guide.md`:**
+  - **New** "How It Works (One-Minute Overview)" subsection in Part 1: numbered list of the four strategies and how the chain falls through (`desktop_graphql_httpx` → `desktop` → `basic_mobile_httpx` → `basic_mobile`).
+  - Step 6 progress example replaced with the new logger format + a guide to reading each line. Added a sub-example showing the *fallback* tqdm format if the run ever falls through to `desktop`.
+  - Step 8 expanded into three labelled sub-sections: "Resuming a run" (explains fast-forward `+0` period), "Token refresh" (explains `tokens aged out` → re-harvest cycle), "About browser restarts (fallback strategy only)" — clarifying that restart-cycle messages now apply only to the `desktop` fallback path.
+  - Memory footprint note added to the timing block: *"~1.5 GB total (Chrome stays flat — no growth with post count)"*.
+  - Troubleshooting refreshed: removed the obsolete "high ETA after restart cycle" and "ScrollWatchdog fired" entries; added new entries for `+0` iterations during resume, `tokens aged out`/`FB error envelope`, and `harvest failed → fallback`.
+  - Command Reference: added two `--strategies` examples to demonstrate forcing a specific strategy for debugging.
+- **Files modified:** `QUICKSTART.md`, `guide.md`, `monitor.sh`, `monitor.ps1`. **Created:** `debug/README.md`, `.gitignore`.
+- **Files moved:** 4 × `debug_dom*.py` → `debug/`; `AGENT_ACTIONS.log` → `logs/`; 60 × old scrape logs → `logs/archive/`.
+- **Files deleted:** 3 × `__pycache__/` directories, 2 × PoC scratch artifacts, 3 × stale debug screenshots.
+- **No code/behavior changes.** Production strategy chain, dispatch logic, parsers, and JSONL schema are byte-identical to ACTION-032's end state. The only edits to *.py files are path strings inside `monitor.sh`/`monitor.ps1`.
+- **Status:** DONE
+
+### ACTION-034 — Fix timestamp + engagement extraction for Comet feed shape
+- **Time:** 2026-05-05
+- **Motivation:** Spot-check of collected data revealed that almost no posts had timestamps. Audit: SLU 1/4002 (0.0 %), FW-01 0/4012 (0/4012 ISO, 4/4012 raw), FW-02 similar — virtually every post in `data/*.jsonl` has `timestamp_iso: null` and `timestamp_raw: null`. Engagement counts were also stuck at all-zero. The bug pre-dates ACTION-032 (the same `_GraphQLPostExtractor` powers both the legacy desktop strategy and the new graphql_httpx replay strategy), but it became more visible because all current data was collected via the same path.
+- **Root cause:** `_walk_for_stories` checked for `message.text` and `creation_time` *at the same node*. Live probe of a `ProfileCometTimelineFeedRefetchQuery` response (saved to `scripts/_probe_response.json`) showed Facebook's modern Comet feed places them in **sibling subtrees** under `comet_sections`:
+
+  ```
+  comet_sections/content/story/message/text                 ← message (4 mirror paths)
+  comet_sections/timestamp/story/creation_time              ← unix timestamp
+  comet_sections/feedback/story/.../reaction_count.count    ← reactions (8 levels deep)
+  comet_sections/feedback/story/.../comment_rendering_instance.comments.total_count
+  comet_sections/feedback/story/.../share_count.count       ← shares
+  ```
+
+  The DFS visited the inner message-bearing node, found no `creation_time`/`feedback` siblings on that node, and yielded `timestamp_iso=None` plus zero engagement.
+
+- **Fix — `scraper.py` `_GraphQLPostExtractor`:**
+  1. **`_walk_for_stories` rewritten** as a two-recogniser DFS:
+     - When a node has `comet_sections`, hand the dict off to a new `_extract_comet_post(cs)` which pulls message / creation_time / URL / engagement from their respective known paths within `comet_sections`. The DFS skips re-descending into `comet_sections` after extraction so the legacy branch doesn't yield duplicates.
+     - When a node has `message.text` directly (and no `comet_sections`), fall back to the existing per-node logic for older feed shapes (mbasic, FeedUnit envelopes, non-Comet responses).
+  2. **`_extract_comet_post(cs)`** new helper. Pulls:
+     - `message`: `cs/content/story/message/text`
+     - `creation_time`: tries `cs/timestamp/story/creation_time` first, then falls back to `cs/context_layout/story/comet_sections/metadata/[N]/story/creation_time`
+     - URL: `cs/content/story/{wwwURL,permalink_url,url}`
+     - engagement: delegates to `_extract_engagement_comet(fb_root)`
+  3. **`_extract_engagement_comet(fb_root)`** new walker-based helper. Walks the entire `feedback` subtree and aggregates the maximum value seen for each metric, looking for:
+     - `reaction_count` dict with `count` field (also accepts `i18n_reaction_count` string)
+     - `share_count` dict with `count` field
+     - `comment_rendering_instance.comments.total_count`
+     - Skips per-emoji `reaction_count` entries inside `top_reactions/edges/[N]` (those are int-typed and represent individual reactions, not aggregate counts).
+  4. **Legacy `_extract_engagement(node)`** kept unchanged for non-Comet shapes (header rewritten to make this clear).
+- **Validation:** Re-ran `_walk_for_stories` against the saved probe response (`scripts/_probe_response.json`, captured 2026-05-05 from a live SLU pagination request). Result: 3/3 posts now have timestamps and URLs; first post has correct engagement (159 reactions, 53 comments, 12 shares — verified against raw response). Posts 2 and 3 show 0 engagement, which matches the source (genuinely no interactions yet — they were posted minutes before harvest).
+- **Files modified:** `scraper.py` (parser methods only — strategy code, dispatch, and JSONL schema unchanged).
+- **Files created:** `scripts/probe_response_shape.py` — diagnostic tool that captures one /api/graphql/ response and reports the JSON paths where each interesting key lives. Useful for future FB schema drift.
+- **Backfill — what to do about already-collected data:**
+  - Currently-running scrapes (FW-04 in progress at fix time) use the *in-memory* parser code from when Python imported `scraper.py` at process start. Editing `scraper.py` on disk does NOT affect a running process. Therefore: FW-04 will continue collecting *without* timestamps until restarted.
+  - For the cleanest result on currently-running and not-yet-started pages: stop the run (Ctrl+C), delete the buggy partial (`rm data/FW-04.jsonl` — the 4 dud entries from this session), then restart with the same command. The new entries will all have timestamps + engagement.
+  - For SLU / FW-01 / FW-02 (already at 4 000+ posts each, all without timestamps): the only way to get timestamps is to delete the JSONL and re-scrape. ~65 min per page on the new strategy = ~3.25 h total. The post text and post_id are unchanged so any downstream analysis already done can be merged on `post_id` after re-scrape if needed.
+  - **Recommendation:** If timestamps are essential to the research (semester-window filtering depends on them via `is_within_window`), re-scrape SLU/FW-01/FW-02. If text-only analysis is sufficient, accept the loss for those 3 and rely on `#SLUFreedomWallNNNNN` style hashtag prefixes inside the post text as a coarse temporal proxy.
+- **Status:** DONE — fix verified on a live response, ready to apply to all future scrapes.
+
+### ACTION-035 — Distinguish rate-limit from token expiry; stop instead of looping
+- **Time:** 2026-05-05
+- **Motivation:** During an FW-07 run the scraper hit Facebook's rate limiter (`code: 1675004`, `"Rate limit exceeded"`) at iter=1 right after a successful harvest. The existing parser routed *any* GraphQL `errors[]` to `stop_reason="token_expired"`, which the orchestrator treats as "re-harvest and resume". The harvest itself was succeeding (different endpoint), so the loop kept going: harvest → 1 paginate call → rate limit → re-harvest → repeat. Each cycle issued ~6 more requests against an already-over-limit account, deepening the problem instead of stopping.
+- **Fix — `graphql_httpx.py` `paginate()`:** Inspect the GraphQL error blob for rate-limit fingerprints before classifying. New stop reason `"rate_limited"` is returned when any of these match (case-insensitive):
+  - `"code": 1675004` (or compact form `"code":1675004`)
+  - `"rate limit"` substring
+  - `"rate_limit"` substring
+  - `"throttled"` substring
+
+  Other graphql errors continue to route to `token_expired` (correct behaviour for auth/CSRF rejections).
+- **Fix — `scraper.py` `_desktop_graphql_httpx_strategy`:** New `if stop_reason == "rate_limited"` branch that breaks out of the orchestrator loop *without* re-harvesting. Logs an ERROR-level message instructing the researcher to wait at least 1 hour before re-running. The JSONL is preserved so a later rerun resumes correctly.
+- **Files modified:** `graphql_httpx.py` (paginate error classifier), `scraper.py` (orchestrator stop-reason handling).
+- **Why this matters:** Without this fix, hitting the rate limit caused a tight retry loop that would have aggravated the lockout and possibly escalated it to a longer cooldown. With the fix, a rate limit produces a clean exit with a clear log message; the user waits and resumes manually.
+- **Status:** DONE — code compiles and imports clean. Will activate on the next scraper run.

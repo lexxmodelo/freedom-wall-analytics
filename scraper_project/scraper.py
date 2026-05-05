@@ -197,10 +197,22 @@ class _GraphQLPostExtractor:
         Facebook nests story payloads 30-60 levels deep. Recursion would risk
         Python's stack limit; explicit stack is safer.
 
-        A node is treated as a story when it has either:
-          - comet_sections.content.story.message.text  (Comet timeline)
-          - story.message.text                           (older feed)
-          - message.text + creation_time + url           (FeedUnit)
+        Two recognisers in priority order:
+
+          1. **Comet post root** — any node with a `comet_sections` dict.
+             FB's modern feed splits message and creation_time into
+             *sibling subtrees* of `comet_sections` rather than placing them
+             on the same node:
+               comet_sections/content/story/message/text   (message)
+               comet_sections/timestamp/story/creation_time (timestamp)
+             A per-node check sees them as separate posts and misses
+             timestamps. Path-based extraction across the comet_sections
+             dict pulls the matching pair together.
+
+          2. **Legacy per-node fallback** — older feed shapes where
+             message.text and creation_time are on the same node.
+             Kept for compatibility with non-Comet responses (mbasic, old
+             FeedUnit envelopes).
         """
         from utils import post_hash, normalize_timestamp
         stack = [root]
@@ -208,10 +220,36 @@ class _GraphQLPostExtractor:
         while stack:
             node = stack.pop()
             if isinstance(node, dict):
+                # ── 1. Comet-style post root ─────────────────────────────
+                cs = node.get("comet_sections")
+                if isinstance(cs, dict):
+                    post = _GraphQLPostExtractor._extract_comet_post(cs)
+                    if post is not None:
+                        h = post_hash(post["text"])
+                        if h not in seen_ids:
+                            seen_ids.add(h)
+                            post["post_id"] = h[:16]
+                            yield post
+                    # Descend into siblings only — comet_sections' interior
+                    # is fully handled by the path extractor above; walking
+                    # into it would re-yield the same text via the legacy
+                    # branch (with no timestamp) and waste cycles.
+                    for k, v in node.items():
+                        if k == "comet_sections":
+                            continue
+                        if isinstance(v, (dict, list)):
+                            stack.append(v)
+                    continue
+
+                # ── 2. Legacy per-node fallback ──────────────────────────
                 msg_text = _GraphQLPostExtractor._extract_message(node)
                 if msg_text and len(msg_text) > 10:
                     h = post_hash(msg_text)
                     if h in seen_ids:
+                        # already-yielded comet post — descend, don't yield
+                        for v in node.values():
+                            if isinstance(v, (dict, list)):
+                                stack.append(v)
                         continue
                     seen_ids.add(h)
                     url = _GraphQLPostExtractor._extract_url(node)
@@ -246,6 +284,99 @@ class _GraphQLPostExtractor:
                         stack.append(item)
 
     @staticmethod
+    def _extract_comet_post(cs: dict) -> Optional[dict]:
+        """Extract a post from a Comet-style `comet_sections` dict.
+
+        Returns a partial post dict (without post_id, which the caller
+        attaches) or None if no message text is present.
+
+        Known paths inside `comet_sections` (from probing live FB
+        responses, May 2026):
+          - content/story/message/text            -> post text
+          - content/story/wwwURL or permalink_url -> post URL
+          - timestamp/story/creation_time         -> unix timestamp (primary)
+          - context_layout/story/comet_sections/metadata/[0]/story/creation_time
+                                                  -> unix timestamp (fallback)
+          - feedback/...                          -> engagement counts
+        """
+        from utils import normalize_timestamp
+
+        # ---- message ----
+        try:
+            content_story = cs.get("content", {}).get("story", {})
+        except AttributeError:
+            return None
+        if not isinstance(content_story, dict):
+            return None
+        msg = content_story.get("message")
+        if not isinstance(msg, dict):
+            return None
+        msg_text = msg.get("text")
+        if not isinstance(msg_text, str):
+            return None
+        msg_text = msg_text.strip()
+        if not msg_text or len(msg_text) <= 10:
+            return None
+
+        # ---- creation_time ----
+        ct_raw = None
+        ts_node = cs.get("timestamp")
+        if isinstance(ts_node, dict):
+            story = ts_node.get("story")
+            if isinstance(story, dict):
+                ct_raw = story.get("creation_time")
+        if ct_raw is None:
+            try:
+                metadata = (cs.get("context_layout", {})
+                              .get("story", {})
+                              .get("comet_sections", {})
+                              .get("metadata", []))
+                if isinstance(metadata, list):
+                    for m in metadata:
+                        if isinstance(m, dict):
+                            s = m.get("story")
+                            if isinstance(s, dict) and "creation_time" in s:
+                                ct_raw = s["creation_time"]
+                                break
+            except Exception:
+                pass
+
+        ts_iso = None
+        if isinstance(ct_raw, (int, float)):
+            from datetime import datetime, timezone, timedelta
+            try:
+                ts_iso = datetime.fromtimestamp(
+                    ct_raw, tz=timezone(timedelta(hours=8))
+                ).isoformat()
+            except Exception:
+                ts_iso = None
+        elif isinstance(ct_raw, str):
+            ts_iso = normalize_timestamp(ct_raw) or ct_raw
+
+        # ---- url ----
+        url = None
+        for k in ("wwwURL", "permalink_url", "url"):
+            v = content_story.get(k)
+            if isinstance(v, str) and "facebook.com" in v:
+                url = v
+                break
+
+        # ---- engagement ----
+        engagement = {"reactions": 0, "comments": 0, "shares": 0}
+        fb_node = cs.get("feedback")
+        if isinstance(fb_node, dict):
+            engagement = _GraphQLPostExtractor._extract_engagement_comet(fb_node)
+
+        return {
+            "text": msg_text,
+            "timestamp_iso": ts_iso,
+            "timestamp_raw": str(ct_raw) if ct_raw is not None else None,
+            "engagement": engagement,
+            "post_url": url,
+            "source": "graphql",
+        }
+
+    @staticmethod
     def _extract_message(node) -> Optional[str]:
         """Look for a message at THIS level only.
 
@@ -278,6 +409,13 @@ class _GraphQLPostExtractor:
 
     @staticmethod
     def _extract_engagement(node) -> dict:
+        """Legacy engagement extractor (older feed shapes).
+
+        Expects a node with a `feedback` child whose direct keys include
+        reaction_count / comment_count / share_count. Kept for non-Comet
+        responses. The Comet path uses _extract_engagement_comet which
+        walks much deeper.
+        """
         out = {"reactions": 0, "comments": 0, "shares": 0}
         try:
             fb = node.get("feedback") or {}
@@ -293,6 +431,74 @@ class _GraphQLPostExtractor:
                     out["shares"] = int(sc.get("count") or 0)
         except Exception:
             pass
+        return out
+
+    @staticmethod
+    def _extract_engagement_comet(fb_root) -> dict:
+        """Engagement extractor for Comet feedback subtrees.
+
+        Comet nests reaction / comment / share counts ~8 levels deep
+        inside `feedback`. We can't rely on a fixed path because FB
+        shifts the structure between query variants. Instead, walk the
+        whole subtree and harvest:
+
+          - `reaction_count`/`i18n_reaction_count` dicts → extract `count`
+            (the *aggregate* total across all emojis). Skip per-edge
+            entries which are int-typed (top_reactions/edges/[N]/reaction_count).
+          - `share_count` dict → extract `count`.
+          - `comment_rendering_instance.comments.total_count` → comments.
+
+        Returns the maximum count seen for each metric (FB sometimes
+        renders the same number in multiple places — taking max is
+        defensive against partial structures).
+        """
+        out = {"reactions": 0, "comments": 0, "shares": 0}
+        if not isinstance(fb_root, dict):
+            return out
+        stack = [fb_root]
+        seen = set()
+        while stack:
+            node = stack.pop()
+            nid = id(node)
+            if nid in seen:
+                continue
+            seen.add(nid)
+            if isinstance(node, dict):
+                # Aggregate reaction_count: dict shape {count: int, ...}.
+                rc = node.get("reaction_count")
+                if isinstance(rc, dict):
+                    n = rc.get("count")
+                    if isinstance(n, (int, float)):
+                        out["reactions"] = max(out["reactions"], int(n))
+                # i18n_reaction_count is sometimes the canonical form.
+                irc = node.get("i18n_reaction_count")
+                if isinstance(irc, str):
+                    try:
+                        out["reactions"] = max(out["reactions"], int(irc))
+                    except ValueError:
+                        pass
+                # share_count: dict shape {count: int}.
+                sc = node.get("share_count")
+                if isinstance(sc, dict):
+                    n = sc.get("count")
+                    if isinstance(n, (int, float)):
+                        out["shares"] = max(out["shares"], int(n))
+                # comment_rendering_instance.comments.total_count.
+                cri = node.get("comment_rendering_instance")
+                if isinstance(cri, dict):
+                    cms = cri.get("comments")
+                    if isinstance(cms, dict):
+                        n = cms.get("total_count")
+                        if isinstance(n, (int, float)):
+                            out["comments"] = max(out["comments"], int(n))
+                # Recurse.
+                for v in node.values():
+                    if isinstance(v, (dict, list)):
+                        stack.append(v)
+            elif isinstance(node, list):
+                for v in node:
+                    if isinstance(v, (dict, list)):
+                        stack.append(v)
         return out
 
 
@@ -965,6 +1171,19 @@ class FacebookScraper:
                 )
 
                 if stop_reason in ("target_reached", "end_of_feed"):
+                    break
+                if stop_reason == "rate_limited":
+                    # Facebook rate limit — re-harvesting would make it worse
+                    # (more graphql requests against an already-over-limit
+                    # account). Stop cleanly. The user will wait it out and
+                    # rerun the same command later; JSONL is preserved so the
+                    # resume picks up from here.
+                    logger.error(
+                        "[%s][graphql_httpx] rate-limited by Facebook — "
+                        "stopping. Wait at least 1 hour before retrying. "
+                        "JSONL preserved (%d posts collected).",
+                        code, len(posts),
+                    )
                     break
                 if stop_reason == "token_expired":
                     # Loop around to re-harvest fresh tokens.

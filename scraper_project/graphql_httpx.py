@@ -494,11 +494,29 @@ def paginate(scraper, cfg, code: str, tokens: TokenBundle,
         new_count = 0
         for chunk in _GraphQLPostExtractor._iter_json_chunks(body_bytes):
             if isinstance(chunk, dict) and chunk.get("errors"):
+                errs = chunk["errors"]
+                err_blob = json.dumps(errs).lower()
                 log.warning("[%s][graphql_httpx] iter=%d graphql errors: %s",
                             code, iterations,
-                            json.dumps(chunk["errors"])[:300])
-                # Treat as token expiry — most graphql errors here are
-                # auth/CSRF related.
+                            json.dumps(errs)[:300])
+                # Distinguish rate limiting from token expiry. Re-harvesting
+                # on a rate limit makes things worse (more requests against
+                # an already-over-limit account); the only safe response is
+                # to stop and let the user wait it out.
+                if (
+                    '"code": 1675004' in err_blob
+                    or '"code":1675004' in err_blob
+                    or "rate limit" in err_blob
+                    or "rate_limit" in err_blob
+                    or "throttled" in err_blob
+                ):
+                    log.error("[%s][graphql_httpx] RATE LIMITED by Facebook "
+                              "(code 1675004 / 'Rate limit exceeded'). "
+                              "Stopping cleanly — DO NOT re-run for at least "
+                              "1 hour. JSONL preserved at data/%s.jsonl.",
+                              code, code)
+                    return posts, "rate_limited", cursor
+                # Other graphql errors are typically auth/CSRF — re-harvest.
                 return posts, "token_expired", cursor
             for c in _GraphQLPostExtractor._walk_for_cursors(chunk):
                 new_cursor = c

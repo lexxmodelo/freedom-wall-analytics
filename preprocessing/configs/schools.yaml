@@ -1,0 +1,192 @@
+# Master school dictionary for Freedom Wall preprocessing.
+#
+# Each entry maps a Philippine university to its replacement region tag.
+# `data_confidence` flags how thoroughly the entry has been verified against
+# the actual school's Facebook Freedom Wall page; entries marked `low` or
+# `guess` should be reviewed before the production run.
+#
+# Structure:
+#   canonical_acronym:        unique ID, used in logs / leak tests
+#   full_name_variations:     phrases to replace inline (longest first wins)
+#   freedom_wall_hashtag_pattern: regex (Python flavor) for indexing hashtag
+#   scraper_code:             matches scraper_project/config.py TARGETS code; null = not yet scraped
+#   location_markers:         place names that uniquely identify the school
+#                             - phrase: the literal token
+#                             - semantic_replace: true = inline-replace with region tag
+#                                                 false = drop entirely
+#   mascot_cheer_terms:       school-unique cheers/mascots (drop if listed in
+#                             the global `ambiguous_mascots` list at bottom)
+#   region:                   Metro Manila | Luzon/Provincial | Baguio/Benguet
+#   data_confidence:          high | medium | low | guess
+
+schools:
+  - canonical_acronym: ADMU
+    full_name_variations: [Ateneo de Manila University, Ateneo de Manila, Ateneo]
+    freedom_wall_hashtag_pattern: '(?i)#ADMU(?:FW|FreedomWall)\d*'
+    scraper_code: FW-01
+    location_markers:
+      - {phrase: Katipunan,      semantic_replace: true}
+      - {phrase: Loyola Heights, semantic_replace: true}
+    mascot_cheer_terms: [Blue Eagles, Blue Eagle, One Big Fight, Halikinu]
+    region: Metro Manila
+    data_confidence: high
+
+  - canonical_acronym: UPD
+    full_name_variations: [University of the Philippines Diliman, UP Diliman, UPDiliman]
+    freedom_wall_hashtag_pattern: '(?i)#UPD(?:iliman)?(?:FW|FreedomWall)\d*'
+    scraper_code: FW-02
+    location_markers:
+      - {phrase: Diliman,       semantic_replace: true}
+      - {phrase: AS Walk,       semantic_replace: true}
+      - {phrase: Sunken Garden, semantic_replace: true}
+    mascot_cheer_terms: [Fighting Maroons, UP Fight]
+    region: Metro Manila
+    data_confidence: high
+
+  - canonical_acronym: DLSU
+    full_name_variations: [De La Salle University, La Salle, DLSU-Manila]
+    freedom_wall_hashtag_pattern: '(?i)#DLSU(?:FW|FreedomWall)\d*'
+    scraper_code: null
+    location_markers:
+      - {phrase: Taft Avenue, semantic_replace: true}
+    mascot_cheer_terms: [Green Archers, Animo La Salle, Animo, Lady Archers]
+    region: Metro Manila
+    data_confidence: high
+
+  - canonical_acronym: FEU
+    full_name_variations: [Far Eastern University]
+    freedom_wall_hashtag_pattern: '(?i)#FEU(?:FW|FreedomWall)\d*'
+    scraper_code: FW-03
+    location_markers:
+      - {phrase: Morayta,       semantic_replace: true}
+      - {phrase: Nicanor Reyes, semantic_replace: true}
+    mascot_cheer_terms: [Tamaraws, Tamaraw, Go Tams]
+    region: Metro Manila
+    data_confidence: high
+
+  - canonical_acronym: PUP
+    full_name_variations: [Polytechnic University of the Philippines, PUP Sta. Mesa]
+    freedom_wall_hashtag_pattern: '(?i)#PUP(?:FW|FreedomWall)\d*'
+    scraper_code: null
+    location_markers:
+      - {phrase: Sta. Mesa,     semantic_replace: true}
+      - {phrase: Mabini Campus, semantic_replace: true}
+    mascot_cheer_terms: []
+    region: Metro Manila
+    data_confidence: high
+
+  - canonical_acronym: UPLB
+    full_name_variations:
+      - University of the Philippines Los Baños
+      - University of the Philippines Los Banos
+      - UP Los Baños
+      - UP Los Banos
+    freedom_wall_hashtag_pattern: '(?i)#UPLB(?:FW|FreedomWall)\d*'
+    scraper_code: FW-04
+    location_markers:
+      - {phrase: Los Baños,   semantic_replace: true}
+      - {phrase: Los Banos,   semantic_replace: true}
+      - {phrase: Mt Makiling, semantic_replace: true}
+      - {phrase: Mt. Makiling, semantic_replace: true}
+    mascot_cheer_terms: [Aggies]
+    region: Luzon/Provincial
+    data_confidence: medium
+
+  - canonical_acronym: LPU-B
+    full_name_variations:
+      - Lyceum of the Philippines University Batangas
+      - Lyceum Batangas
+      - LPU Batangas
+      - LPU-Batangas
+    freedom_wall_hashtag_pattern: '(?i)#LPUB(?:FW|FreedomWall)\d*'
+    scraper_code: FW-05
+    location_markers:
+      - {phrase: Capitol Site, semantic_replace: true}
+    mascot_cheer_terms: [Pirates]
+    region: Luzon/Provincial
+    data_confidence: low
+
+  - canonical_acronym: CSU
+    full_name_variations: [Caraga State University, Caraga State, CSU-Caraga]
+    freedom_wall_hashtag_pattern: '(?i)#CSU(?:FW|FreedomWall)\d*'
+    scraper_code: FW-06
+    location_markers:
+      - {phrase: Ampayon,    semantic_replace: true}
+      - {phrase: Butuan,     semantic_replace: true}
+    mascot_cheer_terms: []
+    region: Luzon/Provincial
+    data_confidence: medium
+
+  - canonical_acronym: UPB
+    full_name_variations: [University of the Philippines Baguio, UP Baguio]
+    freedom_wall_hashtag_pattern: '(?i)#UPB(?:FW|FreedomWall)\d*'
+    scraper_code: FW-07
+    location_markers:
+      - {phrase: Governor Pack, semantic_replace: true}
+    mascot_cheer_terms: []
+    region: Baguio/Benguet
+    data_confidence: medium
+
+  - canonical_acronym: BSU
+    full_name_variations: [Benguet State University]
+    freedom_wall_hashtag_pattern: '(?i)#BSU(?:FW|FreedomWall)\d*'
+    scraper_code: FW-08
+    location_markers:
+      - {phrase: La Trinidad, semantic_replace: true}
+    mascot_cheer_terms: [Mountaineers]
+    region: Baguio/Benguet
+    data_confidence: low
+
+  - canonical_acronym: UB
+    full_name_variations: [University of Baguio, UB-Baguio]
+    freedom_wall_hashtag_pattern: '(?i)#UB(?:FW|FreedomWall|Files)\d*'
+    scraper_code: FW-09
+    location_markers: []
+    mascot_cheer_terms: [Cardinals]
+    region: Baguio/Benguet
+    data_confidence: low
+
+  - canonical_acronym: SLU
+    full_name_variations: [Saint Louis University, St. Louis University, St Louis University]
+    freedom_wall_hashtag_pattern: '(?i)#SLU(?:FW|FreedomWall)\d*'
+    scraper_code: SLU
+    location_markers:
+      - {phrase: Maryheights,  semantic_replace: true}
+      - {phrase: Bonifacio St, semantic_replace: true}
+      - {phrase: Navy Base,    semantic_replace: true}
+    mascot_cheer_terms: [Navigators, Go Navs]
+    region: Baguio/Benguet
+    data_confidence: high
+
+# Mascot/cheer tokens that collide across universities. These are dropped
+# (replaced with empty string) rather than tagged with a region, because
+# attributing them to a single region would leak signal in the wrong direction.
+ambiguous_mascots:
+  - Maroons
+  - Lions
+  - Eagles
+
+# Regional generic tokens — never replaced (too generic to be school-identifying
+# on their own). The pipeline relies on combinations like "UP Baguio" to trigger.
+generic_location_allowlist:
+  - Manila
+  - Baguio
+  - Cebu
+  - Davao
+  - Quezon City
+  - QC
+
+# Scraper-code -> region fallback. Used when a post has no school markers at
+# all: we fall back to assigning it the region of the JSONL it came from.
+# Source field is read from the post's `source` or filename.
+scraper_code_to_region:
+  FW-01: Metro Manila
+  FW-02: Metro Manila
+  FW-03: Metro Manila
+  FW-04: Luzon/Provincial
+  FW-05: Luzon/Provincial
+  FW-06: Luzon/Provincial
+  FW-07: Baguio/Benguet
+  FW-08: Baguio/Benguet
+  FW-09: Baguio/Benguet
+  SLU:   Baguio/Benguet
