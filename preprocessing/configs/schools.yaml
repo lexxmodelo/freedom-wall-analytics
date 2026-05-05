@@ -5,19 +5,60 @@
 # the actual school's Facebook Freedom Wall page; entries marked `low` or
 # `guess` should be reviewed before the production run.
 #
-# Structure:
-#   canonical_acronym:        unique ID, used in logs / leak tests
-#   full_name_variations:     phrases to replace inline (longest first wins)
-#   freedom_wall_hashtag_pattern: regex (Python flavor) for indexing hashtag
-#   scraper_code:             matches scraper_project/config.py TARGETS code; null = not yet scraped
-#   location_markers:         place names that uniquely identify the school
-#                             - phrase: the literal token
-#                             - semantic_replace: true = inline-replace with region tag
-#                                                 false = drop entirely
-#   mascot_cheer_terms:       school-unique cheers/mascots (drop if listed in
-#                             the global `ambiguous_mascots` list at bottom)
-#   region:                   Metro Manila | Luzon/Provincial | Baguio/Benguet
-#   data_confidence:          high | medium | low | guess
+# ============================================================================
+# AMBIGUITY TIER SYSTEM
+# ============================================================================
+# School identifiers can collide with common English/Filipino words. Each
+# acronym/term should be classified into one of four tiers:
+#
+#   Tier A — Safe (default): unique tokens. Replaced case-insensitively
+#            anywhere they appear. Examples: ADMU, UPLB, DLSU, SLU, FEU,
+#            UPD, BSU, UPB, CSU.
+#
+#   Tier B — Capital-only: short acronyms whose lowercase form is a real
+#            word. Set `case_sensitive_acronym: true` so only the uppercase
+#            form matches. Example: PUP (vs "pup" the baby dog).
+#
+#   Tier C — Ambiguous-drop: tokens whose meaning depends on context such
+#            that no single region is correct. Add to the top-level
+#            `ambiguous_mascots` list. Mascots that span multiple schools
+#            (Maroons, Lions, Eagles), facility names that are coincidentally
+#            mascot words (Pirates -> "Pirates Cafe" at LPU-B), and tokens
+#            with strong real-world meaning belong here.
+#
+#   Tier D — Allowlist: generic tokens that don't identify any single
+#            school. Add to `generic_location_allowlist` (see bottom).
+#            Examples: "Manila", "Baguio".
+#
+#   Tier E — Skip-bare: a school's acronym is reused by other schools or
+#            sources in ways the pipeline can't disambiguate. Set
+#            `skip_bare_acronym: true` to omit the bare-acronym pass for
+#            that school (the school is still anonymized via hashtag and
+#            full-name patterns and via source-code region fallback).
+#            Example: UB ("University of Baguio") collides with LPU-B
+#            students' colloquial usage and basketball "Upper Box" tickets.
+# ============================================================================
+#
+# Per-school structure:
+#   canonical_acronym:           unique ID, used in logs / leak tests
+#   full_name_variations:        phrases to replace inline (longest first)
+#   freedom_wall_hashtag_pattern: regex for the indexing hashtag
+#   scraper_code:                matches scraper_project/config.py TARGETS;
+#                                null = not yet scraped
+#   location_markers:            place names that uniquely identify the school
+#                                  - phrase: the literal token
+#                                  - semantic_replace: true = inline replace
+#                                    with region tag; false = drop entirely
+#   mascot_cheer_terms:          school-unique cheers/mascots
+#   region:                      Philippine administrative region label.
+#                                Must match a key in schools.py REGION_TAGS.
+#                                Current labels in use: NCR, CAR, CALABARZON,
+#                                CARAGA. Future scrapes can use any of the
+#                                17 standard PSA regions (Region I–XIII,
+#                                NCR, CAR, MIMAROPA, BARMM).
+#   data_confidence:             high | medium | low | guess
+#   case_sensitive_acronym:      Tier B — match only the uppercase acronym
+#   skip_bare_acronym:           Tier E — skip the bare-acronym pass entirely
 
 schools:
   - canonical_acronym: ADMU
@@ -28,7 +69,7 @@ schools:
       - {phrase: Katipunan,      semantic_replace: true}
       - {phrase: Loyola Heights, semantic_replace: true}
     mascot_cheer_terms: [Blue Eagles, Blue Eagle, One Big Fight, Halikinu]
-    region: Metro Manila
+    region: NCR
     data_confidence: high
 
   - canonical_acronym: UPD
@@ -40,7 +81,7 @@ schools:
       - {phrase: AS Walk,       semantic_replace: true}
       - {phrase: Sunken Garden, semantic_replace: true}
     mascot_cheer_terms: [Fighting Maroons, UP Fight]
-    region: Metro Manila
+    region: NCR
     data_confidence: high
 
   - canonical_acronym: DLSU
@@ -50,7 +91,7 @@ schools:
     location_markers:
       - {phrase: Taft Avenue, semantic_replace: true}
     mascot_cheer_terms: [Green Archers, Animo La Salle, Animo, Lady Archers]
-    region: Metro Manila
+    region: NCR
     data_confidence: high
 
   - canonical_acronym: FEU
@@ -61,7 +102,7 @@ schools:
       - {phrase: Morayta,       semantic_replace: true}
       - {phrase: Nicanor Reyes, semantic_replace: true}
     mascot_cheer_terms: [Tamaraws, Tamaraw, Go Tams]
-    region: Metro Manila
+    region: NCR
     data_confidence: high
 
   - canonical_acronym: PUP
@@ -72,7 +113,21 @@ schools:
       - {phrase: Sta. Mesa,     semantic_replace: true}
       - {phrase: Mabini Campus, semantic_replace: true}
     mascot_cheer_terms: []
-    region: Metro Manila
+    region: NCR
+    data_confidence: high
+    # Tier B: lowercase "pup" is a real English word (baby dog). Empirical
+    # audit of the current corpus shows no false positives, but defensive.
+    case_sensitive_acronym: true
+
+  - canonical_acronym: UPOU
+    full_name_variations:
+      - University of the Philippines Open University
+      - UP Open University
+    freedom_wall_hashtag_pattern: '(?i)#UPOU(?:FW|FreedomWall)\d*'
+    scraper_code: null              # not yet scraped
+    location_markers: []
+    mascot_cheer_terms: []
+    region: CALABARZON         # UPOU HQ is in Los Baños
     data_confidence: high
 
   - canonical_acronym: UPLB
@@ -89,7 +144,7 @@ schools:
       - {phrase: Mt Makiling, semantic_replace: true}
       - {phrase: Mt. Makiling, semantic_replace: true}
     mascot_cheer_terms: [Aggies]
-    region: Luzon/Provincial
+    region: CALABARZON
     data_confidence: medium
 
   - canonical_acronym: LPU-B
@@ -98,23 +153,33 @@ schools:
       - Lyceum Batangas
       - LPU Batangas
       - LPU-Batangas
+      - LPUB
+      - LPU
+      - Lyceum
     freedom_wall_hashtag_pattern: '(?i)#LPUB(?:FW|FreedomWall)\d*'
     scraper_code: FW-05
     location_markers:
       - {phrase: Capitol Site, semantic_replace: true}
-    mascot_cheer_terms: [Pirates]
-    region: Luzon/Provincial
+    # "Pirates" was the listed mascot but in the FW-05 corpus it appears
+    # almost exclusively as part of facility names ("Pirates Cafe",
+    # "Pirates Hall"). Demoted to ambiguous_mascots (drop, no region tag).
+    mascot_cheer_terms: []
+    region: CALABARZON
     data_confidence: low
 
   - canonical_acronym: CSU
-    full_name_variations: [Caraga State University, Caraga State, CSU-Caraga]
+    full_name_variations: [Caraga State University, Caraga State, CSU-Caraga, Caraga]
     freedom_wall_hashtag_pattern: '(?i)#CSU(?:FW|FreedomWall)\d*'
     scraper_code: FW-06
     location_markers:
       - {phrase: Ampayon,    semantic_replace: true}
       - {phrase: Butuan,     semantic_replace: true}
+      - {phrase: Agusan,     semantic_replace: true}
     mascot_cheer_terms: []
-    region: Luzon/Provincial
+    # Caraga Region (Region XIII) — Mindanao. Originally mislabelled
+    # Luzon/Provincial under the assumption CSU = Cagayan State; corrected
+    # once we confirmed CSU = Caraga State (Butuan City).
+    region: CARAGA
     data_confidence: medium
 
   - canonical_acronym: UPB
@@ -124,7 +189,7 @@ schools:
     location_markers:
       - {phrase: Governor Pack, semantic_replace: true}
     mascot_cheer_terms: []
-    region: Baguio/Benguet
+    region: CAR
     data_confidence: medium
 
   - canonical_acronym: BSU
@@ -134,7 +199,7 @@ schools:
     location_markers:
       - {phrase: La Trinidad, semantic_replace: true}
     mascot_cheer_terms: [Mountaineers]
-    region: Baguio/Benguet
+    region: CAR
     data_confidence: low
 
   - canonical_acronym: UB
@@ -143,8 +208,18 @@ schools:
     scraper_code: FW-09
     location_markers: []
     mascot_cheer_terms: [Cardinals]
-    region: Baguio/Benguet
+    region: CAR
     data_confidence: low
+    # Tier E: bare "UB" appears across sources with three different meanings
+    # observed in the corpus — (a) University of Baguio mentioned by UPB
+    # students discussing other Baguio schools, (b) LPU-B internal slang for
+    # what is likely "University of Batangas", and (c) basketball "Upper Box"
+    # tickets in sports posts. FW-09 itself contains zero bare-UB mentions,
+    # so skipping the bare-acronym pass loses no anonymization signal there.
+    # The school is still anonymized via the hashtag pattern, the
+    # "University of Baguio" full-name pass, and the FW-09 -> Baguio/Benguet
+    # source-code fallback for posts with no school markers at all.
+    skip_bare_acronym: true
 
   - canonical_acronym: SLU
     full_name_variations: [Saint Louis University, St. Louis University, St Louis University]
@@ -155,16 +230,17 @@ schools:
       - {phrase: Bonifacio St, semantic_replace: true}
       - {phrase: Navy Base,    semantic_replace: true}
     mascot_cheer_terms: [Navigators, Go Navs]
-    region: Baguio/Benguet
+    region: CAR
     data_confidence: high
 
-# Mascot/cheer tokens that collide across universities. These are dropped
-# (replaced with empty string) rather than tagged with a region, because
-# attributing them to a single region would leak signal in the wrong direction.
+# Tier C — Ambiguous-drop tokens. Replaced with empty string rather than a
+# region tag, because the token's meaning is context-dependent and tagging
+# it with one region would mislead downstream analysis.
 ambiguous_mascots:
-  - Maroons
-  - Lions
-  - Eagles
+  - Maroons       # UPD / UPB / PUP all use "Maroons"
+  - Lions         # multiple schools
+  - Eagles        # ADMU "Blue Eagles" disambiguated separately
+  - Pirates       # LPU-B, but actually facility name ("Pirates Cafe/Hall")
 
 # Regional generic tokens — never replaced (too generic to be school-identifying
 # on their own). The pipeline relies on combinations like "UP Baguio" to trigger.
@@ -180,13 +256,13 @@ generic_location_allowlist:
 # all: we fall back to assigning it the region of the JSONL it came from.
 # Source field is read from the post's `source` or filename.
 scraper_code_to_region:
-  FW-01: Metro Manila
-  FW-02: Metro Manila
-  FW-03: Metro Manila
-  FW-04: Luzon/Provincial
-  FW-05: Luzon/Provincial
-  FW-06: Luzon/Provincial
-  FW-07: Baguio/Benguet
-  FW-08: Baguio/Benguet
-  FW-09: Baguio/Benguet
-  SLU:   Baguio/Benguet
+  FW-01: NCR              # ADMU — Quezon City
+  FW-02: NCR              # UPD — Diliman, Quezon City
+  FW-03: NCR              # FEU — Manila City
+  FW-04: CALABARZON       # UPLB — Los Baños, Laguna
+  FW-05: CALABARZON       # LPU-B — Batangas City
+  FW-06: CARAGA           # CSU — Butuan, Agusan del Norte
+  FW-07: CAR              # UPB — Baguio
+  FW-08: CAR              # BSU — La Trinidad, Benguet
+  FW-09: CAR              # UB — Baguio
+  SLU:   CAR              # SLU — Baguio

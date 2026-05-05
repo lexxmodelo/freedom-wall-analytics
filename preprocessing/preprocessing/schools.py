@@ -14,10 +14,51 @@ from typing import Any
 
 import yaml
 
+# Philippine administrative regions. The full 17-region map is materialized
+# explicitly so that future scrapes land in a known bucket without code
+# changes — only schools.yaml needs to grow when a new school is added.
+# Inline tag style: short-name acronyms (NCR, CAR) and PSA short names
+# (CALABARZON, CARAGA, MIMAROPA) — matches how Filipino academic and
+# government sources commonly refer to these regions.
 REGION_TAGS = {
-    "Metro Manila": "[Metro Manila]",
-    "Luzon/Provincial": "[Luzon/Provincial]",
-    "Baguio/Benguet": "[Baguio/Benguet]",
+    "NCR": "[NCR]",                              # National Capital Region
+    "CAR": "[CAR]",                              # Cordillera Administrative Region
+    "Region I": "[Region I]",                    # Ilocos
+    "Region II": "[Region II]",                  # Cagayan Valley
+    "Region III": "[Region III]",                # Central Luzon
+    "CALABARZON": "[CALABARZON]",                # Region IV-A
+    "MIMAROPA": "[MIMAROPA]",                    # Region IV-B
+    "Region V": "[Region V]",                    # Bicol
+    "Region VI": "[Region VI]",                  # Western Visayas
+    "Region VII": "[Region VII]",                # Central Visayas
+    "Region VIII": "[Region VIII]",              # Eastern Visayas
+    "Region IX": "[Region IX]",                  # Zamboanga Peninsula
+    "Region X": "[Region X]",                    # Northern Mindanao
+    "Region XI": "[Region XI]",                  # Davao Region
+    "Region XII": "[Region XII]",                # SOCCSKSARGEN
+    "CARAGA": "[CARAGA]",                        # Region XIII
+    "BARMM": "[BARMM]",                          # Bangsamoro Autonomous Region
+}
+
+# Slug used for output filenames: lowercase, underscores, no special chars.
+REGION_FILENAME_SLUG = {
+    "NCR": "ncr",
+    "CAR": "car",
+    "Region I": "ilocos",
+    "Region II": "cagayan_valley",
+    "Region III": "central_luzon",
+    "CALABARZON": "calabarzon",
+    "MIMAROPA": "mimaropa",
+    "Region V": "bicol",
+    "Region VI": "western_visayas",
+    "Region VII": "central_visayas",
+    "Region VIII": "eastern_visayas",
+    "Region IX": "zamboanga",
+    "Region X": "northern_mindanao",
+    "Region XI": "davao",
+    "Region XII": "soccsksargen",
+    "CARAGA": "caraga",
+    "BARMM": "barmm",
 }
 
 
@@ -37,6 +78,15 @@ class School:
     mascot_cheer_terms: list[str] = field(default_factory=list)
     region: str = ""
     data_confidence: str = "low"
+    # Tier-system flags (see schools.yaml header comment for the four tiers).
+    # skip_bare_acronym:       drop the bare-acronym pass entirely. Use when
+    #                          the acronym is reused by other schools/contexts
+    #                          (e.g. "UB" means different things across files).
+    # case_sensitive_acronym:  match only the uppercase form, never lowercase.
+    #                          Use when the lowercase form is a real word
+    #                          ("PUP" the school vs "pup" the baby dog).
+    skip_bare_acronym: bool = False
+    case_sensitive_acronym: bool = False
 
     @property
     def region_tag(self) -> str:
@@ -74,6 +124,8 @@ def load_schools(path: Path) -> SchoolsConfig:
                 mascot_cheer_terms=list(s.get("mascot_cheer_terms") or []),
                 region=s["region"],
                 data_confidence=s.get("data_confidence", "low"),
+                skip_bare_acronym=bool(s.get("skip_bare_acronym", False)),
+                case_sensitive_acronym=bool(s.get("case_sensitive_acronym", False)),
             )
         )
 
@@ -109,11 +161,17 @@ def build_replacement_table(cfg: SchoolsConfig) -> list[ReplacementRule]:
     """
     rules: list[ReplacementRule] = []
 
-    # 1. Indexing hashtags (per-school regex from YAML)
+    # 1. Indexing hashtags (per-school regex from YAML).
+    # Drop entirely (replacement = "") rather than tag with the region.
+    # The indexing hashtag is metadata — the post's serial number on the
+    # .ninja submission platform — not discourse content. The post's
+    # region is already captured in the top-level `region` output field
+    # via source-code routing, so a leading "[Metro Manila]" tag derived
+    # solely from the indexing hashtag is redundant and clutters the text.
     for s in cfg.schools:
         rules.append((
             re.compile(s.freedom_wall_hashtag_pattern),
-            s.region_tag,
+            "",
             f"hashtag:{s.canonical_acronym}",
         ))
 
@@ -173,22 +231,26 @@ def build_replacement_table(cfg: SchoolsConfig) -> list[ReplacementRule]:
         ))
 
     # 6. Bare acronyms — longest first, strict word boundaries.
-    acronym_entries: list[tuple[str, str, str]] = []
+    # Honors per-school tier flags:
+    #   - skip_bare_acronym=True omits the school from this pass entirely
+    #     (the school is still anonymized via hashtag + full-name passes).
+    #   - case_sensitive_acronym=True drops re.IGNORECASE so only the
+    #     uppercase form matches.
+    acronym_entries: list[tuple[str, str, str, bool]] = []
     for s in cfg.schools:
+        if s.skip_bare_acronym:
+            continue
         ac = s.canonical_acronym
-        acronym_entries.append((ac, s.region_tag, f"acro:{ac}"))
+        acronym_entries.append((ac, s.region_tag, f"acro:{ac}", s.case_sensitive_acronym))
     acronym_entries.sort(key=lambda e: -len(e[0]))
-    for ac, tag, label in acronym_entries:
+    for ac, tag, label, case_sensitive in acronym_entries:
         # Disallow the acronym being preceded by # (already handled hashtag),
         # by another word char, or followed by another word char. This stops
         # `UP` matching inside `UPLB` and stops `SLU` matching inside
         # `#SLUFreedomWall12345` (which is replaced earlier anyway, but be safe).
-        # Case-insensitive because real posts use lowercase forms ("admu",
-        # "slu", "uplb"). Word boundaries keep collateral damage minimal —
-        # standalone lowercase "slu", "ub", etc. are rare enough in English/
-        # Filipino that false positives are negligible.
+        flags = 0 if case_sensitive else re.IGNORECASE
         rules.append((
-            re.compile(rf'(?<![#\w]){re.escape(ac)}(?!\w)', re.IGNORECASE),
+            re.compile(rf'(?<![#\w]){re.escape(ac)}(?!\w)', flags),
             tag,
             label,
         ))

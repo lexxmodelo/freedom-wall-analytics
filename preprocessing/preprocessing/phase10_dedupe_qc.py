@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Iterable
 
 from .regex_lib import PATTERNS
-from .schools import SchoolsConfig
+from .schools import REGION_TAGS, SchoolsConfig
 
 log = logging.getLogger(__name__)
 
@@ -91,40 +91,43 @@ def quality_gate(post: dict) -> tuple[bool, str | None]:
 
 
 def assign_region(post: dict, cfg: SchoolsConfig) -> str | None:
-    """Pick the post's region.
+    """Pick the post's region — ALWAYS from the source JSONL file.
 
-    Strategy:
-    1. If phase02 matched exactly one region, use that.
-    2. If phase02 matched multiple regions (cross-uni post), use the first
-       (sorted alphabetically — deterministic) and flag.
-    3. If phase02 matched zero regions, fall back to the scraper-code map.
-    4. If still unknown, return None — orchestrator will reject the post.
+    One Freedom Wall = one region. The post's origin (which JSONL it was
+    scraped from) is the only authoritative signal. School names mentioned
+    in the post body are *discourse content* — they tell us what the post
+    talks about, not where the post is from. A UPD student writing about
+    UPB friends still belongs in Metro Manila.
+
+    `_phase02_regions` is retained for QC reporting (counting posts that
+    mention schools from regions other than their own) but never used here.
     """
-    regions = post.get("_phase02_regions") or []
-    if len(regions) == 1:
-        return regions[0]
-    if len(regions) > 1:
-        return sorted(regions)[0]
     code = post.get("_source_code")
-    return cfg.scraper_code_to_region.get(code) if code else None
+    if not code:
+        return None
+    return cfg.scraper_code_to_region.get(code)
 
 
 def finalize(posts: list[dict], cfg: SchoolsConfig) -> tuple[dict[str, list[dict]], dict, list[tuple[dict, str]]]:
-    """Bucket posts by region, strip internal fields, return QC stats.
+    """Bucket posts by source_code (one bucket per Freedom Wall = batch
+    unit for downstream BERTopic + topic labelling), strip internal fields,
+    return QC stats.
+
+    Each post retains its `region` field so cross-regional aggregation at
+    analysis time is a simple groupby; no information is lost by bucketing
+    per-school instead of per-region.
 
     Returns (buckets, qc_stats, rejections_with_reason).
     """
-    buckets: dict[str, list[dict]] = {
-        "Metro Manila": [],
-        "Luzon/Provincial": [],
-        "Baguio/Benguet": [],
-    }
+    buckets: dict[str, list[dict]] = {}
     rejections: list[tuple[dict, str]] = []
 
+    source_counts: Counter[str] = Counter()
     region_counts: Counter[str] = Counter()
     language_counts: Counter[str] = Counter()
-    cross_uni = 0
-    fallback_region = 0
+    mentions_other_region = 0  # post mentions a school from a different region
+    mentions_own_region_only = 0
+    mentions_no_school = 0
     timestamp_missing = 0
 
     for post in posts:
@@ -138,36 +141,55 @@ def finalize(posts: list[dict], cfg: SchoolsConfig) -> tuple[dict[str, list[dict
             rejections.append((post, "no_region_assignable"))
             continue
 
-        if not post.get("_phase02_regions"):
-            fallback_region += 1
-        if len(post.get("_phase02_regions") or []) > 1:
-            cross_uni += 1
+        source_code = post.get("_source_code")
+        if not source_code:
+            rejections.append((post, "no_source_code"))
+            continue
+
+        # Discourse-content stats: what regions does the TEXT reference,
+        # relative to the post's own (source-derived) region?
+        text_regions = set(post.get("_phase02_regions") or [])
+        if not text_regions:
+            mentions_no_school += 1
+        elif text_regions == {region}:
+            mentions_own_region_only += 1
+        else:
+            mentions_other_region += 1
+
         if post.get("timestamp_unix") is None:
             timestamp_missing += 1
 
+        source_counts[source_code] += 1
         region_counts[region] += 1
         language_counts[post.get("language_detected", "Unknown")] += 1
 
-        # Project to the final output schema. Drop everything starting with
-        # underscore plus the raw timestamp/url fields that should not appear
-        # in the published corpus.
+        # Project to the final output schema. `source_code` is the
+        # anonymized scraper code (FW-01, SLU, ...) — already in the
+        # filename but kept inline so flattened/merged datasets retain
+        # batch attribution. `region` lets analysis groupby cross-school.
         final = {
             "post_id": post.get("post_id"),
+            "source_code": source_code,
             "text": post["text"],
             "engagement": post.get("engagement", {"reactions": 0, "comments": 0, "shares": 0}),
             "timestamp_unix": post.get("timestamp_unix"),
             "region": region,
             "language_detected": post.get("language_detected", "Unknown"),
         }
-        buckets[region].append(final)
+        buckets.setdefault(source_code, []).append(final)
 
     qc = {
-        "total_kept": sum(region_counts.values()),
+        "total_kept": sum(source_counts.values()),
         "total_rejected": len(rejections),
+        "by_source": dict(source_counts),
         "by_region": dict(region_counts),
         "by_language": dict(language_counts),
-        "cross_university_posts": cross_uni,
-        "region_via_source_fallback": fallback_region,
+        # Discourse-content metrics (do NOT affect routing — region is
+        # always from source). Useful for understanding cross-school
+        # discourse patterns.
+        "text_mentions_no_school": mentions_no_school,
+        "text_mentions_own_region_only": mentions_own_region_only,
+        "text_mentions_other_region": mentions_other_region,
         "timestamp_missing": timestamp_missing,
     }
     return buckets, qc, rejections

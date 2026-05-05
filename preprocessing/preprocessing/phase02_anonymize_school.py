@@ -13,13 +13,13 @@ from __future__ import annotations
 import re
 from typing import Iterable
 
-from .schools import ReplacementRule, SchoolsConfig
+from .schools import REGION_TAGS, ReplacementRule, SchoolsConfig
 
 # After all replacements run, collapse consecutive duplicate region tags
-# ("[Metro Manila] [Metro Manila]" → "[Metro Manila]") because phrases
-# like "ADMU and Ateneo" produce them naturally.
+# ("[NCR] [NCR]" → "[NCR]") because phrases like "ADMU and Ateneo" produce
+# them naturally.
 _TAG_REPEAT = re.compile(
-    r'(\[(?:Metro Manila|Luzon/Provincial|Baguio/Benguet)\])'
+    r'(\[(?:' + '|'.join(re.escape(r) for r in REGION_TAGS) + r')\])'
     r'(?:\s+\1)+'
 )
 

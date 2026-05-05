@@ -1,0 +1,29 @@
+# Saint Louis University Baguio (CAR-PSEC-1) — acronym glossary.
+#
+# Injected into the SYSTEM prompt of the NIM labeling call so the LLM doesn't
+# fabricate interpretations of SLU-specific acronyms. Without this, the LLM
+# produced "Sea Student Complaints" instead of recognizing SEA as the School
+# of Engineering and Architecture.
+#
+# Add new entries here as topic labels reveal further missing acronyms.
+# DO NOT include institutional NAMES (school proper names, mascots, building
+# names) — those are anonymization-protected per methodology §2.4.
+
+university_code: CAR-PSEC-1
+
+# Schools / academic units (per user 2026-05-05 directive)
+units:
+  SEA: School of Engineering and Architecture
+  SAMCIS: School of Accountancy, Management, Computing, and Information Studies
+  SONAHBS: School of Nursing, Allied Health, and Biological Sciences
+  STELA: School of Teacher Education and Liberal Arts
+  SOM: School of Medicine
+  SOL: School of Law
+  BEDS: Basic Education Schools
+
+# Student bodies and offices — these are CONTENT, not stopwords.
+# Students complain about specific offices; we want those signals preserved.
+offices:
+  OSA: Office of Student Affairs
+  SSC: Supreme Student Council
+  CICM: Congregation of the Immaculate Heart of Mary (institution founders)

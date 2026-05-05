@@ -3,14 +3,14 @@
     {
       "file": "FW-01.jsonl",
       "code": "FW-01",
-      "in": 4012,
-      "kept_phase1": 4012
+      "in": 4002,
+      "kept_phase1": 4002
     },
     {
       "file": "FW-02.jsonl",
       "code": "FW-02",
-      "in": 4002,
-      "kept_phase1": 4002
+      "in": 4000,
+      "kept_phase1": 4000
     },
     {
       "file": "FW-03.jsonl",
@@ -21,42 +21,87 @@
     {
       "file": "FW-04.jsonl",
       "code": "FW-04",
+      "in": 4001,
+      "kept_phase1": 4001
+    },
+    {
+      "file": "FW-05.jsonl",
+      "code": "FW-05",
+      "in": 4001,
+      "kept_phase1": 4001
+    },
+    {
+      "file": "FW-06.jsonl",
+      "code": "FW-06",
+      "in": 4002,
+      "kept_phase1": 4002
+    },
+    {
+      "file": "FW-07.jsonl",
+      "code": "FW-07",
+      "in": 2379,
+      "kept_phase1": 2379
+    },
+    {
+      "file": "FW-08.jsonl",
+      "code": "FW-08",
       "in": 4000,
       "kept_phase1": 4000
     },
     {
+      "file": "FW-09.jsonl",
+      "code": "FW-09",
+      "in": 4001,
+      "kept_phase1": 4001
+    },
+    {
       "file": "SLU.jsonl",
       "code": "SLU",
-      "in": 4002,
-      "kept_phase1": 4002
+      "in": 4001,
+      "kept_phase1": 4001
     }
   ],
-  "exact_duplicates_dropped": 625,
-  "near_duplicates_dropped": 85,
-  "regional_dialect_dropped": 0,
-  "total_kept": 19271,
-  "total_rejected": 37,
+  "exact_duplicates_dropped": 934,
+  "near_duplicates_dropped": 121,
+  "total_kept": 37074,
+  "total_rejected": 260,
+  "by_source": {
+    "FW-01": 3735,
+    "FW-02": 3578,
+    "FW-03": 3963,
+    "FW-04": 3955,
+    "FW-05": 3912,
+    "FW-06": 3998,
+    "FW-07": 2287,
+    "FW-08": 3791,
+    "FW-09": 3991,
+    "SLU": 3864
+  },
   "by_region": {
-    "Metro Manila": 11284,
-    "Luzon/Provincial": 4019,
-    "Baguio/Benguet": 3968
+    "NCR": 11276,
+    "CALABARZON": 7867,
+    "CARAGA": 3998,
+    "CAR": 13933
   },
   "by_language": {
-    "English": 5515,
-    "Taglish": 6524,
-    "Filipino": 6944,
-    "Other": 258,
-    "Unknown": 30
+    "English": 9577,
+    "Filipino": 13244,
+    "Taglish": 11890,
+    "Unknown": 308,
+    "Cebuano": 1472,
+    "Other": 583
   },
-  "cross_university_posts": 97,
-  "region_via_source_fallback": 91,
-  "timestamp_missing": 19268,
+  "text_mentions_no_school": 31986,
+  "text_mentions_own_region_only": 4931,
+  "text_mentions_other_region": 157,
+  "timestamp_missing": 0,
   "schools_loaded": [
     "ADMU",
     "UPD",
     "DLSU",
     "FEU",
     "PUP",
+    "UPOU",
     "UPLB",
     "LPU-B",
     "CSU",

@@ -1,0 +1,14 @@
+{
+  "_comment": "GPU/VRAM management settings. Tuned for RTX 4050 (6GB VRAM). The pipeline writes vram peaks to gpu_logs/vram_usage.jsonl per university; revisit these values if peaks routinely exceed 5500 MB.",
+  "require_gpu_for_xlm_roberta": true,
+  "encode_batch_initial": 16,
+  "encode_batch_min": 4,
+  "encode_batch_halving_sequence": [16, 8, 4],
+  "large_corpus_threshold_posts": 20000,
+  "large_corpus_initial_batch": 8,
+  "minilm_cpu_batch": 64,
+  "vram_safety_margin_mb": 500,
+  "torch_empty_cache_after_each_university": true,
+  "cpu_fallback_allowed": true,
+  "cpu_fallback_quality_warning": "XLM-RoBERTa-Large on CPU is 3-5x slower per university; use only if all GPU recovery steps exhausted."
+}

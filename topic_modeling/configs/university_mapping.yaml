@@ -1,0 +1,99 @@
+# File-to-anonymized-code mapping for the topic_modeling phase.
+#
+# Source files: preprocessing/output/*.json (10 files)
+# Base scheme: methodology_changes.md §2.4 (12 institutions across MM/PROV/CAR).
+#
+# EXTENSION TO §2.4 (per user directive 2026-05-05; see action_log.md ACTION-002):
+#   - CAR-PNSEC-2 added (second private non-sectarian slot in CAR) for LPU-B.
+#   - MIN cluster added for Mindanao institutions; MIN-PUB-1 = CSU.
+#
+# CONFIRMED:
+#   SLU      → CAR-PSEC-1     (pilot baseline; Saint Louis University Baguio, Catholic)
+#   FW-05    → CAR-PNSEC-2    (Lyceum of the Philippines Baguio; methodology extension)
+#   FW-06    → MIN-PUB-1      (Caraga State University; methodology extension — new MIN cluster)
+#
+# PROVISIONAL (drafted from preprocessing/action_log.md ACTION-001 inferences;
+# confirm before full-corpus execution if precise mapping matters):
+#   FW-01 = ADMU     → MM-PSEC-1     (Catholic, NCR)
+#   FW-02 = UPD      → MM-PUB-1      (state, NCR)
+#   FW-03 = FEU      → MM-PNSEC-1    (private non-sectarian, NCR)
+#   FW-04 = UPLB     → PROV-PUB-1    (state, Los Baños — Calabarzon)
+#   FW-07 = UPB      → CAR-PUB-1     (UP Baguio, state)
+#   FW-08 = BSU      → CAR-PUB-2     (Benguet State, state)
+#   FW-09 = UB       → CAR-PNSEC-1   (University of Baguio, private non-sectarian)
+#
+# Pipeline behavior: pre-flight refuses to run if any assigned file is unmapped, has
+# code "TBD", or is marked active: false. Toggle active: false to exclude a file.
+
+mappings:
+  FW-01_cleaned.json:
+    code: MM-PSEC-1
+    school_alias: ADMU
+    region: NCR
+    confidence: provisional
+    active: true
+
+  FW-02_cleaned.json:
+    code: MM-PUB-1
+    school_alias: UPD
+    region: NCR
+    confidence: provisional
+    active: true
+
+  FW-03_cleaned.json:
+    code: MM-PNSEC-1
+    school_alias: FEU
+    region: NCR
+    confidence: provisional
+    active: true
+
+  FW-04_cleaned.json:
+    code: PROV-PUB-1
+    school_alias: UPLB
+    region: CALABARZON
+    confidence: provisional
+    active: true
+
+  FW-05_cleaned.json:
+    code: CAR-PNSEC-2
+    school_alias: LPU-B
+    region: CAR
+    confidence: extension_confirmed
+    active: true
+    note: "Methodology §2.4 extension: adds a second CAR private non-sectarian slot (CAR-PNSEC-1 is held by UB). See action_log.md ACTION-002."
+
+  FW-06_cleaned.json:
+    code: MIN-PUB-1
+    school_alias: CSU
+    region: CARAGA
+    confidence: extension_confirmed
+    active: true
+    note: "Methodology §2.4 extension: adds new MIN cluster for Mindanao (Caraga State University, state). See action_log.md ACTION-002."
+
+  FW-07_cleaned.json:
+    code: CAR-PUB-1
+    school_alias: UPB
+    region: CAR
+    confidence: provisional
+    active: true
+
+  FW-08_cleaned.json:
+    code: CAR-PUB-2
+    school_alias: BSU
+    region: CAR
+    confidence: provisional
+    active: true
+
+  FW-09_cleaned.json:
+    code: CAR-PNSEC-1
+    school_alias: UB
+    region: CAR
+    confidence: provisional
+    active: true
+
+  SLU_cleaned.json:
+    code: CAR-PSEC-1
+    school_alias: SLU
+    region: CAR
+    confidence: confirmed
+    active: true

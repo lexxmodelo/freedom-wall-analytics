@@ -46,7 +46,7 @@ class PipelineConfig:
     output_dir: Path
     schools_path: Path
     tagalog_names_path: Path
-    tagalog_stopwords_path: Path
+    stopwords_dir: Path                 # holds stopwords_<language>.txt files
     limit: int | None = None
     phases: set[int] = field(default_factory=lambda: set(range(1, 11)))
     near_dup_threshold: float = 0.9
@@ -129,7 +129,7 @@ def run_pipeline(cfg: PipelineConfig) -> dict[str, Any]:
 
     # ---- Phase 06: stopword flagging ----
     if 6 in cfg.phases:
-        all_posts = list(phase06_stopwords.run(all_posts, cfg.tagalog_stopwords_path))
+        all_posts = list(phase06_stopwords.run(all_posts, cfg.stopwords_dir))
 
     # ---- Phase 07: engagement ----
     if 7 in cfg.phases:
@@ -166,39 +166,34 @@ def run_pipeline(cfg: PipelineConfig) -> dict[str, Any]:
         )
         log.info("Near dedup: dropped %d (Jaccard >= %.2f)", near_drops, cfg.near_dup_threshold)
 
-    # Reject posts whose language was filtered to a regional dialect.
-    language_filtered: list[dict] = []
-    dialect_drops = 0
-    for post in deduped:
-        meta = post.get("_lang_meta") or {}
-        if meta.get("dialect_flag"):
-            append_rejected(rejected_path, post, f"regional_dialect:{meta['dialect_flag']}", "phase09")
-            dialect_drops += 1
-            continue
-        language_filtered.append(post)
-    log.info("Dialect filter: dropped %d", dialect_drops)
-
-    buckets, qc_stats, rejections = phase10_dedupe_qc.finalize(language_filtered, schools_cfg)
+    # Note: regional Philippine languages (Cebuano, Ilokano, Kapampangan,
+    # Waray, Hiligaynon) are no longer dropped here. They get explicit
+    # language_detected labels in phase09 and are kept in output so
+    # cross-regional cultural/linguistic analysis can compare them.
+    buckets, qc_stats, rejections = phase10_dedupe_qc.finalize(deduped, schools_cfg)
 
     for post, reason in rejections:
         append_rejected(rejected_path, post, reason, "phase10")
 
-    # Write three region files
-    for region, fname in (
-        ("Metro Manila", "metro_manila_posts.json"),
-        ("Luzon/Provincial", "luzon_provincial_posts.json"),
-        ("Baguio/Benguet", "baguio_benguet_posts.json"),
-    ):
-        out = cfg.output_dir / fname
-        write_json(out, buckets[region])
-        log.info("%s: %d posts -> %s", region, len(buckets[region]), out.name)
+    # Write one file per source / Freedom Wall — these are the BATCH UNITS
+    # for downstream BERTopic + topic labelling. Filenames use the scraper
+    # code (`FW-01_cleaned.json`, `SLU_cleaned.json`) which is already an
+    # anonymized identifier per scraper_project/config.py. Each post still
+    # carries its `region` field, so cross-regional aggregation at analysis
+    # time is a simple groupby — no information lost by bucketing per-school.
+    for source_code in sorted(buckets):
+        source_posts = buckets[source_code]
+        if not source_posts:
+            continue
+        out = cfg.output_dir / f"{source_code}_cleaned.json"
+        write_json(out, source_posts)
+        log.info("%s: %d posts -> %s", source_code, len(source_posts), out.name)
 
     # Compose QC report
     report: dict[str, Any] = {
         "input_files": files_summary,
         "exact_duplicates_dropped": exact_drops,
         "near_duplicates_dropped": near_drops,
-        "regional_dialect_dropped": dialect_drops,
         **qc_stats,
         "schools_loaded": [s.canonical_acronym for s in schools_cfg.schools],
         "phases_executed": sorted(cfg.phases),

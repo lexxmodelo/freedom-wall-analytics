@@ -424,3 +424,68 @@ Every change maps to one of three drivers: **Feasibility** (the original design 
 | 70B model for sarcasm detection | Quality | 8B model had high "Unknown" rate on sarcastic Taglish posts |
 | Few-shot anchoring in VAD prompt | Quality | Original mentioned few-shot but did not specify implementation |
 | Response caching for reproducibility | Quality | Cloud API introduces version drift risk absent from local inference |
+
+---
+
+## 8. Distributed Workload Strategy (Multiple API Keys)
+
+### 8.1 Rationale
+
+To reduce the total inference time for topic labeling and VAD scoring, the workload is distributed across multiple researchers, each using their own NVIDIA NIM API key on their own computer. This is **not** rate-limit circumvention — each researcher uses a single key on a single machine, processing a distinct, non-overlapping subset of the data. This is functionally equivalent to one researcher running jobs sequentially, but with parallelization across hardware.
+
+### 8.2 Assignment Strategy
+
+| Researcher | API Key | Assigned Universities | Est. Posts | Est. Time |
+|---|---|---|---|---|
+| Researcher 1 | `nvapi-...` | MM-PUB-1, MM-PUB-2, MM-PSEC-1 | ~30,000 | ~2.5 hrs |
+| Researcher 2 | `nvapi-...` | MM-PSEC-2, MM-PNSEC-1, PROV-PUB-1 | ~30,000 | ~2.5 hrs |
+| Researcher 3 | `nvapi-...` | PROV-PUB-2, PROV-PNSEC-1, CAR-PUB-1 | ~30,000 | ~2.5 hrs |
+| Researcher 4 | `nvapi-...` | CAR-PUB-2, CAR-PNSEC-1, CAR-PSEC-1 | ~30,000 | ~2.5 hrs |
+
+**Total Pipeline Time:** ~2.5 hours (down from ~11 hours single-machine)
+
+### 8.3 Per-Researcher Configuration
+
+Each researcher receives a JSON config file:
+
+```json
+{
+  "researcher_id": "researcher_1",
+  "api_key_env_var": "NVIDIA_NIM_API_KEY",
+  "assigned_universities": ["MM-PUB-1", "MM-PUB-2", "MM-PSEC-1"],
+  "checkpoint_dir": "./checkpoints/researcher_1/",
+  "output_dir": "./results/researcher_1/",
+  "rate_limit_rpm": 40,
+  "batch_size": 5,
+  "temperature": 0.1,
+  "model_id": "meta/llama-3.3-70b-instruct"
+}
+```
+
+### 8.4 Coordination Protocol
+
+1. **Dataset Splitting:** The cleaned dataset is split by university before distribution. Each researcher receives only their assigned universities' posts.
+2. **No Overlap:** No post is assigned to more than one researcher. Topic models (BERTopic) are trained **per-university**, so each researcher trains their own BERTopic model for their assigned institutions.
+3. **Common Seed:** All BERTopic hyperparameters (UMAP neighbors, HDBSCAN min_cluster, embedding model) are documented and shared to ensure comparability across researchers.
+4. **Post-Merge:** After all researchers complete their runs, a merge script combines:
+   - All topic labels into a unified taxonomy
+   - All VAD scores into a single dataset
+   - All checkpoints for audit trail
+
+### 8.5 Validation Across Researchers
+
+To ensure consistency across distributed workers:
+
+1. **Inter-Rater Reliability (Pilot):** Before full-scale execution, all researchers score the same 100-post sample. ICC (Intraclass Correlation Coefficient) must be ≥ 0.75 for VAD scores. If below threshold, recalibrate prompts or reduce temperature.
+2. **Label Harmonization:** After topic labeling, run a deduplication pass. If two researchers produce semantically identical labels with different wording (e.g., "Academic Stress" vs "School Pressure"), map them to a canonical label.
+3. **Schema Compliance:** All outputs must pass identical JSON schema validation before merge.
+
+### 8.6 Risks of Distributed Execution
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| Researchers use different prompt versions | Medium | High | Version-controlled prompt template in Git; script reads from shared file |
+| Researchers start at different times, model version drift | Medium | Medium | Record model version in every API response; reject mismatched versions |
+| One researcher hits rate limit harder due to time-of-day | Low | Low | Each researcher has independent 40 RPM quota; no cross-researcher contention |
+| Data files get mixed up during merge | Low | High | Strict directory structure; merge script validates researcher_id in every record |
+| API key revoked for one researcher | Low | High | Fallback to OpenRouter/Together.ai for that researcher; do not redistribute keys |

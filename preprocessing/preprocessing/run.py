@@ -54,9 +54,10 @@ def build_argparser() -> argparse.ArgumentParser:
         default=DEFAULT_PROJECT_ROOT / "configs" / "tagalog_given_names.txt",
     )
     p.add_argument(
-        "--tagalog-stopwords",
+        "--stopwords-dir",
         type=Path,
-        default=DEFAULT_PROJECT_ROOT / "configs" / "stopwords_tagalog.txt",
+        default=DEFAULT_PROJECT_ROOT / "configs",
+        help="Directory containing stopwords_<language>.txt files (auto-discovered).",
     )
     p.add_argument(
         "--phases",
@@ -96,7 +97,7 @@ def main(argv: list[str] | None = None) -> int:
         output_dir=args.output,
         schools_path=args.schools_config,
         tagalog_names_path=args.tagalog_names,
-        tagalog_stopwords_path=args.tagalog_stopwords,
+        stopwords_dir=args.stopwords_dir,
         limit=args.limit,
         phases=parse_phases(args.phases),
         near_dup_threshold=args.near_dup_threshold,

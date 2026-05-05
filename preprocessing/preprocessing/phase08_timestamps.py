@@ -78,11 +78,27 @@ def _coerce_to_datetime(parsed) -> datetime | None:
     return None
 
 
-def to_unix_pht(timestamp_raw: str | None, timestamp_iso: str | None) -> int | None:
-    """Return an int Unix epoch in Asia/Manila, or None if unparseable."""
+def to_unix_pht(timestamp_raw, timestamp_iso) -> int | None:
+    """Return an int Unix epoch in Asia/Manila, or None if unparseable.
+
+    Handles three input shapes the scraper has used over time:
+    - int Unix epoch in `timestamp_raw` (current scraper output)
+    - human-readable date string in `timestamp_raw` (legacy scraper)
+    - ISO-8601 string in `timestamp_iso` (preferred fallback)
+    """
+    # Fast path: timestamp_raw is already a Unix epoch.
+    if isinstance(timestamp_raw, (int, float)) and timestamp_raw > 0:
+        return int(timestamp_raw)
+    # Some scraper versions stringify the epoch (e.g. "1777786481").
+    if isinstance(timestamp_raw, str) and timestamp_raw.strip().isdigit():
+        try:
+            return int(timestamp_raw.strip())
+        except ValueError:
+            pass
+
     parse = _load_scraper_parser()
 
-    candidates = [timestamp_raw, timestamp_iso]
+    candidates = [timestamp_iso, timestamp_raw]
     for raw in candidates:
         if not raw or not isinstance(raw, str):
             continue
@@ -91,7 +107,13 @@ def to_unix_pht(timestamp_raw: str | None, timestamp_iso: str | None) -> int | N
         if raw.lower().startswith("may be an image"):
             continue
         cleaned = PATTERNS["tz_suffix"].sub("", raw).strip()
-        dt = _coerce_to_datetime(parse(cleaned))
+        # Try the modern fromisoformat first — handles "2026-05-03T13:34:41+08:00"
+        try:
+            dt = datetime.fromisoformat(cleaned)
+        except ValueError:
+            dt = None
+        if dt is None:
+            dt = _coerce_to_datetime(parse(cleaned))
         if dt is None:
             dt = _coerce_to_datetime(_local_parse(cleaned))
         if dt is None:

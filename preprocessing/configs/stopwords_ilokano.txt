@@ -1,0 +1,92 @@
+# Ilokano pragmatic particles and function words (starter list).
+# Used by phase06 for downstream BERTopic c-TF-IDF stopword removal on
+# Ilokano-classified posts. Northern Luzon and parts of the Cordillera /
+# Baguio region speak Ilokano; defensive coverage for future scrapes
+# from those areas. Curated conservatively — extend as the corpus grows.
+
+# articles & determiners
+ti
+dagiti
+iti
+kadagiti
+
+# pronouns
+siak
+sika
+isuna
+dakami
+datayo
+dakayo
+isuda
+ak
+ka
+na
+mi
+yo
+da
+nak
+mo
+
+# possessives
+ko
+mo
+na
+mi
+yo
+da
+
+# common particles & particles
+ket
+ngem
+no
+ta
+nga
+laeng
+met
+manen
+gapu
+isu
+isuna
+
+# wh-words
+ania
+asino
+sadino
+kaano
+apay
+
+# negation
+saan
+awan
+haan
+
+# common adverbs
+agdama
+inton
+masansan
+kanayon
+isagana
+
+# linker
+nga
+
+# common verbs / discourse fillers
+ammoyo
+mabalin
+agbalin
+adda
+naimbag
+napintas
+mabalin
+
+# numerals 1-5 (often used as filler counters)
+maysa
+dua
+tallo
+uppat
+lima
+
+# polite
+naimbag
+naragsak
+agyamanak

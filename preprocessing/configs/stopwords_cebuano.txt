@@ -1,0 +1,117 @@
+# Cebuano / Bisaya pragmatic particles and function words.
+# Used by phase06 for downstream BERTopic c-TF-IDF stopword removal on
+# Cebuano-classified posts (heaviest concentration in the Mindanao region).
+#
+# Curated to avoid words that are also content-bearing in other Philippine
+# languages (e.g. "wala" appears in both Cebuano and Tagalog as a content
+# word in some contexts; left out here, can be added by the consumer).
+
+# pronouns
+ako
+ikaw
+siya
+kami
+kita
+kamo
+sila
+ko
+ka
+mo
+nako
+nimo
+niya
+namo
+nato
+ninyo
+nila
+akong
+imong
+iyang
+atong
+ato
+inyong
+ilang
+ila
+
+# common particles & connectives
+kay
+og
+ug
+sa
+ang
+ni
+mga
+na
+pa
+ra
+gani
+lang
+gyud
+jud
+gud
+bitaw
+baya
+pud
+sad
+diay
+daw
+basta
+bay
+uy
+hala
+sus
+char
+
+# wh-words distinct from Tagalog
+unsa
+kinsa
+asa
+ngano
+kanus-a
+giunsa
+pila
+
+# negation & intensifiers
+dili
+di
+ayaw
+walay
+way
+basin
+
+# common adverbs / discourse fillers
+karon
+ugma
+gabii
+permi
+kanunay
+panagsa
+samtang
+human
+tungod
+aron
+bisan
+para
+mas
+mura
+hapit
+labi
+
+# auxiliaries / aspect markers
+mag
+nag
+mi
+mo
+buot
+gusto
+gusto
+
+# linker (highly distinctive)
+nga
+
+# polite & filler
+salamat
+amping
+tabang
+hangtod
+ako

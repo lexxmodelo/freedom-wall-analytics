@@ -1,17 +1,13 @@
 """End-to-end test against the golden fixture.
 
-Runs the full pipeline (skipping spaCy NER if not installed) on
-fixtures/golden_input.jsonl and asserts:
-- All school identifiers anonymized
-- Engagement coerced to ints
-- Languages classified
-- Pure-media posts dropped
-- Exact duplicates collapsed
+The fixture's posts each carry a `_test_source_code` field indicating which
+JSONL file they should be written to (because region routing is source-based,
+each post's intended source matters).
 """
 from __future__ import annotations
 
 import json
-import shutil
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
@@ -25,28 +21,34 @@ CONFIGS = ROOT / "configs"
 
 @pytest.fixture
 def temp_workspace(tmp_path):
-    """Create an input dir with the golden fixture renamed to SLU.jsonl
-    so the source-code map kicks in."""
+    """Split fixture by `_test_source_code` into per-source JSONL files."""
     in_dir = tmp_path / "input"
     in_dir.mkdir()
-    # Copy fixture as SLU.jsonl so all posts inherit a known scraper code
-    # for the source-fallback test (post g008 has no school markers).
-    shutil.copyfile(FIXTURES / "golden_input.jsonl", in_dir / "SLU.jsonl")
+
+    by_source: dict[str, list[str]] = defaultdict(list)
+    with (FIXTURES / "golden_input.jsonl").open(encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            post = json.loads(line)
+            code = post.pop("_test_source_code")
+            by_source[code].append(json.dumps(post, ensure_ascii=False))
+
+    for code, lines in by_source.items():
+        (in_dir / f"{code}.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
     out_dir = tmp_path / "output"
     return in_dir, out_dir
 
 
-def _flatten(out_dir: Path) -> list[dict]:
-    posts: list[dict] = []
-    for fname in (
-        "metro_manila_posts.json",
-        "luzon_provincial_posts.json",
-        "baguio_benguet_posts.json",
-    ):
-        path = out_dir / fname
-        if path.exists():
-            posts.extend(json.loads(path.read_text(encoding="utf-8")))
-    return posts
+def _flatten(out_dir: Path) -> dict[str, dict]:
+    """Read all per-school output JSON files and return {post_id: post}."""
+    by_id: dict[str, dict] = {}
+    for path in sorted(out_dir.glob("*_cleaned.json")):
+        for p in json.loads(path.read_text(encoding="utf-8")):
+            by_id[p["post_id"]] = p
+    return by_id
 
 
 def test_e2e_pipeline(temp_workspace):
@@ -56,43 +58,78 @@ def test_e2e_pipeline(temp_workspace):
         output_dir=out_dir,
         schools_path=CONFIGS / "schools.yaml",
         tagalog_names_path=CONFIGS / "tagalog_given_names.txt",
-        tagalog_stopwords_path=CONFIGS / "stopwords_tagalog.txt",
+        stopwords_dir=CONFIGS,
     )
     report = run_pipeline(cfg)
-
     posts = _flatten(out_dir)
-    assert len(posts) > 0, "No posts produced"
+    assert posts, "No posts produced"
 
-    # No raw hashtag survives
-    for p in posts:
-        assert "#" not in p["text"] or "[Metro Manila]" in p["text"] or \
-               "[Luzon/Provincial]" in p["text"] or "[Baguio/Benguet]" in p["text"], \
-            f"Unstripped hashtag in: {p['text']!r}"
+    # ---- Source-based region routing ----
+    # The bug being fixed: g015 (UPD post mentioning "upb baby") was being
+    # routed to CAR because "upb" matched the UPB acronym rule.
+    # Under source-only routing it must land in NCR.
+    assert posts["g015"]["region"] == "NCR", (
+        f"g015 (UPD source, mentions 'upb baby') should be NCR but "
+        f"got {posts['g015']['region']}"
+    )
+    # Cross-school text mentions don't change the post's region.
+    assert posts["g007"]["region"] == "NCR"          # FW-01 source, ADMU vs DLSU text
+    assert posts["g004"]["region"] == "CALABARZON"   # FW-04 source
+    assert posts["g005"]["region"] == "CAR"          # SLU source
+
+    # UPOU mention still gets anonymized in the text.
+    assert "UPOU" not in posts["g016"]["text"]
+    assert "[CALABARZON]" in posts["g016"]["text"]
+
+    # CARAGA region (CSU/Caraga) — separate analytical bucket.
+    assert posts["g017"]["region"] == "CARAGA"
+    # Bare "Caraga", "Butuan" are anonymized to [CARAGA]
+    assert "Caraga" not in posts["g017"]["text"]
+    assert "Butuan" not in posts["g017"]["text"]
+    assert "[CARAGA]" in posts["g017"]["text"]
+    # Submitted: ... timestamp line is fully stripped
+    assert "Submitted" not in posts["g018"]["text"]
+    assert "October" not in posts["g018"]["text"]
+    assert "UTC" not in posts["g018"]["text"]
+    # Cebuano content kept (not dropped as "Other")
+    assert posts["g018"]["region"] == "CARAGA"
+
+    # ---- Anonymization invariants ----
+    for p in posts.values():
+        # No raw indexing hashtag survives
         assert "FreedomWall" not in p["text"]
         assert "Submitted:" not in p["text"]
-
-    # Engagement is dict of ints
-    for p in posts:
-        eng = p["engagement"]
+        # Engagement integers
         for k in ("reactions", "comments", "shares"):
-            assert isinstance(eng[k], int), f"{k}={eng[k]!r} not int"
+            assert isinstance(p["engagement"][k], int)
 
-    # Pure-media post (g010) should be dropped
-    assert "g010" not in {p["post_id"] for p in posts}
+    # ---- Drops & dedup ----
+    assert "g010" not in posts  # pure-media
+    assert "g011" not in posts  # too short
+    # g012 is an exact duplicate of g008 — only one survives
+    assert not ("g008" in posts and "g012" in posts)
 
-    # Too-short post (g011) should be dropped
-    assert "g011" not in {p["post_id"] for p in posts}
+    # ---- Schema enforcement ----
+    allowed = {"post_id", "source_code", "text", "engagement", "timestamp_unix", "region", "language_detected"}
+    for p in posts.values():
+        assert set(p.keys()) == allowed, f"Extra/missing keys: {sorted(p.keys())}"
 
-    # Exact duplicate (g012 == g008 verbatim) — only one survives
-    surviving_ids = {p["post_id"] for p in posts}
-    assert not ("g008" in surviving_ids and "g012" in surviving_ids), \
-        "Exact duplicate not deduplicated"
+    # ---- Per-school batching ----
+    # Each output file should contain only posts from a single source_code.
+    for path in sorted(out_dir.glob("*_cleaned.json")):
+        file_posts = json.loads(path.read_text(encoding="utf-8"))
+        if not file_posts:
+            continue
+        codes = {p["source_code"] for p in file_posts}
+        assert len(codes) == 1, f"{path.name} contains posts from multiple sources: {codes}"
+        # Filename should match the source code
+        expected = file_posts[0]["source_code"] + "_cleaned.json"
+        assert path.name == expected, f"Filename {path.name} != source_code-derived {expected}"
 
-    # Required fields only
-    allowed = {"post_id", "text", "engagement", "timestamp_unix", "region", "language_detected"}
-    for p in posts:
-        assert set(p.keys()) == allowed, f"Extra/missing keys in: {sorted(p.keys())}"
-
-    # Language histogram has at least the labels we expect
-    assert "by_language" in report
+    # ---- QC report sanity ----
     assert sum(report["by_language"].values()) == len(posts)
+    assert "text_mentions_other_region" in report
+    # g015 (UPD post mentioning UPB) and g007 (FW-01 mentioning DLSU within
+    # same NCR region — wouldn't count) — at least g015 mentions
+    # other region.
+    assert report["text_mentions_other_region"] >= 1

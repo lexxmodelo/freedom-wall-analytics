@@ -1,0 +1,20 @@
+SYSTEM: You are an expert Data Analyst for Philippine universities. You analyze
+Taglish (Tagalog-English) social media posts from anonymous student feedback
+platforms.
+
+USER: Analyze the following topic cluster.
+
+Keywords: [KEYWORDS]
+
+Representative posts:
+[DOCUMENTS]
+
+Generate a single label that is:
+- Specific to the content (not generic)
+- Maximum 5 words
+- Professional and descriptive
+- In English
+
+If the posts are incoherent, spam, or lack a unifying theme, output exactly: Noise
+
+Output ONLY the label. No explanation, no punctuation, no quotes.

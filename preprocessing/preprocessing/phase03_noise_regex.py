@@ -19,14 +19,18 @@ from .regex_lib import PATTERNS, char_repeat_collapse
 
 def clean_noise(text: str) -> str:
     text = PATTERNS["lone_surrogate"].sub("", text)
+    # Submitted line MUST run before ninja_timestamp because submitted_prefix
+    # is the more aggressive of the two (whole line) and we don't want
+    # ninja_timestamp to leave a stranded "Submitted:" prefix.
     text = PATTERNS["submitted_prefix"].sub("", text)
+    text = PATTERNS["ninja_timestamp"].sub("", text)
     text = PATTERNS["see_more"].sub("", text)
     text = PATTERNS["url"].sub("", text)
     text = PATTERNS["email"].sub("", text)
     text = PATTERNS["phone_ph"].sub("", text)
     text = PATTERNS["student_id"].sub("", text)
-    # Strip residual hashtags that survived phase02. Phase02 replaces
-    # school-related ones with region tags; anything left here is noise
+    # Strip residual hashtags that survived phase02. Phase02 already drops
+    # per-school indexing hashtags entirely; anything left here is noise
     # (campaign/sports tags like #UAAPSeason88, #DLSU, #AnimoLaSalle).
     text = PATTERNS["any_hashtag"].sub("", text)
     text = char_repeat_collapse(text)

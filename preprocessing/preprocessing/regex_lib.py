@@ -23,11 +23,47 @@ PATTERNS: dict[str, re.Pattern[str]] = {
         re.compile(r'#\w+'),
 
     # ----- Phase 03 (noise reduction) -----
-    # Strip the literal "Submitted:" word wherever it appears. Trailing
-    # signatures (e.g. "Submitted: Anonymous student") have the word stripped
-    # but the signature text remains for phase04 NER to redact if it's a name.
+    # Strip the entire "Submitted: ..." line (through end-of-line / end-of-text).
+    # Most Freedom Wall scrapes append a footer like
+    #   "Submitted:  October 6, 2025 11:46:33 PM UTC"
+    # carrying a timestamp from the .ninja anonymous-submission platform
+    # (NOT the Facebook post time, which is captured by `timestamp_unix`
+    # via phase08). Drop the whole line — date, signature, everything
+    # after the colon.
     "submitted_prefix":
-        re.compile(r'\bSubmitted\s*:\s*', re.IGNORECASE),
+        re.compile(r'\bSubmitted\s*:[^\n]*', re.IGNORECASE),
+
+    # Standalone .ninja timestamps that survive without a "Submitted:"
+    # prefix (the scraper sometimes drops the prefix word but keeps the
+    # date/time). These have a very specific format:
+    #   "October 6, 2025 11:46:33 PM UTC"
+    #   "March 31, 7:53:56 PM UTC"          (no year — current year)
+    #   "2025-11-11 16:39:28"
+    # The HH:MM:SS (with seconds) plus optional TZ are strong signals that
+    # this is a machine-generated stamp, not a casual mention of a date.
+    "ninja_timestamp":
+        re.compile(
+            r'(?ix)\b'
+            r'(?:'
+            # Long form: Month Day [, Year] HH:MM:SS [AM/PM] [TZ]
+            # Note: the comma between day and time is treated as part of the
+            # separator so both "March 31, 7:53:56" and "October 6, 2025
+            # 11:46:33" parse uniformly.
+            r'  (?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|'
+            r'      Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|'
+            r'      Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+'
+            r'  \d{1,2}'                       # day
+            r'  (?:\s*,\s*\d{4})?'             # optional ", year"
+            r'  \s*,?\s+'                      # separator (optional comma + whitespace)
+            r'  \d{1,2}:\d{2}:\d{2}'           # HH:MM:SS (seconds required — distinguishing signal)
+            r'  \s*(?:AM|PM)?'
+            r'  \s*(?:UTC|GMT|PST|PHT|HKT|GMT[+-]\d+|UTC[+-]\d+)?'
+            r'|'
+            # ISO-like: YYYY-MM-DD HH:MM[:SS] [TZ]
+            r'  \d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}(?::\d{2})?'
+            r'  \s*(?:UTC|GMT|PST|PHT|HKT)?'
+            r')\b'
+        ),
     "see_more":
         re.compile(r'\.{3,}\s*See\s*more\b', re.IGNORECASE),
     "ellipsis_trail":

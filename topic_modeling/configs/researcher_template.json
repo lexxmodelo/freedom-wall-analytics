@@ -1,0 +1,25 @@
+{
+  "_comment": "Per-researcher config. Each researcher copies this to researcher_<id>.json, fills in their api_key_env_var name and assigned_files. Pipeline reads exactly one researcher config per run via `python -m topic_modeling.run --researcher researcher_1`.",
+  "researcher_id": "researcher_1",
+  "api_key_env_var": "NVIDIA_NIM_API_KEY",
+  "assigned_files": [
+    "FW-07_cleaned.json",
+    "SLU_cleaned.json"
+  ],
+  "rate_limit_rpm": 40,
+  "effective_rpm": 40,
+  "request_timeout_seconds": 30,
+  "max_retries": 5,
+  "retry_backoff_min_seconds": 1,
+  "retry_backoff_max_seconds": 16,
+  "circuit_breaker_consecutive_failures": 10,
+  "circuit_breaker_pause_minutes": 5,
+  "model_id": "meta/llama-3.3-70b-instruct",
+  "model_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "temperature": 0.1,
+  "max_tokens": 20,
+  "checkpoint_dir": "checkpoints/researcher_1",
+  "output_dir": "outputs",
+  "use_gpu": true,
+  "run_bakeoff_on_first_university": false
+}

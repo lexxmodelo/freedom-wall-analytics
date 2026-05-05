@@ -1,0 +1,109 @@
+{
+  "_comment": "Locked hyperparameters for the topic_modeling phase. embedding_model_id is overwritten by the bake-off in Stage 1 (see embed.py::run_embedding_bakeoff). All other values are immutable for the full corpus run to ensure reproducibility across researchers.",
+  "embedding_model_id": "FacebookAI/xlm-roberta-large",
+  "_embedding_decision": "Methodology override 2026-05-06: bake-off rule's verdict was MiniLM (won NPMI by 0.042), but XLM-R-Large dominates on outlier_rate (0.000 vs 0.137) and silhouette (+0.189 vs -0.069) on the SLU pilot. Negative silhouette for MiniLM indicates significant cluster overlap; XLM-R-L's tighter, denser clusters matter more for downstream event detection than the marginal NPMI difference. See validation/embedding_bakeoff_report.md and action_log.md ACTION-006.",
+  "embedding_candidates": {
+    "minilm": {
+      "name": "paraphrase-multilingual-MiniLM-L12-v2",
+      "device_preference": "cpu",
+      "encode_batch_size": 64,
+      "embedding_dim": 384,
+      "source": "Research.md:961-997 (proposal-approved baseline)"
+    },
+    "xlm_roberta_large": {
+      "name": "FacebookAI/xlm-roberta-large",
+      "device_preference": "cuda",
+      "encode_batch_size": 16,
+      "embedding_dim": 1024,
+      "source": "User-prompted alternative; supports Cosme & De Leon (2024) multilingual claim"
+    }
+  },
+  "umap": {
+    "n_neighbors": 15,
+    "n_components": 5,
+    "metric": "cosine",
+    "min_dist": 0.05,
+    "random_state": 42
+  },
+  "hdbscan_grid": {
+    "_comment": "Three size tiers replacing the old 2-tier scheme. SLU at 3,864 posts now lands in 'medium' instead of 'default', so min_cluster_size=20 is tested — fine enough to surface event-driven topics like a 2-week transport strike (~150 posts) plus sub-events at 30-50 posts.",
+    "small_corpus_under_1500": {
+      "min_cluster_size": [
+        15,
+        25,
+        40
+      ],
+      "min_samples": [
+        5,
+        10
+      ]
+    },
+    "medium_corpus_1500_to_5000": {
+      "min_cluster_size": [
+        20,
+        30,
+        50,
+        70
+      ],
+      "min_samples": [
+        5,
+        10,
+        15
+      ]
+    },
+    "default": {
+      "min_cluster_size": [
+        30,
+        50,
+        70,
+        100
+      ],
+      "min_samples": [
+        5,
+        10,
+        15
+      ]
+    },
+    "outlier_recovery": {
+      "min_cluster_size": [
+        15,
+        20,
+        25
+      ],
+      "min_samples": [
+        3,
+        5
+      ]
+    }
+  },
+  "hdbscan_static": {
+    "metric": "euclidean",
+    "cluster_selection_method": "eom",
+    "prediction_data": true
+  },
+  "selection_score_weights": {
+    "npmi": 0.5,
+    "silhouette": 0.3,
+    "low_outlier_bonus": 0.2
+  },
+  "soft_reassignment_threshold": 0.5,
+  "outlier_rate_warning_threshold": 0.6,
+  "min_posts_per_university": 1000,
+  "min_topics_required": 5,
+  "min_npmi_required": 0.1,
+  "lazy_label_max_pct": 0.3,
+  "ctf_idf": {
+    "stopwords_path": "configs/stopwords_taglish.txt",
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "dtm": {
+    "enabled": true,
+    "binning": "monthly",
+    "min_bins": 3
+  },
+  "labeling_prompt_path": "configs/prompts/labeling_prompt.txt",
+  "labeling_prompt_sha256": "TBD_AT_FIRST_RUN_AND_FROZEN"
+}

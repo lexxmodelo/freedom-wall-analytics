@@ -1,0 +1,31 @@
+# Secrets — NEVER commit
+.env
+.env.local
+*.env
+
+# Per-run artifacts
+gpu_logs/*.log
+gpu_logs/*.jsonl
+api_cache/
+checkpoints/
+models/*.pkl
+models/*.safetensors
+outputs/*/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Local venv + ad-hoc run logs (lead researcher's verification artifacts)
+.venv/
+venv/
+bakeoff_run.log
+configs/bakeoff_test.json
