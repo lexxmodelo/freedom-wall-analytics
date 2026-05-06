@@ -1,4 +1,25 @@
 {
-  "n_duplicate_labels": 0,
-  "duplicates": {}
+  "n_duplicate_labels": 2,
+  "duplicates": {
+    "University Life Struggles": [
+      {
+        "univ": "MM-PSEC-1",
+        "topic_id": 41
+      },
+      {
+        "univ": "MM-PUB-1",
+        "topic_id": 1
+      }
+    ],
+    "University Student Crush Confessions": [
+      {
+        "univ": "CAR-PNSEC-2",
+        "topic_id": 17
+      },
+      {
+        "univ": "CAR-PUB-2",
+        "topic_id": 4
+      }
+    ]
+  }
 }

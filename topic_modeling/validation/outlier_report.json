@@ -1,8 +1,26 @@
 {
-  "n_universities": 2,
+  "n_universities": 10,
   "n_high_outlier": 0,
   "high_outlier_unis": [],
   "details": [
+    {
+      "univ_code": "MM-PSEC-1",
+      "n_posts": 3735,
+      "outlier_rate": 0.3349,
+      "n_topics": 44,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 44,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": false,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
     {
       "univ_code": "MM-PUB-1",
       "n_posts": 3578,
@@ -30,6 +48,132 @@
         "outlier_rate_ok": true,
         "min_topics_ok": true,
         "n_topics_with_ge10_posts": 7,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "PROV-PUB-1",
+      "n_posts": 3955,
+      "outlier_rate": 0.002,
+      "n_topics": 5,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 5,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "CAR-PNSEC-2",
+      "n_posts": 3912,
+      "outlier_rate": 0.4402,
+      "n_topics": 29,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 29,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": false,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "MIN-PUB-1",
+      "n_posts": 3998,
+      "outlier_rate": 0.422,
+      "n_topics": 29,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 29,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": false,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "CAR-PUB-1",
+      "n_posts": 2287,
+      "outlier_rate": 0.0052,
+      "n_topics": 6,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 6,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": true,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": false
+    },
+    {
+      "univ_code": "CAR-PUB-2",
+      "n_posts": 3791,
+      "outlier_rate": 0.0018,
+      "n_topics": 6,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 6,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "CAR-PNSEC-1",
+      "n_posts": 3991,
+      "outlier_rate": 0.0155,
+      "n_topics": 7,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 7,
+        "lazy_label_pct": 0.0,
+        "lazy_label_ok": true,
+        "npmi_ok": false,
+        "cache_count_matches": true,
+        "model_version_drift": false,
+        "model_versions_seen": []
+      },
+      "needs_review": true
+    },
+    {
+      "univ_code": "CAR-PSEC-1",
+      "n_posts": 3864,
+      "outlier_rate": 0.0391,
+      "n_topics": 9,
+      "checks": {
+        "outlier_rate_ok": true,
+        "min_topics_ok": true,
+        "n_topics_with_ge10_posts": 9,
         "lazy_label_pct": 0.0,
         "lazy_label_ok": true,
         "npmi_ok": false,

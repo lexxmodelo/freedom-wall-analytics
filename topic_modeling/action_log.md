@@ -5429,3 +5429,3421 @@ The 33.5% outlier on MM-PSEC-1 is a CORPUS characteristic (English-dominated bim
 1. Add them to assigned_files in alexx.json and re-run, OR
 2. Distribute them among the other 4 researchers per the methodology §8.2 plan.
 
+## ACTION-088 — 2026-05-06 — Pre-flight environment check
+
+_Logged at 15:20:46 PHT — type: `PREFLIGHT`_
+
+- **Configuration:** 
+```json
+{
+  "researcher_id": "alexx"
+}
+```
+- **Input:** 
+```json
+{
+  "input_dir": "C:\\Users\\Alex Evan\\Documents\\Research\\preprocessing\\output",
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ]
+}
+```
+- **Output:** 
+```json
+{
+  "dotenv_loaded_keys": [
+    "NVIDIA_NIM_API_KEY"
+  ],
+  "api_key_present": true,
+  "cuda_available": true,
+  "cuda_device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_total_vram_mb": 6140,
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ],
+  "prompt_sha256": "40a81444180ba4b1e19ad171488daec9f2a39b5f25e6e868a16968b18e68078f"
+}
+```
+- **Errors:** 
+```json
+[
+  "labeling_prompt_sha256 not yet frozen. Pre-flight will write the current SHA (informational); freeze it manually before the production run."
+]
+```
+
+---
+## ACTION-089 — 2026-05-06 — HDBSCAN grid search — MM-PSEC-1
+
+_Logged at 15:22:37 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3735,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 2,
+    "outlier_rate": 0.3349,
+    "silhouette": 0.4141,
+    "npmi": -0.0219,
+    "score": 0.2463,
+    "n_clusters": 44
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.3293,
+      "silhouette": 0.4044,
+      "npmi": -0.1071,
+      "score": 0.2019,
+      "n_clusters": 87
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.3349,
+      "silhouette": 0.4141,
+      "npmi": -0.0219,
+      "score": 0.2463,
+      "n_clusters": 44
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    }
+  ]
+}
+```
+
+---
+## ACTION-090 — 2026-05-06 — Pre-flight environment check
+
+_Logged at 15:29:42 PHT — type: `PREFLIGHT`_
+
+- **Configuration:** 
+```json
+{
+  "researcher_id": "alexx"
+}
+```
+- **Input:** 
+```json
+{
+  "input_dir": "C:\\Users\\Alex Evan\\Documents\\Research\\preprocessing\\output",
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ]
+}
+```
+- **Output:** 
+```json
+{
+  "dotenv_loaded_keys": [
+    "NVIDIA_NIM_API_KEY"
+  ],
+  "api_key_present": true,
+  "cuda_available": true,
+  "cuda_device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_total_vram_mb": 6140,
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ],
+  "prompt_sha256": "40a81444180ba4b1e19ad171488daec9f2a39b5f25e6e868a16968b18e68078f"
+}
+```
+- **Errors:** 
+```json
+[
+  "labeling_prompt_sha256 not yet frozen. Pre-flight will write the current SHA (informational); freeze it manually before the production run."
+]
+```
+
+---
+## ACTION-091 — 2026-05-06 — HDBSCAN grid search — MM-PSEC-1
+
+_Logged at 15:31:12 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3735,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 2,
+    "outlier_rate": 0.3349,
+    "silhouette": 0.4141,
+    "npmi": -0.0225,
+    "score": 0.246,
+    "n_clusters": 44
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.3293,
+      "silhouette": 0.4044,
+      "npmi": -0.1053,
+      "score": 0.2028,
+      "n_clusters": 87
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.3349,
+      "silhouette": 0.4141,
+      "npmi": -0.0225,
+      "score": 0.246,
+      "n_clusters": 44
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    }
+  ]
+}
+```
+
+---
+## ACTION-092 — 2026-05-06 — Pre-flight environment check
+
+_Logged at 15:37:32 PHT — type: `PREFLIGHT`_
+
+- **Configuration:** 
+```json
+{
+  "researcher_id": "alexx"
+}
+```
+- **Input:** 
+```json
+{
+  "input_dir": "C:\\Users\\Alex Evan\\Documents\\Research\\preprocessing\\output",
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ]
+}
+```
+- **Output:** 
+```json
+{
+  "dotenv_loaded_keys": [
+    "NVIDIA_NIM_API_KEY"
+  ],
+  "api_key_present": true,
+  "cuda_available": true,
+  "cuda_device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_total_vram_mb": 6140,
+  "assigned_files": [
+    "FW-01_cleaned.json",
+    "FW-02_cleaned.json",
+    "FW-03_cleaned.json",
+    "FW-04_cleaned.json",
+    "FW-05_cleaned.json",
+    "FW-06_cleaned.json",
+    "FW-07_cleaned.json",
+    "FW-08_cleaned.json",
+    "FW-09_cleaned.json",
+    "SLU_cleaned.json"
+  ],
+  "prompt_sha256": "40a81444180ba4b1e19ad171488daec9f2a39b5f25e6e868a16968b18e68078f"
+}
+```
+- **Errors:** 
+```json
+[
+  "labeling_prompt_sha256 not yet frozen. Pre-flight will write the current SHA (informational); freeze it manually before the production run."
+]
+```
+
+---
+## ACTION-093 — 2026-05-06 — HDBSCAN grid search — MM-PSEC-1
+
+_Logged at 15:39:00 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3735,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 2,
+    "outlier_rate": 0.3349,
+    "silhouette": 0.4141,
+    "npmi": -0.0221,
+    "score": 0.2462,
+    "n_clusters": 44
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.3293,
+      "silhouette": 0.4044,
+      "npmi": -0.1078,
+      "score": 0.2016,
+      "n_clusters": 87
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.3349,
+      "silhouette": 0.4141,
+      "npmi": -0.0221,
+      "score": 0.2462,
+      "n_clusters": 44
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.5803,
+      "npmi": 0.1918,
+      "score": 0.47,
+      "n_clusters": 2
+    }
+  ]
+}
+```
+
+---
+## ACTION-094 — 2026-05-06 — Completed MM-PSEC-1
+
+_Logged at 15:45:47 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 44 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 15,
+    "min_samples": 2
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3735,
+  "file": "FW-01_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 44,
+  "outlier_rate": 0.3349397590361446,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-095 — 2026-05-06 — HDBSCAN grid search — MM-PUB-1
+
+_Logged at 15:46:44 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3578,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 2,
+    "outlier_rate": 0.0,
+    "silhouette": 0.3865,
+    "npmi": 0.1546,
+    "score": 0.3932,
+    "n_clusters": 3,
+    "_floor_fallback": true
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2702,
+      "npmi": 0.0229,
+      "score": 0.2925,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0003,
+      "silhouette": 0.2702,
+      "npmi": 0.0229,
+      "score": 0.2925,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0017,
+      "silhouette": 0.2713,
+      "npmi": 0.0229,
+      "score": 0.2925,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0025,
+      "silhouette": 0.2704,
+      "npmi": 0.0691,
+      "score": 0.3152,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3,
+      "_floor_fallback": true
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0006,
+      "silhouette": 0.3861,
+      "npmi": 0.1543,
+      "score": 0.3929,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0006,
+      "silhouette": 0.3861,
+      "npmi": 0.1543,
+      "score": 0.3929,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3865,
+      "npmi": 0.1546,
+      "score": 0.3932,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0006,
+      "silhouette": 0.3861,
+      "npmi": 0.1543,
+      "score": 0.3929,
+      "n_clusters": 3
+    }
+  ]
+}
+```
+
+---
+## ACTION-096 — 2026-05-06 — Sub-clustered dump cluster 0 in MM-PUB-1
+
+_Logged at 15:47:13 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 1828,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 1000,
+  "new_topic_ids": [
+    3
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-097 — 2026-05-06 — Sub-clustered dump cluster 1 in MM-PUB-1
+
+_Logged at 15:47:16 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 1660,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 1603,
+  "new_topic_ids": [
+    4
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-098 — 2026-05-06 — Completed MM-PUB-1
+
+_Logged at 15:47:30 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 5 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 15,
+    "min_samples": 2
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3578,
+  "file": "FW-02_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 5,
+  "outlier_rate": 0.0,
+  "lazy_pct": 0.0,
+  "needs_review": false
+}
+```
+
+---
+## ACTION-099 — 2026-05-06 — HDBSCAN grid search — MM-PNSEC-1
+
+_Logged at 15:48:34 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3963,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 10,
+    "outlier_rate": 0.0053,
+    "silhouette": 0.2026,
+    "npmi": -0.0024,
+    "score": 0.2585,
+    "n_clusters": 6
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.1964,
+      "npmi": -0.0169,
+      "score": 0.2497,
+      "n_clusters": 8
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0015,
+      "silhouette": 0.201,
+      "npmi": -0.0107,
+      "score": 0.2546,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2004,
+      "npmi": -0.0084,
+      "score": 0.2557,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0053,
+      "silhouette": 0.2026,
+      "npmi": -0.0024,
+      "score": 0.2585,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2011,
+      "npmi": -0.0183,
+      "score": 0.2509,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0015,
+      "silhouette": 0.201,
+      "npmi": -0.0107,
+      "score": 0.2546,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2004,
+      "npmi": -0.0084,
+      "score": 0.2557,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0053,
+      "silhouette": 0.2026,
+      "npmi": -0.0024,
+      "score": 0.2585,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2011,
+      "npmi": -0.0183,
+      "score": 0.2509,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0015,
+      "silhouette": 0.201,
+      "npmi": -0.0107,
+      "score": 0.2546,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2004,
+      "npmi": -0.0084,
+      "score": 0.2557,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0053,
+      "silhouette": 0.2026,
+      "npmi": -0.0024,
+      "score": 0.2585,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2011,
+      "npmi": -0.0183,
+      "score": 0.2509,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0015,
+      "silhouette": 0.201,
+      "npmi": -0.0107,
+      "score": 0.2546,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.2004,
+      "npmi": -0.0084,
+      "score": 0.2557,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0053,
+      "silhouette": 0.2026,
+      "npmi": -0.0024,
+      "score": 0.2585,
+      "n_clusters": 6
+    }
+  ]
+}
+```
+
+---
+## ACTION-100 — 2026-05-06 — Sub-clustered dump cluster 0 in MM-PNSEC-1
+
+_Logged at 15:48:58 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 1871,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 1725,
+  "new_topic_ids": [
+    6
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-101 — 2026-05-06 — Sub-clustered dump cluster 1 in MM-PNSEC-1
+
+_Logged at 15:49:01 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 1856,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 1856,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-102 — 2026-05-06 — Completed MM-PNSEC-1
+
+_Logged at 15:49:27 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 7 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 10
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3963,
+  "file": "FW-03_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 7,
+  "outlier_rate": 0.005299015897047691,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-103 — 2026-05-06 — HDBSCAN grid search — PROV-PUB-1
+
+_Logged at 15:50:33 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3955,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "outlier_rate": 0.002,
+    "silhouette": -0.0761,
+    "npmi": 0.042,
+    "score": 0.1978,
+    "n_clusters": 5
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.315,
+      "npmi": 0.0945,
+      "score": 0.3418,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0013,
+      "silhouette": -0.0865,
+      "npmi": 0.0247,
+      "score": 0.1861,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.002,
+      "silhouette": -0.0761,
+      "npmi": 0.042,
+      "score": 0.1978,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0101,
+      "silhouette": -0.0866,
+      "npmi": 0.01,
+      "score": 0.177,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.0005,
+      "silhouette": -0.0871,
+      "npmi": 0.0247,
+      "score": 0.1861,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0013,
+      "silhouette": -0.0865,
+      "npmi": 0.0247,
+      "score": 0.1861,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.002,
+      "silhouette": -0.0355,
+      "npmi": 0.0816,
+      "score": 0.2297,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.003,
+      "silhouette": -0.0532,
+      "npmi": 0.0721,
+      "score": 0.2195,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0005,
+      "silhouette": -0.0871,
+      "npmi": 0.0247,
+      "score": 0.1861,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0013,
+      "silhouette": -0.0865,
+      "npmi": 0.0247,
+      "score": 0.1861,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.002,
+      "silhouette": -0.0355,
+      "npmi": 0.0816,
+      "score": 0.2297,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.003,
+      "silhouette": -0.0532,
+      "npmi": 0.0721,
+      "score": 0.2195,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0058,
+      "silhouette": 0.1758,
+      "npmi": 0.1779,
+      "score": 0.3406,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0013,
+      "silhouette": 0.1875,
+      "npmi": 0.1829,
+      "score": 0.3474,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.002,
+      "silhouette": 0.1878,
+      "npmi": 0.1904,
+      "score": 0.3512,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.003,
+      "silhouette": 0.1743,
+      "npmi": 0.1778,
+      "score": 0.3406,
+      "n_clusters": 3
+    }
+  ]
+}
+```
+
+---
+## ACTION-104 — 2026-05-06 — Sub-clustered dump cluster 0 in PROV-PUB-1
+
+_Logged at 15:50:58 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 2308,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 2308,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-105 — 2026-05-06 — Sub-clustered dump cluster 1 in PROV-PUB-1
+
+_Logged at 15:51:00 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 1568,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 1568,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-106 — 2026-05-06 — Completed PROV-PUB-1
+
+_Logged at 15:51:23 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 5 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 5
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3955,
+  "file": "FW-04_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 5,
+  "outlier_rate": 0.00202275600505689,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-107 — 2026-05-06 — HDBSCAN grid search — CAR-PNSEC-2
+
+_Logged at 15:52:16 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3912,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "outlier_rate": 0.4402,
+    "silhouette": 0.4918,
+    "npmi": -0.1178,
+    "score": 0.2006,
+    "n_clusters": 61
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.3617,
+      "silhouette": 0.4449,
+      "npmi": -0.1555,
+      "score": 0.1834,
+      "n_clusters": 86
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.3607,
+      "silhouette": 0.4172,
+      "npmi": -0.1558,
+      "score": 0.1751,
+      "n_clusters": 76
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.4402,
+      "silhouette": 0.4918,
+      "npmi": -0.1178,
+      "score": 0.2006,
+      "n_clusters": 61
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3195,
+      "npmi": 0.1296,
+      "score": 0.3606,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.3183,
+      "silhouette": 0.3655,
+      "npmi": -0.1308,
+      "score": 0.1806,
+      "n_clusters": 54
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.354,
+      "silhouette": 0.4161,
+      "npmi": -0.1245,
+      "score": 0.1917,
+      "n_clusters": 52
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0524,
+      "silhouette": -0.3609,
+      "npmi": -0.073,
+      "score": 0.0447,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.3195,
+      "npmi": 0.1296,
+      "score": 0.3606,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.3407,
+      "silhouette": 0.4013,
+      "npmi": -0.1228,
+      "score": 0.1909,
+      "n_clusters": 38
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.3735,
+      "silhouette": 0.4118,
+      "npmi": -0.104,
+      "score": 0.1969,
+      "n_clusters": 36
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0524,
+      "silhouette": -0.3609,
+      "npmi": -0.073,
+      "score": 0.0447,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0143,
+      "silhouette": -0.2245,
+      "npmi": -0.0623,
+      "score": 0.0986,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0046,
+      "silhouette": -0.2258,
+      "npmi": -0.0533,
+      "score": 0.1047,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0056,
+      "silhouette": -0.2257,
+      "npmi": -0.0575,
+      "score": 0.1024,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0066,
+      "silhouette": -0.2248,
+      "npmi": -0.057,
+      "score": 0.1027,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0143,
+      "silhouette": -0.2245,
+      "npmi": -0.0623,
+      "score": 0.0986,
+      "n_clusters": 5
+    }
+  ]
+}
+```
+
+---
+## ACTION-108 — 2026-05-06 — Reduced topics in CAR-PNSEC-2 from 61 → 29
+
+_Logged at 15:52:37 PHT — type: `REDUCE_TOPICS`_
+
+- **Configuration:** 
+```json
+{
+  "target_topic_count": 30,
+  "reduce_threshold": 60
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics_before": 61,
+  "n_topics_after": 29
+}
+```
+
+---
+## ACTION-109 — 2026-05-06 — Completed CAR-PNSEC-2
+
+_Logged at 15:56:46 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 29 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 5
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3912,
+  "file": "FW-05_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 29,
+  "outlier_rate": 0.4401840490797546,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-110 — 2026-05-06 — HDBSCAN grid search — MIN-PUB-1
+
+_Logged at 15:58:03 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3998,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "outlier_rate": 0.422,
+    "silhouette": 0.4437,
+    "npmi": -0.0144,
+    "score": 0.2415,
+    "n_clusters": 78
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.2891,
+      "silhouette": 0.3515,
+      "npmi": -0.0243,
+      "score": 0.2355,
+      "n_clusters": 95
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.3169,
+      "silhouette": 0.3366,
+      "npmi": -0.0264,
+      "score": 0.2244,
+      "n_clusters": 80
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.422,
+      "silhouette": 0.4437,
+      "npmi": -0.0144,
+      "score": 0.2415,
+      "n_clusters": 78
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0038,
+      "silhouette": -0.0218,
+      "npmi": 0.0917,
+      "score": 0.2385,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.017,
+      "silhouette": -0.0266,
+      "npmi": -0.0592,
+      "score": 0.159,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0038,
+      "silhouette": 0.3476,
+      "npmi": 0.0119,
+      "score": 0.3095,
+      "n_clusters": 2
+    }
+  ]
+}
+```
+
+---
+## ACTION-111 — 2026-05-06 — Reduced topics in MIN-PUB-1 from 78 → 29
+
+_Logged at 15:58:26 PHT — type: `REDUCE_TOPICS`_
+
+- **Configuration:** 
+```json
+{
+  "target_topic_count": 30,
+  "reduce_threshold": 60
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics_before": 78,
+  "n_topics_after": 29
+}
+```
+
+---
+## ACTION-112 — 2026-05-06 — Completed MIN-PUB-1
+
+_Logged at 16:02:33 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 29 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 5
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3998,
+  "file": "FW-06_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 29,
+  "outlier_rate": 0.4219609804902451,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-113 — 2026-05-06 — HDBSCAN grid search — CAR-PUB-1
+
+_Logged at 16:03:01 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 2287,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 10,
+    "outlier_rate": 0.0052,
+    "silhouette": 0.2343,
+    "npmi": 0.1045,
+    "score": 0.3215,
+    "n_clusters": 5
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.007,
+      "silhouette": 0.1946,
+      "npmi": -0.0099,
+      "score": 0.252,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0114,
+      "silhouette": 0.2003,
+      "npmi": -0.0527,
+      "score": 0.2315,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0162,
+      "silhouette": 0.1992,
+      "npmi": -0.0242,
+      "score": 0.2444,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0052,
+      "silhouette": 0.2343,
+      "npmi": 0.1045,
+      "score": 0.3215,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.007,
+      "silhouette": 0.1946,
+      "npmi": -0.0099,
+      "score": 0.252,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0114,
+      "silhouette": 0.2003,
+      "npmi": -0.0527,
+      "score": 0.2315,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0074,
+      "silhouette": 0.236,
+      "npmi": 0.0752,
+      "score": 0.3069,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0052,
+      "silhouette": 0.2343,
+      "npmi": 0.1045,
+      "score": 0.3215,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0031,
+      "silhouette": 0.2323,
+      "npmi": 0.0789,
+      "score": 0.3085,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0066,
+      "silhouette": 0.2346,
+      "npmi": 0.0751,
+      "score": 0.3066,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0074,
+      "silhouette": 0.236,
+      "npmi": 0.0752,
+      "score": 0.3069,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0052,
+      "silhouette": 0.2343,
+      "npmi": 0.1045,
+      "score": 0.3215,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.014,
+      "silhouette": 0.3791,
+      "npmi": 0.0691,
+      "score": 0.3455,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0175,
+      "silhouette": 0.382,
+      "npmi": 0.0644,
+      "score": 0.3433,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0184,
+      "silhouette": 0.3835,
+      "npmi": 0.0645,
+      "score": 0.3436,
+      "n_clusters": 4
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0162,
+      "silhouette": 0.3815,
+      "npmi": 0.1011,
+      "score": 0.3618,
+      "n_clusters": 4
+    }
+  ]
+}
+```
+
+---
+## ACTION-114 — 2026-05-06 — Sub-clustered dump cluster 0 in CAR-PUB-1
+
+_Logged at 16:03:10 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 1224,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 1198,
+  "new_topic_ids": [
+    5
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-115 — 2026-05-06 — Sub-clustered dump cluster 1 in CAR-PUB-1
+
+_Logged at 16:03:11 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 924,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 924,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-116 — 2026-05-06 — Completed CAR-PUB-1
+
+_Logged at 16:03:30 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 6 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 10
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 2287,
+  "file": "FW-07_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 6,
+  "outlier_rate": 0.005247048535198951,
+  "lazy_pct": 0.0,
+  "needs_review": false
+}
+```
+
+---
+## ACTION-117 — 2026-05-06 — HDBSCAN grid search — CAR-PUB-2
+
+_Logged at 16:04:34 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3791,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "outlier_rate": 0.0024,
+    "silhouette": 0.2409,
+    "npmi": -0.0184,
+    "score": 0.2626,
+    "n_clusters": 5
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.0029,
+      "silhouette": 0.2391,
+      "npmi": -0.0344,
+      "score": 0.254,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0024,
+      "silhouette": 0.2409,
+      "npmi": -0.0184,
+      "score": 0.2626,
+      "n_clusters": 5
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0003,
+      "silhouette": 0.2589,
+      "npmi": 0.0913,
+      "score": 0.3233,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0003,
+      "silhouette": 0.2589,
+      "npmi": 0.0913,
+      "score": 0.3233,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0003,
+      "silhouette": 0.2589,
+      "npmi": 0.0913,
+      "score": 0.3233,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.2586,
+      "npmi": 0.0919,
+      "score": 0.3235,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0003,
+      "silhouette": 0.2589,
+      "npmi": 0.0913,
+      "score": 0.3233,
+      "n_clusters": 3
+    }
+  ]
+}
+```
+
+---
+## ACTION-118 — 2026-05-06 — Sub-clustered dump cluster 0 in CAR-PUB-2
+
+_Logged at 16:05:04 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 3665,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 3170,
+  "new_topic_ids": [
+    5
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-119 — 2026-05-06 — Completed CAR-PUB-2
+
+_Logged at 16:05:21 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 6 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 10,
+    "min_samples": 5
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3791,
+  "file": "FW-08_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 6,
+  "outlier_rate": 0.0018464785017145871,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-120 — 2026-05-06 — HDBSCAN grid search — CAR-PNSEC-1
+
+_Logged at 16:06:38 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3991,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 10,
+    "outlier_rate": 0.0155,
+    "silhouette": 0.4261,
+    "npmi": 0.0721,
+    "score": 0.3608,
+    "n_clusters": 6
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.0719,
+      "silhouette": 0.4952,
+      "npmi": -0.088,
+      "score": 0.2901,
+      "n_clusters": 30
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.09,
+      "silhouette": 0.5059,
+      "npmi": -0.0705,
+      "score": 0.2985,
+      "n_clusters": 26
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.0952,
+      "silhouette": 0.5018,
+      "npmi": -0.0793,
+      "score": 0.2918,
+      "n_clusters": 21
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.0125,
+      "silhouette": 0.3597,
+      "npmi": 0.052,
+      "score": 0.3314,
+      "n_clusters": 7
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.0714,
+      "silhouette": 0.5008,
+      "npmi": -0.0643,
+      "score": 0.3038,
+      "n_clusters": 22
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.0757,
+      "silhouette": 0.4996,
+      "npmi": -0.0762,
+      "score": 0.2966,
+      "n_clusters": 20
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0847,
+      "silhouette": 0.5552,
+      "npmi": -0.0499,
+      "score": 0.3247,
+      "n_clusters": 17
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.0155,
+      "silhouette": 0.4261,
+      "npmi": 0.0721,
+      "score": 0.3608,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.0454,
+      "silhouette": 0.542,
+      "npmi": -0.0708,
+      "score": 0.3181,
+      "n_clusters": 11
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.0762,
+      "silhouette": 0.567,
+      "npmi": -0.0451,
+      "score": 0.3323,
+      "n_clusters": 17
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0844,
+      "silhouette": 0.5592,
+      "npmi": -0.0463,
+      "score": 0.3277,
+      "n_clusters": 16
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0155,
+      "silhouette": 0.4261,
+      "npmi": 0.0721,
+      "score": 0.3608,
+      "n_clusters": 6
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.0,
+      "silhouette": 0.6782,
+      "npmi": 0.1271,
+      "score": 0.467,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.0,
+      "silhouette": 0.6782,
+      "npmi": 0.1271,
+      "score": 0.467,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0,
+      "silhouette": 0.6782,
+      "npmi": 0.1271,
+      "score": 0.467,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": 0.6782,
+      "npmi": 0.1271,
+      "score": 0.467,
+      "n_clusters": 3
+    }
+  ]
+}
+```
+
+---
+## ACTION-121 — 2026-05-06 — Sub-clustered dump cluster 0 in CAR-PNSEC-1
+
+_Logged at 16:07:04 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 2596,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 2530,
+  "new_topic_ids": [
+    6
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-122 — 2026-05-06 — Sub-clustered dump cluster 1 in CAR-PNSEC-1
+
+_Logged at 16:07:05 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 928,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 928,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-123 — 2026-05-06 — Completed CAR-PNSEC-1
+
+_Logged at 16:07:30 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 7 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 15,
+    "min_samples": 10
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3991,
+  "file": "FW-09_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 7,
+  "outlier_rate": 0.015534953645702832,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-124 — 2026-05-06 — HDBSCAN grid search — CAR-PSEC-1
+
+_Logged at 16:08:31 PHT — type: `GRID_SEARCH`_
+
+- **Configuration:** 
+```json
+{
+  "grid_key": "medium_corpus_1500_to_5000",
+  "grid": {
+    "min_cluster_size": [
+      10,
+      15,
+      20,
+      30
+    ],
+    "min_samples": [
+      2,
+      3,
+      5,
+      10
+    ]
+  }
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3864,
+  "embedding_dim": 1024
+}
+```
+- **Output:** 
+```json
+{
+  "best": {
+    "min_cluster_size": 15,
+    "min_samples": 5,
+    "outlier_rate": 0.0391,
+    "silhouette": 0.2893,
+    "npmi": 0.0438,
+    "score": 0.3009,
+    "n_clusters": 8
+  },
+  "all_results": [
+    {
+      "min_cluster_size": 10,
+      "min_samples": 2,
+      "outlier_rate": 0.3375,
+      "silhouette": 0.3717,
+      "npmi": -0.0913,
+      "score": 0.1983,
+      "n_clusters": 85
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 3,
+      "outlier_rate": 0.3794,
+      "silhouette": 0.3993,
+      "npmi": -0.1029,
+      "score": 0.1924,
+      "n_clusters": 70
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 5,
+      "outlier_rate": 0.185,
+      "silhouette": 0.199,
+      "npmi": -0.1281,
+      "score": 0.1586,
+      "n_clusters": 34
+    },
+    {
+      "min_cluster_size": 10,
+      "min_samples": 10,
+      "outlier_rate": 0.1623,
+      "silhouette": 0.2382,
+      "npmi": -0.1618,
+      "score": 0.1581,
+      "n_clusters": 17
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 2,
+      "outlier_rate": 0.3654,
+      "silhouette": 0.4265,
+      "npmi": -0.1053,
+      "score": 0.2022,
+      "n_clusters": 57
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 3,
+      "outlier_rate": 0.4107,
+      "silhouette": 0.45,
+      "npmi": -0.1151,
+      "score": 0.1953,
+      "n_clusters": 50
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 5,
+      "outlier_rate": 0.0391,
+      "silhouette": 0.2893,
+      "npmi": 0.0438,
+      "score": 0.3009,
+      "n_clusters": 8
+    },
+    {
+      "min_cluster_size": 15,
+      "min_samples": 10,
+      "outlier_rate": 0.1605,
+      "silhouette": 0.2438,
+      "npmi": -0.1496,
+      "score": 0.1663,
+      "n_clusters": 14
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 2,
+      "outlier_rate": 0.4102,
+      "silhouette": 0.4369,
+      "npmi": -0.0455,
+      "score": 0.2263,
+      "n_clusters": 43
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 3,
+      "outlier_rate": 0.4081,
+      "silhouette": 0.4564,
+      "npmi": -0.0624,
+      "score": 0.2241,
+      "n_clusters": 39
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 5,
+      "outlier_rate": 0.0391,
+      "silhouette": 0.2893,
+      "npmi": 0.0438,
+      "score": 0.3009,
+      "n_clusters": 8
+    },
+    {
+      "min_cluster_size": 20,
+      "min_samples": 10,
+      "outlier_rate": 0.0,
+      "silhouette": -0.122,
+      "npmi": 0.0563,
+      "score": 0.1916,
+      "n_clusters": 3
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 2,
+      "outlier_rate": 0.1102,
+      "silhouette": 0.2247,
+      "npmi": -0.0288,
+      "score": 0.231,
+      "n_clusters": 11
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 3,
+      "outlier_rate": 0.1387,
+      "silhouette": 0.231,
+      "npmi": -0.1424,
+      "score": 0.1703,
+      "n_clusters": 13
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 5,
+      "outlier_rate": 0.0391,
+      "silhouette": 0.2893,
+      "npmi": 0.0438,
+      "score": 0.3009,
+      "n_clusters": 8
+    },
+    {
+      "min_cluster_size": 30,
+      "min_samples": 10,
+      "outlier_rate": 0.1356,
+      "silhouette": 0.2651,
+      "npmi": -0.0104,
+      "score": 0.2472,
+      "n_clusters": 10
+    }
+  ]
+}
+```
+
+---
+## ACTION-125 — 2026-05-06 — Sub-clustered dump cluster 0 in CAR-PSEC-1
+
+_Logged at 16:08:54 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 0,
+  "n_members": 1927,
+  "n_subclusters": 0,
+  "n_outliers_in_sub": 1927,
+  "new_topic_ids": [],
+  "skipped": true,
+  "skipped_reason": "no real sub-clusters found; parent cluster preserved"
+}
+```
+
+---
+## ACTION-126 — 2026-05-06 — Sub-clustered dump cluster 1 in CAR-PSEC-1
+
+_Logged at 16:08:55 PHT — type: `SUBCLUSTER`_
+
+- **Configuration:** 
+```json
+{
+  "recovery_params": {
+    "min_cluster_size": [
+      10,
+      15,
+      20
+    ],
+    "min_samples": [
+      2,
+      3,
+      5
+    ]
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "dump_cluster_id": 1,
+  "n_members": 862,
+  "n_subclusters": 2,
+  "n_outliers_in_sub_kept_in_parent": 781,
+  "new_topic_ids": [
+    8
+  ],
+  "skipped": false
+}
+```
+
+---
+## ACTION-127 — 2026-05-06 — Completed CAR-PSEC-1
+
+_Logged at 16:09:23 PHT — type: `UNIV_COMPLETE`_
+
+- **Action:** Trained BERTopic, labeled 9 topics, ran DTM.
+- **Configuration:** 
+```json
+{
+  "hdbscan": {
+    "min_cluster_size": 15,
+    "min_samples": 5
+  },
+  "embedding_model": "FacebookAI/xlm-roberta-large"
+}
+```
+- **Input:** 
+```json
+{
+  "n_posts": 3864,
+  "file": "SLU_cleaned.json"
+}
+```
+- **Output:** 
+```json
+{
+  "n_topics": 9,
+  "outlier_rate": 0.03907867494824017,
+  "lazy_pct": 0.0,
+  "needs_review": true
+}
+```
+
+---
+## ACTION-128 — 2026-05-06 — Run complete for alexx
+
+_Logged at 16:09:24 PHT — type: `RUN_COMPLETE`_
+
+- **Output:** 
+```json
+{
+  "n_universities_processed": 10,
+  "wall_seconds": 1913.2,
+  "needs_review_count": 8
+}
+```
+
+---
+## ACTION-129 — 2026-05-06 — Retry labels for alexx (10 universities)
+
+_Logged at 16:22:33 PHT — type: `LABEL_RETRY`_
+
+- **Action:** Re-ran NIM labeling for any topic with label='Unlabeled' or API_GIVEUP/MALFORMED_OUTPUT flags.
+- **Configuration:** 
+```json
+{
+  "effective_rpm": 20
+}
+```
+- **Output:** 
+```json
+[
+  {
+    "univ_code": "MM-PSEC-1",
+    "n_retried": 3,
+    "n_recovered": 3,
+    "n_still_failed": 0
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "CAR-PNSEC-2",
+    "n_retried": 1,
+    "n_recovered": 1,
+    "n_still_failed": 0
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "n_retried": 8,
+    "n_recovered": 8,
+    "n_still_failed": 0
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "n_retried": 0,
+    "n_recovered": 0
+  }
+]
+```
+
+---

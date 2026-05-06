@@ -1,0 +1,22 @@
+{
+  "_comment": "Locked global VAD pipeline settings. Mirrored after topic_modeling/configs/bertopic_config.json. Do not edit per-researcher; per-researcher overrides go in researcher_<id>.json.",
+  "schema_version": "vad-v1.0",
+  "model_id": "meta/llama-3.3-70b-instruct",
+  "model_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "temperature": 0.1,
+  "max_tokens": 600,
+  "batch_size": 5,
+  "scale_min": 1,
+  "scale_max": 9,
+  "outlier_topic_label": "Unclassified",
+  "score_outliers": true,
+  "prompt_sha256": "TBD_AT_FIRST_RUN_AND_FROZEN",
+  "few_shot_path": "configs/few_shot_examples.json",
+  "checkpoint_frequency_requests": 100,
+  "max_post_chars": 1500,
+  "max_post_truncation_suffix": " [truncated]",
+  "max_in_batch_repair_attempts": 3,
+  "topic_modeling_outputs_dir": "../topic_modeling/outputs",
+  "preprocessing_outputs_dir": "../preprocessing/output",
+  "university_mapping_path": "../topic_modeling/configs/university_mapping.yaml"
+}

@@ -1,34 +1,31 @@
 # Cross-University Topic Modeling Summary
 
-_Generated 2026-05-05 19:22 UTC_
+_Generated 2026-05-06 08:09 UTC_
 
-Universities completed: **3** of 10
+Universities completed: **10** of 10
 
 ## Completed universities
 
 | Code | Alias | Region | Posts | Top languages | Date range | Topics | Outlier % | NPMI | Silhouette | Lazy labels % | Event-driven % | API fails |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `CAR-PNSEC-1` | UB | CAR | 3,991 | Filipino 47%, Taglish 38%, English 12% | 2024-06 → 2026-03 | **7** | 1.6% | 0.072 | 0.426 | 0% | 57% | 0 |
+| `CAR-PNSEC-2` | LPU-B | CAR | 3,912 | Filipino 56%, Taglish 27%, English 11% | 2025-08 → 2025-12 | **29** | 44.0% | -0.118 | 0.492 | 0% | 0% | 3 |
+| `CAR-PSEC-1` | SLU | CAR | 3,864 | Filipino 39%, Taglish 38%, English 18% | 2025-04 → 2026-05 | **9** | 3.9% | 0.044 | 0.289 | 0% | 33% | 0 |
+| `CAR-PUB-1` | UPB | CAR | 2,287 | Filipino 40%, Taglish 34%, English 20% | 2025-06 → 2026-04 | **6** | 0.5% | 0.104 | 0.234 | 0% | 17% | 0 |
+| `CAR-PUB-2` | BSU | CAR | 3,791 | Filipino 42%, Taglish 36%, English 15% | 2025-11 → 2026-05 | **6** | 0.2% | -0.018 | 0.241 | 0% | 17% | 0 |
+| `MIN-PUB-1` | CSU | CARAGA | 3,998 | Cebuano 27%, Taglish 27%, English 25% | 2026-01 → 2026-05 | **29** | 42.2% | -0.014 | 0.444 | 0% | 24% | 8 |
 | `MM-PNSEC-1` | FEU | NCR | 3,963 | Taglish 38%, Filipino 32%, English 26% | 2024-05 → 2026-02 | **7** | 0.5% | -0.002 | 0.203 | 0% | 29% | 0 |
-| `MM-PSEC-1` | ADMU | NCR | 3,735 | English 76%, Taglish 13%, Filipino 6% | 2025-11 → 2026-05 | **44** | 33.5% | -0.022 | 0.414 | 0% | 0% | 0 |
+| `MM-PSEC-1` | ADMU | NCR | 3,735 | English 76%, Taglish 13%, Filipino 6% | 2025-11 → 2026-05 | **44** | 33.5% | -0.022 | 0.414 | 0% | 0% | 14 |
 | `MM-PUB-1` | UPD | NCR | 3,578 | Filipino 36%, Taglish 29%, English 28% | 2024-06 → 2026-04 | **5** | 0.0% | 0.155 | 0.387 | 0% | 0% | 0 |
+| `PROV-PUB-1` | UPLB | CALABARZON | 3,955 | Filipino 38%, Taglish 36%, English 22% | 2025-12 → 2026-04 | **5** | 0.2% | 0.042 | -0.076 | 0% | 0% | 0 |
 
 ## Aggregate statistics
 
 | Metric | Min | Median | Max |
 |---|---|---|---|
 | Topics per university | 5 | 7 | 44 |
-| Outlier rate | 0.0% | 0.5% | 33.5% |
-| NPMI | -0.022 | -0.002 | 0.155 |
-
-## Universities not yet complete
-
-- `CAR-PNSEC-1` (UB) — 3,991 posts in FW-09_cleaned.json
-- `CAR-PNSEC-2` (LPU-B) — 3,912 posts in FW-05_cleaned.json
-- `CAR-PSEC-1` (SLU) — 3,864 posts in SLU_cleaned.json
-- `CAR-PUB-1` (UPB) — 2,287 posts in FW-07_cleaned.json
-- `CAR-PUB-2` (BSU) — 3,791 posts in FW-08_cleaned.json
-- `MIN-PUB-1` (CSU) — 3,998 posts in FW-06_cleaned.json
-- `PROV-PUB-1` (UPLB) — 3,955 posts in FW-04_cleaned.json
+| Outlier rate | 0.0% | 1.6% | 44.0% |
+| NPMI | -0.118 | 0.042 | 0.155 |
 
 ## How to read topic-count variation
 

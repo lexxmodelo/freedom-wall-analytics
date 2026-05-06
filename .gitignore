@@ -55,3 +55,11 @@ scraper_project/cookies.json
 # Scraper runtime artifacts
 scraper_project/debug_screenshots/
 scraper_project/data/*_session.json
+
+# vad_scoring runtime artifacts
+vad_scoring/.env
+vad_scoring/api_cache/
+vad_scoring/checkpoints/
+vad_scoring/results/
+vad_scoring/merged_outputs/
+vad_scoring/configs/researcher_*.json

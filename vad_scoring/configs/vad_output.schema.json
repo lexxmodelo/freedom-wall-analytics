@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VAD scoring output record",
+  "type": "object",
+  "required": [
+    "post_id", "univ_code", "topic_label", "V", "A", "D", "sarcasm",
+    "researcher_id", "model_version", "scored_at"
+  ],
+  "properties": {
+    "post_id":       {"type": "string", "minLength": 1},
+    "univ_code":     {"type": "string", "pattern": "^(MM|PROV|CAR|MIN)-(PUB|PSEC|PNSEC)-[12]$"},
+    "topic_id":      {"type": "integer", "minimum": -1},
+    "topic_label":   {"type": "string", "minLength": 1},
+    "V":             {"type": "integer", "minimum": 1, "maximum": 9},
+    "A":             {"type": "integer", "minimum": 1, "maximum": 9},
+    "D":             {"type": "integer", "minimum": 1, "maximum": 9},
+    "sarcasm":       {"type": "boolean"},
+    "flags":         {"type": "array", "items": {"type": "string"}},
+    "researcher_id": {"type": "string"},
+    "model_version": {"type": "string"},
+    "scored_at":     {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,31 @@
+# Secrets — NEVER commit
+.env
+.env.local
+*.env
+
+# Per-run artifacts
+api_cache/
+checkpoints/
+results/
+merged_outputs/
+validation/*.json
+validation/*.jsonl
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Local venv
+.venv/
+venv/
+
+# Per-researcher configs (each researcher creates their own from researcher_template.json)
+configs/researcher_*.json

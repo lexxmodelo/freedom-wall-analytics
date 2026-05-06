@@ -1,0 +1,27 @@
+{
+  "_comment": "Three diagnostic anchors for the SAM (1-9) scoring task. Drafted from observed Filipino-student-discourse patterns; covers low-V/low-A burnout, high-A/low-D rage, and sarcastic praise. Editing this file invalidates prompt_sha256 in vad_config.json — only edit before a fresh run.",
+  "version": "v1.0",
+  "examples": [
+    {
+      "id": "anchor_burnout",
+      "topic": "Academic Burnout",
+      "text": "ang hirap na talaga, di ko na alam if kakayanin pa, sobrang pagod na ako sa lahat ng requirements, parang gusto ko na lang sumuko",
+      "scores": {"V": 2, "A": 3, "D": 2, "sarcasm": false},
+      "rationale": "Low valence (despair), low arousal (exhausted not agitated), low dominance (helpless surrender) — canonical burnout signature."
+    },
+    {
+      "id": "anchor_rage",
+      "topic": "Administrative Frustration",
+      "text": "PUTANG INA NA REGISTRAR YAN!! 3 weeks na akong naghihintay ng simpleng signature, walang ginagawa kundi mag-walang ka pakialam!! ang hina!!",
+      "scores": {"V": 2, "A": 9, "D": 3, "sarcasm": false},
+      "rationale": "Low valence (negative), high arousal (explosive caps + repetition), low dominance (still blocked by gatekeeper) — high-A/low-D rage."
+    },
+    {
+      "id": "anchor_sarcasm",
+      "topic": "Faculty Praise",
+      "text": "wow ang galing talaga ni prof, 8am class tapos 30 mins late siya everyday tapos absent pag may quiz 👏👏 sobrang professional",
+      "scores": {"V": 2, "A": 5, "D": 4, "sarcasm": true},
+      "rationale": "Surface positive (\"galing\", clapping emoji, \"professional\") masks negative critique. True valence is low; arousal moderate (annoyance, not rage); dominance modest (vented but powerless to change behavior). Tests sarcasm pre-check from methodology_changes.md §3.4."
+    }
+  ]
+}
