@@ -485,3 +485,46 @@ _Logged at 20:01:47 PHT — type: `PIPELINE_DONE`_
 - **Next Steps:** ISSUE: NIM free-tier throughput is only ~8 RPM observed (not 20 RPM token-bucket capacity) due to heavy 429 retries on the server side. Implications: 1) Full corpus (37,074 posts) at 1 researcher would take ~24 hours not 6. 2) 8% post-loss rate per university; methodology requires a resume pass to re-attempt failed_post_ids. 3) Recommend running the resume pass after the initial scan, OR raising effective_rpm to test whether throttling is server-side regardless of our limiter setting. 4) For real distributed run (multi-researcher), recommend N=3+ researchers to keep wall-clock under 8 hours each.
 
 ---
+## ACTION-014 — 2026-05-06 — CAR-PUB-1 failed-posts retry
+
+_Logged at 20:18:01 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 192 previously-failed posts in CAR-PUB-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-1",
+  "n_originally_failed": 192,
+  "n_recovered": 177,
+  "n_still_failed": 15,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-015 — 2026-05-06 — CAR-PUB-1 retry pass — 177/192 failed posts recovered (now 99.3% scored)
+
+_Logged at 20:18:39 PHT — type: `PIPELINE_RECOVERY`_
+
+- **Action:** Validated the new retry_failed_posts() function on CAR-PUB-1. Took 7m 23s to re-attempt 192 posts (39 batches). Recovered 177; 15 still failed (recoverable with another retry pass). Brings CAR-PUB-1 from 91.6%% to 99.3%% scored.
+- **Output:** 
+```json
+{
+  "wall_clock_seconds": 443.0,
+  "wall_clock_minutes": 7.4,
+  "n_originally_failed": 192,
+  "n_recovered": 177,
+  "n_still_failed": 15,
+  "recovery_rate_pct": 92.2,
+  "retry_throughput_rpm_observed": 28,
+  "cumulative_total_scored": 2272,
+  "cumulative_corpus_size": 2287,
+  "cumulative_completion_pct": 99.3,
+  "cumulative_wall_clock_minutes": 136.4
+}
+```
+- **Decisions:** Pipeline now production-ready for researchers. Menu option 5 was extended to also retry failed_post_ids in completed universities, so this path is exposed to all researchers without needing a custom script. The 15 remaining failures could be recovered with another option-5 pass, but the iterative nature is the point — researchers run option 5 until failed_post_ids stabilizes at a tiny number.
+- **Next Steps:** Researchers can be onboarded via vad_scoring/QUICKSTART.md. Lead should: (1) commit the vad_scoring/ tree, (2) distribute the team count + per-researcher index, (3) collect everyone's results/+checkpoints/ at the end and run option 9 (merge).
+
+---
