@@ -1,0 +1,19 @@
+{
+  "_comment": "Per-researcher config. Each researcher copies this to researcher_<id>.json via `python -m vad_scoring` option 1. Pipeline reads exactly one researcher config per run.",
+  "researcher_id": "researcher_1",
+  "api_key_env_var": "NVIDIA_NIM_API_KEY",
+  "assigned_universities": [
+    "CAR-PSEC-1"
+  ],
+  "rate_limit_rpm": 40,
+  "effective_rpm": 20,
+  "request_timeout_seconds": 30,
+  "max_retries": 5,
+  "retry_backoff_min_seconds": 1,
+  "retry_backoff_max_seconds": 16,
+  "circuit_breaker_consecutive_failures": 10,
+  "circuit_breaker_pause_minutes": 5,
+  "checkpoint_dir": "checkpoints/researcher_1",
+  "output_dir": "results/researcher_1",
+  "api_cache_path": "api_cache/raw_responses_researcher_1.jsonl"
+}

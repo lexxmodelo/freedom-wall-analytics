@@ -188,7 +188,22 @@ def action_setup_researcher() -> None:
             print("Cancelled.")
             return
 
-    template = load_json(CONFIGS / "researcher_template.json")
+    template_path = CONFIGS / "researcher_template.json"
+    if not template_path.exists() or template_path.stat().st_size == 0:
+        print()
+        print(f"ERROR: {template_path} is missing or empty.")
+        print("This file should have been pulled with the repo. Either:")
+        print("  - re-run `git pull` to fetch it from upstream, or")
+        print("  - ask the lead for a copy and place it at:")
+        print(f"    {template_path}")
+        return
+    try:
+        template = load_json(template_path)
+    except json.JSONDecodeError as e:
+        print()
+        print(f"ERROR: {template_path} is not valid JSON: {e}")
+        print("Re-pull from git or ask the lead for a fresh copy.")
+        return
     template["researcher_id"] = rid
     template["assigned_universities"] = my_slice.universities
     template["checkpoint_dir"] = f"checkpoints/{rid}"

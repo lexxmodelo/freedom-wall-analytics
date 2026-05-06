@@ -29,3 +29,5 @@ venv/
 
 # Per-researcher configs (each researcher creates their own from researcher_template.json)
 configs/researcher_*.json
+# But DO keep the template in git so new researchers can bootstrap.
+!configs/researcher_template.json
