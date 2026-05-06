@@ -528,3 +528,118 @@ _Logged at 20:18:39 PHT — type: `PIPELINE_RECOVERY`_
 - **Next Steps:** Researchers can be onboarded via vad_scoring/QUICKSTART.md. Lead should: (1) commit the vad_scoring/ tree, (2) distribute the team count + per-researcher index, (3) collect everyone's results/+checkpoints/ at the end and run option 9 (merge).
 
 ---
+## ACTION-016 — 2026-05-06 — CAR-PUB-1 failed-posts retry
+
+_Logged at 20:54:02 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 15 previously-failed posts in CAR-PUB-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-1",
+  "n_originally_failed": 15,
+  "n_recovered": 15,
+  "n_still_failed": 0,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-017 — 2026-05-06 — CAR-PUB-1 second retry pass — 100%% coverage achieved (2287/2287)
+
+_Logged at 20:54:24 PHT — type: `PIPELINE_RECOVERY`_
+
+- **Action:** Ran a second option-5 retry pass on CAR-PUB-1 to chase the 15 posts still in failed_post_ids after ACTION-005. All 15 recovered in 34.6 seconds (3 batches). CAR-PUB-1 is now at 100%% coverage with 0 outstanding failures.
+- **Output:** 
+```json
+{
+  "wall_clock_seconds": 34.6,
+  "n_attempted": 15,
+  "n_recovered": 15,
+  "n_still_failed": 0,
+  "recovery_rate_pct": 100.0,
+  "cumulative_total_scored": 2287,
+  "cumulative_corpus_size": 2287,
+  "cumulative_completion_pct": 100.0,
+  "cumulative_wall_clock_minutes": 137.0,
+  "sarcasm_flags_total": 221,
+  "range_clamps_total": 0
+}
+```
+- **Decisions:** Two-pass iterative recovery (option-5 → option-5) reaches 100%% on CAR-PUB-1 in ~7 min of additional runtime after the main run. This validates the resume+retry path as the correct pattern for researchers: run option-4, then option-5 once or twice until failed_post_ids stabilizes at 0.
+- **Next Steps:** CAR-PUB-1 is final. Decide whether researcher_test/ output is the canonical CAR-PUB-1 contribution to the merged dataset, or whether the production researcher should re-score it from scratch as part of their assignment.
+
+---
+## ACTION-018 — 2026-05-06 — Researcher alexx configured
+
+_Logged at 20:55:56 PHT — type: `SETUP`_
+
+- **Action:** Researcher alexx initialized for 4-way split
+- **Configuration:** 
+```json
+{
+  "researcher_id": "alexx",
+  "n_researchers_total": 4,
+  "this_researcher_index": 2,
+  "assigned_universities": [
+    "CAR-PNSEC-1",
+    "CAR-PUB-1",
+    "CAR-PUB-2"
+  ],
+  "total_batches": 2016,
+  "effective_rpm": 20
+}
+```
+
+---
+## ACTION-019 — 2026-05-06 — Re-attributed researcher_test → alexx (researcher 2 of 4)
+
+_Logged at 21:01:39 PHT — type: `CONFIG`_
+
+- **Action:** Team locked at N=4 researchers. Renamed all CAR-PUB-1 artifacts from researcher_test to alexx (the lead, who is researcher 2). LPT bin-pack at N=4 assigns alexx: CAR-PNSEC-1, CAR-PUB-1, CAR-PUB-2 (~2,016 batches total).
+- **Configuration:** 
+```json
+{
+  "team_size": 4,
+  "researcher_id": "alexx",
+  "researcher_index": 2,
+  "assigned_universities": [
+    "CAR-PNSEC-1",
+    "CAR-PUB-1",
+    "CAR-PUB-2"
+  ],
+  "remaining_universities_for_alexx": [
+    "CAR-PNSEC-1",
+    "CAR-PUB-2"
+  ]
+}
+```
+- **Input:** 
+```json
+{
+  "distribution_at_n4": {
+    "R1": "MIN-PUB-1, MM-PSEC-1, MM-PUB-1 (2263 batches)",
+    "R2 (alexx)": "CAR-PNSEC-1, CAR-PUB-1, CAR-PUB-2 (2016 batches)",
+    "R3": "CAR-PSEC-1, MM-PNSEC-1 (1566 batches)",
+    "R4": "CAR-PNSEC-2, PROV-PUB-1 (1574 batches)"
+  }
+}
+```
+- **Output:** 
+```json
+{
+  "records_re_attributed": 2287,
+  "files_moved": [
+    "checkpoints/alexx/",
+    "results/alexx/",
+    "api_cache/raw_responses_alexx.jsonl"
+  ],
+  "config_written": "configs/alexx.json",
+  "config_deleted": "configs/researcher_test.json"
+}
+```
+- **Decisions:** Kept the CAR-PUB-1 100%%-scored output as the canonical contribution from alexx — no reason to rerun. Now alexx only needs to score CAR-PNSEC-1 and CAR-PUB-2.
+- **Next Steps:** alexx runs option 4 → it will see CAR-PUB-1 already complete and start on CAR-PNSEC-1 + CAR-PUB-2 (~1,558 batches combined). Other 3 researchers run option 1 to set up their own configs and start their assignments in parallel.
+
+---

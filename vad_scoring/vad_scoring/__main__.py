@@ -72,8 +72,21 @@ def _int_in_range(prompt: str, lo: int, hi: int, default: int | None = None) -> 
         print(f"Out of range. Enter {lo}-{hi}.")
 
 
+# Files in configs/ that are NOT researcher configs (locked settings, templates, schemas).
+_NON_RESEARCHER_CONFIGS = {
+    "vad_config.json",
+    "researcher_template.json",
+    "vad_output.schema.json",
+    "few_shot_examples.json",
+}
+
+
 def list_researcher_configs() -> list[str]:
-    return sorted(p.stem for p in CONFIGS.glob("researcher_*.json"))
+    """Every *.json in configs/ that isn't a locked-settings file or template."""
+    return sorted(
+        p.stem for p in CONFIGS.glob("*.json")
+        if p.name not in _NON_RESEARCHER_CONFIGS
+    )
 
 
 def pick_researcher(prompt: str = "Choose researcher:") -> str | None:
