@@ -1,0 +1,156 @@
+@import url("../vendor/fonts/inter.css");
+
+:root {
+  color-scheme: light;
+
+  --bg-app:      oklch(98.5% 0.005 30);
+  --bg-surface:  oklch(100% 0 0);
+  --bg-subtle:   oklch(96% 0.008 30);
+  --bg-elevated: oklch(99% 0.005 30);
+
+  --border:        oklch(94% 0.005 30);
+  --border-strong: oklch(88% 0.008 30);
+
+  --text:        oklch(20% 0.015 280);
+  --text-muted:  oklch(45% 0.012 280);
+  --text-subtle: oklch(60% 0.008 280);
+
+  --accent:       oklch(63% 0.18 28);
+  --accent-hover: oklch(58% 0.18 28);
+  --accent-soft:  oklch(94% 0.04 28);
+  --on-accent:    oklch(99% 0.005 30);
+
+  --warn:      oklch(75% 0.15 75);
+  --warn-soft: oklch(95% 0.05 75);
+  --crit:      oklch(60% 0.20 22);
+  --crit-soft: oklch(94% 0.04 22);
+  --ok:        oklch(60% 0.14 155);
+  --ok-soft:   oklch(94% 0.04 155);
+  --trend-up:   var(--ok);
+  --trend-down: var(--crit);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-hero:  32px;
+  --fs-h1:    24px;
+  --fs-h2:    18px;
+  --fs-body:  14px;
+  --fs-small: 12px;
+  --fs-micro: 11px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.06em;
+
+  --radius-sm: 8px;
+  --radius:    12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-sm: 0 1px 2px oklch(20% 0.015 280 / 0.04);
+  --shadow:    0 4px 16px oklch(20% 0.015 280 / 0.04), 0 1px 2px oklch(20% 0.015 280 / 0.03);
+  --shadow-lg: 0 12px 32px oklch(20% 0.015 280 / 0.06), 0 2px 4px oklch(20% 0.015 280 / 0.04);
+
+  --rail-w: 64px;
+  --topbar-h: 56px;
+
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  --maxw: 1320px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-app:      oklch(18% 0.015 280);
+  --bg-surface:  oklch(22% 0.015 280);
+  --bg-subtle:   oklch(25% 0.013 280);
+  --bg-elevated: oklch(28% 0.013 280);
+
+  --border:        oklch(30% 0.012 280);
+  --border-strong: oklch(40% 0.012 280);
+
+  --text:        oklch(96% 0.005 30);
+  --text-muted:  oklch(75% 0.008 280);
+  --text-subtle: oklch(58% 0.012 280);
+
+  --accent:       oklch(72% 0.16 28);
+  --accent-hover: oklch(78% 0.16 28);
+  --accent-soft:  oklch(35% 0.10 28 / 0.30);
+  --on-accent:    oklch(15% 0.015 30);
+
+  --warn:      oklch(82% 0.14 75);
+  --warn-soft: oklch(35% 0.10 75 / 0.30);
+  --crit:      oklch(70% 0.18 22);
+  --crit-soft: oklch(35% 0.10 22 / 0.30);
+  --ok:        oklch(72% 0.13 155);
+  --ok-soft:   oklch(35% 0.10 155 / 0.30);
+
+  --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.30);
+  --shadow:    0 4px 16px oklch(0% 0 0 / 0.35), 0 1px 2px oklch(0% 0 0 / 0.25);
+  --shadow-lg: 0 12px 32px oklch(0% 0 0 / 0.50), 0 2px 4px oklch(0% 0 0 / 0.35);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { color-scheme: light dark; }
+body {
+  background: var(--bg-app);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out);
+}
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.2;
+  color: var(--text);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h2); font-weight: 600; }
+h4 {
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+p { margin: 0 0 12px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--bg-subtle);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+
+::selection { background: var(--accent-soft); color: var(--text); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-subtle); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* No-scroll discipline for fixed-viewport dashboards. Add the class to <body>;
+   .shell becomes a fixed grid sized to the viewport, .shell-main scrolls only if its
+   content explicitly opts into overflow. Charts inside use min-height: 0 + flex: 1. */
+body.no-scroll { overflow: hidden; height: 100vh; }
+body.no-scroll .shell { height: 100vh; }
+body.no-scroll .shell-main { min-height: 0; min-width: 0; height: 100vh; overflow: hidden; }

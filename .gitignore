@@ -41,6 +41,10 @@ venv/
 # Testing
 coverage/
 .nyc_output/
+.pytest_cache/
+
+# Manuscript drafts (kept local only)
+manuscript/
 
 # Cookies
 cookies.json
@@ -62,6 +66,7 @@ vad_scoring/api_cache/
 vad_scoring/checkpoints/
 vad_scoring/results/
 vad_scoring/merged_outputs/
+vad_scoring/*.log
 vad_scoring/configs/researcher_*.json
 # But DO keep the template in git so new researchers can bootstrap.
 !vad_scoring/configs/researcher_template.json

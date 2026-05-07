@@ -355,7 +355,7 @@
 ### ACTION-030 — Apify-style reliability pass: JSONL checkpoint, cycle-100 cap, mbasic-via-httpx
 - **Time:** 2026-05-04
 - **Motivation:** Cross-machine instability — owner reaches ~1600–1700 posts before Chrome freezes; other researchers freeze between 220–500 even with 16 GB RAM. Root causes (diagnosed): CDP IPC throughput variance across hardware/OS, DOM accumulation as O(N²), V8 heap fragmentation, and bundled-Chromium-vs-system-Chrome version drift. RAM is not the bottleneck — IPC is. A colleague suggested adapting Apify-style techniques (mbasic primary via plain HTTP, append-only checkpoint, smaller browser sessions, optional proxy).
-- **Plan file:** `C:\Users\Alex Evan\docs/plans/scraper_apify_reliability_pass.md`
+- **Plan file:** [docs/plans/scraper_apify_reliability_pass.md](../docs/plans/scraper_apify_reliability_pass.md)
 - **Changes:**
   1. **Append-only JSONL checkpointing** (`scraper.py`):
      - Replaced `_checkpoint_save` (was: full JSON rewrite every 30 s to `{code}_checkpoint.json`) with append-only writes to `data/{code}.jsonl`. Per-target `self._jsonl_written_ids` set deduplicates so repeat calls only append the delta.
@@ -395,7 +395,7 @@
 
 ### ACTION-032 — `desktop_graphql_httpx`: bypass the freeze cliff entirely
 - **Time:** 2026-05-04
-- **Plan file:** `C:\Users\Alex Evan\docs/plans/scraper_graphql_replay.md`
+- **Plan file:** [docs/plans/scraper_graphql_replay.md](../docs/plans/scraper_graphql_replay.md)
 - **Motivation:** Even with the ACTION-030/031 mitigations (JSONL checkpoint, 500-scroll cycle cap, unique-stale guard, 700 MB heap-pressure restart, CDP GC), the owner's laptop still freezes at ~1700 posts on long runs. The cliff is hardware-bound — DOM nodes + V8 heap + GraphQL response cache accumulate as the React feed scrolls, until Windows starts paging and the renderer GC-thrashes. Apify and Bright Data don't hit this because they don't run a desktop browser at all — they replay the underlying `/api/graphql/` calls directly with HTTP clients. This action implements the same architecture as a new fourth strategy.
 - **Approach:** Brief Playwright session (~14 s) navigates the target page and harvests one pagination POST to `/api/graphql/` (token bundle: `fb_dtsg`, `lsd`, `jazoest`, `doc_id`, full `variables` JSON, complete header set captured via `request.all_headers()`, and the live cookie jar). The browser is then **kept open as a thin HTTP client** — no further DOM rendering, no scrolling — and the captured request is replayed via Playwright's `context.request.post()` (APIRequestContext) to drive cursor-based pagination. RSS stays bounded at ~100 MB regardless of post count. fb_dtsg is proactively re-harvested every 45 minutes (relaunch Chrome briefly, capture new tokens, close, resume) and reactively on any token-expiry signal.
 - **Why APIRequestContext (not raw httpx):** Raw httpx replay returns FB error 1357054 ("Your Request Couldn't be Processed") even with byte-identical body and headers — Facebook's WAF appears to fingerprint the TLS ClientHello and reject non-Chrome stacks. Playwright's APIRequestContext uses real Chrome's HTTP/TLS stack, inherits the cookie jar (so fr/datr rotations carry over), and passes WAF cleanly. The architecture still avoids the freeze cliff because we never render DOM after harvest.

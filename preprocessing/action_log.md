@@ -4,7 +4,7 @@ This file records every implementation step for the Freedom Wall preprocessing p
 
 Project: thesis on AI-Driven Topic Modeling and Multidimensional Sentiment Analysis of Student Discourse on Philippine University Freedom Walls.
 Pipeline location: `C:\Users\Alex Evan\Documents\Research\preprocessing\` (sibling to `scraper_project/`).
-Plan reference: [preprocessing_pipeline.md](../../docs/plans/preprocessing_pipeline.md)
+Plan reference: [docs/plans/preprocessing_pipeline.md](../docs/plans/preprocessing_pipeline.md)
 
 ---
 

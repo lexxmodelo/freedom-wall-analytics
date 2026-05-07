@@ -5,8 +5,7 @@ Cleans, anonymizes, and language-classifies Facebook Freedom Wall posts scraped 
 (`metro_manila_posts.json`, `luzon_provincial_posts.json`, `baguio_benguet_posts.json`)
 suitable for downstream BERTopic and VAD analysis.
 
-This package is the implementation of the plan at
-[`docs/plans/preprocessing_pipeline.md`](../docs/plans/preprocessing_pipeline.md).
+Implementation plan: [docs/plans/preprocessing_pipeline.md](../docs/plans/preprocessing_pipeline.md).
 
 ## Install
 

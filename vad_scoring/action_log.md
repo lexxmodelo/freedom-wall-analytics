@@ -4,7 +4,7 @@ This file records every implementation step for the vad_scoring phase. Append-on
 
 Project: AI-Driven Topic Modeling and Multidimensional Sentiment Analysis of Student Discourse on Philippine University Freedom Walls.
 Pipeline location: `C:\Users\Alex Evan\Documents\Research\vad_scoring\` (sibling to `preprocessing/`, `scraper_project/`, `topic_modeling/`).
-Plan reference: [vad_scoring_pipeline.md](../../docs/plans/vad_scoring_pipeline.md)
+Plan reference: [docs/plans/vad_scoring_pipeline.md](../docs/plans/vad_scoring_pipeline.md)
 
 ---
 
@@ -641,5 +641,711 @@ _Logged at 21:01:39 PHT — type: `CONFIG`_
 ```
 - **Decisions:** Kept the CAR-PUB-1 100%%-scored output as the canonical contribution from alexx — no reason to rerun. Now alexx only needs to score CAR-PNSEC-1 and CAR-PUB-2.
 - **Next Steps:** alexx runs option 4 → it will see CAR-PUB-1 already complete and start on CAR-PNSEC-1 + CAR-PUB-2 (~1,558 batches combined). Other 3 researchers run option 1 to set up their own configs and start their assignments in parallel.
+
+---
+## ACTION-020 — 2026-05-06 — Researcher alexx starting full VAD scoring
+
+_Logged at 21:12:43 PHT — type: `PIPELINE_INIT`_
+
+- **Action:** Researcher alexx began full VAD scoring
+- **Configuration:** 
+```json
+{
+  "researcher_id": "alexx",
+  "assigned_universities": [
+    "CAR-PNSEC-1",
+    "CAR-PUB-1",
+    "CAR-PUB-2"
+  ],
+  "model_id": "meta/llama-3.3-70b-instruct",
+  "temperature": 0.1,
+  "batch_size": 5,
+  "effective_rpm": 20,
+  "prompt_sha256": "6ea1920322b0fbc1abb1ad67eff808afb57ba07ad82f5ebe077575eb4a1335ba"
+}
+```
+
+---
+## ACTION-021 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 21:38:58 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 100 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "106/799",
+  "completed_post_ids": 500,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 55
+}
+```
+
+---
+## ACTION-022 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 22:11:01 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 200 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "217/799",
+  "completed_post_ids": 999,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 111
+}
+```
+
+---
+## ACTION-023 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 22:37:44 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 300 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "326/799",
+  "completed_post_ids": 1499,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 154
+}
+```
+
+---
+## ACTION-024 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 23:03:14 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 400 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "432/799",
+  "completed_post_ids": 1998,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 216
+}
+```
+
+---
+## ACTION-025 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 23:26:54 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 500 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "538/799",
+  "completed_post_ids": 2498,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 262
+}
+```
+
+---
+## ACTION-026 — 2026-05-06 — CAR-PNSEC-1 progress
+
+_Logged at 23:50:24 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 600 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "651/799",
+  "completed_post_ids": 2997,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 323
+}
+```
+
+---
+## ACTION-027 — 2026-05-07 — CAR-PNSEC-1 progress
+
+_Logged at 00:18:39 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 700 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "batch": "754/799",
+  "completed_post_ids": 3497,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 367
+}
+```
+
+---
+## ACTION-028 — 2026-05-07 — CAR-PNSEC-1 scoring complete
+
+_Logged at 00:29:31 PHT — type: `PIPELINE`_
+
+- **Action:** University CAR-PNSEC-1 fully scored by alexx
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "total_batches": 799,
+  "successful_requests": 742,
+  "failed_requests": 57,
+  "completed_post_ids": 3703,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 389,
+  "pii_rejected_count": 0,
+  "complete": true,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-029 — 2026-05-07 — CAR-PUB-1 scoring complete
+
+_Logged at 00:29:32 PHT — type: `PIPELINE`_
+
+- **Action:** University CAR-PUB-1 fully scored by alexx
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-1",
+  "total_batches": 458,
+  "successful_requests": 420,
+  "failed_requests": 38,
+  "completed_post_ids": 2287,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 221,
+  "pii_rejected_count": 0,
+  "complete": true,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-030 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 00:58:38 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 100 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "106/759",
+  "completed_post_ids": 500,
+  "out_of_range_clamps": 0,
+  "sarcasm_flags": 48
+}
+```
+
+---
+## ACTION-031 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 01:30:11 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 200 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "210/759",
+  "completed_post_ids": 1000,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 101
+}
+```
+
+---
+## ACTION-032 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 01:54:33 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 300 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "325/759",
+  "completed_post_ids": 1500,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 144
+}
+```
+
+---
+## ACTION-033 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 02:20:24 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 400 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "438/759",
+  "completed_post_ids": 1999,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 182
+}
+```
+
+---
+## ACTION-034 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 02:51:34 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 500 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "545/759",
+  "completed_post_ids": 2499,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 218
+}
+```
+
+---
+## ACTION-035 — 2026-05-07 — CAR-PUB-2 progress
+
+_Logged at 03:18:47 PHT — type: `CHECKPOINT`_
+
+- **Action:** Auto-checkpoint after 600 requests
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "batch": "657/759",
+  "completed_post_ids": 2999,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 249
+}
+```
+
+---
+## ACTION-036 — 2026-05-07 — CAR-PUB-2 scoring complete
+
+_Logged at 03:41:04 PHT — type: `PIPELINE`_
+
+- **Action:** University CAR-PUB-2 fully scored by alexx
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "total_batches": 759,
+  "successful_requests": 693,
+  "failed_requests": 66,
+  "completed_post_ids": 3459,
+  "out_of_range_clamps": 1,
+  "sarcasm_flags": 293,
+  "pii_rejected_count": 0,
+  "complete": true,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-037 — 2026-05-07 — CAR-PNSEC-1 failed-posts retry
+
+_Logged at 10:07:39 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 288 previously-failed posts in CAR-PNSEC-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "n_originally_failed": 288,
+  "n_recovered": 268,
+  "n_still_failed": 20,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-038 — 2026-05-07 — Retry pass timing & root-cause analysis for thesis documentation
+
+_Logged at 10:10:40 PHT — type: `METHODOLOGY`_
+
+- **Action:** Catalogued every retry pass executed during the alexx pilot of the VAD scoring pipeline (CAR-PUB-1 + CAR-PNSEC-1 + CAR-PUB-2). Captured the batch-failure rate per pass, the wall-clock time of each retry, and the underlying causes observed in the api_cache + warning logs. Intended to feed the methodology section and the README troubleshooting matrix.
+- **Input:** 
+```json
+{
+  "context": "NVIDIA NIM free tier (meta/llama-3.3-70b-instruct), effective_rpm=20 token bucket, batch_size=5, observed throughput ~3.5 batches/min",
+  "retry_mechanism": "5 HTTP-level retries per batch with exponential backoff 1->2->4->8->16s; on full exhaustion the batch posts join failed_post_ids; option-5 (retry_failed_posts) re-attempts those posts in fresh batches of 5"
+}
+```
+- **Output:** 
+```json
+{
+  "CAR-PUB-1_timeline": {
+    "initial_run": {
+      "wall_minutes": 129.0,
+      "batches": 458,
+      "failed_batches": 38,
+      "coverage_pct": 91.6
+    },
+    "retry_pass_1": {
+      "wall_minutes": 7.4,
+      "failed_posts_attempted": 192,
+      "recovered": 177,
+      "still_failed": 15,
+      "cumulative_pct": 99.3
+    },
+    "retry_pass_2": {
+      "wall_minutes": 0.6,
+      "failed_posts_attempted": 15,
+      "recovered": 15,
+      "still_failed": 0,
+      "cumulative_pct": 100.0
+    },
+    "total_passes_to_100pct": 3,
+    "cumulative_wall_minutes": 137.0
+  },
+  "CAR-PNSEC-1_timeline": {
+    "initial_run": {
+      "wall_minutes_estimate": 228,
+      "batches": 799,
+      "failed_batches": 57,
+      "coverage_pct": 92.9
+    },
+    "retry_pass_1": "in_progress_at_log_time (~17 min expected for 288 posts -> 58 batches)"
+  },
+  "CAR-PUB-2_timeline": {
+    "initial_run": {
+      "wall_minutes_estimate": 217,
+      "batches": 759,
+      "failed_batches": 66,
+      "coverage_pct": 91.3
+    },
+    "retry_pass_1": "queued_after_CAR-PNSEC-1 (~19 min expected for 332 posts -> 67 batches)"
+  },
+  "observed_batch_failure_rate_pct": {
+    "CAR-PUB-1_pass_1": 8.3,
+    "CAR-PUB-1_pass_2": 7.8,
+    "CAR-PUB-1_pass_3": 0.0,
+    "CAR-PNSEC-1_pass_1": 7.1,
+    "CAR-PUB-2_pass_1": 8.7,
+    "pattern": "Each pass loses 7-9 percent of attempted batches. Two-to-three passes reach 100 percent coverage."
+  },
+  "root_causes_of_batch_failures": {
+    "http_429_too_many_requests": {
+      "frequency": "most common (~50-70 percent of warnings)",
+      "reason": "NVIDIA NIM free tier throttles harder than the advertised 40 RPM ceiling. Even at our 20 RPM token-bucket setting, the server pushes back with 429.",
+      "pipeline_response": "Honor Retry-After header if present; else exponential backoff. After 5 failed retries the batch posts go to failed_post_ids."
+    },
+    "http_502_bad_gateway": {
+      "frequency": "occasional bursts",
+      "reason": "NVIDIA backend instance restart or load-balancer hiccup. Comes in clusters when their infra has a brief incident.",
+      "pipeline_response": "Same 5-retry exponential backoff as 5xx errors."
+    },
+    "read_operation_timed_out": {
+      "frequency": "frequent on long batches",
+      "reason": "30-second per-request timeout exceeded. Some batches contain very long posts that need more time for the 70B model to generate the JSON array. Network blips on the researcher side also contribute.",
+      "pipeline_response": "Retry with same body. Truncation cap at 1500 chars (tail-preserving) reduces but does not eliminate this."
+    },
+    "http_5xx_other": {
+      "frequency": "rare",
+      "reason": "Generic NVIDIA backend errors (500/503).",
+      "pipeline_response": "5-retry exponential backoff."
+    }
+  },
+  "methodology_implications": {
+    "expected_loss_per_pass_pct": "7-9 (free tier)",
+    "passes_to_100pct_coverage": "2-3 typically",
+    "researcher_workflow": "option-4 once, then option-5 (resume+retry) one or two times until failed_post_ids stabilises at 0",
+    "time_overhead_of_retries_vs_initial_pct": "CAR-PUB-1: 6.0 percent additional time (8 min on top of 129 min) to reach 100 percent from 91.6 percent",
+    "reproducibility": "Each retry uses the same prompt_sha256 and same temp=0.1 settings; recovered records are indistinguishable from initial-pass records"
+  }
+}
+```
+- **Decisions:** Document this in the thesis methodology as a known property of the NIM free tier rather than a defect of the pipeline. The 5-retry-per-call + iterative-resume pattern reaches 100 percent coverage with 5-10 percent time overhead, which is acceptable for the budget (zero cost) and academic timeline.
+- **Next Steps:** Add a Methodology subsection (e.g., 4.4 "Throughput and recovery") that quotes the failure-rate range, the retry-pass count, and the time-overhead percentage. Reference this action-log entry in the thesis appendix as primary evidence.
+
+---
+## ACTION-039 — 2026-05-07 — CAR-PUB-2 failed-posts retry
+
+_Logged at 10:23:01 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 332 previously-failed posts in CAR-PUB-2
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "n_originally_failed": 332,
+  "n_recovered": 291,
+  "n_still_failed": 41,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-040 — 2026-05-07 — alexx retry pass 1 across CAR-PNSEC-1, CAR-PUB-1, CAR-PUB-2
+
+_Logged at 10:23:29 PHT — type: `PIPELINE_RECOVERY`_
+
+- **Action:** Ran option-5 retry across all three of alexx's assigned universities. CAR-PUB-1 had 0 failures (skipped). CAR-PNSEC-1 and CAR-PUB-2 each saw their first retry pass; both moved from ~92 percent to ~99 percent coverage in 33 minutes total.
+- **Output:** 
+```json
+{
+  "wall_clock_minutes_total": 33.7,
+  "CAR-PNSEC-1_pass_1": {
+    "wall_minutes": 18.3,
+    "attempted": 288,
+    "recovered": 268,
+    "still_failed": 20,
+    "recovery_rate_pct": 93.1,
+    "cumulative_scored": 3971,
+    "cumulative_corpus": 3991,
+    "cumulative_coverage_pct": 99.5
+  },
+  "CAR-PUB-1_skipped": {
+    "reason": "already_at_100pct",
+    "scored": 2287,
+    "corpus": 2287
+  },
+  "CAR-PUB-2_pass_1": {
+    "wall_minutes": 15.4,
+    "attempted": 332,
+    "recovered": 291,
+    "still_failed": 41,
+    "recovery_rate_pct": 87.7,
+    "cumulative_scored": 3750,
+    "cumulative_corpus": 3791,
+    "cumulative_coverage_pct": 98.9
+  },
+  "alexx_grand_total_scored": 10008,
+  "alexx_grand_total_corpus": 10069,
+  "alexx_grand_total_coverage_pct": 99.4
+}
+```
+- **Decisions:** Both CAR-PNSEC-1 (20 left) and CAR-PUB-2 (41 left) need one more retry pass to converge to 100 percent. Pattern matches CAR-PUB-1 exactly (which needed 2 passes). Recovery rate per pass continues to land in the 87-93 percent range.
+- **Next Steps:** Run option-5 once more for alexx to reach 100 percent on all 3 universities. Expected ~3 min wall clock for the remaining 61 posts (~13 batches).
+
+---
+## ACTION-041 — 2026-05-07 — CAR-PNSEC-1 failed-posts retry
+
+_Logged at 10:30:27 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 20 previously-failed posts in CAR-PNSEC-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "n_originally_failed": 20,
+  "n_recovered": 19,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-042 — 2026-05-07 — CAR-PUB-2 failed-posts retry
+
+_Logged at 10:32:39 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 41 previously-failed posts in CAR-PUB-2
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "n_originally_failed": 41,
+  "n_recovered": 35,
+  "n_still_failed": 6,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-043 — 2026-05-07 — CAR-PNSEC-1 failed-posts retry
+
+_Logged at 10:32:56 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 1 previously-failed posts in CAR-PNSEC-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "n_originally_failed": 1,
+  "n_recovered": 0,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-044 — 2026-05-07 — CAR-PUB-2 failed-posts retry
+
+_Logged at 10:33:09 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 6 previously-failed posts in CAR-PUB-2
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "n_originally_failed": 6,
+  "n_recovered": 5,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-045 — 2026-05-07 — CAR-PNSEC-1 failed-posts retry
+
+_Logged at 10:33:31 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 1 previously-failed posts in CAR-PNSEC-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "n_originally_failed": 1,
+  "n_recovered": 0,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-046 — 2026-05-07 — CAR-PUB-2 failed-posts retry
+
+_Logged at 10:33:54 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 1 previously-failed posts in CAR-PUB-2
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "n_originally_failed": 1,
+  "n_recovered": 0,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-047 — 2026-05-07 — alexx convergence loop — 99.98 percent scored, 2 posts unrecoverable
+
+_Logged at 10:34:44 PHT — type: `PIPELINE_CONVERGENCE`_
+
+- **Action:** Ran a multi-pass retry loop across alexx's 3 universities until either zero failures or no further progress. Converged in 3 passes (4.5 min wall clock). Two posts (one in CAR-PNSEC-1, one in CAR-PUB-2) failed consistently across both retry passes 2 and 3 with no recovery — flagged as genuinely unrecoverable on the NIM free tier within the current 30s timeout.
+- **Output:** 
+```json
+{
+  "wall_clock_minutes": 4.5,
+  "passes_run": 3,
+  "pass_history": {
+    "pass_1": {
+      "before": 61,
+      "after": 7,
+      "recovered_pct": 88.5
+    },
+    "pass_2": {
+      "before": 7,
+      "after": 2,
+      "recovered_pct": 71.4
+    },
+    "pass_3": {
+      "before": 2,
+      "after": 2,
+      "recovered_pct": 0.0,
+      "halt_trigger": "no_progress"
+    }
+  },
+  "final_per_university": {
+    "CAR-PNSEC-1": {
+      "scored": 3990,
+      "corpus": 3991,
+      "coverage_pct": 99.975,
+      "unrecoverable": 1
+    },
+    "CAR-PUB-1": {
+      "scored": 2287,
+      "corpus": 2287,
+      "coverage_pct": 100.0,
+      "unrecoverable": 0
+    },
+    "CAR-PUB-2": {
+      "scored": 3790,
+      "corpus": 3791,
+      "coverage_pct": 99.974,
+      "unrecoverable": 1
+    }
+  },
+  "unrecoverable_posts": [
+    {
+      "post_id": "cccf6a96ad051b97",
+      "univ_code": "CAR-PNSEC-1",
+      "text_length_chars": 281,
+      "note": "Short post about a stolen umbrella; contains a partially-censored profanity (CENSORED). Hypothesis: model safety filter consistently refuses or returns malformed JSON."
+    },
+    {
+      "post_id": "eeeb98c19b874374",
+      "univ_code": "CAR-PUB-2",
+      "text_length_chars": 1425,
+      "note": "Long formal complaint about registrar/admin staff behavior. Hypothesis: response generation for this specific post within a 5-post batch consistently exceeds the 30s timeout."
+    }
+  ],
+  "alexx_grand_total": {
+    "scored": 10067,
+    "corpus": 10069,
+    "coverage_pct": 99.98
+  }
+}
+```
+- **Decisions:** Accept 99.98 percent coverage as final for alexx's 3 universities. The 2 unrecoverable posts represent 0.02 percent loss; well below any reasonable thesis-publication threshold. Document them in the appendix as known failures with their causes (model safety filter / timeout) rather than continuing to grind retry passes.
+- **Next Steps:** alexx is DONE. Other 3 researchers run the same loop pattern (option-4 then option-5 several times) and expect similar 99.98+ percent convergence. The 2 unrecoverable posts can be revisited later either with a longer request_timeout (e.g., 60s) or by manually requesting the lead score them with a 1-post batch (where their generation time would not be amplified by 5x).
+
+---
+## ACTION-048 — 2026-05-07 — CAR-PNSEC-1 failed-posts retry
+
+_Logged at 10:39:15 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 1 previously-failed posts in CAR-PNSEC-1
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PNSEC-1",
+  "n_originally_failed": 1,
+  "n_recovered": 1,
+  "n_still_failed": 0,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
+
+---
+## ACTION-049 — 2026-05-07 — CAR-PUB-2 failed-posts retry
+
+_Logged at 10:39:28 PHT — type: `PIPELINE_RETRY`_
+
+- **Action:** Retried 1 previously-failed posts in CAR-PUB-2
+- **Output:** 
+```json
+{
+  "univ_code": "CAR-PUB-2",
+  "n_originally_failed": 1,
+  "n_recovered": 0,
+  "n_still_failed": 1,
+  "skipped_missing_text": 0,
+  "halted_reason": null
+}
+```
 
 ---

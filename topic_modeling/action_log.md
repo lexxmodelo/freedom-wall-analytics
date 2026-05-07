@@ -4,7 +4,7 @@ This file records every implementation step for the topic_modeling phase. Append
 
 Project: AI-Driven Topic Modeling and Multidimensional Sentiment Analysis of Student Discourse on Philippine University Freedom Walls.
 Pipeline location: `C:\Users\Alex Evan\Documents\Research\topic_modeling\` (sibling to `preprocessing/` and `scraper_project/`).
-Plan reference: [topic_modeling_pipeline.md](../../docs/plans/topic_modeling_pipeline.md)
+Plan reference: [docs/plans/topic_modeling_pipeline.md](../docs/plans/topic_modeling_pipeline.md)
 
 ---
 

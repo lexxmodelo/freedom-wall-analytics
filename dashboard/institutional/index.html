@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Institutional Emotion Overview</title>
+  <link rel="stylesheet" href="../shared/css/base.css" />
+  <link rel="stylesheet" href="../shared/css/components.css" />
+  <link rel="stylesheet" href="../shared/css/sidebar.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <script>
+    /* Wide D1 sidebar with the global controls (date range / university / theme) in the footer.
+       hashRouted: app.js owns active-state via hashchange — we don't run scroll-spy. */
+    window.SIDEBAR = {
+      wide: true,
+      hashRouted: true,
+      brandText: "FW",
+      title: "Institutional",
+      subtitle: "Dashboard 1",
+      backHref: "../index.html",
+      backLabel: "All dashboards",
+      sections: [
+        { label: "Overview",   icon: "overview", href: "#overview", target: "overview" },
+        { label: "Topics",     icon: "pie",      href: "#topics",   target: "topics"   },
+        { label: "Emotions",   icon: "spark",    href: "#emotions", target: "emotions" },
+        { label: "Triage",     icon: "feed",     href: "#feed",     target: "feed"     },
+      ],
+      footerSlot: `
+        <div class="footer-control">
+          <label for="ctrl-range">Date range</label>
+          <select id="ctrl-range">
+            <option value="all">All time</option>
+            <option value="90">Last 90 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="7">Last 7 days</option>
+          </select>
+        </div>
+        <div class="footer-control">
+          <label for="ctrl-univ">University</label>
+          <select id="ctrl-univ"></select>
+        </div>`,
+    };
+  </script>
+</head>
+<body data-page="institutional" class="no-scroll">
+
+  <!-- ======================== Page bar ======================== -->
+  <header class="page-bar">
+    <div class="page-bar-text">
+      <h2 id="page-title">Overview</h2>
+      <p class="page-bar-sub" id="page-sub">—</p>
+    </div>
+    <div class="page-bar-right">
+      <span class="timestamp-chip" id="ts-chip">
+        <span class="live-dot"></span>
+        <span id="ts-rel">—</span>
+      </span>
+      <span class="coverage-chip" id="cov-chip"><span id="cov-text">—</span></span>
+    </div>
+  </header>
+
+  <!-- ======================== Page 1: Overview ======================== -->
+  <section class="page page-overview" data-page="overview">
+    <div id="hero-zone"></div>
+    <div id="signal-strip" class="signal-strip"></div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Posts (recent 7 d)<button class="info-hint" data-hint="How many posts students wrote in the last 7 days, compared to the week before." aria-label="What is this?">i</button></div>
+        <div class="kpi-value" id="kpi-posts-7d">—</div>
+        <div class="kpi-delta" id="kpi-posts-delta"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Positivity score<button class="info-hint" data-hint="On average, how positive or negative students sound. Higher is better." aria-label="What is this?">i</button></div>
+        <div class="kpi-value" id="kpi-v">—</div>
+        <div class="kpi-delta" id="kpi-v-delta"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Negative posts (7 d)<button class="info-hint" data-hint="Posts this week that sound clearly upset or distressed. These are the posts most worth reading." aria-label="What is this?">i</button></div>
+        <div class="kpi-value" id="kpi-neg">—</div>
+        <div class="kpi-delta" id="kpi-neg-delta"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Sarcasm rate<button class="info-hint" data-hint="How often students sound sarcastic. When this rises, the words might hide real frustration." aria-label="What is this?">i</button></div>
+        <div class="kpi-value" id="kpi-sarc">—</div>
+        <div class="kpi-delta" id="kpi-sarc-delta"></div>
+      </div>
+    </div>
+
+    <div class="row row-50-50">
+      <div class="card flex-card" id="snapshot-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Topic Mood Snapshot<button class="info-hint" data-hint="The conversations students sound most upset about, ranked first. Click any topic to dig deeper." aria-label="What is this?">i</button></h3>
+            <div class="card-sub">Most concerning topics first. Click any row to dig deeper.</div>
+          </div>
+          <div class="ch-actions">
+            <button class="card-expand" data-expand="snapshot" aria-label="Expand">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="snapshot-list" class="topic-snapshot flex-grow"></div>
+      </div>
+
+      <div class="card flex-card" id="calendar-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Daily Positivity Tracker<button class="info-hint" data-hint="Each square is one day. Green = students sounded positive, red = upset, amber = mixed, grey = no posts." aria-label="What is this?">i</button></h3>
+            <div class="card-sub">Daily mean positivity across the active filter.</div>
+          </div>
+          <div class="ch-actions">
+            <button class="card-expand" data-expand="calendar" aria-label="Expand">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="heatmap" class="flex-grow chart-fill"></div>
+      </div>
+    </div>
+
+    <div class="row row-100">
+      <div class="card flex-card" id="trends-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Emotional Trends over Time<button class="info-hint" data-hint="How student mood changes day by day. The faint bars at the bottom show how busy the wall was — quiet stretches usually mean vacation or no scrape." aria-label="What is this?">i</button></h3>
+            <div class="card-sub">Rolling means with daily post volume below.</div>
+          </div>
+          <div class="ch-actions">
+            <select id="trend-window" aria-label="Smoothing window">
+              <option value="7">7-day window</option>
+              <option value="14" selected>14-day window</option>
+              <option value="30">30-day window</option>
+            </select>
+            <button class="card-expand" data-expand="trends" aria-label="Expand">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="flex-grow chart-fill"><canvas id="chart-trends"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== Page 2: Topics ======================== -->
+  <section class="page page-topics" data-page="topics" hidden>
+    <div id="topics-insight" class="topics-insight" hidden></div>
+    <div class="row row-50-50 fill-height">
+      <div class="card flex-card" id="topic-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Topic Distribution<button class="info-hint" data-hint="A breakdown of every conversation cluster on this wall, sorted by volume (largest first). Avg Positivity is on a 1–9 scale: 1–3 is upset, 4–6 is mixed, 7–9 is upbeat. Click a topic to filter." aria-label="What is this?">i</button></h3>
+            <div class="card-sub">Click a topic to filter the feed and keywords on the right.</div>
+          </div>
+          <div class="ch-actions">
+            <button class="card-expand" data-expand="topics" aria-label="Expand">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="topic-split flex-grow">
+          <div class="donut-wrap">
+            <canvas id="chart-topics"></canvas>
+            <div class="donut-center">
+              <div class="num" id="donut-num">—</div>
+              <div class="lab">posts</div>
+            </div>
+          </div>
+          <div id="topic-legend" class="donut-legend"></div>
+        </div>
+        <div id="topic-filter-state" class="card-sub" style="margin-top: 8px;"></div>
+      </div>
+
+      <div class="topics-right">
+        <div class="card flex-card" id="keywords-card">
+          <div class="card-head">
+            <div class="ch-text">
+              <h3>Top Trending Keywords<button class="info-hint" data-hint="Most frequent words across the active filter. Bar colour shows the average positivity (1–9 scale) of posts where each word appears — red is negative, green is positive. Click a bar to drill in." aria-label="What is this?">i</button></h3>
+              <div class="card-sub">Top 10 by frequency. Click a bar to filter the donut and feed.</div>
+            </div>
+            <div class="ch-actions">
+              <div class="valence-gradient" aria-hidden="true">
+                <span class="label">Negative</span>
+                <span class="swatch"></span>
+                <span class="label">Positive</span>
+              </div>
+              <button class="card-expand" data-expand="keywords" aria-label="Expand">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex-grow chart-fill"><canvas id="chart-keywords"></canvas></div>
+        </div>
+
+        <div class="card flex-card mini-feed" id="feed-card-topics">
+          <div class="card-head">
+            <div class="ch-text">
+              <h3>Recent Activity<button class="info-hint" data-hint="Live posts in the active topic and keyword filter. The coloured pill on each card is the post's positivity score (1–9 scale): low and red is upset, high and green is upbeat." aria-label="What is this?">i</button></h3>
+              <div class="card-sub" id="feed-context-topics">Latest posts in the active topic.</div>
+            </div>
+            <div class="ch-actions feed-toolbar">
+              <input type="search" id="feed-search-topics" class="feed-search" placeholder="Search posts…" aria-label="Search recent posts" />
+              <select id="feed-sort-topics" class="feed-sort" aria-label="Sort posts">
+                <option value="newest">Newest</option>
+                <option value="negative">Lowest positivity</option>
+                <option value="arousal">Highest intensity</option>
+                <option value="sarcasm">Sarcasm first</option>
+              </select>
+              <button class="card-expand" data-expand="topics-feed" aria-label="Expand recent activity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+              </button>
+            </div>
+          </div>
+          <ul id="feed-list-topics" class="feed-list flex-grow"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== Page 3: Emotions ======================== -->
+  <section class="page page-emotions" data-page="emotions" hidden>
+    <div id="emotions-insight" class="topics-insight" hidden></div>
+    <div class="row row-70-30 fill-height">
+      <div class="card flex-card" id="scatter-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Emotion Scatter Plot<button class="info-hint" data-hint="Each dot is one post. Hover for a quick read; click to pin the full text in the inspector. Use the mouse wheel to zoom into a cluster, or click Reset to return to the full view." aria-label="What is this?">i</button></h3>
+            <div class="card-sub">Each post placed by Intensity (calm → stressed) and Sense of Control (helpless → empowered). Size = Positivity.</div>
+          </div>
+          <div class="ch-actions">
+            <button id="vad-reset" class="vad-reset" aria-label="Reset zoom" title="Reset zoom">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+              <span>Reset view</span>
+            </button>
+            <button class="card-expand" data-expand="vad" aria-label="Expand">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="vad-bubble" class="flex-grow chart-fill"></div>
+      </div>
+
+      <div class="card flex-card mini-feed" id="feed-card-emotions">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Post Inspector<button class="info-hint" data-hint="Click any dot in the scatter to pin its post here. The pinned post stays put while you keep exploring." aria-label="What is this?">i</button></h3>
+            <div class="card-sub" id="inspector-context">Click a dot on the scatter to read the student's exact post.</div>
+          </div>
+          <div class="ch-actions">
+            <button id="inspector-clear" class="card-expand" hidden aria-label="Clear pinned post" title="Unpin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="inspector-host" class="inspector-host flex-grow">
+          <div id="inspector-empty" class="inspector-empty">
+            <svg class="inspector-empty-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="22" cy="22" r="3.5" fill="currentColor" opacity="0.55"/>
+              <circle cx="38" cy="14" r="2.5" fill="currentColor" opacity="0.4"/>
+              <circle cx="14" cy="38" r="2" fill="currentColor" opacity="0.35"/>
+              <circle cx="44" cy="34" r="2.5" fill="currentColor" opacity="0.45"/>
+              <path d="M30 24 L46 40 L41 41 L44 50 L40 52 L37 43 L33 47 Z" fill="currentColor" opacity="0.85"/>
+            </svg>
+            <div class="inspector-empty-title">No post pinned yet</div>
+            <div class="inspector-empty-sub">Click any dot on the chart to read the student's exact post.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== Page 4: Alerts & Action Center ======================== -->
+  <section class="page page-feed" data-page="feed" hidden>
+    <!-- All-clear panel: shown only when no active signals remain -->
+    <div id="triage-all-clear" class="triage-all-clear" hidden>
+      <div class="ac-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="32" r="26"/>
+          <path d="M21 32l8 8 14-16"/>
+        </svg>
+      </div>
+      <div class="ac-title">All clear!</div>
+      <div class="ac-sub">No anomalies detected in the last 24 hours.</div>
+      <div class="ac-meta" id="triage-clear-meta"></div>
+    </div>
+
+    <!-- Master-detail layout (hidden when all clear) -->
+    <div id="triage-grid" class="row row-40-60 fill-height">
+      <!-- Master: signal list -->
+      <div class="card flex-card" id="signals-card">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3>Signals<button class="info-hint" data-hint="Each card is one anomaly the system found in the last 24 hours. Click a card to focus on its posts. Click Dismiss to clear it from this session — if the underlying anomaly persists, it'll come back on reload." aria-label="What is this?">i</button></h3>
+            <div class="card-sub" id="signals-count">—</div>
+          </div>
+        </div>
+        <div id="signals-list" class="signals-list flex-grow"></div>
+      </div>
+
+      <!-- Detail: posts for the active signal -->
+      <div class="card flex-card" id="triage-detail">
+        <div class="card-head">
+          <div class="ch-text">
+            <h3 id="triage-title">Pick a signal</h3>
+            <div class="card-sub" id="triage-sub">Click any card on the left to review the posts driving it.</div>
+          </div>
+          <div class="ch-actions feed-toolbar">
+            <input type="search" id="triage-search" class="feed-search" placeholder="Search these posts…" aria-label="Search posts in active signal" />
+            <select id="triage-sort" class="feed-sort" aria-label="Sort posts">
+              <option value="newest">Newest</option>
+              <option value="negative">Lowest positivity</option>
+              <option value="arousal">Highest intensity</option>
+              <option value="sarcasm">Sarcasm first</option>
+            </select>
+          </div>
+        </div>
+        <ul id="triage-feed-list" class="feed-list flex-grow"></ul>
+      </div>
+    </div>
+  </section>
+
+  <script src="../shared/js/sidebar.js"></script>
+  <script src="../shared/vendor/chart.umd.min.js"></script>
+  <script src="../shared/vendor/d3.min.js"></script>
+  <script src="../shared/vendor/plotly.min.js"></script>
+  <script src="../shared/js/utils.js"></script>
+  <script src="../shared/js/vadColors.js"></script>
+  <script src="../shared/js/stopwords.js"></script>
+  <script src="../shared/js/charts-theme.js"></script>
+  <script src="../shared/js/expand.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dataLoader.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

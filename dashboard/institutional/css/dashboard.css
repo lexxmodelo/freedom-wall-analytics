@@ -1,0 +1,801 @@
+/* ── No-scroll layout discipline ─────────────────────────────── */
+.shell-main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  overflow: hidden;
+  padding: 18px 24px 18px;
+  gap: 14px;
+}
+
+.page-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.page-bar-text { min-width: 0; }
+.page-bar h2 {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.page-bar-sub {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  margin: 4px 0 0;
+}
+.page-bar-right {
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+  flex: none;
+}
+
+/* ── Page container — each page is a CSS grid filling the available space ── */
+.page {
+  display: grid;
+  gap: 12px;
+  grid-template-rows: auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.page[hidden] { display: none !important; }
+
+/* Page 1 grid:
+   row 1: hero (auto, only if a school-grounds crit alert exists)
+   row 2: signal strip (auto, only if any non-hero signals exist)
+   row 3: KPIs (auto)
+   row 4 + 5: 1fr each (snapshot+calendar / trends)
+   Both 1fr rows have a soft minimum (160px) so even on 768px-tall laptops the
+   trends chart stays visible. minmax(0, 1fr) lets them shrink under that floor
+   only when the auto rows together exceed available height. */
+.page-overview {
+  grid-template-rows: auto auto auto minmax(160px, 1fr) minmax(160px, 1fr);
+  gap: 10px;
+}
+/* Pages that lead with an insight banner above their main content row.
+   Pin the banner to a content-sized track and let the row consume the
+   remaining vertical space — otherwise the banner stretches when the
+   viewport is taller than the row's natural height. */
+.page-topics, .page-emotions {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+/* Triage page swaps between an all-clear panel and the master-detail
+   grid; whichever is visible should fill the whole page. */
+.page-feed {
+  grid-template-rows: minmax(0, 1fr);
+}
+.page-overview > #hero-zone:empty { display: none; }
+.page-overview > #signal-strip:empty { display: none; }
+
+.page-overview .kpi { padding: 11px 14px; gap: 3px; }
+.page-overview .kpi .kpi-value { font-size: 24px; }
+.page-overview .kpi .kpi-label { font-size: 10.5px; }
+.page-overview .kpi .kpi-delta { font-size: 11.5px; }
+.page-overview .kpi-row { gap: 10px; }
+
+.page-overview .signal-strip .chip { padding: 5px 11px; font-size: 11.5px; }
+.page-overview .signal-strip .chip .glyph { width: 14px; height: 14px; font-size: 10px; }
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 880px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+.kpi {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.kpi .kpi-label {
+  color: var(--text-muted);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+.kpi .kpi-value {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+.kpi .kpi-sub { font-size: 11.5px; color: var(--text-subtle); }
+
+.row {
+  display: grid;
+  gap: 12px;
+  min-height: 0;
+}
+/* Class selector ties with [hidden]; explicit override so JS toggling
+   row.hidden actually removes it from layout (e.g. Triage all-clear). */
+.row[hidden] { display: none; }
+.row.row-50-50 { grid-template-columns: 1fr 1fr; }
+.row.row-40-60 { grid-template-columns: 40% 1fr; }
+.row.row-70-30 { grid-template-columns: 1fr 30%; }
+.row.row-100   { grid-template-columns: 1fr; }
+.row.fill-height { min-height: 0; height: 100%; }
+
+@media (max-width: 1100px) {
+  .row.row-50-50, .row.row-40-60, .row.row-70-30 { grid-template-columns: 1fr; }
+}
+
+/* Card variants used in no-scroll mode */
+.flex-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 14px 16px 12px;
+  gap: 8px;
+}
+.flex-card .card-head { margin-bottom: 4px; }
+.flex-card .card-head h3 { font-size: 14px; }
+.flex-grow { flex: 1; min-height: 0; min-width: 0; }
+.chart-fill { position: relative; }
+.chart-fill canvas, .chart-fill > div, .chart-fill svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* But the calendar SVG is auto-sized; let it scroll inside the flex space */
+#heatmap { overflow: auto; padding-right: 4px; }
+#heatmap svg { position: static !important; height: auto !important; }
+
+/* ── Topic split (donut + legend, 50/50, donut vertically centered) ── */
+.topic-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+  min-height: 0;
+}
+.topic-split .donut-wrap {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  align-self: center; /* vertically centered within the card */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+.topic-split .donut-wrap canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.topic-split .donut-legend { overflow-y: auto; padding-right: 4px; align-self: stretch; }
+@media (max-width: 1100px) {
+  .topic-split { grid-template-columns: 1fr; }
+  .topic-split .donut-wrap { aspect-ratio: auto; }
+}
+
+/* Topics page right column = keywords on top, mini feed below */
+.topics-right {
+  display: grid;
+  grid-template-rows: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 12px;
+  min-height: 0;
+}
+
+/* Mini-feed card — used on Topics + Emotions pages */
+.mini-feed .feed-list { max-height: none; }
+
+/* ── Alerts & Action Center (Triage) ─────────────────────────── */
+.triage-all-clear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  height: 100%;
+  min-height: 360px;
+  padding: 32px 24px;
+}
+.triage-all-clear[hidden] { display: none; }
+.triage-all-clear .ac-icon {
+  width: 88px; height: 88px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, oklch(70% 0.14 145) 14%, transparent);
+  color: oklch(60% 0.16 145);
+}
+.triage-all-clear .ac-icon svg { width: 48px; height: 48px; }
+.triage-all-clear .ac-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.triage-all-clear .ac-sub {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 380px;
+}
+.triage-all-clear .ac-meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-subtle);
+}
+
+/* Master column: scrollable list of clickable signal cards */
+.signals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px;
+  overflow-y: auto;
+}
+.signal-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 1fr 24px;
+  gap: 10px;
+  align-items: start;
+  padding: 12px 12px 12px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: border-color 140ms var(--ease-out), background 140ms var(--ease-out), opacity 140ms var(--ease-out);
+}
+.signal-card:hover { background: var(--bg-subtle); }
+.signal-card:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.signal-card.level-crit        { border-left-color: oklch(60% 0.20 22); }
+.signal-card.level-warn-strong { border-left-color: oklch(72% 0.18 60); }
+.signal-card.level-warn        { border-left-color: oklch(78% 0.13 90); }
+.signal-card.is-active {
+  background: var(--bg-subtle);
+  border-color: var(--text);
+  border-left-width: 4px;
+}
+.signal-card.is-active.level-crit        { border-color: oklch(60% 0.20 22); }
+.signal-card.is-active.level-warn-strong { border-color: oklch(70% 0.18 60); }
+/* Dim non-active cards once one is selected so the active focus is obvious. */
+.signals-list:has(.signal-card.is-active) .signal-card:not(.is-active) { opacity: 0.55; }
+
+.signal-icon {
+  width: 22px; height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  flex: none;
+}
+.signal-card.level-crit .signal-icon {
+  background: color-mix(in srgb, oklch(60% 0.20 22) 18%, transparent);
+  color: oklch(60% 0.20 22);
+}
+.signal-card.level-warn-strong .signal-icon {
+  background: color-mix(in srgb, oklch(72% 0.18 60) 18%, transparent);
+  color: oklch(60% 0.18 60);
+}
+
+.signal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.signal-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+  /* Allow up to 3 lines so concentration titles stay readable */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.signal-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.signal-dismiss {
+  width: 22px; height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-subtle);
+  cursor: pointer;
+  flex: none;
+  transition: background 120ms var(--ease-out), color 120ms var(--ease-out);
+}
+.signal-dismiss svg { width: 12px; height: 12px; }
+.signal-dismiss:hover { background: var(--bg-subtle); color: var(--text); }
+.signal-dismiss:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+
+/* ── Calendar (text legibility) ──────────────────────────────── */
+.heatmap-cell { stroke: var(--bg-surface); stroke-width: 1; cursor: default; }
+.heatmap-month-label {
+  font-size: 11px; fill: var(--text);
+  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
+}
+.heatmap-day-label { font-size: 11px; fill: var(--text-muted); font-weight: 500; }
+.heatmap-legend { font-size: 11px; fill: var(--text-muted); }
+.heatmap-today  { stroke: var(--accent); stroke-width: 1.75; }
+
+#vad-bubble .modebar { display: none !important; }
+
+/* ── Activity feed cards (used on Topics + Emotions + Feed pages) ─── */
+.feed-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; }
+.feed-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 0 4px 10px;
+  overflow: hidden;
+  transition: border-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+}
+.feed-card:hover {
+  border-color: var(--border-strong, var(--border));
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.feed-card.highlight { border-color: var(--accent); }
+.feed-card.is-flagged { border-color: oklch(70% 0.18 60); }
+
+/* Top row — context (topic + date) + kebab */
+.feed-card .card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 0;
+  font-size: 12px;
+}
+.feed-card .card-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--text-muted);
+}
+.feed-card .topic-dot {
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  flex: none;
+}
+.feed-card .topic-name {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.feed-card .meta-sep { color: var(--text-subtle); }
+.feed-card .post-date {
+  color: var(--text-subtle);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.feed-card .card-flagged {
+  margin-left: 4px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, oklch(70% 0.18 60) 18%, transparent);
+  color: oklch(60% 0.18 60);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Kebab menu */
+.feed-card .card-menu-wrap { position: relative; flex: none; }
+.feed-card .card-menu-btn {
+  width: 24px; height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: var(--text-subtle);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 120ms var(--ease-out), color 120ms var(--ease-out);
+}
+.feed-card .card-menu-btn:hover,
+.feed-card .card-menu-btn[aria-expanded="true"] {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+.feed-card .card-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 20;
+  min-width: 200px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+.feed-card .card-menu .menu-item {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-size: 12.5px;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.feed-card .card-menu .menu-item:hover { background: var(--bg-subtle); }
+
+/* Quote (the actual student post) */
+.feed-card .quote {
+  padding: 12px 14px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Analysis well — soft tray separating AI signals from student text */
+.feed-card .analysis-well {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  padding: 8px 12px;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+}
+.feed-card .analysis-well .metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.feed-card .analysis-well .metric b {
+  color: var(--text);
+  font-weight: 700;
+  margin-left: 2px;
+}
+.feed-card .analysis-well .m-icon {
+  width: 14px;
+  text-align: center;
+  color: var(--text-subtle);
+}
+.feed-card .analysis-well .metric-sarc {
+  color: oklch(60% 0.18 350);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ── Emotions scatter expand modal ───────────────────────── */
+.vad-expand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
+}
+.vad-expand-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: none;
+}
+.vad-expand-status {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.vad-expand-status[hidden] { display: none; }
+.vad-expand-chart {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 360px;
+}
+.vad-expand-pin { flex: none; max-width: 560px; align-self: flex-start; }
+.vad-expand-pin[hidden] { display: none; }
+
+/* ── Emotions: Reset View button on the scatter card ─────── */
+.vad-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 140ms var(--ease-out), border-color 140ms var(--ease-out);
+}
+.vad-reset:hover { background: var(--bg-subtle); border-color: var(--border-strong, var(--border)); }
+.vad-reset:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+.vad-reset svg { width: 14px; height: 14px; }
+
+/* ── Emotions: Post Inspector ─────────────────────────────── */
+.inspector-host {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 4px 0 8px;
+}
+.inspector-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  min-height: 220px;
+  padding: 24px 18px;
+  color: var(--text-subtle);
+  gap: 10px;
+}
+/* Class selector ties with [hidden]; explicit override so the prompt
+   collapses cleanly when a post is pinned. */
+.inspector-empty[hidden] { display: none; }
+.inspector-empty-icon {
+  width: 56px;
+  height: 56px;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+.inspector-empty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.inspector-empty-sub {
+  font-size: 12px;
+  line-height: 1.45;
+  max-width: 240px;
+  color: var(--text-subtle);
+}
+.feed-card.inspector-card {
+  margin: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+.feed-card.inspector-card .quote {
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* Subtle pill for anonymisation tags so they don't drown the quote. */
+.redacted-tag {
+  display: inline-block;
+  padding: 0 6px;
+  margin: 0 1px;
+  border-radius: 4px;
+  background: var(--bg-subtle);
+  color: var(--text-subtle);
+  font-size: 0.85em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  vertical-align: baseline;
+}
+
+/* ── Topics + Emotions: single-line insight callout ─────────── */
+.topics-insight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  color: var(--text);
+  line-height: 1.35;
+  /* As a child of the .page grid, default align-self is stretch.
+     Pin it to start so the banner stays content-height even when the
+     grid track has spare vertical room (e.g. on tall viewports). */
+  align-self: start;
+  flex: 0 0 auto;
+}
+.topics-insight[hidden] { display: none; }
+.topics-insight .ti-icon { flex: none; line-height: 1; }
+.topics-insight .ti-text {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topics-insight .ti-text b { color: var(--text); font-weight: 600; }
+
+/* ── Donut external tooltip (escapes donut-wrap clip box) ────── */
+.donut-tooltip {
+  background: var(--bg-elevated, #1a1a1f);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  min-width: 180px;
+  max-width: 280px;
+}
+.donut-tooltip .dt-title {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  white-space: normal;
+  word-break: break-word;
+}
+.donut-tooltip .dt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Topics page: legend (sticky header, name above stats) ─── */
+.page-topics .donut-legend .leg-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 8px 6px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-subtle);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.page-topics .donut-legend .leg-head .lh-stats {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 10.5px;
+  color: var(--text-subtle);
+  opacity: 0.85;
+}
+
+.page-topics .donut-legend .leg-row {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  align-items: start;
+  transition: background 140ms var(--ease-out), opacity 140ms var(--ease-out);
+}
+.page-topics .donut-legend .leg-row:hover { background: var(--bg-elevated); }
+.page-topics .donut-legend .leg-row:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.page-topics .donut-legend .leg-row.is-active {
+  background: var(--bg-elevated);
+  box-shadow: inset 0 0 0 1px var(--border-strong, var(--border));
+}
+.page-topics .donut-legend.has-selection .leg-row:not(.is-active) { opacity: 0.4; }
+
+.page-topics .donut-legend .leg-row .dot {
+  margin-top: 5px; /* aligns with the first line of the name baseline */
+}
+.page-topics .donut-legend .leg-row .leg-body { min-width: 0; }
+.page-topics .donut-legend .leg-row .name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+}
+.page-topics .donut-legend .leg-row .leg-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.page-topics .donut-legend .leg-row .count { color: var(--text-muted); }
+.page-topics .donut-legend .leg-row .count .pct {
+  color: var(--text-subtle);
+  margin-left: 4px;
+}
+.page-topics .donut-legend .leg-row .v-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.page-topics .donut-legend .leg-row .v-chip-empty {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ── Topics page: keywords card head + valence gradient inline ── */
+#keywords-card .ch-actions { display: flex; align-items: center; gap: 10px; }
+#keywords-card .ch-actions .valence-gradient {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+#keywords-card .ch-actions .valence-gradient .swatch {
+  width: 64px; height: 6px; border-radius: 999px;
+  background: linear-gradient(to right,
+    var(--neg-strong, oklch(60% 0.18 25)),
+    var(--mid, oklch(75% 0.10 90)),
+    var(--pos-strong, oklch(70% 0.16 145)));
+}
+@media (max-width: 1100px) {
+  #keywords-card .ch-actions .valence-gradient { display: none; }
+}
+
+/* ── Topics page: feed-card mini toolbar (search + sort + expand) ── */
+#feed-card-topics .card-head { align-items: center; }
+.feed-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+.feed-toolbar .feed-search,
+.feed-toolbar .feed-sort {
+  height: 28px;
+  font-size: 12px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+}
+.feed-toolbar .feed-search { width: 150px; padding: 0 9px; }
+.feed-toolbar .feed-sort   { padding: 0 24px 0 8px; }
+.feed-toolbar .feed-search:focus,
+.feed-toolbar .feed-sort:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft, rgba(127,127,255,0.15));
+}
+.feed-toolbar .feed-search::placeholder { color: var(--text-subtle); }
+.feed-toolbar .card-expand { margin-left: 2px; }
+@media (max-width: 1100px) {
+  .feed-toolbar .feed-search { width: 110px; }
+}
+

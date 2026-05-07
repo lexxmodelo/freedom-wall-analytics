@@ -1,6 +1,6 @@
 # Topic Modeling Pipeline
 
-Per-university BERTopic + decoupled NVIDIA NIM (Llama 3.3 70B Instruct) labeling for the Freedom Wall thesis. Plan: [topic_modeling_pipeline.md](../docs/plans/topic_modeling_pipeline.md).
+Per-university BERTopic + decoupled NVIDIA NIM (Llama 3.3 70B Instruct) labeling for the Freedom Wall thesis. Plan: [docs/plans/topic_modeling_pipeline.md](../docs/plans/topic_modeling_pipeline.md).
 
 ## Quick Start (per researcher) — interactive
 

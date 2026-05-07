@@ -4,7 +4,7 @@ Dimensional sentiment scoring (Valence, Arousal, Dominance on the SAM 1-9 scale)
 
 Consumes the per-university outputs of [topic_modeling/](../topic_modeling/) and produces per-post VAD records keyed by `post_id`, joined with the assigned topic label for downstream cross-institution analysis.
 
-See [methodology_changes.md §3.4](../methodology_changes.md) for the prompt design and the planning document at `docs/plans/vad_scoring_pipeline.md` for the full execution plan.
+See [docs/methodology_changes.md §3.4](../docs/methodology_changes.md) for the prompt design and [docs/plans/vad_scoring_pipeline.md](../docs/plans/vad_scoring_pipeline.md) for the full execution plan.
 
 ## Quickstart (per researcher)
 
