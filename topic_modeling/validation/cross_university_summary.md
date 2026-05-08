@@ -1,4 +1,4 @@
-# Cross-University Topic Modeling Summary
+﻿# Cross-University Topic Modeling Summary
 
 _Generated 2026-05-06 08:09 UTC_
 
@@ -9,7 +9,7 @@ Universities completed: **10** of 10
 | Code | Alias | Region | Posts | Top languages | Date range | Topics | Outlier % | NPMI | Silhouette | Lazy labels % | Event-driven % | API fails |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `CAR-PNSEC-1` | UB | CAR | 3,991 | Filipino 47%, Taglish 38%, English 12% | 2024-06 → 2026-03 | **7** | 1.6% | 0.072 | 0.426 | 0% | 57% | 0 |
-| `CAR-PNSEC-2` | LPU-B | CAR | 3,912 | Filipino 56%, Taglish 27%, English 11% | 2025-08 → 2025-12 | **29** | 44.0% | -0.118 | 0.492 | 0% | 0% | 3 |
+| `PROV-PNSEC-1` | LPU-B | CAR | 3,912 | Filipino 56%, Taglish 27%, English 11% | 2025-08 → 2025-12 | **29** | 44.0% | -0.118 | 0.492 | 0% | 0% | 3 |
 | `CAR-PSEC-1` | SLU | CAR | 3,864 | Filipino 39%, Taglish 38%, English 18% | 2025-04 → 2026-05 | **9** | 3.9% | 0.044 | 0.289 | 0% | 33% | 0 |
 | `CAR-PUB-1` | UPB | CAR | 2,287 | Filipino 40%, Taglish 34%, English 20% | 2025-06 → 2026-04 | **6** | 0.5% | 0.104 | 0.234 | 0% | 17% | 0 |
 | `CAR-PUB-2` | BSU | CAR | 3,791 | Filipino 42%, Taglish 36%, English 15% | 2025-11 → 2026-05 | **6** | 0.2% | -0.018 | 0.241 | 0% | 17% | 0 |

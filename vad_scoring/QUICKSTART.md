@@ -104,7 +104,7 @@ Sample distribution display for N=3:
 Researcher  | Universities                                  | Batches | Time @ 20 RPM
 -----------------------------------------------------------------------------------
 R1          | CAR-PSEC-1, CAR-PUB-2, MIN-PUB-1              |    2332 |   117 min
-R2          | CAR-PNSEC-1, CAR-PNSEC-2, MM-PSEC-1           |    2329 |   116 min
+R2          | CAR-PNSEC-1, PROV-PNSEC-1, MM-PSEC-1          |    2329 |   116 min
 R3          | CAR-PUB-1, MM-PNSEC-1, MM-PUB-1, PROV-PUB-1   |    2758 |   138 min
 ```
 

@@ -61,7 +61,7 @@ public posts               regional partitioning           NIM topic labels     
 | VAD scoring | Cleaned posts + topic labels | `vad_scoring/results/researcher_*/{UNIV}_vad_scores.jsonl` | NVIDIA NIM Llama 3.3 70B Instruct, SAM 1–9 scale |
 | Dashboard ETL | All of the above | `dashboard/data/*.json` | `dashboard/etl/build_dashboard_data.py` |
 
-Universities (10): `CAR-PNSEC-1`, `CAR-PNSEC-2`, `CAR-PSEC-1`, `CAR-PUB-1`, `CAR-PUB-2`, `MIN-PUB-1`, `MM-PNSEC-1`, `MM-PSEC-1`, `MM-PUB-1`, `PROV-PUB-1`. Real names and aliases live in `topic_modeling/configs/university_mapping.yaml`.
+Universities (10): `CAR-PNSEC-1`, `CAR-PSEC-1`, `CAR-PUB-1`, `CAR-PUB-2`, `MIN-PUB-1`, `MM-PNSEC-1`, `MM-PSEC-1`, `MM-PUB-1`, `PROV-PNSEC-1`, `PROV-PUB-1`. Real names and aliases live in `topic_modeling/configs/university_mapping.yaml`.
 
 ---
 

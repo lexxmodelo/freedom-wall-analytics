@@ -4,12 +4,14 @@
 # Base scheme: methodology_changes.md §2.4 (12 institutions across MM/PROV/CAR).
 #
 # EXTENSION TO §2.4 (per user directive 2026-05-05; see action_log.md ACTION-002):
-#   - CAR-PNSEC-2 added (second private non-sectarian slot in CAR) for LPU-B.
+#   - PROV-PNSEC-1 (formerly mis-coded CAR-PNSEC-2) added as the second CALABARZON
+#     slot for LPU-Batangas; the original CAR-PNSEC-2 code mis-located a Batangas
+#     campus in the Cordillera Administrative Region.
 #   - MIN cluster added for Mindanao institutions; MIN-PUB-1 = CSU.
 #
 # CONFIRMED:
 #   SLU      → CAR-PSEC-1     (pilot baseline; Saint Louis University Baguio, Catholic)
-#   FW-05    → CAR-PNSEC-2    (Lyceum of the Philippines Baguio; methodology extension)
+#   FW-05    → PROV-PNSEC-1   (Lyceum of the Philippines Batangas, CALABARZON; methodology extension)
 #   FW-06    → MIN-PUB-1      (Caraga State University; methodology extension — new MIN cluster)
 #
 # PROVISIONAL (drafted from preprocessing/action_log.md ACTION-001 inferences;
@@ -55,12 +57,12 @@ mappings:
     active: true
 
   FW-05_cleaned.json:
-    code: CAR-PNSEC-2
+    code: PROV-PNSEC-1
     school_alias: LPU-B
-    region: CAR
+    region: CALABARZON
     confidence: extension_confirmed
     active: true
-    note: "Methodology §2.4 extension: adds a second CAR private non-sectarian slot (CAR-PNSEC-1 is held by UB). See action_log.md ACTION-002."
+    note: "Methodology §2.4 extension: adds the second CALABARZON private non-sectarian slot for Lyceum of the Philippines Batangas. Originally mis-coded as CAR-PNSEC-2 (Cordillera) before the regional reclassification was caught during the Fig 12 audit. See action_log.md ACTION-002."
 
   FW-06_cleaned.json:
     code: MIN-PUB-1

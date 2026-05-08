@@ -28,7 +28,7 @@ from .io_utils import load_yaml
 # can't be read — e.g., for the `print_estimate` UI before any pipeline ran).
 _FALLBACK_BATCHES = {
     "MM-PSEC-1": 747, "MM-PUB-1": 716, "MM-PNSEC-1": 793, "PROV-PUB-1": 791,
-    "CAR-PNSEC-2": 783, "MIN-PUB-1": 800, "CAR-PUB-1": 458, "CAR-PUB-2": 759,
+    "PROV-PNSEC-1": 783, "MIN-PUB-1": 800, "CAR-PUB-1": 458, "CAR-PUB-2": 759,
     "CAR-PNSEC-1": 799, "CAR-PSEC-1": 773,
 }
 

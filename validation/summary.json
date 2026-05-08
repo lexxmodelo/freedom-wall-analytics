@@ -1,4 +1,4 @@
-{
+﻿{
   "generated_at": "2026-05-08T00:57:36.037935+08:00",
   "schema_version": "hitl-v1.0",
   "metric_definition": {
@@ -89,7 +89,7 @@
       "topic_label_agreement": 0.9697,
       "sarcasm_kappa": 0.7055
     },
-    "CAR-PNSEC-2": {
+    "PROV-PNSEC-1": {
       "anonymized_label": "Private non-sectarian (CALABARZON)",
       "region": "CALABARZON",
       "n_posts_total": 3912,

@@ -86,7 +86,7 @@ For each assigned file:
 | FW-02_cleaned.json | UPD | MM-PUB-1 | Metro Manila |
 | FW-03_cleaned.json | FEU | MM-PNSEC-1 | Metro Manila |
 | FW-04_cleaned.json | UPLB | PROV-PUB-1 | Luzon Provincial |
-| FW-05_cleaned.json | LPU-B | CAR-PNSEC-2 | CAR (extension) |
+| FW-05_cleaned.json | LPU-B | PROV-PNSEC-1 | CALABARZON (extension) |
 | FW-06_cleaned.json | CSU | MIN-PUB-1 | Mindanao (extension) |
 | FW-07_cleaned.json | UPB | CAR-PUB-1 | CAR |
 | FW-08_cleaned.json | BSU | CAR-PUB-2 | CAR |

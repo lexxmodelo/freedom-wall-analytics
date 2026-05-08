@@ -18,24 +18,6 @@
     ]
   },
   {
-    "univ_code": "CAR-PNSEC-2",
-    "school_alias": "LPU-B",
-    "region": "CAR",
-    "post_count": 3912,
-    "topic_count": 30,
-    "vad_coverage": 0.9995,
-    "date_range": [
-      "2025-08-29",
-      "2025-12-27"
-    ],
-    "umap_present": false,
-    "topics_top3": [
-      "Noise",
-      "Student Health and Academic Concerns",
-      "Overpriced Education Quality Concerns"
-    ]
-  },
-  {
     "univ_code": "CAR-PSEC-1",
     "school_alias": "SLU",
     "region": "CAR",
@@ -159,6 +141,24 @@
       "Emotional Student Rants",
       "University Life Struggles",
       "Kpop Fan Longing Expression"
+    ]
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "school_alias": "LPU-B",
+    "region": "CALABARZON",
+    "post_count": 3912,
+    "topic_count": 30,
+    "vad_coverage": 0.9992,
+    "date_range": [
+      "2025-08-29",
+      "2025-12-27"
+    ],
+    "umap_present": false,
+    "topics_top3": [
+      "Noise",
+      "Student Health and Academic Concerns",
+      "Overpriced Education Quality Concerns"
     ]
   },
   {

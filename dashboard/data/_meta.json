@@ -9,15 +9,6 @@
     "umap_present": false
   },
   {
-    "univ_code": "CAR-PNSEC-2",
-    "school_alias": "LPU-B",
-    "region": "CAR",
-    "source_file": "FW-05_cleaned.json",
-    "confidence": "extension_confirmed",
-    "vad_coverage": 0.9995,
-    "umap_present": false
-  },
-  {
     "univ_code": "CAR-PSEC-1",
     "school_alias": "SLU",
     "region": "CAR",
@@ -78,6 +69,15 @@
     "source_file": "FW-02_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 1.0,
+    "umap_present": false
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "school_alias": "LPU-B",
+    "region": "CALABARZON",
+    "source_file": "FW-05_cleaned.json",
+    "confidence": "extension_confirmed",
+    "vad_coverage": 0.9992,
     "umap_present": false
   },
   {
