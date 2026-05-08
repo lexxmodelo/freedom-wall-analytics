@@ -12,6 +12,10 @@ This repository accompanies:
 > Selected Philippine University Freedom Walls.* Bachelor's thesis, Saint
 > Louis University, Baguio City.
 
+The `v1.0-defense` snapshot of this repository is archived on Zenodo:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20085410.svg)](https://doi.org/10.5281/zenodo.20085410)
+— cite the Zenodo record (DOI: [10.5281/zenodo.20085410](https://doi.org/10.5281/zenodo.20085410)) when referencing the code or data artifacts directly.
+
 The repository contains the full pipeline — scraping, anonymization, BERTopic clustering, NVIDIA NIM Llama 3.3 70B labelling, dimensional VAD sentiment scoring, and a two-view browser dashboard — across **ten** Philippine universities spanning four administrative regions: Cordillera Administrative Region (CAR), National Capital Region (NCR), CALABARZON, and CARAGA. Institutions are referenced throughout the artifacts by regional cluster code only; the school-alias mapping has been deliberately stripped from the public release (see [Ethical & privacy posture](#ethical--privacy-posture)).
 
 ---
