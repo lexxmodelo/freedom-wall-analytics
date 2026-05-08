@@ -6,7 +6,7 @@
     "source_file": "FW-09_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 1.0,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "CAR-PSEC-1",
@@ -15,7 +15,7 @@
     "source_file": "SLU_cleaned.json",
     "confidence": "confirmed",
     "vad_coverage": 0.9961,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "CAR-PUB-1",
@@ -24,7 +24,7 @@
     "source_file": "FW-07_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 1.0,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "CAR-PUB-2",
@@ -33,7 +33,7 @@
     "source_file": "FW-08_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 0.9997,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "MIN-PUB-1",
@@ -42,7 +42,7 @@
     "source_file": "FW-06_cleaned.json",
     "confidence": "extension_confirmed",
     "vad_coverage": 1.0,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "MM-PNSEC-1",
@@ -51,7 +51,7 @@
     "source_file": "FW-03_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 1.0,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "MM-PSEC-1",
@@ -60,7 +60,7 @@
     "source_file": "FW-01_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 0.9997,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "MM-PUB-1",
@@ -69,7 +69,7 @@
     "source_file": "FW-02_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 1.0,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "PROV-PNSEC-1",
@@ -78,7 +78,7 @@
     "source_file": "FW-05_cleaned.json",
     "confidence": "extension_confirmed",
     "vad_coverage": 0.9995,
-    "umap_present": false
+    "umap_present": true
   },
   {
     "univ_code": "PROV-PUB-1",
@@ -87,6 +87,6 @@
     "source_file": "FW-04_cleaned.json",
     "confidence": "provisional",
     "vad_coverage": 0.9997,
-    "umap_present": false
+    "umap_present": true
   }
 ]

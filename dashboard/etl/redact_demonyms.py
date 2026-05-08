@@ -225,6 +225,16 @@ def main() -> None:
             process_json_file(univ_dir / "topic_rep_docs.json",
                               [("*", "*", "text"), ("*", "*", "doc")],
                               stats, args.apply)
+            # c-TF-IDF keywords are extracted from post text and can carry
+            # demonyms as feature words. The structure is { topic_id: [{word, score}, ...] }
+            # so the keypath is "*.*.word" (any topic id, any keyword index, the .word field).
+            process_json_file(univ_dir / "topic_keywords.json",
+                              [("*", "*", "word")], stats, args.apply)
+            # Dynamic Topic Modeling output stores per-bin keyword strings like
+            # "man, puro, nag, ..."; redact any demonym-containing entries.
+            process_json_file(univ_dir / "topics_over_time.json",
+                              [("topics_over_time", "*", "words")],
+                              stats, args.apply)
 
     # 2. preprocessing outputs — primary research data; demonyms in `text`
     # field are redacted here per the manuscript anonymisation extension
@@ -247,6 +257,8 @@ def main() -> None:
         for f in sorted(dash_research.glob("*.json")):
             process_json_file(f, [
                 ("topics", "*", "label"),
+                ("topics", "*", "keywords", "*", "word"),
+                ("topics_over_time", "topics_over_time", "*", "words"),
                 ("posts", "*", "text"),
                 ("posts", "*", "topic_label"),
                 ("posts", "*", "topic_label_model"),
@@ -257,6 +269,8 @@ def main() -> None:
         for f in sorted(dash_inst.glob("*.json")):
             process_json_file(f, [
                 ("topics", "*", "label"),
+                ("topics", "*", "keywords", "*", "word"),
+                ("topics_over_time", "topics_over_time", "*", "words"),
                 ("posts", "*", "text"),
                 ("posts", "*", "topic_label"),
                 ("posts", "*", "topic_label_model"),
