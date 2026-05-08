@@ -1,0 +1,187 @@
+[
+  {
+    "topic_id": 0,
+    "label": "Emotional Student Rants",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:47:27 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 358,
+        "total_tokens": 364,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "d8b244972b9474f5ab49bde8eb242571a73388e0f786e179044c9ac1ea783897",
+    "temporal_signature": {
+      "n_with_timestamp": 1818,
+      "monthly_distribution": {
+        "2026-04": 285,
+        "2026-03": 378,
+        "2026-02": 369,
+        "2026-01": 482,
+        "2025-12": 304
+      },
+      "concentrated_months": [
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.2525,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "University Life Struggles",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:47:29 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 403,
+        "total_tokens": 409,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "84983b3275193d5f01c2d458b972ef81fbef75f153f36e674f8c8b6474ec2778",
+    "temporal_signature": {
+      "n_with_timestamp": 1641,
+      "monthly_distribution": {
+        "2026-04": 213,
+        "2026-03": 384,
+        "2026-02": 331,
+        "2026-01": 442,
+        "2024-06": 1,
+        "2025-12": 270
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.2822,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "Kpop Fan Longing Expression",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:47:30 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 221,
+        "total_tokens": 228,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "b7d8d4c5d2be078de255ec433d527dca920f0b2da810a20c2f8a34b68115a2cf",
+    "temporal_signature": {
+      "n_with_timestamp": 90,
+      "monthly_distribution": {
+        "2026-04": 23,
+        "2026-03": 15,
+        "2026-02": 11,
+        "2026-01": 24,
+        "2025-12": 17
+      },
+      "concentrated_months": [
+        "2025-12",
+        "2026-01",
+        "2026-04"
+      ],
+      "gini": 0.2926,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Terms of Endearment",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:47:31 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 175,
+        "total_tokens": 181,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "aae717b11b768d14c2af9c9dd21e0cfda08ab6598595dafc31286a360802d284",
+    "temporal_signature": {
+      "n_with_timestamp": 10,
+      "monthly_distribution": {
+        "2026-03": 3,
+        "2026-02": 1,
+        "2026-01": 5,
+        "2025-12": 1
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-03"
+      ],
+      "gini": 0.5667,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "Crush and Friendship Dynamics",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:47:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 163,
+        "total_tokens": 169,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "f51551e44a34398c69b037915d94e7e523321cd99b5537b11d57996e0175c89e",
+    "temporal_signature": {
+      "n_with_timestamp": 19,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 5,
+        "2026-02": 8,
+        "2026-01": 4,
+        "2025-12": 1
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.4825,
+      "is_event_driven": false
+    }
+  }
+]

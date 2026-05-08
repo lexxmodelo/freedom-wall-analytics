@@ -95,21 +95,6 @@
   "text_mentions_own_region_only": 4931,
   "text_mentions_other_region": 157,
   "timestamp_missing": 0,
-  "schools_loaded": [
-    "ADMU",
-    "UPD",
-    "DLSU",
-    "FEU",
-    "PUP",
-    "UPOU",
-    "UPLB",
-    "LPU-B",
-    "CSU",
-    "UPB",
-    "BSU",
-    "UB",
-    "SLU"
-  ],
   "phases_executed": [
     1,
     2,
@@ -122,5 +107,7 @@
     9,
     10
   ],
-  "near_dup_threshold": 0.9
+  "near_dup_threshold": 0.9,
+  "schools_loaded_count": 13,
+  "_anonymization_note": "schools_loaded array stripped on public release; see Method §Regional anonymization tier system"
 }

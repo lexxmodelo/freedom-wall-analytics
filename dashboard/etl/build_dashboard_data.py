@@ -23,6 +23,7 @@ PREPROC_DIR = ROOT / "preprocessing" / "output"
 TOPIC_DIR = ROOT / "topic_modeling" / "outputs"
 VAD_DIR = ROOT / "vad_scoring" / "results"
 MAPPING_YAML = ROOT / "topic_modeling" / "configs" / "university_mapping.yaml"
+LOCAL_OVERRIDE_YAML = ROOT / "topic_modeling" / "configs" / "university_mapping.local.yaml"
 OUT_DIR = ROOT / "dashboard" / "data"
 
 TS_MIN_VALID = 1577836800   # 2020-01-01
@@ -35,12 +36,23 @@ def load_mapping() -> dict[str, dict]:
     for filename, meta in raw.get("mappings", {}).items():
         if not meta.get("active", True):
             continue
+        alias = meta.get("school_alias")
         out[meta["code"]] = {
             "source_file": filename,
-            "school_alias": meta.get("school_alias", ""),
+            "school_alias": alias if alias else "",
             "region": meta.get("region", ""),
             "confidence": meta.get("confidence", "provisional"),
         }
+
+    # Optional team-internal override: lets local checkouts restore school
+    # aliases for navigation without those aliases ever entering git. The file
+    # is gitignored; production / public builds run without it.
+    if LOCAL_OVERRIDE_YAML.exists():
+        local_raw = yaml.safe_load(LOCAL_OVERRIDE_YAML.read_text(encoding="utf-8")) or {}
+        for code, override in (local_raw.get("overrides") or {}).items():
+            if code in out and isinstance(override, dict):
+                if override.get("school_alias"):
+                    out[code]["school_alias"] = override["school_alias"]
     return out
 
 

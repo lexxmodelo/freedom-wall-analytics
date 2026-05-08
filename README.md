@@ -4,7 +4,15 @@ AI-driven topic modeling and multidimensional sentiment analysis of student disc
 
 **Saint Louis University · School of Accountancy, Management, Computing and Information Studies · Thesis 2.**
 
-The repository contains the full pipeline — scraping, anonymization, BERTopic clustering, NVIDIA NIM Llama 3.3 70B labelling, dimensional VAD sentiment scoring, and a two-view browser dashboard — across **ten** Philippine universities tagged Metro Manila / Luzon Provincial / Baguio-Benguet (CAR).
+This repository accompanies:
+
+> Albarida, I. A., Burgos, M. J., Calera, E. D. S., Gapuz, E. J. C., Llena, A.,
+> Modelo, A. E. O., Salda, J. S., & Viduya, H. E. (2026). *AI-Driven Topic
+> Modeling and Multidimensional Sentiment Analysis of Student Discourse on
+> Selected Philippine University Freedom Walls.* Bachelor's thesis, Saint
+> Louis University, Baguio City.
+
+The repository contains the full pipeline — scraping, anonymization, BERTopic clustering, NVIDIA NIM Llama 3.3 70B labelling, dimensional VAD sentiment scoring, and a two-view browser dashboard — across **ten** Philippine universities spanning four administrative regions: Cordillera Administrative Region (CAR), National Capital Region (NCR), CALABARZON, and CARAGA. Institutions are referenced throughout the artifacts by regional cluster code only; the school-alias mapping has been deliberately stripped from the public release (see [Ethical & privacy posture](#ethical--privacy-posture)).
 
 ---
 
@@ -57,11 +65,11 @@ public posts               regional partitioning           NIM topic labels     
 |---|---|---|---|
 | Scraping | Public FB pages | `scraper_project/data/{code}.json` | Playwright + GraphQL response interception |
 | Preprocessing | Raw scraper JSON | `preprocessing/output/FW-{NN}_cleaned.json` | spaCy + custom regex anonymiser |
-| Topic modelling | Cleaned posts | `topic_modeling/outputs/{UNIV}/` | BERTopic + paraphrase-multilingual-MiniLM-L12-v2; NIM Llama 3.3 for labels |
+| Topic modelling | Cleaned posts | `topic_modeling/outputs/{UNIV}/` | BERTopic + XLM-RoBERTa-Large embeddings (after bake-off vs. paraphrase-multilingual-MiniLM-L12-v2); NIM Llama 3.3 70B for topic labels |
 | VAD scoring | Cleaned posts + topic labels | `vad_scoring/results/researcher_*/{UNIV}_vad_scores.jsonl` | NVIDIA NIM Llama 3.3 70B Instruct, SAM 1–9 scale |
 | Dashboard ETL | All of the above | `dashboard/data/*.json` | `dashboard/etl/build_dashboard_data.py` |
 
-Universities (10): `CAR-PNSEC-1`, `CAR-PSEC-1`, `CAR-PUB-1`, `CAR-PUB-2`, `MIN-PUB-1`, `MM-PNSEC-1`, `MM-PSEC-1`, `MM-PUB-1`, `PROV-PNSEC-1`, `PROV-PUB-1`. Real names and aliases live in `topic_modeling/configs/university_mapping.yaml`.
+Universities (10): `CAR-PNSEC-1`, `CAR-PSEC-1`, `CAR-PUB-1`, `CAR-PUB-2`, `MIN-PUB-1`, `MM-PNSEC-1`, `MM-PSEC-1`, `MM-PUB-1`, `PROV-PNSEC-1`, `PROV-PUB-1`. The mapping in `topic_modeling/configs/university_mapping.yaml` ships with `school_alias: null` for every entry; team-internal navigation uses an optional gitignored `university_mapping.local.yaml` override (see the yaml header for the format).
 
 ---
 
@@ -238,9 +246,26 @@ Onboarding flow for a new teammate who wants to **re-run a pipeline phase**: clo
 ## Ethical & privacy posture
 
 - **Public data only.** The scraper runs without login credentials and skips any page requiring authentication.
-- **Anonymisation happens before any computational analysis.** No raw post text reaches BERTopic or the NIM API until the preprocessing pipeline has stripped names, school identifiers, and other PII. Three regional tags only — Metro Manila / Luzon / Baguio — never school names.
+- **Anonymisation happens before any computational analysis.** No raw post text reaches BERTopic or the NIM API until the preprocessing pipeline has stripped names, school identifiers, and other PII. Four regional tags only — CAR (Cordillera), NCR (Metro Manila), CALABARZON, and CARAGA — never school names.
+- **`school_alias` stripped from the public release.** The institutional mapping in `topic_modeling/configs/university_mapping.yaml` ships with every `school_alias` set to `null`. Team-internal navigation during local development uses the gitignored `university_mapping.local.yaml` override file documented in the yaml header.
+- **Demonym-redacted topic labels.** Llama-generated topic labels and downstream artifacts (per-post VAD scores, dashboard data, validation annotations) have been post-processed to replace school demonyms (e.g., *Atenean*, *Lasallian*, *Aklenean*) and school-identifying program acronyms (*ACET*, *AEGIS*, *IARFA*) with `[REDACTED_DEMONYM]`. The redactor is `dashboard/etl/redact_demonyms.py`; re-run it whenever the topic-labelling stage produces new labels.
+- **Sanitized API caches.** `vad_scoring/api_cache/raw_responses_*.jsonl` carries the SHA-256 of each prompt rather than the prompt body. The pre-sanitization originals (`*.raw.bak`) are gitignored. Sanitization is via `vad_scoring/sanitize_api_cache.py`.
+- **Raw scraper outputs not released.** `scraper_project/data/` is gitignored. Reviewers wishing to verify scraping should re-harvest with the released code.
 - **Data minimisation.** Only post text, timestamps, and engagement counts are collected. No user profiles, no comment threads, no reactions.
-- **Academic use only.** This tool is built for the SLU thesis. The aggregated, anonymised dashboard outputs are the only sharable artifact.
+- **Academic use only.** This tool is built for the SLU thesis. The aggregated, anonymised dashboard outputs are the only sharable artifact for non-academic distribution.
+
+---
+
+## License
+
+Code and data are released under separate licenses to reflect their different reuse profiles:
+
+| Artifact | License | File |
+|---|---|---|
+| Source code (everything in this repo except the data artifacts named below) | **MIT** | [`LICENSE`](LICENSE) |
+| Data artifacts (cleaned corpus, BERTopic outputs, VAD scores, validation annotations, dashboard data) | **CC BY-NC 4.0** with anonymization-integrity rider | [`LICENSE-DATA`](LICENSE-DATA) |
+
+If you use this code or data in published work, please cite the manuscript named at the top of this README.
 
 ---
 
@@ -260,4 +285,4 @@ Saint Louis University, Baguio City · School of Accountancy, Management, Comput
 
 **Thesis adviser:** Dr. Randy Domantay
 
-Topic modelling and VAD scoring use the NVIDIA NIM hosted Llama 3.3 70B Instruct endpoint. Embedding model: `paraphrase-multilingual-MiniLM-L12-v2`. Topic clustering: BERTopic.
+Topic modelling and VAD scoring use the NVIDIA NIM hosted Llama 3.3 70B Instruct endpoint. Embedding model: `FacebookAI/xlm-roberta-large` (1,024-dim), selected after a controlled bake-off against `paraphrase-multilingual-MiniLM-L12-v2` documented in the manuscript and in `topic_modeling/action_log.md`. Topic clustering: BERTopic.

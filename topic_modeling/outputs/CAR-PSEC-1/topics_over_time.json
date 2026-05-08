@@ -1,0 +1,200 @@
+{
+  "n_bins": 9,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3864,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2025-04-19",
+      "frequency": 74,
+      "words": "theyd, walls, theyd say, up, talk theyd"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-04-19",
+      "frequency": 795,
+      "words": "nag, crush, time, man, hi"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-04-19",
+      "frequency": 351,
+      "words": "im, dont, time, up, youre"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-04-19",
+      "frequency": 260,
+      "words": "hi, miss, crush, lf, sir"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-04-19",
+      "frequency": 33,
+      "words": "miss miss, miss, seconds, 20 seconds, 20"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-04-19",
+      "frequency": 39,
+      "words": "hahahahahaha, hahahahahahaha, hahahahaha, hi, fee"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-04-19",
+      "frequency": 45,
+      "words": "tung, tung tung, ayaw, ayaw ayaw, fuck"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-04-19",
+      "frequency": 17,
+      "words": "gosh, thursday, cubicle, sabay, good luck"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2025-04-19",
+      "frequency": 23,
+      "words": "hahahahaha, log, hahahahahahaha, lf, hi"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2025-04-19",
+      "frequency": 5,
+      "words": "im, videos, dont, said, move"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-05-31",
+      "frequency": 1,
+      "words": "pride, 26, nag mmartsa, mmartsa, karahasan"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-07-12",
+      "frequency": 3,
+      "words": "1st birthday, entries ayaw, 1230 main, fight august, puro edit"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-02-07",
+      "frequency": 24,
+      "words": "walls, way pagturo, sea, pagturo, sir"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-07",
+      "frequency": 239,
+      "words": "time, since, man, nag, tas"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-07",
+      "frequency": 110,
+      "words": "im, dont, time, up, youre"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-07",
+      "frequency": 87,
+      "words": "crush, hi, lf, miss, back"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-07",
+      "frequency": 16,
+      "words": "tas, amoy, alam, kwek, namen"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-07",
+      "frequency": 14,
+      "words": "hahahahahaha, sorry, sorry ulit, tuition, tuition fee"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-02-07",
+      "frequency": 3,
+      "words": "okayimfinee, hndii okayimfinee, butii ungg, butii, ungg nagbabalikkk"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-02-07",
+      "frequency": 6,
+      "words": "pakibalik, che guards, canada, andiyan andami, prelims basic"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-02-07",
+      "frequency": 4,
+      "words": "roommate, pagod, ata, hi pharma, umingle feb"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-02-07",
+      "frequency": 4,
+      "words": "allowed, time, asked, change, call"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-03-21",
+      "frequency": 53,
+      "words": "aha, theyd, walls, padin, nag"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-21",
+      "frequency": 892,
+      "words": "nag, crush, online, time, lab"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-21",
+      "frequency": 380,
+      "words": "im, dont, time, up, people"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-21",
+      "frequency": 256,
+      "words": "miss, hi, crush, sir, lf"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-03-21",
+      "frequency": 35,
+      "words": "jeep, nag, bang, floor, baho"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-03-21",
+      "frequency": 27,
+      "words": "hahahahahaha, hahahahaha, hahahah, magmahal, crush"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-03-21",
+      "frequency": 27,
+      "words": "stp, oo, due, ssc, unexcused"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-03-21",
+      "frequency": 17,
+      "words": "sched, off light, nakikita, hawak beat, carwash"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-03-21",
+      "frequency": 12,
+      "words": "hahahahaha, sea, everywhere, legit, pharma"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-03-21",
+      "frequency": 12,
+      "words": "im, think, people, dont, up"
+    }
+  ]
+}

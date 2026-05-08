@@ -1,0 +1,158 @@
+{
+  "n_bins": 5,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3955,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2025-12-10",
+      "frequency": 1,
+      "words": "random mlm, season pagbigyan, miss random, pagbigyan hi, balik ill"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-12-10",
+      "frequency": 731,
+      "words": "crush, up, time, kapag, im"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-12-10",
+      "frequency": 463,
+      "words": "im, dont, up, time, love"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-12-10",
+      "frequency": 5,
+      "words": "makukuha while, while andyan, andyan, crave, makukuha"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-12-10",
+      "frequency": 3,
+      "words": "update blocked, naaattract, naaattract humor, humor reels, batiin pasko"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-12-10",
+      "frequency": 6,
+      "words": "hk, pano, shoutout 59, pakawalan yang, shout devcom"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-01-07",
+      "frequency": 2,
+      "words": "yasss crush, yasss, ilonggo feb, ge inspiration, lf ilonggo"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-07",
+      "frequency": 571,
+      "words": "crush, up, time, need, kapag"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-07",
+      "frequency": 420,
+      "words": "im, dont, up, time, someone"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-07",
+      "frequency": 12,
+      "words": "organic, crush, usad, organic encounter, hahahahahaha"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-07",
+      "frequency": 12,
+      "words": "pindot, masakit reject, reject, secured, locked"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-02-03",
+      "frequency": 3,
+      "words": "clone, frenemy, conversation, doppelgangers, irl chat"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-03",
+      "frequency": 495,
+      "words": "fair, feb, up, crush, feb fair"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-03",
+      "frequency": 337,
+      "words": "im, dont, time, up, love"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-03",
+      "frequency": 13,
+      "words": "crush, juice, buko, crush crush, siomai"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-03",
+      "frequency": 3,
+      "words": "umupo bldg, sight ata, passing joke, bldg passing, iskang happy"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-03",
+      "frequency": 8,
+      "words": "lauf, fee, truth hahahahaha, soft launch, tlga tas"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-03-03",
+      "frequency": 2,
+      "words": "baliw, yanh, universe magkatuluyan, malalamang single, magtravel manila"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-03",
+      "frequency": 279,
+      "words": "friend, time, up, kapag, friends"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-03",
+      "frequency": 202,
+      "words": "im, love, dont, people, time"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-03",
+      "frequency": 2,
+      "words": "wag, max 1tb, nyan te, crush semesters, communication bigla"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-03-03",
+      "frequency": 2,
+      "words": "think dating, totohanin ninong, totohanin, ninong wag, crush hard"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-30",
+      "frequency": 232,
+      "words": "up, crush, org, time, im"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-30",
+      "frequency": 146,
+      "words": "im, dont, love, time, up"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-30",
+      "frequency": 5,
+      "words": "timer, fun, san, hahahaahhha san, ganto masaya"
+    }
+  ]
+}

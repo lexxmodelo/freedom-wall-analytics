@@ -1,7 +1,7 @@
 [
   {
     "univ_code": "CAR-PNSEC-1",
-    "school_alias": "UB",
+    "school_alias": "",
     "region": "CAR",
     "post_count": 3991,
     "topic_count": 8,
@@ -19,7 +19,7 @@
   },
   {
     "univ_code": "CAR-PSEC-1",
-    "school_alias": "SLU",
+    "school_alias": "",
     "region": "CAR",
     "post_count": 3864,
     "topic_count": 10,
@@ -37,7 +37,7 @@
   },
   {
     "univ_code": "CAR-PUB-1",
-    "school_alias": "UPB",
+    "school_alias": "",
     "region": "CAR",
     "post_count": 2287,
     "topic_count": 7,
@@ -55,7 +55,7 @@
   },
   {
     "univ_code": "CAR-PUB-2",
-    "school_alias": "BSU",
+    "school_alias": "",
     "region": "CAR",
     "post_count": 3791,
     "topic_count": 7,
@@ -73,7 +73,7 @@
   },
   {
     "univ_code": "MIN-PUB-1",
-    "school_alias": "CSU",
+    "school_alias": "",
     "region": "CARAGA",
     "post_count": 3998,
     "topic_count": 30,
@@ -91,7 +91,7 @@
   },
   {
     "univ_code": "MM-PNSEC-1",
-    "school_alias": "FEU",
+    "school_alias": "",
     "region": "NCR",
     "post_count": 3963,
     "topic_count": 8,
@@ -109,7 +109,7 @@
   },
   {
     "univ_code": "MM-PSEC-1",
-    "school_alias": "ADMU",
+    "school_alias": "",
     "region": "NCR",
     "post_count": 3735,
     "topic_count": 45,
@@ -121,13 +121,13 @@
     "umap_present": false,
     "topics_top3": [
       "Noise",
-      "Atenean Student Behavior Criticism",
+      "[REDACTED_DEMONYM] Student Behavior Criticism",
       "Inquiry about relationship status"
     ]
   },
   {
     "univ_code": "MM-PUB-1",
-    "school_alias": "UPD",
+    "school_alias": "",
     "region": "NCR",
     "post_count": 3578,
     "topic_count": 5,
@@ -145,11 +145,11 @@
   },
   {
     "univ_code": "PROV-PNSEC-1",
-    "school_alias": "LPU-B",
+    "school_alias": "",
     "region": "CALABARZON",
     "post_count": 3912,
     "topic_count": 30,
-    "vad_coverage": 0.9992,
+    "vad_coverage": 0.9995,
     "date_range": [
       "2025-08-29",
       "2025-12-27"
@@ -163,7 +163,7 @@
   },
   {
     "univ_code": "PROV-PUB-1",
-    "school_alias": "UPLB",
+    "school_alias": "",
     "region": "CALABARZON",
     "post_count": 3955,
     "topic_count": 6,

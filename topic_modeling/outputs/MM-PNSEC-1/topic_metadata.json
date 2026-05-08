@@ -1,0 +1,27 @@
+{
+  "n_topics": 7,
+  "n_outliers": 21,
+  "outlier_rate": 0.0053,
+  "npmi": -0.0024,
+  "silhouette": 0.2026,
+  "topic_sizes": {
+    "-1": 21,
+    "0": 1860,
+    "1": 1856,
+    "2": 83,
+    "3": 48,
+    "4": 47,
+    "5": 37,
+    "6": 11
+  },
+  "hdbscan_params": {
+    "min_cluster_size": 10,
+    "min_samples": 10
+  },
+  "soft_stats": {
+    "reassigned": 0,
+    "outlier_count": 21,
+    "threshold": 0.5,
+    "post_reassignment_outlier_rate": 0.005299015897047691
+  }
+}

@@ -1,0 +1,746 @@
+{
+  "n_bins": 5,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3998,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2026-01-16",
+      "frequency": 636,
+      "words": "date, entry, entry date, naa, ug"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-16",
+      "frequency": 149,
+      "words": "date, entry date, entry, ug, basin"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-16",
+      "frequency": 86,
+      "words": "ug, man, nag, nako, naa"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-16",
+      "frequency": 87,
+      "words": "date, entry date, entry, lf, hi"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-16",
+      "frequency": 102,
+      "words": "entry date, entry, date, naa, gc"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-01-16",
+      "frequency": 44,
+      "words": "im, youre, entry, date, entry date"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-01-16",
+      "frequency": 52,
+      "words": "date, entry date, entry, pe, tes"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-01-16",
+      "frequency": 24,
+      "words": "im, nimo, dili, love, time"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-01-16",
+      "frequency": 56,
+      "words": "entry date, entry, date, gc, naa"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-01-16",
+      "frequency": 37,
+      "words": "nako, date, entry date, entry, manifesting suspended"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-01-16",
+      "frequency": 33,
+      "words": "entry date, entry, date, naa, basin"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-01-16",
+      "frequency": 26,
+      "words": "selling, below, date, entry date, entry"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-01-16",
+      "frequency": 22,
+      "words": "date, entry date, entry, hahahahaha, m7"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-01-16",
+      "frequency": 18,
+      "words": "didnt, im, love, myself, dont"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-01-16",
+      "frequency": 18,
+      "words": "date, entry date, entry, og, umbrella"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-01-16",
+      "frequency": 14,
+      "words": "lf kauban, date, nstp, entry date, entry"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-01-16",
+      "frequency": 10,
+      "words": "relationship, something, im, girl, time"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-01-16",
+      "frequency": 14,
+      "words": "cwts, gc, date, entry date, entry"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-01-16",
+      "frequency": 5,
+      "words": "leadership, president, others, tes, while"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-01-16",
+      "frequency": 10,
+      "words": "entry, date, entry date, shoutout, field"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-01-16",
+      "frequency": 7,
+      "words": "og, ink, lf, lf boarding, entry date"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-01-16",
+      "frequency": 2,
+      "words": "fsfsfsfs entry, fsfsfsfs, help fsfsfsfs, ngano brt2, brt2"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-01-16",
+      "frequency": 5,
+      "words": "tdp, id, materials, notes, entry date"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-01-16",
+      "frequency": 2,
+      "words": "sale, anyone watch, season fallout, 80548, 235342"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-01-16",
+      "frequency": 7,
+      "words": "team, date, id, entry date, entry"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-01-16",
+      "frequency": 4,
+      "words": "kang, imo, man, 02243, 121 151528"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-02-06",
+      "frequency": 492,
+      "words": "date, entry, entry date, naa, ug"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-06",
+      "frequency": 98,
+      "words": "date, entry date, entry, ug, churv"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-06",
+      "frequency": 76,
+      "words": "ug, man, nag, nako, naa"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-06",
+      "frequency": 72,
+      "words": "date, entry date, entry, looking, hi"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-06",
+      "frequency": 51,
+      "words": "entry date, entry, date, naa, lf"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-06",
+      "frequency": 34,
+      "words": "dont, im, entry, entry date, date"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-02-06",
+      "frequency": 55,
+      "words": "date, entry date, entry, date 220, 220"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-02-06",
+      "frequency": 23,
+      "words": "god, man, time, date, entry date"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-02-06",
+      "frequency": 36,
+      "words": "entry date, entry, date, basin, naa"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-02-06",
+      "frequency": 24,
+      "words": "date, entry date, entry, nako, og"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-02-06",
+      "frequency": 18,
+      "words": "naa, entry date, date, entry, green gate"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-02-06",
+      "frequency": 32,
+      "words": "selling, affordable, date, entry date, entry"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-02-06",
+      "frequency": 23,
+      "words": "date, entry date, entry, date 221, 221"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-02-06",
+      "frequency": 17,
+      "words": "love, something, im, dont, myself"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-02-06",
+      "frequency": 18,
+      "words": "entry date, entry, date, swap, sakong"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-02-06",
+      "frequency": 15,
+      "words": "date, entry date, entry, cor, tryout"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-02-06",
+      "frequency": 7,
+      "words": "girl, platoon, friends, liked, dont"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-02-06",
+      "frequency": 8,
+      "words": "maaam, entry date, entry, date, hi"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-02-06",
+      "frequency": 2,
+      "words": "weather, safety, utmost, flooding, roads"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-02-06",
+      "frequency": 4,
+      "words": "guru, ack, hahahah, convo, bah"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-02-06",
+      "frequency": 7,
+      "words": "og, illustrator, photoshop, adobe, gatepass"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-02-06",
+      "frequency": 12,
+      "words": "swap, date 220, 220, temu, swap temu"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-02-06",
+      "frequency": 7,
+      "words": "tdp, entry date, entry, oas, date"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-02-06",
+      "frequency": 4,
+      "words": "blackhole, night, friday night, ive, friday"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2026-02-06",
+      "frequency": 13,
+      "words": "temu, cashback, gcash cashback, gcash, 30000 gcash"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-02-06",
+      "frequency": 4,
+      "words": "dylhitm, labad, bh, date 223, 223"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-02-06",
+      "frequency": 4,
+      "words": "pocket wifi, pocket, kang, sakay, case"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-02-27",
+      "frequency": 80,
+      "words": "date, entry, entry date, posted, date posted"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-27",
+      "frequency": 18,
+      "words": "date, date 227, 227, entry date, entry"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-27",
+      "frequency": 9,
+      "words": "ug, og, uban, nag, nimo"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-27",
+      "frequency": 18,
+      "words": "0309, posted 0309, date posted, posted, date"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "orange app, code orange, swap code, app, orange"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-27",
+      "frequency": 17,
+      "words": "im, move, dont, fade, feature"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-02-27",
+      "frequency": 4,
+      "words": "date 31, 31, 0309, posted 0309, date posted"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-02-27",
+      "frequency": 5,
+      "words": "masaya, masaya masaya, buhay sisigla, sisigla, sisigla masaya"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-02-27",
+      "frequency": 7,
+      "words": "whole day, date 31, date, 31, whole"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-02-27",
+      "frequency": 7,
+      "words": "tdp, inyo, pussycat, pussycat churv, bag tes"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "miming, date 227, 227, naay miming, original samsung"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-02-27",
+      "frequency": 5,
+      "words": "printing, fun, sizes, gaming, available"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "down app, hehehe little, hellloo, hellloo saw, yer"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-02-27",
+      "frequency": 4,
+      "words": "0309, posted 0309, date posted, posted, hahahah secret"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-02-27",
+      "frequency": 6,
+      "words": "love, something, god, up, thought"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "charger, hall 205, iphone charger, 205, charger masawa"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "pickleball, way net, dula lingaw2, knsay gadula, girl arthur"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "grantees iscutie, gratsieee, gratsieee tes, iscutie churv, open visit"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-02-27",
+      "frequency": 5,
+      "words": "posted 0309, 0309, posted, qgis, date posted"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-02-27",
+      "frequency": 2,
+      "words": "something, said, library, song, unsa tong"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-02-27",
+      "frequency": 1,
+      "words": "ra budget, 500800 chasser, 85711, 31 85711, 500800"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-02-27",
+      "frequency": 1,
+      "words": "31 04627, mid og, agroforestry cofes, lf mid, try agroforestry"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-02-27",
+      "frequency": 1,
+      "words": "piercing, septumbelly, pricey help, pod tana, 31 33052"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-02-27",
+      "frequency": 1,
+      "words": "part archery, 226 154939, csucc part, club entry, 154939"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-02-27",
+      "frequency": 1,
+      "words": "vhakit nag, 55241, siyaparinkahitdiniyaakogusto entry, siyaparinkahitdiniyaakogusto, ing vhakit"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-03-21",
+      "frequency": 248,
+      "words": "churv, ug, naa, man, date"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-21",
+      "frequency": 119,
+      "words": "churv, score, ask, gi, man"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-21",
+      "frequency": 37,
+      "words": "man, nako, ug, gi, nag"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-21",
+      "frequency": 2,
+      "words": "rent, inch 65, 65, apricot size, apricot"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-03-21",
+      "frequency": 6,
+      "words": "lord, churv, social work, social, youuu rainy"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-03-21",
+      "frequency": 28,
+      "words": "churv, im, bs, offered, ask"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-03-21",
+      "frequency": 25,
+      "words": "churv, psych, im, ask, score"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-03-21",
+      "frequency": 2,
+      "words": "practical, lisod, math, practical dili, cancel napud"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-03-21",
+      "frequency": 13,
+      "words": "gv, event, churv, dli, nako"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-03-21",
+      "frequency": 6,
+      "words": "isaiah, isaiah churv, paspas, unta, arf"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-03-21",
+      "frequency": 2,
+      "words": "march 24, found, masawa hall, march, tumbler"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-03-21",
+      "frequency": 21,
+      "words": "churv, anaphase, adding, watching, love"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-03-21",
+      "frequency": 6,
+      "words": "diay, bsed, pajud, uy, issue"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-03-21",
+      "frequency": 5,
+      "words": "someone, up, people, dreams, dont"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-03-21",
+      "frequency": 2,
+      "words": "paku redi, ayoo kayko, yu lami, oy layo2, mobalik"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-03-21",
+      "frequency": 14,
+      "words": "churv, churv hi, error, churv ask, ask"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-03-21",
+      "frequency": 20,
+      "words": "churv, yourdad8756, chingchang, yourdad8756 churv, chingchang churv"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-03-21",
+      "frequency": 1,
+      "words": "ayha rapud, ning pacegslaban, nalain, pacegslaban sure, nalain ning"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-03-21",
+      "frequency": 7,
+      "words": "dili, dont, amoa, time, ra"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-03-21",
+      "frequency": 8,
+      "words": "every, drivers, online, others, public"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-03-21",
+      "frequency": 4,
+      "words": "hahahha, psych, churv, enter hahahahahaha321, ego desperate"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-03-21",
+      "frequency": 1,
+      "words": "csucc, shift, bsit1styr llyr, shift struggle, struggle akong"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-03-21",
+      "frequency": 2,
+      "words": "thing gooo, try baby, sign im, aloneee whatif, aloneee"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-03-21",
+      "frequency": 1,
+      "words": "oi aldo13sec, ingani ground, ground oi, napoy, unta napoy"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-04-11",
+      "frequency": 231,
+      "words": "churv, im, date, naa, entry"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-04-11",
+      "frequency": 93,
+      "words": "churv, ug, naa, man, ask"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-04-11",
+      "frequency": 46,
+      "words": "ug, man, naa, gi, dili"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-04-11",
+      "frequency": 8,
+      "words": "11 pro, iphone, iphone 11, pro, 11"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-04-11",
+      "frequency": 40,
+      "words": "im, churv, dont, time, requirements"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-04-11",
+      "frequency": 27,
+      "words": "churv, im, time, dont, man"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-04-11",
+      "frequency": 1,
+      "words": "kaw, usg, piniliay sab, auditor waya, kundi sige"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-04-11",
+      "frequency": 14,
+      "words": "churv, nako, bsa, parents, dli"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-04-11",
+      "frequency": 7,
+      "words": "straight, unsay, unsay feeling, churv, interview"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-04-11",
+      "frequency": 1,
+      "words": "ra description, reward badly, ccis bsit, metalic frame, sunglasses today"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-04-11",
+      "frequency": 38,
+      "words": "churv, gnosis churv, gnosis, ask, knowledge"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-04-11",
+      "frequency": 6,
+      "words": "churv, wdym take, gibati naay, churv kayko, churv mainspire"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-04-11",
+      "frequency": 11,
+      "words": "something, im, myself, dont, up"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-04-11",
+      "frequency": 5,
+      "words": "browni, kauyabon, broken, actions, words"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-04-11",
+      "frequency": 22,
+      "words": "churv, churv basin, churv hi, unsaon, naa"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-04-11",
+      "frequency": 16,
+      "words": "churv, yourdad8756, yourdad8756 churv, chingchang, chingchang churv"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-04-11",
+      "frequency": 8,
+      "words": "nursing, doctor, dili, pursue, time"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-04-11",
+      "frequency": 6,
+      "words": "court, pickleball, space, pickleball court, tambayan"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-04-11",
+      "frequency": 3,
+      "words": "freshman bsece, ganaptheme entrada, guyss iadopt, entrada ky, hahahah ask"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-04-11",
+      "frequency": 1,
+      "words": "need help, steph67, pouch aka, pouch, product taraw"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-04-11",
+      "frequency": 4,
+      "words": "price, tiramisu churv, tiramisu, preferably good, price preferably"
+    }
+  ]
+}

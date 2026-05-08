@@ -1,0 +1,2153 @@
+[
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Academic Integrity Concerns",
+    "n": 11,
+    "V_mean": 2.273,
+    "V_median": 2,
+    "A_mean": 7.636,
+    "A_median": 8,
+    "D_mean": 4.636,
+    "D_median": 5,
+    "sarcasm_pct": 27.27,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Apple Device Resale Listings",
+    "n": 20,
+    "V_mean": 6.45,
+    "V_median": 7.0,
+    "A_mean": 5.25,
+    "A_median": 6.0,
+    "D_mean": 6.5,
+    "D_median": 7.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Emotional Relationships and Loss",
+    "n": 928,
+    "V_mean": 5.862,
+    "V_median": 6.0,
+    "A_mean": 4.734,
+    "A_median": 5.0,
+    "D_mean": 5.888,
+    "D_median": 6.0,
+    "sarcasm_pct": 4.31,
+    "flag_counts": {
+      "sarcasm_high_valence": 4
+    }
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "SNS Student Behavior Complaints",
+    "n": 239,
+    "V_mean": 4.565,
+    "V_median": 4,
+    "A_mean": 6.874,
+    "A_median": 7,
+    "D_mean": 5.289,
+    "D_median": 5,
+    "sarcasm_pct": 10.46,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Student Debt and Infidelity",
+    "n": 76,
+    "V_mean": 5.145,
+    "V_median": 6.0,
+    "A_mean": 6.408,
+    "A_median": 7.0,
+    "D_mean": 5.368,
+    "D_median": 5.0,
+    "sarcasm_pct": 15.79,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Toxic Campus Relationships",
+    "n": 2585,
+    "V_mean": 5.029,
+    "V_median": 5,
+    "A_mean": 5.66,
+    "A_median": 6,
+    "D_mean": 5.543,
+    "D_median": 6,
+    "sarcasm_pct": 12.92,
+    "flag_counts": {
+      "sarcasm_high_valence": 23
+    }
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "Unclassified",
+    "n": 62,
+    "V_mean": 6.306,
+    "V_median": 7.0,
+    "A_mean": 5.161,
+    "A_median": 5.0,
+    "D_mean": 6.145,
+    "D_median": 6.5,
+    "sarcasm_pct": 1.61,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PNSEC-1",
+    "topic_label": "University Student Confessions",
+    "n": 70,
+    "V_mean": 6.814,
+    "V_median": 7.0,
+    "A_mean": 5.143,
+    "A_median": 5.0,
+    "D_mean": 6.143,
+    "D_median": 6.0,
+    "sarcasm_pct": 1.43,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Crush Confessions in SEA",
+    "n": 39,
+    "V_mean": 7.744,
+    "V_median": 8,
+    "A_mean": 7.308,
+    "A_median": 7,
+    "D_mean": 6.385,
+    "D_median": 6,
+    "sarcasm_pct": 10.26,
+    "flag_counts": {
+      "sarcasm_high_valence": 3
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Resistance to Institutional Change",
+    "n": 21,
+    "V_mean": 3.381,
+    "V_median": 3,
+    "A_mean": 7.667,
+    "A_median": 8,
+    "D_mean": 6.286,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Student Campus Life Concerns",
+    "n": 1921,
+    "V_mean": 4.998,
+    "V_median": 5,
+    "A_mean": 5.473,
+    "A_median": 6,
+    "D_mean": 5.346,
+    "D_median": 5,
+    "sarcasm_pct": 11.61,
+    "flag_counts": {
+      "sarcasm_high_valence": 16
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Student Frustration with University Policies",
+    "n": 75,
+    "V_mean": 3.827,
+    "V_median": 3,
+    "A_mean": 7.373,
+    "A_median": 8,
+    "D_mean": 4.427,
+    "D_median": 4,
+    "sarcasm_pct": 16.0,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Student Life Concerns",
+    "n": 37,
+    "V_mean": 5.324,
+    "V_median": 5,
+    "A_mean": 6.838,
+    "A_median": 7,
+    "D_mean": 5.324,
+    "D_median": 5,
+    "sarcasm_pct": 10.81,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Student Romantic Interactions",
+    "n": 605,
+    "V_mean": 6.544,
+    "V_median": 7,
+    "A_mean": 5.402,
+    "A_median": 6,
+    "D_mean": 5.911,
+    "D_median": 6,
+    "sarcasm_pct": 2.81,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Student Transportation Complaints",
+    "n": 84,
+    "V_mean": 3.714,
+    "V_median": 2.0,
+    "A_mean": 7.643,
+    "A_median": 8.0,
+    "D_mean": 4.583,
+    "D_median": 4.0,
+    "sarcasm_pct": 8.33,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Tuition Fee Increase Protests",
+    "n": 80,
+    "V_mean": 6.5,
+    "V_median": 7.0,
+    "A_mean": 7.325,
+    "A_median": 8.0,
+    "D_mean": 6.35,
+    "D_median": 6.5,
+    "sarcasm_pct": 26.25,
+    "flag_counts": {
+      "sarcasm_high_valence": 11
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Unclassified",
+    "n": 151,
+    "V_mean": 5.808,
+    "V_median": 6,
+    "A_mean": 5.762,
+    "A_median": 6,
+    "D_mean": 5.748,
+    "D_median": 6,
+    "sarcasm_pct": 16.56,
+    "flag_counts": {
+      "sarcasm_high_valence": 6
+    }
+  },
+  {
+    "univ_code": "CAR-PSEC-1",
+    "topic_label": "Unrequited Love Confessions",
+    "n": 836,
+    "V_mean": 5.499,
+    "V_median": 6.0,
+    "A_mean": 5.278,
+    "A_median": 5.0,
+    "D_mean": 5.638,
+    "D_median": 6.0,
+    "sarcasm_pct": 3.95,
+    "flag_counts": {
+      "sarcasm_high_valence": 6
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Amused Reactions to Cheating",
+    "n": 25,
+    "V_mean": 8.04,
+    "V_median": 8,
+    "A_mean": 7.68,
+    "A_median": 8,
+    "D_mean": 6.92,
+    "D_median": 7,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Personal College Life Experiences",
+    "n": 924,
+    "V_mean": 5.811,
+    "V_median": 6.0,
+    "A_mean": 5.149,
+    "A_median": 5.0,
+    "D_mean": 5.865,
+    "D_median": 6.0,
+    "sarcasm_pct": 5.41,
+    "flag_counts": {
+      "sarcasm_high_valence": 9
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Roommate Noise Complaints",
+    "n": 45,
+    "V_mean": 4.378,
+    "V_median": 3,
+    "A_mean": 7.689,
+    "A_median": 8,
+    "D_mean": 5.022,
+    "D_median": 5,
+    "sarcasm_pct": 13.33,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Student Frustrations and Quirks",
+    "n": 57,
+    "V_mean": 5.86,
+    "V_median": 6,
+    "A_mean": 7.105,
+    "A_median": 7,
+    "D_mean": 5.877,
+    "D_median": 6,
+    "sarcasm_pct": 5.26,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Student Politics and Stereotypes",
+    "n": 1214,
+    "V_mean": 5.143,
+    "V_median": 5.0,
+    "A_mean": 5.498,
+    "A_median": 6.0,
+    "D_mean": 5.596,
+    "D_median": 6.0,
+    "sarcasm_pct": 13.26,
+    "flag_counts": {
+      "sarcasm_high_valence": 10
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "Unclassified",
+    "n": 12,
+    "V_mean": 6.333,
+    "V_median": 6.5,
+    "A_mean": 6.25,
+    "A_median": 7.0,
+    "D_mean": 5.583,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-1",
+    "topic_label": "University Student Organization Elections",
+    "n": 10,
+    "V_mean": 5,
+    "V_median": 5.5,
+    "A_mean": 6,
+    "A_median": 6.0,
+    "D_mean": 6.5,
+    "D_median": 7.0,
+    "sarcasm_pct": 10.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "First Year Student Confessions",
+    "n": 3654,
+    "V_mean": 5.834,
+    "V_median": 6.0,
+    "A_mean": 5.471,
+    "A_median": 6.0,
+    "D_mean": 5.828,
+    "D_median": 6.0,
+    "sarcasm_pct": 8.46,
+    "flag_counts": {
+      "sarcasm_high_valence": 40,
+      "range_clamped": 1,
+      "v_clamped": 1,
+      "a_clamped": 1,
+      "d_clamped": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "Student Complaints on Academic Overload",
+    "n": 30,
+    "V_mean": 3.967,
+    "V_median": 2.5,
+    "A_mean": 7.1,
+    "A_median": 8.0,
+    "D_mean": 5.167,
+    "D_median": 5.0,
+    "sarcasm_pct": 13.33,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "Student Concerns and Crushes",
+    "n": 54,
+    "V_mean": 5.648,
+    "V_median": 6.0,
+    "A_mean": 6.593,
+    "A_median": 7.0,
+    "D_mean": 5.611,
+    "D_median": 6.0,
+    "sarcasm_pct": 9.26,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "Unclassified",
+    "n": 7,
+    "V_mean": 4.429,
+    "V_median": 3,
+    "A_mean": 7.571,
+    "A_median": 7,
+    "D_mean": 5.429,
+    "D_median": 5,
+    "sarcasm_pct": 28.57,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "University Rankings Concerns",
+    "n": 10,
+    "V_mean": 6.4,
+    "V_median": 7.0,
+    "A_mean": 5.5,
+    "A_median": 6.0,
+    "D_mean": 5.3,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "University Student Casual Conversations",
+    "n": 24,
+    "V_mean": 6.167,
+    "V_median": 7.0,
+    "A_mean": 6.542,
+    "A_median": 7.0,
+    "D_mean": 6.083,
+    "D_median": 6.5,
+    "sarcasm_pct": 4.17,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "CAR-PUB-2",
+    "topic_label": "University Student Crush Confessions",
+    "n": 11,
+    "V_mean": 7.273,
+    "V_median": 8,
+    "A_mean": 7.636,
+    "A_median": 8,
+    "D_mean": 6.636,
+    "D_median": 7,
+    "sarcasm_pct": 27.27,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Academic Concerns and Leadership",
+    "n": 21,
+    "V_mean": 5.667,
+    "V_median": 6,
+    "A_mean": 5.81,
+    "A_median": 6,
+    "D_mean": 7.048,
+    "D_median": 7,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Amusing Student Life Updates",
+    "n": 21,
+    "V_mean": 7.952,
+    "V_median": 8,
+    "A_mean": 7.524,
+    "A_median": 8,
+    "D_mean": 6.952,
+    "D_median": 7,
+    "sarcasm_pct": 4.76,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "CWTS Group Chat Requests",
+    "n": 23,
+    "V_mean": 6.043,
+    "V_median": 6,
+    "A_mean": 4.13,
+    "A_median": 4,
+    "D_mean": 5.739,
+    "D_median": 6,
+    "sarcasm_pct": 4.35,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Churv Technical Issues",
+    "n": 38,
+    "V_mean": 5.474,
+    "V_median": 6.0,
+    "A_mean": 4.737,
+    "A_median": 4.0,
+    "D_mean": 5.132,
+    "D_median": 5.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Churv User Interactions",
+    "n": 38,
+    "V_mean": 6,
+    "V_median": 6.0,
+    "A_mean": 4.289,
+    "A_median": 4.0,
+    "D_mean": 5.842,
+    "D_median": 6.0,
+    "sarcasm_pct": 2.63,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Cold Weather Class Suspension",
+    "n": 95,
+    "V_mean": 5.495,
+    "V_median": 6,
+    "A_mean": 6.663,
+    "A_median": 7,
+    "D_mean": 5.516,
+    "D_median": 6,
+    "sarcasm_pct": 7.37,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Flirtatious Student Confessions",
+    "n": 10,
+    "V_mean": 6.9,
+    "V_median": 8.0,
+    "A_mean": 6.1,
+    "A_median": 6.5,
+    "D_mean": 6.6,
+    "D_median": 7.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Gnosis Churv User Discussions",
+    "n": 61,
+    "V_mean": 6.393,
+    "V_median": 6,
+    "A_mean": 4.541,
+    "A_median": 4,
+    "D_mean": 6.426,
+    "D_median": 7,
+    "sarcasm_pct": 8.2,
+    "flag_counts": {
+      "sarcasm_high_valence": 3
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Group Chat Requests",
+    "n": 169,
+    "V_mean": 6.071,
+    "V_median": 6,
+    "A_mean": 4.55,
+    "A_median": 4,
+    "D_mean": 5.751,
+    "D_median": 6,
+    "sarcasm_pct": 0.59,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Kpop Music and Tech Issues",
+    "n": 13,
+    "V_mean": 7.769,
+    "V_median": 8,
+    "A_mean": 6.615,
+    "A_median": 7,
+    "D_mean": 6.923,
+    "D_median": 8,
+    "sarcasm_pct": 7.69,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Lost and Found Items",
+    "n": 66,
+    "V_mean": 5.818,
+    "V_median": 6.0,
+    "A_mean": 4.742,
+    "A_median": 5.0,
+    "D_mean": 5.394,
+    "D_median": 6.0,
+    "sarcasm_pct": 1.52,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Relationship Concerns and Advice",
+    "n": 254,
+    "V_mean": 5.197,
+    "V_median": 5.0,
+    "A_mean": 5.917,
+    "A_median": 6.0,
+    "D_mean": 5.425,
+    "D_median": 5.0,
+    "sarcasm_pct": 4.33,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Selling Scientific Calculators",
+    "n": 179,
+    "V_mean": 6.274,
+    "V_median": 6,
+    "A_mean": 4.341,
+    "A_median": 4,
+    "D_mean": 6.017,
+    "D_median": 6,
+    "sarcasm_pct": 1.68,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Concerns and Queries",
+    "n": 111,
+    "V_mean": 5.297,
+    "V_median": 5,
+    "A_mean": 4.838,
+    "A_median": 5,
+    "D_mean": 5.171,
+    "D_median": 5,
+    "sarcasm_pct": 3.6,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Crush Confessions",
+    "n": 61,
+    "V_mean": 7.607,
+    "V_median": 8,
+    "A_mean": 7.295,
+    "A_median": 7,
+    "D_mean": 6.459,
+    "D_median": 7,
+    "sarcasm_pct": 3.28,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Life Miscellaneous Concerns",
+    "n": 45,
+    "V_mean": 6.511,
+    "V_median": 7,
+    "A_mean": 6.933,
+    "A_median": 7,
+    "D_mean": 6.089,
+    "D_median": 6,
+    "sarcasm_pct": 2.22,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Life and Sentiments",
+    "n": 104,
+    "V_mean": 5.808,
+    "V_median": 6.0,
+    "A_mean": 5.5,
+    "A_median": 5.0,
+    "D_mean": 5.769,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.96,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Marketplace Listings",
+    "n": 66,
+    "V_mean": 7.227,
+    "V_median": 8.0,
+    "A_mean": 4.924,
+    "A_median": 5.0,
+    "D_mean": 7.091,
+    "D_median": 7.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Resource Inquiries",
+    "n": 16,
+    "V_mean": 5.562,
+    "V_median": 5.0,
+    "A_mean": 3.5,
+    "A_median": 4.0,
+    "D_mean": 5.812,
+    "D_median": 5.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Student Team Entry Discussions",
+    "n": 11,
+    "V_mean": 6.909,
+    "V_median": 7,
+    "A_mean": 6.091,
+    "A_median": 7,
+    "D_mean": 6.727,
+    "D_median": 7,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "TDP Scholarship Release Inquiries",
+    "n": 14,
+    "V_mean": 5.571,
+    "V_median": 6.0,
+    "A_mean": 5,
+    "A_median": 5.0,
+    "D_mean": 4.786,
+    "D_median": 5.0,
+    "sarcasm_pct": 7.14,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Temu GCash Cashback Invitation",
+    "n": 13,
+    "V_mean": 7.923,
+    "V_median": 8,
+    "A_mean": 6.462,
+    "A_median": 7,
+    "D_mean": 7.308,
+    "D_median": 7,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Temu Referral Code Swap",
+    "n": 14,
+    "V_mean": 5.714,
+    "V_median": 6.0,
+    "A_mean": 3.357,
+    "A_median": 3.0,
+    "D_mean": 5.357,
+    "D_median": 5.5,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "Unclassified",
+    "n": 1687,
+    "V_mean": 5.932,
+    "V_median": 6,
+    "A_mean": 5.039,
+    "A_median": 5,
+    "D_mean": 5.705,
+    "D_median": 6,
+    "sarcasm_pct": 2.19,
+    "flag_counts": {
+      "sarcasm_high_valence": 5
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Course Inquiry",
+    "n": 163,
+    "V_mean": 5.736,
+    "V_median": 6,
+    "A_mean": 5.466,
+    "A_median": 5,
+    "D_mean": 5.798,
+    "D_median": 6,
+    "sarcasm_pct": 1.23,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Entrance Exam Concerns",
+    "n": 477,
+    "V_mean": 5.289,
+    "V_median": 5,
+    "A_mean": 5.052,
+    "A_median": 5,
+    "D_mean": 5.18,
+    "D_median": 5,
+    "sarcasm_pct": 3.14,
+    "flag_counts": {
+      "sarcasm_high_valence": 3
+    }
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Group Join Requests",
+    "n": 102,
+    "V_mean": 6.157,
+    "V_median": 6.0,
+    "A_mean": 4.578,
+    "A_median": 4.0,
+    "D_mean": 5.784,
+    "D_median": 6.0,
+    "sarcasm_pct": 2.94,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Relationship Struggles",
+    "n": 34,
+    "V_mean": 4.912,
+    "V_median": 4.0,
+    "A_mean": 6.353,
+    "A_median": 6.0,
+    "D_mean": 5.235,
+    "D_median": 5.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Student Activity Groups",
+    "n": 35,
+    "V_mean": 6.2,
+    "V_median": 6,
+    "A_mean": 4.943,
+    "A_median": 5,
+    "D_mean": 6.057,
+    "D_median": 6,
+    "sarcasm_pct": 2.86,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MIN-PUB-1",
+    "topic_label": "University Student Emotional Reflections",
+    "n": 57,
+    "V_mean": 4.982,
+    "V_median": 4,
+    "A_mean": 6.246,
+    "A_median": 6,
+    "D_mean": 5.14,
+    "D_median": 5,
+    "sarcasm_pct": 1.75,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Amused Student Reactions",
+    "n": 37,
+    "V_mean": 8.027,
+    "V_median": 8,
+    "A_mean": 7.459,
+    "A_median": 8,
+    "D_mean": 6.946,
+    "D_median": 7,
+    "sarcasm_pct": 2.7,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Concierto Event Support Requests",
+    "n": 48,
+    "V_mean": 6.542,
+    "V_median": 7.0,
+    "A_mean": 7.062,
+    "A_median": 7.0,
+    "D_mean": 6.021,
+    "D_median": 6.0,
+    "sarcasm_pct": 6.25,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Relationship and Life Struggles",
+    "n": 1856,
+    "V_mean": 4.953,
+    "V_median": 5.0,
+    "A_mean": 5.528,
+    "A_median": 6.0,
+    "D_mean": 5.252,
+    "D_median": 5.0,
+    "sarcasm_pct": 9.81,
+    "flag_counts": {
+      "sarcasm_high_valence": 24
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Student Lighthearted Campus Encounters",
+    "n": 83,
+    "V_mean": 7.663,
+    "V_median": 8,
+    "A_mean": 7.217,
+    "A_median": 7,
+    "D_mean": 6.916,
+    "D_median": 7,
+    "sarcasm_pct": 16.87,
+    "flag_counts": {
+      "sarcasm_high_valence": 9
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Tech University Tuition Concerns",
+    "n": 47,
+    "V_mean": 5.617,
+    "V_median": 6,
+    "A_mean": 7.319,
+    "A_median": 8,
+    "D_mean": 5.574,
+    "D_median": 6,
+    "sarcasm_pct": 10.64,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "Unclassified",
+    "n": 21,
+    "V_mean": 6.19,
+    "V_median": 7,
+    "A_mean": 6.476,
+    "A_median": 7,
+    "D_mean": 5.476,
+    "D_median": 6,
+    "sarcasm_pct": 9.52,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "University Student Personal Struggles",
+    "n": 1860,
+    "V_mean": 5.455,
+    "V_median": 6.0,
+    "A_mean": 5.228,
+    "A_median": 5.0,
+    "D_mean": 5.519,
+    "D_median": 6.0,
+    "sarcasm_pct": 3.92,
+    "flag_counts": {
+      "sarcasm_high_valence": 6
+    }
+  },
+  {
+    "univ_code": "MM-PNSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Student Council Elections",
+    "n": 11,
+    "V_mean": 2.636,
+    "V_median": 3,
+    "A_mean": 7.091,
+    "A_median": 7,
+    "D_mean": 6.455,
+    "D_median": 6,
+    "sarcasm_pct": 9.09,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Campus Crush Confessions",
+    "n": 26,
+    "V_mean": 7.154,
+    "V_median": 8.0,
+    "A_mean": 6.231,
+    "A_median": 7.0,
+    "D_mean": 6.346,
+    "D_median": 6.0,
+    "sarcasm_pct": 7.69,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Crushes on Classmates",
+    "n": 42,
+    "V_mean": 6.667,
+    "V_median": 7.0,
+    "A_mean": 6.143,
+    "A_median": 6.0,
+    "D_mean": 5.333,
+    "D_median": 5.5,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Expatriate Marriage And Divorce",
+    "n": 20,
+    "V_mean": 4.7,
+    "V_median": 4.0,
+    "A_mean": 5.85,
+    "A_median": 6.0,
+    "D_mean": 4.8,
+    "D_median": 5.0,
+    "sarcasm_pct": 5.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Frustrated Online Rants",
+    "n": 25,
+    "V_mean": 4.8,
+    "V_median": 4,
+    "A_mean": 5.96,
+    "A_median": 6,
+    "D_mean": 5.36,
+    "D_median": 5,
+    "sarcasm_pct": 16.0,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Inquiries about student relationships",
+    "n": 219,
+    "V_mean": 6.425,
+    "V_median": 7,
+    "A_mean": 5.265,
+    "A_median": 5,
+    "D_mean": 5.95,
+    "D_median": 6,
+    "sarcasm_pct": 6.85,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Inquiry about relationship status",
+    "n": 302,
+    "V_mean": 5.917,
+    "V_median": 6.0,
+    "A_mean": 4.328,
+    "A_median": 4.0,
+    "D_mean": 5.447,
+    "D_median": 5.0,
+    "sarcasm_pct": 3.64,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Lost Items for Sale",
+    "n": 42,
+    "V_mean": 6.143,
+    "V_median": 6.0,
+    "A_mean": 5,
+    "A_median": 5.0,
+    "D_mean": 5.714,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Lost University Items",
+    "n": 31,
+    "V_mean": 5.935,
+    "V_median": 6,
+    "A_mean": 6.613,
+    "A_median": 7,
+    "D_mean": 5.194,
+    "D_median": 5,
+    "sarcasm_pct": 9.68,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Lost and Found Items",
+    "n": 16,
+    "V_mean": 5.375,
+    "V_median": 5.0,
+    "A_mean": 4.062,
+    "A_median": 4.0,
+    "D_mean": 5.875,
+    "D_median": 6.0,
+    "sarcasm_pct": 6.25,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Mental Health Struggles",
+    "n": 82,
+    "V_mean": 4.28,
+    "V_median": 4.0,
+    "A_mean": 6.683,
+    "A_median": 7.0,
+    "D_mean": 5.39,
+    "D_median": 6.0,
+    "sarcasm_pct": 3.66,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Neurodivergent Student Support Concerns",
+    "n": 62,
+    "V_mean": 4.516,
+    "V_median": 4.0,
+    "A_mean": 6.016,
+    "A_median": 6.0,
+    "D_mean": 6.355,
+    "D_median": 7.0,
+    "sarcasm_pct": 1.61,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Parking Issues on Campus",
+    "n": 29,
+    "V_mean": 3.966,
+    "V_median": 3,
+    "A_mean": 6.276,
+    "A_median": 7,
+    "D_mean": 5.828,
+    "D_median": 6,
+    "sarcasm_pct": 17.24,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Performative Male Stereotypes",
+    "n": 33,
+    "V_mean": 5.333,
+    "V_median": 6,
+    "A_mean": 5.697,
+    "A_median": 6,
+    "D_mean": 6.303,
+    "D_median": 6,
+    "sarcasm_pct": 27.27,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Professor Review Skepticism",
+    "n": 43,
+    "V_mean": 4.558,
+    "V_median": 4,
+    "A_mean": 5.907,
+    "A_median": 6,
+    "D_mean": 6.302,
+    "D_median": 7,
+    "sarcasm_pct": 6.98,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Public Space Etiquette Concerns",
+    "n": 35,
+    "V_mean": 4.657,
+    "V_median": 4,
+    "A_mean": 5.714,
+    "A_median": 6,
+    "D_mean": 5.486,
+    "D_median": 5,
+    "sarcasm_pct": 8.57,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Reflecting on Learning Outcomes",
+    "n": 44,
+    "V_mean": 5.295,
+    "V_median": 5.0,
+    "A_mean": 4.705,
+    "A_median": 5.0,
+    "D_mean": 5.727,
+    "D_median": 6.0,
+    "sarcasm_pct": 11.36,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Searching for Lost Friends",
+    "n": 17,
+    "V_mean": 6.118,
+    "V_median": 7,
+    "A_mean": 4.824,
+    "A_median": 5,
+    "D_mean": 5.824,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Special Interest Group Inquiries",
+    "n": 29,
+    "V_mean": 6.414,
+    "V_median": 7,
+    "A_mean": 4.966,
+    "A_median": 5,
+    "D_mean": 6.138,
+    "D_median": 6,
+    "sarcasm_pct": 3.45,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Struggling with Personal Relationships",
+    "n": 34,
+    "V_mean": 4.059,
+    "V_median": 4.0,
+    "A_mean": 6.353,
+    "A_median": 6.5,
+    "D_mean": 4.706,
+    "D_median": 5.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Complaints About [REDACTED_DEMONYM]",
+    "n": 77,
+    "V_mean": 5.273,
+    "V_median": 4,
+    "A_mean": 6.532,
+    "A_median": 6,
+    "D_mean": 5.506,
+    "D_median": 5,
+    "sarcasm_pct": 6.49,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Complaints and Concerns",
+    "n": 15,
+    "V_mean": 3.667,
+    "V_median": 4,
+    "A_mean": 6.733,
+    "A_median": 6,
+    "D_mean": 5.933,
+    "D_median": 6,
+    "sarcasm_pct": 13.33,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Facility Concerns",
+    "n": 69,
+    "V_mean": 5.188,
+    "V_median": 5,
+    "A_mean": 4.406,
+    "A_median": 4,
+    "D_mean": 5.87,
+    "D_median": 6,
+    "sarcasm_pct": 13.04,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Financial Struggles Support",
+    "n": 74,
+    "V_mean": 5.351,
+    "V_median": 5.5,
+    "A_mean": 5.568,
+    "A_median": 6.0,
+    "D_mean": 5.095,
+    "D_median": 5.0,
+    "sarcasm_pct": 2.7,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Governance Concerns",
+    "n": 30,
+    "V_mean": 4.667,
+    "V_median": 5.0,
+    "A_mean": 5.467,
+    "A_median": 5.5,
+    "D_mean": 6.233,
+    "D_median": 6.0,
+    "sarcasm_pct": 3.33,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Life Complaints",
+    "n": 45,
+    "V_mean": 4.6,
+    "V_median": 4,
+    "A_mean": 5.6,
+    "A_median": 5,
+    "D_mean": 5.267,
+    "D_median": 5,
+    "sarcasm_pct": 6.67,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Student Life and Relationships",
+    "n": 90,
+    "V_mean": 5.722,
+    "V_median": 6.0,
+    "A_mean": 4.589,
+    "A_median": 4.0,
+    "D_mean": 5.678,
+    "D_median": 6.0,
+    "sarcasm_pct": 8.89,
+    "flag_counts": {
+      "sarcasm_high_valence": 4
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "Unclassified",
+    "n": 1251,
+    "V_mean": 5.63,
+    "V_median": 6,
+    "A_mean": 5.484,
+    "A_median": 6,
+    "D_mean": 5.909,
+    "D_median": 6,
+    "sarcasm_pct": 7.35,
+    "flag_counts": {
+      "sarcasm_high_valence": 16
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Enrollment Process Issues",
+    "n": 20,
+    "V_mean": 4.95,
+    "V_median": 5.0,
+    "A_mean": 5.1,
+    "A_median": 5.0,
+    "D_mean": 5.65,
+    "D_median": 5.5,
+    "sarcasm_pct": 20.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Event Ideas",
+    "n": 39,
+    "V_mean": 5.179,
+    "V_median": 4,
+    "A_mean": 5.513,
+    "A_median": 6,
+    "D_mean": 6.077,
+    "D_median": 6,
+    "sarcasm_pct": 20.51,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Facilities and Events",
+    "n": 24,
+    "V_mean": 5.125,
+    "V_median": 4.0,
+    "A_mean": 6.083,
+    "A_median": 6.0,
+    "D_mean": 6,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Life Struggles",
+    "n": 17,
+    "V_mean": 4.765,
+    "V_median": 5,
+    "A_mean": 6.471,
+    "A_median": 7,
+    "D_mean": 5.941,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Advice",
+    "n": 29,
+    "V_mean": 5.759,
+    "V_median": 6,
+    "A_mean": 4.103,
+    "A_median": 4,
+    "D_mean": 6.207,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Frustrations",
+    "n": 35,
+    "V_mean": 5.571,
+    "V_median": 6,
+    "A_mean": 7.8,
+    "A_median": 8,
+    "D_mean": 6.057,
+    "D_median": 6,
+    "sarcasm_pct": 8.57,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Grievances",
+    "n": 22,
+    "V_mean": 6,
+    "V_median": 6.0,
+    "A_mean": 5,
+    "A_median": 5.0,
+    "D_mean": 5.773,
+    "D_median": 6.0,
+    "sarcasm_pct": 13.64,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Grievances (looking people)",
+    "n": 23,
+    "V_mean": 5.696,
+    "V_median": 6,
+    "A_mean": 5.435,
+    "A_median": 5,
+    "D_mean": 5.739,
+    "D_median": 6,
+    "sarcasm_pct": 8.7,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Grievances (strike)",
+    "n": 23,
+    "V_mean": 3.609,
+    "V_median": 3,
+    "A_mean": 6.696,
+    "A_median": 7,
+    "D_mean": 5.783,
+    "D_median": 6,
+    "sarcasm_pct": 4.35,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Relationship Fears",
+    "n": 38,
+    "V_mean": 5.684,
+    "V_median": 5.0,
+    "A_mean": 4.658,
+    "A_median": 4.0,
+    "D_mean": 5.263,
+    "D_median": 5.0,
+    "sarcasm_pct": 10.53,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Research Participation",
+    "n": 55,
+    "V_mean": 7.673,
+    "V_median": 8,
+    "A_mean": 5.236,
+    "A_median": 6,
+    "D_mean": 7.582,
+    "D_median": 8,
+    "sarcasm_pct": 1.82,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Romantic Encounters",
+    "n": 25,
+    "V_mean": 5.96,
+    "V_median": 7,
+    "A_mean": 5.08,
+    "A_median": 5,
+    "D_mean": 5.68,
+    "D_median": 6,
+    "sarcasm_pct": 4.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Social Interactions",
+    "n": 32,
+    "V_mean": 6.562,
+    "V_median": 7.0,
+    "A_mean": 6.406,
+    "A_median": 6.0,
+    "D_mean": 6.844,
+    "D_median": 7.0,
+    "sarcasm_pct": 15.62,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "University Student Stereotypes",
+    "n": 58,
+    "V_mean": 6.828,
+    "V_median": 8.0,
+    "A_mean": 6.897,
+    "A_median": 7.0,
+    "D_mean": 6.276,
+    "D_median": 6.5,
+    "sarcasm_pct": 5.17,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Exam Anxiety and Tips",
+    "n": 20,
+    "V_mean": 5,
+    "V_median": 5.0,
+    "A_mean": 5.45,
+    "A_median": 5.0,
+    "D_mean": 5.3,
+    "D_median": 5.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Student Behavior Criticism",
+    "n": 407,
+    "V_mean": 4.816,
+    "V_median": 4,
+    "A_mean": 5.781,
+    "A_median": 6,
+    "D_mean": 5.614,
+    "D_median": 6,
+    "sarcasm_pct": 19.9,
+    "flag_counts": {
+      "sarcasm_high_valence": 5
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Student Life Musings",
+    "n": 46,
+    "V_mean": 5.565,
+    "V_median": 6.0,
+    "A_mean": 5.283,
+    "A_median": 5.0,
+    "D_mean": 5.957,
+    "D_median": 6.0,
+    "sarcasm_pct": 17.39,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Student Stereotypes",
+    "n": 39,
+    "V_mean": 6.359,
+    "V_median": 7,
+    "A_mean": 5.385,
+    "A_median": 6,
+    "D_mean": 6.103,
+    "D_median": 6,
+    "sarcasm_pct": 15.38,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "topic_label": "Crush and Friendship Dynamics",
+    "n": 19,
+    "V_mean": 4.947,
+    "V_median": 5,
+    "A_mean": 5.842,
+    "A_median": 6,
+    "D_mean": 5.053,
+    "D_median": 5,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "topic_label": "Emotional Student Rants",
+    "n": 1818,
+    "V_mean": 5.701,
+    "V_median": 6.0,
+    "A_mean": 5.636,
+    "A_median": 6.0,
+    "D_mean": 5.46,
+    "D_median": 5.0,
+    "sarcasm_pct": 4.73,
+    "flag_counts": {
+      "sarcasm_high_valence": 13
+    }
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "topic_label": "Kpop Fan Longing Expression",
+    "n": 90,
+    "V_mean": 7.211,
+    "V_median": 8.0,
+    "A_mean": 7.433,
+    "A_median": 8.0,
+    "D_mean": 6,
+    "D_median": 6.0,
+    "sarcasm_pct": 3.33,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "topic_label": "Terms of Endearment",
+    "n": 10,
+    "V_mean": 7.9,
+    "V_median": 8.0,
+    "A_mean": 5,
+    "A_median": 4.5,
+    "D_mean": 5.6,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "MM-PUB-1",
+    "topic_label": "University Life Struggles",
+    "n": 1641,
+    "V_mean": 5.311,
+    "V_median": 5,
+    "A_mean": 5.617,
+    "A_median": 6,
+    "D_mean": 5.48,
+    "D_median": 6,
+    "sarcasm_pct": 10.66,
+    "flag_counts": {
+      "sarcasm_high_valence": 26
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Academic Quality Concerns",
+    "n": 65,
+    "V_mean": 4.908,
+    "V_median": 4,
+    "A_mean": 4.662,
+    "A_median": 4,
+    "D_mean": 4.892,
+    "D_median": 5,
+    "sarcasm_pct": 20.0,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Alcohol Container Customization",
+    "n": 17,
+    "V_mean": 8.294,
+    "V_median": 8,
+    "A_mean": 6.176,
+    "A_median": 6,
+    "D_mean": 8,
+    "D_median": 8,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Amusing Student Interactions",
+    "n": 31,
+    "V_mean": 8.097,
+    "V_median": 8,
+    "A_mean": 7.613,
+    "A_median": 8,
+    "D_mean": 6.871,
+    "D_median": 7,
+    "sarcasm_pct": 3.23,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Crush on Female Instructors",
+    "n": 83,
+    "V_mean": 7.253,
+    "V_median": 8,
+    "A_mean": 5.711,
+    "A_median": 6,
+    "D_mean": 6.084,
+    "D_median": 6,
+    "sarcasm_pct": 3.61,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Gaming Team Recruitment Posts (hi)",
+    "n": 130,
+    "V_mean": 6.762,
+    "V_median": 7.0,
+    "A_mean": 5.354,
+    "A_median": 5.0,
+    "D_mean": 6.438,
+    "D_median": 7.0,
+    "sarcasm_pct": 8.46,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Gaming Team Recruitment Posts (lf)",
+    "n": 90,
+    "V_mean": 6.056,
+    "V_median": 6.0,
+    "A_mean": 4.567,
+    "A_median": 4.0,
+    "D_mean": 6.111,
+    "D_median": 6.0,
+    "sarcasm_pct": 11.11,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Mental Health and Frustration",
+    "n": 121,
+    "V_mean": 4.719,
+    "V_median": 4,
+    "A_mean": 6.05,
+    "A_median": 6,
+    "D_mean": 5.694,
+    "D_median": 6,
+    "sarcasm_pct": 5.79,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Overpriced Education Quality Concerns",
+    "n": 183,
+    "V_mean": 4.344,
+    "V_median": 3,
+    "A_mean": 7.158,
+    "A_median": 8,
+    "D_mean": 5.24,
+    "D_median": 5,
+    "sarcasm_pct": 21.86,
+    "flag_counts": {
+      "sarcasm_high_valence": 5
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Relationship Concerns and Frustrations",
+    "n": 77,
+    "V_mean": 4.156,
+    "V_median": 3,
+    "A_mean": 6.701,
+    "A_median": 7,
+    "D_mean": 5.87,
+    "D_median": 6,
+    "sarcasm_pct": 3.9,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Complaints and Concerns",
+    "n": 13,
+    "V_mean": 5.154,
+    "V_median": 5,
+    "A_mean": 4.462,
+    "A_median": 4,
+    "D_mean": 4.846,
+    "D_median": 5,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Complaints and Grievances",
+    "n": 147,
+    "V_mean": 4.265,
+    "V_median": 4,
+    "A_mean": 5.469,
+    "A_median": 6,
+    "D_mean": 4.823,
+    "D_median": 5,
+    "sarcasm_pct": 14.29,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Council Criticisms",
+    "n": 22,
+    "V_mean": 4.409,
+    "V_median": 3.5,
+    "A_mean": 7.818,
+    "A_median": 8.0,
+    "D_mean": 6.318,
+    "D_median": 6.0,
+    "sarcasm_pct": 4.55,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Event Discussions",
+    "n": 15,
+    "V_mean": 5.6,
+    "V_median": 6,
+    "A_mean": 4.4,
+    "A_median": 4,
+    "D_mean": 6.067,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Frustrations with Peers",
+    "n": 48,
+    "V_mean": 3.833,
+    "V_median": 3.0,
+    "A_mean": 5.958,
+    "A_median": 6.0,
+    "D_mean": 4.75,
+    "D_median": 5.0,
+    "sarcasm_pct": 10.42,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Gossip and Rumors",
+    "n": 11,
+    "V_mean": 5.818,
+    "V_median": 7,
+    "A_mean": 5.727,
+    "A_median": 5,
+    "D_mean": 5.545,
+    "D_median": 6,
+    "sarcasm_pct": 9.09,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Health and Academic Concerns",
+    "n": 430,
+    "V_mean": 4.514,
+    "V_median": 4.0,
+    "A_mean": 5.821,
+    "A_median": 6.0,
+    "D_mean": 5.33,
+    "D_median": 5.0,
+    "sarcasm_pct": 8.84,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Mental Health Concerns",
+    "n": 124,
+    "V_mean": 5.774,
+    "V_median": 6.0,
+    "A_mean": 5.548,
+    "A_median": 6.0,
+    "D_mean": 5.855,
+    "D_median": 6.0,
+    "sarcasm_pct": 5.65,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Student Social Interactions",
+    "n": 131,
+    "V_mean": 7.519,
+    "V_median": 8,
+    "A_mean": 7.221,
+    "A_median": 7,
+    "D_mean": 6.763,
+    "D_median": 7,
+    "sarcasm_pct": 14.5,
+    "flag_counts": {
+      "sarcasm_high_valence": 8
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "Unclassified",
+    "n": 1721,
+    "V_mean": 5.766,
+    "V_median": 6,
+    "A_mean": 5.364,
+    "A_median": 6,
+    "D_mean": 5.75,
+    "D_median": 6,
+    "sarcasm_pct": 9.59,
+    "flag_counts": {
+      "sarcasm_high_valence": 21
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Complaints (la)",
+    "n": 30,
+    "V_mean": 4.7,
+    "V_median": 5.0,
+    "A_mean": 4.967,
+    "A_median": 5.0,
+    "D_mean": 4.533,
+    "D_median": 4.5,
+    "sarcasm_pct": 10.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Complaints (nag)",
+    "n": 118,
+    "V_mean": 4.093,
+    "V_median": 4.0,
+    "A_mean": 5.737,
+    "A_median": 6.0,
+    "D_mean": 4.72,
+    "D_median": 4.5,
+    "sarcasm_pct": 16.95,
+    "flag_counts": {
+      "sarcasm_high_valence": 3
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Crush Confessions",
+    "n": 35,
+    "V_mean": 7.229,
+    "V_median": 8,
+    "A_mean": 6.371,
+    "A_median": 7,
+    "D_mean": 5.771,
+    "D_median": 6,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Gossip",
+    "n": 22,
+    "V_mean": 6.409,
+    "V_median": 7.0,
+    "A_mean": 6.136,
+    "A_median": 6.0,
+    "D_mean": 6.045,
+    "D_median": 6.0,
+    "sarcasm_pct": 13.64,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Grievances",
+    "n": 84,
+    "V_mean": 5.798,
+    "V_median": 6.0,
+    "A_mean": 6.631,
+    "A_median": 7.0,
+    "D_mean": 5.94,
+    "D_median": 6.0,
+    "sarcasm_pct": 7.14,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Inquiries",
+    "n": 14,
+    "V_mean": 6.214,
+    "V_median": 7.0,
+    "A_mean": 4.286,
+    "A_median": 4.0,
+    "D_mean": 6,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Interactions",
+    "n": 58,
+    "V_mean": 6.052,
+    "V_median": 6.0,
+    "A_mean": 5.672,
+    "A_median": 6.0,
+    "D_mean": 5.914,
+    "D_median": 6.0,
+    "sarcasm_pct": 13.79,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "University Student Slang",
+    "n": 35,
+    "V_mean": 5.514,
+    "V_median": 6,
+    "A_mean": 4.829,
+    "A_median": 5,
+    "D_mean": 5.543,
+    "D_median": 6,
+    "sarcasm_pct": 8.57,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Basketball Team Criticisms",
+    "n": 41,
+    "V_mean": 4.854,
+    "V_median": 4,
+    "A_mean": 4.976,
+    "A_median": 5,
+    "D_mean": 5.366,
+    "D_median": 5,
+    "sarcasm_pct": 12.2,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PNSEC-1",
+    "topic_label": "[REDACTED_DEMONYM] Student Miscellaneous Concerns",
+    "n": 14,
+    "V_mean": 6,
+    "V_median": 6.0,
+    "A_mean": 4.929,
+    "A_median": 5.5,
+    "D_mean": 5.857,
+    "D_median": 6.0,
+    "sarcasm_pct": 7.14,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "Preliminary Registration Struggles",
+    "n": 20,
+    "V_mean": 5.75,
+    "V_median": 6.0,
+    "A_mean": 5.2,
+    "A_median": 5.0,
+    "D_mean": 5.55,
+    "D_median": 6.0,
+    "sarcasm_pct": 10.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "Unclassified",
+    "n": 8,
+    "V_mean": 6.875,
+    "V_median": 7.5,
+    "A_mean": 7,
+    "A_median": 7.0,
+    "D_mean": 6.125,
+    "D_median": 6.0,
+    "sarcasm_pct": 0.0,
+    "flag_counts": {}
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "University Organization Complaints",
+    "n": 14,
+    "V_mean": 6.929,
+    "V_median": 8.0,
+    "A_mean": 6.929,
+    "A_median": 7.0,
+    "D_mean": 6.643,
+    "D_median": 7.0,
+    "sarcasm_pct": 35.71,
+    "flag_counts": {
+      "sarcasm_high_valence": 1
+    }
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "University Student Life Musings",
+    "n": 37,
+    "V_mean": 7.054,
+    "V_median": 8,
+    "A_mean": 7.108,
+    "A_median": 7,
+    "D_mean": 6.568,
+    "D_median": 7,
+    "sarcasm_pct": 10.81,
+    "flag_counts": {
+      "sarcasm_high_valence": 2
+    }
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "Unrequited Love Confessions (crush)",
+    "n": 2308,
+    "V_mean": 5.516,
+    "V_median": 6.0,
+    "A_mean": 5.548,
+    "A_median": 6.0,
+    "D_mean": 5.503,
+    "D_median": 6.0,
+    "sarcasm_pct": 11.61,
+    "flag_counts": {
+      "sarcasm_high_valence": 31
+    }
+  },
+  {
+    "univ_code": "PROV-PUB-1",
+    "topic_label": "Unrequited Love Confessions (im)",
+    "n": 1567,
+    "V_mean": 5.722,
+    "V_median": 6,
+    "A_mean": 5.344,
+    "A_median": 5,
+    "D_mean": 5.634,
+    "D_median": 6,
+    "sarcasm_pct": 5.3,
+    "flag_counts": {
+      "sarcasm_high_valence": 12
+    }
+  }
+]

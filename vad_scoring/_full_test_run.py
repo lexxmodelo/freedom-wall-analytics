@@ -50,7 +50,7 @@ def main() -> int:
     _say(f"effective_rpm={cfg.researcher_cfg.get('effective_rpm')}")
 
     log_action(
-        cfg.action_log_path, "PIPELINE_INIT", f"Full test run on {UNIV} (UPB)",
+        cfg.action_log_path, "PIPELINE_INIT", f"Full test run on {UNIV}",
         action=f"Started full VAD scoring on {UNIV} via temporary {CFG_NAME} config to validate end-to-end pipeline against real data.",
         configuration={
             "researcher_id": CFG_NAME,

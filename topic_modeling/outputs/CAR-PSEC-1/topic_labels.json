@@ -1,0 +1,352 @@
+[
+  {
+    "topic_id": 0,
+    "label": "Student Campus Life Concerns",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:14 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 520,
+        "total_tokens": 526,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "fa4dede8ea7e6f5ed8aaf919e1716ff5180bb8a17fc30defa82b5848bc338862",
+    "temporal_signature": {
+      "n_with_timestamp": 1927,
+      "monthly_distribution": {
+        "2026-05": 38,
+        "2026-04": 507,
+        "2026-03": 438,
+        "2026-02": 148,
+        "2025-06": 1,
+        "2025-05": 405,
+        "2025-04": 390
+      },
+      "concentrated_months": [
+        "2025-05",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.5192,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Unrequited Love Confessions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:14 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 491,
+        "total_tokens": 498,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "77580cff50d6e3cc7e06512abb94aa370b37be614a0356fd71ca98c247570252",
+    "temporal_signature": {
+      "n_with_timestamp": 841,
+      "monthly_distribution": {
+        "2026-05": 16,
+        "2026-04": 222,
+        "2026-03": 197,
+        "2026-02": 55,
+        "2025-05": 189,
+        "2025-04": 162
+      },
+      "concentrated_months": [
+        "2025-05",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.5293,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "Student Romantic Interactions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:15 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 316,
+        "total_tokens": 321,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "9f12fdb9691ddca8b9676a83e310cb24c40090c3f9f0c453fc0cb55a1deda357",
+    "temporal_signature": {
+      "n_with_timestamp": 606,
+      "monthly_distribution": {
+        "2026-05": 6,
+        "2026-04": 125,
+        "2026-03": 161,
+        "2026-02": 51,
+        "2025-08": 1,
+        "2025-07": 2,
+        "2025-05": 95,
+        "2025-04": 165
+      },
+      "concentrated_months": [
+        "2025-04",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.5409,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Student Transportation Complaints",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:16 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 585,
+        "total_tokens": 590,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "e038ab5187864eb6f2f0519ad3598f502a097e8e5e9fde69d9f56bf81456c8e6",
+    "temporal_signature": {
+      "n_with_timestamp": 84,
+      "monthly_distribution": {
+        "2026-05": 2,
+        "2026-04": 23,
+        "2026-03": 17,
+        "2026-02": 9,
+        "2025-05": 15,
+        "2025-04": 18
+      },
+      "concentrated_months": [
+        "2025-04",
+        "2025-05",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.5106,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "Tuition Fee Increase Protests",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:19 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 574,
+        "total_tokens": 581,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "dc693c2a0a50c0204e51e59ef583e3bb6e611a4bfd7d7ad9ad1a80ee18dda2cd",
+    "temporal_signature": {
+      "n_with_timestamp": 80,
+      "monthly_distribution": {
+        "2026-04": 8,
+        "2026-03": 29,
+        "2026-02": 4,
+        "2025-05": 16,
+        "2025-04": 23
+      },
+      "concentrated_months": [
+        "2025-04",
+        "2025-05",
+        "2026-03"
+      ],
+      "gini": 0.625,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 5,
+    "label": "Student Frustration with University Policies",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:20 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 585,
+        "total_tokens": 593,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "58730a9b2b3f63ae334f62bc3058b8a23a581beadc76d67c2e675aa8b4516e11",
+    "temporal_signature": {
+      "n_with_timestamp": 75,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 18,
+        "2026-03": 9,
+        "2026-02": 2,
+        "2025-05": 11,
+        "2025-04": 34
+      },
+      "concentrated_months": [
+        "2025-04",
+        "2025-05",
+        "2026-04"
+      ],
+      "gini": 0.6519,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 6,
+    "label": "Student Life Concerns",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:24 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 587,
+        "total_tokens": 592,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "7d4f145ccafbed9029c83c2459f30c591d5b91fdc08249670d888619e58da6cf",
+    "temporal_signature": {
+      "n_with_timestamp": 40,
+      "monthly_distribution": {
+        "2026-04": 10,
+        "2026-03": 9,
+        "2026-02": 4,
+        "2025-05": 10,
+        "2025-04": 7
+      },
+      "concentrated_months": [
+        "2025-05",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.5278,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 7,
+    "label": "Crush Confessions in SEA",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:24 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 577,
+        "total_tokens": 584,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "53848d1c985afff6d79ce1a118830895301baf265f84230282df9caa30d193af",
+    "temporal_signature": {
+      "n_with_timestamp": 39,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 3,
+        "2026-03": 11,
+        "2026-02": 1,
+        "2025-05": 10,
+        "2025-04": 13
+      },
+      "concentrated_months": [
+        "2025-04",
+        "2025-05",
+        "2026-03"
+      ],
+      "gini": 0.6097,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 8,
+    "label": "Resistance to Institutional Change",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:09:26 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 294,
+        "total_tokens": 299,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "4c5eff087656345aa41758310c215bbbfd1c46fc46c2abc820c935a7ba247715",
+    "temporal_signature": {
+      "n_with_timestamp": 21,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 9,
+        "2026-03": 4,
+        "2026-02": 2,
+        "2025-05": 3,
+        "2025-04": 2
+      },
+      "concentrated_months": [
+        "2025-05",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.582,
+      "is_event_driven": false
+    }
+  }
+]

@@ -2,7 +2,7 @@
 
 For researchers running the VAD (Valence/Arousal/Dominance) scoring phase. Plan to spend **30 min reading this** + a **few hours of unattended runtime** (the pipeline does the work; you mostly babysit).
 
-> **Status:** Validated on the SLU pilot region — full 2,287-post run on CAR-PUB-1 (UPB) completed end-to-end. Real-world throughput is ~8 RPM (the NIM free tier throttles harder than its advertised 40 RPM ceiling), so plan for **~5 minutes per 100 posts**.
+> **Status:** Validated on the SLU pilot region — full 2,287-post run on `CAR-PUB-1` completed end-to-end. Real-world throughput is ~8 RPM (the NIM free tier throttles harder than its advertised 40 RPM ceiling), so plan for **~5 minutes per 100 posts**.
 
 ---
 

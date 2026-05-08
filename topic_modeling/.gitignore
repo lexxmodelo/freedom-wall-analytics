@@ -10,7 +10,9 @@ api_cache/
 checkpoints/
 models/*.pkl
 models/*.safetensors
-outputs/*/
+# outputs/<UNIV>/ contains the public release analytic artifacts (topic
+# assignments, keywords, labels, metadata, rep docs, topics-over-time JSON).
+# Tracked.
 
 # Python
 __pycache__/

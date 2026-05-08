@@ -1,0 +1,266 @@
+{
+  "n_bins": 7,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3791,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2025-11-16",
+      "frequency": 1,
+      "words": "bped, bped cte, cte mapinta, mukha nakahawak, mapinta"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-11-16",
+      "frequency": 420,
+      "words": "nag, im, man, tas, time"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-11-16",
+      "frequency": 7,
+      "words": "maui, bsf 1a, bsf, 1a, ti"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-11-16",
+      "frequency": 3,
+      "words": "ho, free time, oras, ibang oras, free"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-11-16",
+      "frequency": 1,
+      "words": "next nanay, don jk, pagpapa next, nanay don, pagpapa"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-11-16",
+      "frequency": 2,
+      "words": "chance, youu chance, tinanung nilaa, varsity bka, tinanung"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-12-10",
+      "frequency": 1,
+      "words": "koma, dayta, haan, 25003500 nanggatang, alas otso"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-12-10",
+      "frequency": 177,
+      "words": "dont, nag, met, time, man"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-12-10",
+      "frequency": 2,
+      "words": "presyong, sidechick, well, sinalo agad, sinalo"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-12-10",
+      "frequency": 1,
+      "words": "sportsmanship nag, asan sportsmanship, sinisisi kaming, kaming nakapasok, judge judges"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-12-10",
+      "frequency": 1,
+      "words": "time manahimik, tatawa next, tatambay harap, tatawa, shoutoutt"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-01-03",
+      "frequency": 2,
+      "words": "young, shout ulit, fecea, tas, hair"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-03",
+      "frequency": 561,
+      "words": "nag, hi, time, im, man"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-03",
+      "frequency": 12,
+      "words": "bka, sale, cordi, pasok, namang"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-03",
+      "frequency": 7,
+      "words": "childish, aitah, elf, mice, hah"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-03",
+      "frequency": 4,
+      "words": "attractive etc, bang cheerdancers, tao ca, barkada nagdikit, ca nakikita"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-01-03",
+      "frequency": 1,
+      "words": "maamwak babaem, maamwak, babaem, 12 agsagana, agsagana"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-01-03",
+      "frequency": 1,
+      "words": "sensitive, oa, im, hndi lumaki, hii apologize"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-26",
+      "frequency": 747,
+      "words": "nag, hi, shout, time, im"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-26",
+      "frequency": 12,
+      "words": "valentines, walasi, yang bf, answer, need"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-26",
+      "frequency": 4,
+      "words": "parin, shimu, focus, well, last"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-26",
+      "frequency": 3,
+      "words": "band, exhibit, galing, ninyo, band love"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-01-26",
+      "frequency": 2,
+      "words": "shet maalaga, sarap magluto, talagang checheet, pakulo hahhh, maalaga hayop"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-01-26",
+      "frequency": 1,
+      "words": "first, girl, crush, straight, cant"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-19",
+      "frequency": 822,
+      "words": "time, nag, ui, man, hi"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-19",
+      "frequency": 6,
+      "words": "counted, achiever, intrams, pakibalik, ti"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-19",
+      "frequency": 9,
+      "words": "nyu, matulog, miss, customer, shout"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-19",
+      "frequency": 5,
+      "words": "passing rate, rate, population, passing, 75 passing"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-19",
+      "frequency": 3,
+      "words": "yang bbf, wjauwhwushsibskeizgegsvwjwoshsyevwkaakaowuvw kinikilig, wjauwhwushsibskeizgegsvwjwoshsyevwkaakaowuvw, tamang tama, tama taong"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-02-19",
+      "frequency": 5,
+      "words": "saw, see, im, lunch, coffee"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-03-15",
+      "frequency": 2,
+      "words": "chet ui, saynu, mi, nu, ag"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-15",
+      "frequency": 588,
+      "words": "nag, time, man, dont, good"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-15",
+      "frequency": 11,
+      "words": "innalam, manok, mambow, selos, scholarship"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-15",
+      "frequency": 5,
+      "words": "holy, break, take responsibility, punyta, cns"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-03-15",
+      "frequency": 6,
+      "words": "ober, hawak, ser pinabilang, sighted power, sinisigaw lalaki"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-03-15",
+      "frequency": 1,
+      "words": "title holder, manyakol, manyakol bar, holder bading, bading manyakol"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-03-15",
+      "frequency": 3,
+      "words": "top, top 10, dont, hope, 10"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-04-08",
+      "frequency": 1,
+      "words": "yarn tigil, tigil, tigil nyu, relationship hahahahha, nililibre binibigyan"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-04-08",
+      "frequency": 340,
+      "words": "nag, man, met, shout, time"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-04-08",
+      "frequency": 4,
+      "words": "shade, yuultimu, yu naurmutan, yuultimu dyta, enigma shade"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-04-08",
+      "frequency": 2,
+      "words": "need help, need, help, tumigil call, ursula road"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-04-08",
+      "frequency": 4,
+      "words": "results, chet, bandang old, sainyo wallet, bang results"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-04-08",
+      "frequency": 1,
+      "words": "wallet, wallet umaasang, umaasang babalik, tonanguha wallet, tonanguha"
+    }
+  ]
+}

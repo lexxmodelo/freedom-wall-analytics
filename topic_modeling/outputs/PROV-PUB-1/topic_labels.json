@@ -1,0 +1,187 @@
+[
+  {
+    "topic_id": 0,
+    "label": "Unrequited Love Confessions (crush)",
+    "flags": [
+      "DISAMBIGUATED"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:51:11 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 415,
+        "total_tokens": 422,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "d81959f15c8d26a732db2e81b50a329620e92d725d0f567fea15e177c31c9fcd",
+    "temporal_signature": {
+      "n_with_timestamp": 2308,
+      "monthly_distribution": {
+        "2026-04": 178,
+        "2026-03": 383,
+        "2026-02": 538,
+        "2026-01": 606,
+        "2025-12": 603
+      },
+      "concentrated_months": [
+        "2025-12",
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.1865,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Unrequited Love Confessions (im)",
+    "flags": [
+      "DISAMBIGUATED"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:51:23 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 373,
+        "total_tokens": 380,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "1a039b530dae24cd989fe1dd0ea88e98be835537a81104327a8a024a1bf3d691",
+    "temporal_signature": {
+      "n_with_timestamp": 1568,
+      "monthly_distribution": {
+        "2026-04": 113,
+        "2026-03": 272,
+        "2026-02": 372,
+        "2026-01": 430,
+        "2025-12": 381
+      },
+      "concentrated_months": [
+        "2025-12",
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.1895,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "University Student Life Musings",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:51:25 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 435,
+        "total_tokens": 441,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "c5a918c104637b65b42266300f38da70b7e0c181c34fe28528dd3ebc5bba657d",
+    "temporal_signature": {
+      "n_with_timestamp": 37,
+      "monthly_distribution": {
+        "2026-04": 5,
+        "2026-03": 4,
+        "2026-02": 12,
+        "2026-01": 13,
+        "2025-12": 3
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3027,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Preliminary Registration Struggles",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:51:25 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 270,
+        "total_tokens": 278,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "439708b534e12eb39cc8f2a156bd0f24c51b87d47f0288b25198d4913236dcb9",
+    "temporal_signature": {
+      "n_with_timestamp": 20,
+      "monthly_distribution": {
+        "2026-03": 2,
+        "2026-02": 4,
+        "2026-01": 12,
+        "2025-12": 2
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.52,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "University Organization Complaints",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:51:25 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 296,
+        "total_tokens": 301,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "ed1e38b2d9db346e2765af5acc1911328397699cd59d2fcea80f73896990acf3",
+    "temporal_signature": {
+      "n_with_timestamp": 14,
+      "monthly_distribution": {
+        "2026-03": 1,
+        "2026-02": 7,
+        "2026-01": 2,
+        "2025-12": 4
+      },
+      "concentrated_months": [
+        "2025-12",
+        "2026-02"
+      ],
+      "gini": 0.4857,
+      "is_event_driven": false
+    }
+  }
+]

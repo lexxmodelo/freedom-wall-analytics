@@ -1,0 +1,349 @@
+[
+  {
+    "topic_id": 0,
+    "label": "Toxic Campus Relationships",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:12 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 394,
+        "total_tokens": 399,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "2b0cd04da61fc7445745e755ed64e73037a0ac64e1a31adc6c3c0d1e49be4b56",
+    "temporal_signature": {
+      "n_with_timestamp": 2585,
+      "monthly_distribution": {
+        "2026-03": 13,
+        "2026-02": 40,
+        "2025-12": 10,
+        "2025-11": 1,
+        "2025-09": 10,
+        "2025-08": 21,
+        "2025-07": 11,
+        "2025-06": 8,
+        "2025-05": 21,
+        "2025-04": 144,
+        "2025-03": 241,
+        "2025-02": 168,
+        "2025-01": 192,
+        "2024-12": 102,
+        "2024-11": 171,
+        "2024-10": 301,
+        "2024-09": 607,
+        "2024-08": 384,
+        "2024-07": 85,
+        "2024-06": 55
+      },
+      "concentrated_months": [
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2024-11",
+        "2025-01",
+        "2025-03"
+      ],
+      "gini": 0.5909,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Emotional Relationships and Loss",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:14 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 356,
+        "total_tokens": 362,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "df47296b6b51c0100c410ca92e21aa4bbd481280456ec53883a894e5547cd05e",
+    "temporal_signature": {
+      "n_with_timestamp": 928,
+      "monthly_distribution": {
+        "2026-03": 2,
+        "2026-02": 19,
+        "2025-12": 6,
+        "2025-11": 2,
+        "2025-09": 1,
+        "2025-08": 12,
+        "2025-07": 5,
+        "2025-06": 3,
+        "2025-05": 12,
+        "2025-04": 60,
+        "2025-03": 99,
+        "2025-02": 92,
+        "2025-01": 89,
+        "2024-12": 52,
+        "2024-11": 62,
+        "2024-10": 88,
+        "2024-09": 178,
+        "2024-08": 98,
+        "2024-07": 29,
+        "2024-06": 19
+      },
+      "concentrated_months": [
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2024-11",
+        "2025-01",
+        "2025-02",
+        "2025-03"
+      ],
+      "gini": 0.5372,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "SNS Student Behavior Complaints",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:14 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 572,
+        "total_tokens": 579,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "ab90d2e7156b6a2d13e77638af92401c68a85989635298d2f89ec899892060c5",
+    "temporal_signature": {
+      "n_with_timestamp": 239,
+      "monthly_distribution": {
+        "2026-03": 1,
+        "2026-02": 2,
+        "2025-12": 1,
+        "2025-09": 1,
+        "2025-08": 3,
+        "2025-07": 1,
+        "2025-05": 1,
+        "2025-04": 14,
+        "2025-03": 22,
+        "2025-02": 16,
+        "2025-01": 28,
+        "2024-12": 4,
+        "2024-11": 8,
+        "2024-10": 26,
+        "2024-09": 62,
+        "2024-08": 39,
+        "2024-07": 4,
+        "2024-06": 6
+      },
+      "concentrated_months": [
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2025-01",
+        "2025-03"
+      ],
+      "gini": 0.6416,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Student Debt and Infidelity",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:23 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 499,
+        "total_tokens": 505,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "16dfb156a456ad1eca5a38f367cda450d41fbf59bf9a8a78fea373de7a51e480",
+    "temporal_signature": {
+      "n_with_timestamp": 76,
+      "monthly_distribution": {
+        "2026-02": 1,
+        "2025-04": 4,
+        "2025-03": 7,
+        "2025-02": 3,
+        "2025-01": 8,
+        "2024-12": 7,
+        "2024-11": 10,
+        "2024-10": 10,
+        "2024-09": 13,
+        "2024-08": 9,
+        "2024-07": 2,
+        "2024-06": 2
+      },
+      "concentrated_months": [
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2024-11",
+        "2025-01",
+        "2025-03"
+      ],
+      "gini": 0.5987,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "University Student Confessions",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:25 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 431,
+        "total_tokens": 436,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "343fcceee658120b0ac8886adfc71714bc6eb459a819c11a36b1081554a6435d",
+    "temporal_signature": {
+      "n_with_timestamp": 70,
+      "monthly_distribution": {
+        "2025-07": 1,
+        "2025-04": 4,
+        "2025-03": 4,
+        "2025-02": 5,
+        "2025-01": 5,
+        "2024-12": 1,
+        "2024-11": 2,
+        "2024-10": 10,
+        "2024-09": 24,
+        "2024-08": 10,
+        "2024-07": 2,
+        "2024-06": 2
+      },
+      "concentrated_months": [
+        "2024-08",
+        "2024-09",
+        "2024-10",
+        "2025-02"
+      ],
+      "gini": 0.6957,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 5,
+    "label": "Apple Device Resale Listings",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:25 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 522,
+        "total_tokens": 528,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "e838743f17349a1a2c3afda5298f0cbb98e58183a9b47de55eda69b68e19501e",
+    "temporal_signature": {
+      "n_with_timestamp": 20,
+      "monthly_distribution": {
+        "2025-05": 1,
+        "2025-03": 4,
+        "2025-02": 3,
+        "2024-11": 3,
+        "2024-10": 3,
+        "2024-09": 5,
+        "2024-08": 1
+      },
+      "concentrated_months": [
+        "2024-09",
+        "2024-11",
+        "2025-02",
+        "2025-03"
+      ],
+      "gini": 0.74,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 6,
+    "label": "Academic Integrity Concerns",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:07:33 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 229,
+        "total_tokens": 235,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "c5bfa1e7cd4ad3b3b1592eca883fc16e83886a204e6dd4e9f406fabe60743f00",
+    "temporal_signature": {
+      "n_with_timestamp": 11,
+      "monthly_distribution": {
+        "2026-02": 2,
+        "2025-05": 1,
+        "2025-04": 1,
+        "2025-03": 2,
+        "2025-02": 1,
+        "2024-11": 1,
+        "2024-10": 1,
+        "2024-09": 1,
+        "2024-08": 1
+      },
+      "concentrated_months": [
+        "2024-11",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2026-02"
+      ],
+      "gini": 0.6136,
+      "is_event_driven": true
+    }
+  }
+]

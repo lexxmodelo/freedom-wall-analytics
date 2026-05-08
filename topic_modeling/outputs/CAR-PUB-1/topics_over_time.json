@@ -1,0 +1,158 @@
+{
+  "n_bins": 7,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 2287,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2025-06-08",
+      "frequency": 5,
+      "words": "sched photographers, senyo, senyo today, send mapa, tagacs nagpuskol"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-06-08",
+      "frequency": 317,
+      "words": "up, hi, time, nag, since"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-06-08",
+      "frequency": 221,
+      "words": "im, dont, up, help, people"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-06-08",
+      "frequency": 5,
+      "words": "trading, mascam, amis let, butterfly, reminder mind"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-06-08",
+      "frequency": 9,
+      "words": "jusko, amis, wika, magreply, konting consideration"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-06-08",
+      "frequency": 5,
+      "words": "pota, hahahahahahahahaha, bahay bubong, sibuyas, sibuyas ahaahahahahah"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-06-08",
+      "frequency": 1,
+      "words": "cr, experience, up experience, alaga, facilities"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-07-21",
+      "frequency": 2,
+      "words": "yew, yew open, pagawa, pinapabasa, thurs"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-07-21",
+      "frequency": 382,
+      "words": "up, wag, time, need, freshies"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-07-21",
+      "frequency": 285,
+      "words": "im, people, dont, up, time"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-07-21",
+      "frequency": 24,
+      "words": "got, shes got, shes, bok, got way"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-07-21",
+      "frequency": 14,
+      "words": "co lumalaban, juan, juan luna, bulwagang, bulwagang juan"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-07-21",
+      "frequency": 7,
+      "words": "day, first day, hahahahahahahahaha, first, talagang nimy"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-07-21",
+      "frequency": 6,
+      "words": "acs, members, lets, reps, dont"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-09-03",
+      "frequency": 5,
+      "words": "basta, girl, yon basta, video nun, skeri"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-09-03",
+      "frequency": 482,
+      "words": "up, freshies, crush, freshie, hi"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-09-03",
+      "frequency": 385,
+      "words": "im, people, dont, up, time"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-09-03",
+      "frequency": 26,
+      "words": "got, short, sir, tinatawanan, idol"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-09-03",
+      "frequency": 22,
+      "words": "dumalo, story, pogi, room, dumalo luneta"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-09-03",
+      "frequency": 12,
+      "words": "hahahahahaha, underrated pogi, 24 nakakatigas, absent kailan, selos hahahahahaha"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-09-03",
+      "frequency": 3,
+      "words": "pol, step, orgs, freshies, pol org"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-24",
+      "frequency": 33,
+      "words": "friend, bus, friends, tas, bang"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-24",
+      "frequency": 33,
+      "words": "lf, smoking, met, oblation cup, eight months"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-24",
+      "frequency": 2,
+      "words": "nawala form, cac pax, lfg chess, pax paampon, kapag nawala"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-24",
+      "frequency": 1,
+      "words": "bang sumali, sumali valorant, intra unranked, ahahahahahaha, intra"
+    }
+  ]
+}

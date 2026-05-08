@@ -1,0 +1,231 @@
+[
+  {
+    "topic_id": 0,
+    "label": "First Year Student Confessions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:10 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 391,
+        "total_tokens": 397,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "45b3e775efe9fba2da45d1647855e7e9f53e1c481c0dd1f1ae1bf41dae5ec6bc",
+    "temporal_signature": {
+      "n_with_timestamp": 3655,
+      "monthly_distribution": {
+        "2026-05": 17,
+        "2026-04": 496,
+        "2026-03": 961,
+        "2026-02": 863,
+        "2026-01": 721,
+        "2025-12": 355,
+        "2025-11": 242
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.3471,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Student Concerns and Crushes",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:10 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 465,
+        "total_tokens": 472,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "e1f756430f3371df3a4c73c78dd5837ec78c5d15767d4878aa40d81e25b0e472",
+    "temporal_signature": {
+      "n_with_timestamp": 54,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 6,
+        "2026-03": 11,
+        "2026-02": 13,
+        "2026-01": 14,
+        "2025-12": 4,
+        "2025-11": 5
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.3333,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "Student Complaints on Academic Overload",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:12 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 498,
+        "total_tokens": 506,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "3e2231a758d0b69d01f3f73b2e4c08c2b92449b52c4f8097ed0c4aa03d959c0e",
+    "temporal_signature": {
+      "n_with_timestamp": 30,
+      "monthly_distribution": {
+        "2026-04": 5,
+        "2026-03": 8,
+        "2026-02": 6,
+        "2026-01": 8,
+        "2025-12": 1,
+        "2025-11": 2
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.4,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "University Student Casual Conversations",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:12 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 327,
+        "total_tokens": 333,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "ae330602d8ecd01ebea0c4a0c4974a7b767f3b42391b9c612a929af5e6159c22",
+    "temporal_signature": {
+      "n_with_timestamp": 24,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 3,
+        "2026-03": 10,
+        "2026-02": 4,
+        "2026-01": 4,
+        "2025-12": 2
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.4524,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "University Student Crush Confessions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:16 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 484,
+        "total_tokens": 490,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "9b623a7a5999d9cf250a6c089d8d031b578a47253a22ecaa085fb603178702ff",
+    "temporal_signature": {
+      "n_with_timestamp": 11,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 3,
+        "2026-02": 3,
+        "2026-01": 1,
+        "2025-12": 1,
+        "2025-11": 2
+      },
+      "concentrated_months": [
+        "2025-11",
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.3636,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 5,
+    "label": "University Rankings Concerns",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:05:24 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 224,
+        "total_tokens": 229,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "967a8c06ba2ab3373d24fae242d8db6a8cb13d7420bcf6dbb0158c28450f4e69",
+    "temporal_signature": {
+      "n_with_timestamp": 10,
+      "monthly_distribution": {
+        "2026-03": 6,
+        "2026-02": 3,
+        "2026-01": 1
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-03"
+      ],
+      "gini": 0.7143,
+      "is_event_driven": true
+    }
+  }
+]

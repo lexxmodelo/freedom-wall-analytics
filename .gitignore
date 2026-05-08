@@ -46,6 +46,11 @@ coverage/
 # Manuscript drafts (kept local only)
 manuscript/
 
+# Team-internal alias override (restores school_alias values for local
+# navigation; never committed). See topic_modeling/configs/university_mapping.yaml
+# header for the override file format.
+topic_modeling/configs/university_mapping.local.yaml
+
 # Cookies
 cookies.json
 cookies_state.json
@@ -58,15 +63,24 @@ scraper_project/cookies.json
 
 # Scraper runtime artifacts
 scraper_project/debug_screenshots/
-scraper_project/data/*_session.json
+scraper_project/data/
+# (raw scraper outputs are not released; reviewers can re-harvest with the
+# released code. Preprocessing outputs in preprocessing/output/ ARE tracked.)
 
 # vad_scoring runtime artifacts
 vad_scoring/.env
-vad_scoring/api_cache/
 vad_scoring/checkpoints/
 vad_scoring/results/
-vad_scoring/merged_outputs/
 vad_scoring/*.log
 vad_scoring/configs/researcher_*.json
+# (vad_scoring/merged_outputs/ is the public release artifact: deduped,
+#  cross-researcher VAD records consolidated into a single canonical file.
+#  See vad_scoring/vad_scoring/merge.py.)
 # But DO keep the template in git so new researchers can bootstrap.
 !vad_scoring/configs/researcher_template.json
+
+# api_cache: sanitized response caches (prompt_sha256 only, no prompt body)
+# are committed as the public reproducibility audit trail. The pre-sanitization
+# backups produced by sanitize_api_cache.py contain raw prompts and must NEVER
+# be committed.
+vad_scoring/api_cache/*.raw.bak

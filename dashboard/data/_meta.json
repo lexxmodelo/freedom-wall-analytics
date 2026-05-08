@@ -1,7 +1,7 @@
 [
   {
     "univ_code": "CAR-PNSEC-1",
-    "school_alias": "UB",
+    "school_alias": "",
     "region": "CAR",
     "source_file": "FW-09_cleaned.json",
     "confidence": "provisional",
@@ -10,7 +10,7 @@
   },
   {
     "univ_code": "CAR-PSEC-1",
-    "school_alias": "SLU",
+    "school_alias": "",
     "region": "CAR",
     "source_file": "SLU_cleaned.json",
     "confidence": "confirmed",
@@ -19,7 +19,7 @@
   },
   {
     "univ_code": "CAR-PUB-1",
-    "school_alias": "UPB",
+    "school_alias": "",
     "region": "CAR",
     "source_file": "FW-07_cleaned.json",
     "confidence": "provisional",
@@ -28,7 +28,7 @@
   },
   {
     "univ_code": "CAR-PUB-2",
-    "school_alias": "BSU",
+    "school_alias": "",
     "region": "CAR",
     "source_file": "FW-08_cleaned.json",
     "confidence": "provisional",
@@ -37,7 +37,7 @@
   },
   {
     "univ_code": "MIN-PUB-1",
-    "school_alias": "CSU",
+    "school_alias": "",
     "region": "CARAGA",
     "source_file": "FW-06_cleaned.json",
     "confidence": "extension_confirmed",
@@ -46,7 +46,7 @@
   },
   {
     "univ_code": "MM-PNSEC-1",
-    "school_alias": "FEU",
+    "school_alias": "",
     "region": "NCR",
     "source_file": "FW-03_cleaned.json",
     "confidence": "provisional",
@@ -55,7 +55,7 @@
   },
   {
     "univ_code": "MM-PSEC-1",
-    "school_alias": "ADMU",
+    "school_alias": "",
     "region": "NCR",
     "source_file": "FW-01_cleaned.json",
     "confidence": "provisional",
@@ -64,7 +64,7 @@
   },
   {
     "univ_code": "MM-PUB-1",
-    "school_alias": "UPD",
+    "school_alias": "",
     "region": "NCR",
     "source_file": "FW-02_cleaned.json",
     "confidence": "provisional",
@@ -73,16 +73,16 @@
   },
   {
     "univ_code": "PROV-PNSEC-1",
-    "school_alias": "LPU-B",
+    "school_alias": "",
     "region": "CALABARZON",
     "source_file": "FW-05_cleaned.json",
     "confidence": "extension_confirmed",
-    "vad_coverage": 0.9992,
+    "vad_coverage": 0.9995,
     "umap_present": false
   },
   {
     "univ_code": "PROV-PUB-1",
-    "school_alias": "UPLB",
+    "school_alias": "",
     "region": "CALABARZON",
     "source_file": "FW-04_cleaned.json",
     "confidence": "provisional",

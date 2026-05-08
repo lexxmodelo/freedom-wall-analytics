@@ -1,0 +1,228 @@
+[
+  {
+    "topic_id": 0,
+    "label": "Student Politics and Stereotypes",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:16 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 389,
+        "total_tokens": 396,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "8ba814ee33076ea049a082e9497d399aae952a8517e866fa3363dc58569af3f9",
+    "temporal_signature": {
+      "n_with_timestamp": 1214,
+      "monthly_distribution": {
+        "2026-04": 5,
+        "2026-03": 28,
+        "2025-10": 160,
+        "2025-09": 402,
+        "2025-08": 249,
+        "2025-07": 232,
+        "2025-06": 138
+      },
+      "concentrated_months": [
+        "2025-07",
+        "2025-08",
+        "2025-09"
+      ],
+      "gini": 0.4064,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Personal College Life Experiences",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:18 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 354,
+        "total_tokens": 360,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "b956c34a691cf82d7e06dc5ea458861c6363ed3c5d393c966cd113fe4573b5c9",
+    "temporal_signature": {
+      "n_with_timestamp": 924,
+      "monthly_distribution": {
+        "2026-04": 5,
+        "2026-03": 28,
+        "2025-10": 131,
+        "2025-09": 302,
+        "2025-08": 203,
+        "2025-07": 161,
+        "2025-06": 94
+      },
+      "concentrated_months": [
+        "2025-07",
+        "2025-08",
+        "2025-09"
+      ],
+      "gini": 0.4045,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "Student Frustrations and Quirks",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:21 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 373,
+        "total_tokens": 383,
+        "completion_tokens": 10,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "6cfd96cf1711fb30dfe908ec725ecd1e143616538fb62a78f12c75eb716f58ff",
+    "temporal_signature": {
+      "n_with_timestamp": 57,
+      "monthly_distribution": {
+        "2026-03": 2,
+        "2025-10": 7,
+        "2025-09": 21,
+        "2025-08": 20,
+        "2025-07": 5,
+        "2025-06": 2
+      },
+      "concentrated_months": [
+        "2025-08",
+        "2025-09"
+      ],
+      "gini": 0.5213,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Roommate Noise Complaints",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:23 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 409,
+        "total_tokens": 415,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "8fd92868d3b481b7264d54bd6d3be0997e92b3fe2fe1774283cadc5e0bb5f8dc",
+    "temporal_signature": {
+      "n_with_timestamp": 45,
+      "monthly_distribution": {
+        "2025-10": 7,
+        "2025-09": 18,
+        "2025-08": 9,
+        "2025-07": 5,
+        "2025-06": 6
+      },
+      "concentrated_months": [
+        "2025-08",
+        "2025-09",
+        "2025-10"
+      ],
+      "gini": 0.4698,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "Amused Reactions to Cheating",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:30 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 375,
+        "total_tokens": 383,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "719872756d49214a05bc861e94f41923ba15603cd120c2c6a8369b78d757759c",
+    "temporal_signature": {
+      "n_with_timestamp": 25,
+      "monthly_distribution": {
+        "2026-03": 1,
+        "2025-10": 7,
+        "2025-09": 8,
+        "2025-08": 4,
+        "2025-07": 3,
+        "2025-06": 2
+      },
+      "concentrated_months": [
+        "2025-08",
+        "2025-09",
+        "2025-10"
+      ],
+      "gini": 0.4343,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 5,
+    "label": "University Student Organization Elections",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:03:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 227,
+        "total_tokens": 232,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "fd4da5bf345fe2854f9896aff36591493ce27d2d50e6febe27a3c9200cc3b530",
+    "temporal_signature": {
+      "n_with_timestamp": 10,
+      "monthly_distribution": {
+        "2025-09": 3,
+        "2025-08": 6,
+        "2025-06": 1
+      },
+      "concentrated_months": [
+        "2025-08",
+        "2025-09"
+      ],
+      "gini": 0.7143,
+      "is_event_driven": true
+    }
+  }
+]

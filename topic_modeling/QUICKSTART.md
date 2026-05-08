@@ -137,7 +137,7 @@ Researcher ID [researcher_1]: alexx
 
 Pick anything short — `alexx`, `mara`, `lead`, whatever. This becomes your config filename.
 
-You'll see all 10 universities. **For your first run pick only one small one** — type `7` (UPB, ~2,300 posts, fastest):
+You'll see all 10 universities. **For your first run pick only one small one** — type `7` (`CAR-PUB-1`, ~2,300 posts, the fastest):
 
 ```
 Selection: 7
@@ -279,11 +279,11 @@ After changing, clear the affected universities' checkpoints (option 5) and re-r
 
 ## Tips
 
-- **Process small universities first** so you catch problems early. Order: UPB (2.3K) → BSU/UB/LPU-B/UPLB/CSU/SLU/FEU (~3–4K each) → ADMU/UPD (last; 50K+).
+- **Process small universities first** so you catch problems early. Order: `CAR-PUB-1` (2.3K) → the seven mid-size institutions (~3–4K each) → `MM-PSEC-1` and `MM-PUB-1` (last; largest).
 - **Keep the terminal window open** — the live log is more readable than tailing the file.
 - **Don't multi-task on the GPU** — Chrome with hardware acceleration eats 1–2 GB VRAM and may trigger OOMs.
 - **Check `action_log.md`** after every major run — it's the source of truth for what happened. Every decision, every retry, every error.
-- **Coffee break time:** the bake-off and ADMU/UPD runs are long. Set them up before lunch.
+- **Coffee break time:** the bake-off and the largest-corpus runs are long. Set them up before lunch.
 
 ---
 

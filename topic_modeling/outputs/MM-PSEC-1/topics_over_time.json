@@ -1,0 +1,1844 @@
+{
+  "n_bins": 7,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3735,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2025-11-01",
+      "frequency": 292,
+      "words": "im, people, dont, time, up"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-11-01",
+      "frequency": 133,
+      "words": "man, puro, nag, pagiging, jeep"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-11-01",
+      "frequency": 74,
+      "words": "single, miss, lf, ab, crush"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-11-01",
+      "frequency": 48,
+      "words": "single, girl, fine shyt, shyt, hi"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-11-01",
+      "frequency": 27,
+      "words": "french, guy, straight, sitting, talab"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-11-01",
+      "frequency": 23,
+      "words": "im, way, dont, maybe, people"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-11-01",
+      "frequency": 20,
+      "words": "see, saw, im, lagi, wanna"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-11-01",
+      "frequency": 15,
+      "words": "im, currently, theyre, workouts, dont"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2025-11-01",
+      "frequency": 14,
+      "words": "blood, fair, tuition fee, press, earthquake"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2025-11-01",
+      "frequency": 15,
+      "words": "quadrant, ai, enlistment, youre, people"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2025-11-01",
+      "frequency": 22,
+      "words": "pleaseee, chance, crush, miss, miss ababu"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2025-11-01",
+      "frequency": 17,
+      "words": "survey, floors, years old, link, hall"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "secmob, attend, done, gonz crazy, gonna done"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2025-11-01",
+      "frequency": 16,
+      "words": "break, complaint, join, gotten, required"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2025-11-01",
+      "frequency": 12,
+      "words": "whats, crush, dont, ask, fine whats"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2025-11-01",
+      "frequency": 4,
+      "words": "disciplines, cheat, recent, sciences, government"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2025-11-01",
+      "frequency": 6,
+      "words": "keychain, lost, computers, print, attached"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2025-11-01",
+      "frequency": 12,
+      "words": "guy, girl, sprout, whos, crush"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "christmas celeb, celeb, bellarmine field, bellarmine, christmas"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2025-11-01",
+      "frequency": 9,
+      "words": "coolest, girl amp, ga best, gc dost, ur aura"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2025-11-01",
+      "frequency": 10,
+      "words": "something, org, varsity health, talk babble, something raised"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2025-11-01",
+      "frequency": 10,
+      "words": "badminton club, found, badminton, lost found, club"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2025-11-01",
+      "frequency": 11,
+      "words": "feet, service hours, malibog, smelling, up"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "myself, im, work, dont, people"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2025-11-01",
+      "frequency": 6,
+      "words": "yikes sustainability, global issues, gives strong, uses words, kafkaesque letterboxd"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2025-11-01",
+      "frequency": 12,
+      "words": "girls, bf, requirements, chinita, literally"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2025-11-01",
+      "frequency": 5,
+      "words": "plsss, bucky, lost, whoever finds, aea via"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2025-11-01",
+      "frequency": 10,
+      "words": "chants, heat, great, crime, old"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2025-11-01",
+      "frequency": 9,
+      "words": "org, parking, shit, people, old submissions"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2025-11-01",
+      "frequency": 7,
+      "words": "join anyone, join, application, anyone, play"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2025-11-01",
+      "frequency": 5,
+      "words": "majors, tips, tips applying, tips need, thinking either"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2025-11-01",
+      "frequency": 7,
+      "words": "attention see, yesterday youre, viet, viet stall, vibes nice"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2025-11-01",
+      "frequency": 4,
+      "words": "game crashing, tried order, evo, evo megaknight, joilibee"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2025-11-01",
+      "frequency": 6,
+      "words": "bf, bf masc, talab drop, sybau respectfully, spill recipe"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "clappers, balloon clappers, balloon, dropoff, dropoff points"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2025-11-01",
+      "frequency": 7,
+      "words": "strike, time, laborers, transport strike, enough"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "single, mvp, patrick ab, 1gonz pretty, working 1gonz"
+    },
+    {
+      "topic_id": 36,
+      "bin": "2025-11-01",
+      "frequency": 8,
+      "words": "lanyard, broke im, take aim, bumble thought, toilet fire"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2025-11-01",
+      "frequency": 3,
+      "words": "dgdd, choose, game, varsity blue, afternoon im"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2025-11-01",
+      "frequency": 4,
+      "words": "country, parents, im, hate, miss"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2025-11-01",
+      "frequency": 3,
+      "words": "tamagotchis lets, think early, enlistment dean, groupmates whole, anyone fan"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2025-11-01",
+      "frequency": 2,
+      "words": "floor, first floor, second floor, first, second"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2025-11-01",
+      "frequency": 7,
+      "words": "gender, since, dont, media, ashs"
+    },
+    {
+      "topic_id": 42,
+      "bin": "2025-11-01",
+      "frequency": 3,
+      "words": "whoever hit, submit certificate, took photos, car while, caused retake"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2025-11-01",
+      "frequency": 3,
+      "words": "dont block, pagka, magaaral, stairs, dorm"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-11-27",
+      "frequency": 179,
+      "words": "im, dont, up, people, youre"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-11-27",
+      "frequency": 60,
+      "words": "man, bang, pano, speaker, agad"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-11-27",
+      "frequency": 39,
+      "words": "single, miss, aatend, mis, dear"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-11-27",
+      "frequency": 38,
+      "words": "single, lf, vs, pfps, gbseald"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-11-27",
+      "frequency": 11,
+      "words": "straight, men, hard straight, suddenly taken, date im"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-11-27",
+      "frequency": 11,
+      "words": "dont, im, person, people, friends"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-11-27",
+      "frequency": 16,
+      "words": "late, minutes, minutes late, every, stop"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-11-27",
+      "frequency": 16,
+      "words": "dont, im, ive, cant, guy"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "lst, lst parking, kindly, drink, return"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "a4, blue books, theyre, way, people"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "crush, hang track, whos roponggi, good teachers, guy btw"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "orig, 200, survey, browning edgespapers, edgespapers"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "chem, miss, go changes, varied far, varied"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "math, math profs, ddl, down, bc"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "say went, went failed, nerds, failed, went"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2025-11-27",
+      "frequency": 8,
+      "words": "professors, reviews, basic, stop talking, phones"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "ticket, extra, hi, last, lost"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "falling, hdjshsjshs help, give chanceee, hdjshsjshs, galloping sky"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "stall, tusoktusok, atelier, biblical, jsec stall"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "years president, bathrooms elementary, margarets, som four, up years"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "version wicked, sending mixed, signals days, trades, rep version"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2025-11-27",
+      "frequency": 1,
+      "words": "off ebike, ebike happen, someone getting, happen ayooo, getting dropped"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "disney, concert, water bso, cus generation, enjoyed bring"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "im, life, see, up, dont"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2025-11-27",
+      "frequency": 5,
+      "words": "atenean fckboy, fckboy, male, male history, quintessential"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2025-11-27",
+      "frequency": 5,
+      "words": "59, requirements, nerdy, option, lf"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2025-11-27",
+      "frequency": 1,
+      "words": "while workingdont, inconvenient traffic, traffic type, graduate while, workingdont inconvenient"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2025-11-27",
+      "frequency": 7,
+      "words": "wednesday, bidding renovation, bidding, discount system, renovation"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2025-11-27",
+      "frequency": 6,
+      "words": "org, purple org, orange org, youre, orange"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2025-11-27",
+      "frequency": 3,
+      "words": "watch friends, gentrification, join softball, anyone tickets, tickets cads"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2025-11-27",
+      "frequency": 3,
+      "words": "ateneans australia, australia hows, social scene, story starts, sydney"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "car, quite while, stargazer, interested finding, holding up"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2025-11-27",
+      "frequency": 5,
+      "words": "avengers, ahh aint, aint anymore, thought bucky, given powerful"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "arts major, guy uptc, good atenean, dormer horror, question pursuing"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2025-11-27",
+      "frequency": 1,
+      "words": "mun, conference, standing, wtff, forget kindness"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2025-11-27",
+      "frequency": 3,
+      "words": "bawiin, talking kdr, bawiin acads, saw earlier, talented basketball"
+    },
+    {
+      "topic_id": 36,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "classic look, cosplays, toothless, toothless white, jd cosplays"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2025-11-27",
+      "frequency": 1,
+      "words": "forward, believe, wish, shouldnt affected, strange something"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "wrecked profs, chooses attend, block freshies, speakers full, attend online"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2025-11-27",
+      "frequency": 2,
+      "words": "online interview, started, notice, attention, interview"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2025-11-27",
+      "frequency": 3,
+      "words": "profs, first, transfer, teach, concepts"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2025-11-27",
+      "frequency": 4,
+      "words": "people, rich, dont, place, resellers"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-12-23",
+      "frequency": 143,
+      "words": "im, dont, up, every, anyone"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-12-23",
+      "frequency": 49,
+      "words": "bang, christmas, street, tas, tunay"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-12-23",
+      "frequency": 38,
+      "words": "single, miss, som, miss jta, seth"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-12-23",
+      "frequency": 28,
+      "words": "single, play tennis, won, play, jsec"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-12-23",
+      "frequency": 6,
+      "words": "working nerdy, certain glow, casual invites, condo girlfriend, country rising"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-12-23",
+      "frequency": 7,
+      "words": "people, work, im, dont, time"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-12-23",
+      "frequency": 10,
+      "words": "meals, books, okay, miss, remember"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-12-23",
+      "frequency": 7,
+      "words": "friends, smile, im, guy, rbf"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2025-12-23",
+      "frequency": 9,
+      "words": "instructions, love sport, dont, follow instructions, calculator"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "shs 3rd, muscle shs, floor chance, crush chinito, big back"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "bs, ab, science, management, 189"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2025-12-23",
+      "frequency": 4,
+      "words": "wonder bad, 2x learn, 2x, good line, wannabe next"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "slots, needs, genetics lec, fan went, four genetics"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2025-12-23",
+      "frequency": 9,
+      "words": "glean learning, glean, insights glean, experience relates, learning experience"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "competing, actor, production, path, attitude"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "cat, lost, 6pm black, crocheted top, initials bn"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2025-12-23",
+      "frequency": 6,
+      "words": "hes, back miss, amazing ok, animal mis, beaver"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2025-12-23",
+      "frequency": 8,
+      "words": "freeloader, sound, aisis, curious, science"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "water usage, usage caring, balance chatgpt, uni philippines, caring environment"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "yearbooks0, visaya, true visaya, visaya people, size baddies"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "chem, take chem, hate hate, chem rather, hate"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2025-12-23",
+      "frequency": 7,
+      "words": "day off, protein, day, off, funny"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "myself, im, liked, up, chase"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "fans, male history, heard graduated, upcoming semesters, graduated president"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "someone enjoy, microcelebs, im talking, shell, looking"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "wrong enlighten, gonna better, jorts drop, jorts, free websitesapps"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "trade, reselling used, slots, reselling, avenue"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "clothes, urh, wash, dry, process"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "pickleball, ill reach, anyone, play, reach"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "enough need, dreams isnt, familyachieving dreams, graduate spite, familyachieving"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2025-12-23",
+      "frequency": 4,
+      "words": "guy, definitely, see, looking guy, attention see"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2025-12-23",
+      "frequency": 4,
+      "words": "flop, avengers, trailer, trailer got, flop last"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2025-12-23",
+      "frequency": 1,
+      "words": "need oppa, oppa glasses, oppa, glasses, need"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2025-12-23",
+      "frequency": 5,
+      "words": "dynasty, refrain, 20, cant, night"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2025-12-23",
+      "frequency": 4,
+      "words": "pcs, sinful, lgbtq, techtite, sure"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "try contibuting, batiin ulit, vp psych, bitchass, batiin"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2025-12-23",
+      "frequency": 2,
+      "words": "things terror, confidence teaching, december giving, days catch, giving days"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2025-12-23",
+      "frequency": 1,
+      "words": "hurt everything, everything said, said, everyday, hurt"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "ashs ask, show office, became friends, put together, cads departments"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2025-12-23",
+      "frequency": 4,
+      "words": "babble, cheer, im looking, im, hes"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2025-12-23",
+      "frequency": 1,
+      "words": "competition, athletes, maybe, management, support"
+    },
+    {
+      "topic_id": 42,
+      "bin": "2025-12-23",
+      "frequency": 3,
+      "words": "allowed ashape, answer seatmate, seatmate use, benches near, attempt cheat"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2025-12-23",
+      "frequency": 1,
+      "words": "inspo, bc, style, way, brushing bangs"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-01-18",
+      "frequency": 99,
+      "words": "im, up, dont, people, friend"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-18",
+      "frequency": 27,
+      "words": "atenista, site, ganto, muna, excel"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-18",
+      "frequency": 33,
+      "words": "single, oral, gets, jay enhypen, crush aaa"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-18",
+      "frequency": 21,
+      "words": "legma, single, need, failed math, enjoyed talking"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-18",
+      "frequency": 11,
+      "words": "tea, allblack, headset single, guy stop, wonderful memories"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-01-18",
+      "frequency": 12,
+      "words": "people, im, dont, love, bucky"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-01-18",
+      "frequency": 6,
+      "words": "toe, situationship, feeling, polo, pabigat"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-01-18",
+      "frequency": 10,
+      "words": "im, asmph, dont, drove, see"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "run country, country, vs, vs up, run"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-01-18",
+      "frequency": 5,
+      "words": "humanities, technology, stem, profitable, wish focus"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-01-18",
+      "frequency": 6,
+      "words": "lf, love, 309 every, enbies, yelling 67"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "link, sciences, link link, lbc, ads"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "passed, ask lasallians, idea content, arts bfa, mentioned timeline"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "braless, pasties, bra, hot, falling bodies"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-01-18",
+      "frequency": 6,
+      "words": "atsi, help deal, use incompetence, working evil, kurakot use"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "performative, makes performative, waste time, waste, things"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "selling, 24oz, zerobaseone ateez, womens bathroom, grey monday"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-01-18",
+      "frequency": 5,
+      "words": "friend, love, used view, hes mind, romantically tell"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "club, say beautiful, food socials, free days, days treat"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-01-18",
+      "frequency": 5,
+      "words": "whole ai, whens best, keep making, way watched, infectious hope"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-01-18",
+      "frequency": 6,
+      "words": "work freshies, taking ashape, taken biggest, tips taking, plans contractor"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "provide, apt, alternatives private, apt resources, private cant"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "fin, fin aid, aid, scholars, ur"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "im starting, starting, im, starting dislike, bad person"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "asking badminton, seeing asking, years seeing, badminton org, badminton"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "persephone, interested, male, chinita, youre interested"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "management, bs management, alias maxine, 31 approx, accounts deactivated"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "articles, while verbose, go december, graphic designs, intelligence poverty"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "billionaires, org, cheers players, pocket watching, personalized cheers"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "join, car, watching spring, eyeing next, maximum number"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "therapist, therapist relationships, therapist younger, center prefer, best therapist"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "agsb, agsb council, while miss, charm way, carried yourself"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "rage, babble, yall louder, goated yall, dapitan"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2026-01-18",
+      "frequency": 4,
+      "words": "ahahahaha, ahahahaha wasnt, bruno, bruno mars, top gays"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "genuinely sets, vibe orgs, culture moments, struggles whats, whats daytoday"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "failed, failed mean, mean, kindness, mistakes"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "bang java, talk jesuit, jesuits need, jesuit change, need talk"
+    },
+    {
+      "topic_id": 36,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "top 12, 12 top, top, 12, tomas"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "teachers doesnt, retention requirements, improve lack, harsher crashing, crashing aisis"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2026-01-18",
+      "frequency": 3,
+      "words": "website, dreams, 800 days, woman dreams, youd"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "stupid org, 1k several, refunded 1k, bragging compared, sent see"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2026-01-18",
+      "frequency": 2,
+      "words": "hang, mingle people, people, mingle, cat"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2026-01-18",
+      "frequency": 1,
+      "words": "exclusive, dont, soss, connections dont, unlucky mf"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-02-13",
+      "frequency": 166,
+      "words": "im, dont, help, time, people"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-13",
+      "frequency": 48,
+      "words": "ab, amoy, mayaman, atenean, ateneans"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-13",
+      "frequency": 36,
+      "words": "single, katip, miss, bs, yep fanart"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-13",
+      "frequency": 34,
+      "words": "girls, girl, getting called, pencil, chance"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-02-13",
+      "frequency": 12,
+      "words": "piercings, whoevers doing, 2050, works mis, allowed specifically"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-02-13",
+      "frequency": 10,
+      "words": "im, dont, tired, youre, someone"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-02-13",
+      "frequency": 7,
+      "words": "think, homegrown, food, think hes, think youre"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "partner, explaination, flat, much love, im"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-02-13",
+      "frequency": 14,
+      "words": "alumni, ago, cookie, orgs, dance"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-02-13",
+      "frequency": 13,
+      "words": "neurodivergent girls, neurodivergent, girls, cant, people"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-02-13",
+      "frequency": 6,
+      "words": "miss, wya ugh, uuu, ust harvard, idgaf anyways"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-02-13",
+      "frequency": 11,
+      "words": "survey, synopsis, genre, condition, usa"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-02-13",
+      "frequency": 8,
+      "words": "11torres im, fine shes, wanting look, got told, up 11torres"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-02-13",
+      "frequency": 7,
+      "words": "mtg, obsidian, 13k, website, using"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-02-13",
+      "frequency": 1,
+      "words": "twice space, space need, hurt twice, need formal, formal girlfriend"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-02-13",
+      "frequency": 8,
+      "words": "cannot lecture, lecture properly, love, professors, lecture"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-02-13",
+      "frequency": 7,
+      "words": "lost, nmat, anyone, stickers, ill"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-02-13",
+      "frequency": 2,
+      "words": "2nd, yuri didnt, yuri, shot help, think ashop"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-02-13",
+      "frequency": 10,
+      "words": "engineers, country, tuition, npa, teams"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-02-13",
+      "frequency": 7,
+      "words": "11and turns, using lesbian, expressions, yall winning, lesbian terms"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "start held, men hot, crazy start, held pipac, law men"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-02-13",
+      "frequency": 6,
+      "words": "up, yall self, guards need, xavier guards, getting lovebox"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "finished, great, line, ejeep line, enabled"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "dont, im, myself, cant, family"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "shift, babble, worse division, women shout, tries wake"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-02-13",
+      "frequency": 1,
+      "words": "etc, youre introverted, food need, im male, introverted bored"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-02-13",
+      "frequency": 5,
+      "words": "js, useless, fucking, ab think, amazing js"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2026-02-13",
+      "frequency": 2,
+      "words": "new, alumni, allegations dont, add fuel, additions ac"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-02-13",
+      "frequency": 2,
+      "words": "guard, financial aid, aid, financial, 100"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "anyone wants, anyone, play, wants, pickleball club"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2026-02-13",
+      "frequency": 10,
+      "words": "heat, hard legma, legma, hard, grass wasted"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "help find, find, looking guy, stargazer, ir 3rd"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2026-02-13",
+      "frequency": 2,
+      "words": "10 secb, say literally, blockmate say, went blockmate, thingy chair"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2026-02-13",
+      "frequency": 5,
+      "words": "theatre arts, boy coded, taking putting, system every, free kitkat"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2026-02-13",
+      "frequency": 2,
+      "words": "iran, basketball team, team, mea, basketball"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "morning, toilet, detergent, washing detergent, washing"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2026-02-13",
+      "frequency": 6,
+      "words": "oui, looking people, good looking, nabother, baddies 2nd"
+    },
+    {
+      "topic_id": 36,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "yall see, stall owner, chat good, card personality, someone chat"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2026-02-13",
+      "frequency": 7,
+      "words": "retake, chem lec, lec, reviewing, intersession"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "marriage, america, life, three half, half years"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2026-02-13",
+      "frequency": 5,
+      "words": "bathrooms, commitment, concert, ateneans going, yourself lasallians"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2026-02-13",
+      "frequency": 1,
+      "words": "reunion, shot, active reciting, homecoming reunion, everything passionate"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2026-02-13",
+      "frequency": 3,
+      "words": "maybe fact, design, info design, fact, yon"
+    },
+    {
+      "topic_id": 42,
+      "bin": "2026-02-13",
+      "frequency": 5,
+      "words": "took jisu, jisu, jisu life, guard, took"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2026-02-13",
+      "frequency": 4,
+      "words": "cronch, library, profs, eating, care"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-03-12",
+      "frequency": 136,
+      "words": "im, up, anyone, dont, people"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-03-12",
+      "frequency": 35,
+      "words": "guy, plates, competitions, crush, dugyot"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-03-12",
+      "frequency": 32,
+      "words": "single, pat, miss, ab, block"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-03-12",
+      "frequency": 23,
+      "words": "org, rance som, taken love, rance, lovebox"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "door, night outside, hate little, cycling community, science dont"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "life, church, people, way, im"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "parking spot, parking, responsibility, spot, zero"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-03-12",
+      "frequency": 11,
+      "words": "ur, past 12am, 12am, friends, im"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-03-12",
+      "frequency": 11,
+      "words": "young, legendary profs, legendary, profs, cold"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "youre, acting, shes, topic, deal"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "fair bring, friend wont, waiian, cosplayer secwalk, chinito arms"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "bouquets, survey, plushie, research, xl"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "makes, writers thought, handle totga, aches good, vitamin brand"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "hair, bookings, blue rep, 3x, need"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-03-12",
+      "frequency": 1,
+      "words": "sadder lying, lying people, sadder, ask youre, okay asked"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "antivaxx, health workers, ideals, workers, beadle"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-03-12",
+      "frequency": 7,
+      "words": "lost, return, seen, anyone, anyone seen"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "crush, hill remake, im easy, give flowers, hes years"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "gokongwei, stylish attractive, jsb, pauso, stylish"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "wolfcut mis, seen taken, hi masclooking, acoa chance, masclooking"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-03-12",
+      "frequency": 3,
+      "words": "wlw girls, polsci freshies, psych wlw, fear psych, freshies unbearable"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "boboiboy, need, pockets, need someone, tambay"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "genai, enzo whos, meet enzo, enzo, president"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "im, couldnt, relationship, myself, dont"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "crying zerobaseone, dosss, jsec stfu, sose departments, keeps shouting"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "chinese, 710, theyre, celadon, chinito mestizo"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-03-12",
+      "frequency": 8,
+      "words": "dont date, date, wouldnt mind, chairs, sorry"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "organizations, early, participation, joke, men"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-03-12",
+      "frequency": 3,
+      "words": "science health, health science, bit, parking, health"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "welcoming space, hii nervous, usually accept, ashs life, ashape results"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "area question, arts psych, bachelor arts, sustainable inviting, question nestle"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "womens month, tattoo, womens, month, henna tattoo"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "themselves, attended bbis, bbis show, controversy, controversy widespread"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "11 bisexual, window shopping, bisexual ass, theres theatre, theatre kids"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2026-03-12",
+      "frequency": 5,
+      "words": "trash, seniors, seniors date, date, system"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2026-03-12",
+      "frequency": 4,
+      "words": "grew up, air, grew, up, kind face"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2026-03-12",
+      "frequency": 1,
+      "words": "clearly nabother, got ratioed, ratioed, nabother since, hell comsec"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "failed, workload profs, affect latin, information workload, experiences etc"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2026-03-12",
+      "frequency": 6,
+      "words": "divorce, married, im, way, property"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "xx6767, wonder someone, thats free, theres piano, play cuz"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2026-03-12",
+      "frequency": 1,
+      "words": "homecoming, high, worked shoot, wouldve shined, ao"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2026-03-12",
+      "frequency": 1,
+      "words": "interview, based employment, proj ended, research industry, proj"
+    },
+    {
+      "topic_id": 42,
+      "bin": "2026-03-12",
+      "frequency": 2,
+      "words": "saturday jan, sciences great, took headset, 308 saturday, 23 8am"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-04-07",
+      "frequency": 236,
+      "words": "im, people, dont, anyone, youre"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-04-07",
+      "frequency": 55,
+      "words": "man, ibang, palaging, hi, ma math"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-04-07",
+      "frequency": 50,
+      "words": "single, hi, mis, congrats, miss"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-04-07",
+      "frequency": 28,
+      "words": "ur, girl, health, single, istg"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-04-07",
+      "frequency": 17,
+      "words": "dpwh, animal, stickers, two years, animal beast"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-04-07",
+      "frequency": 13,
+      "words": "finance, im, people, something, dont"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2026-04-07",
+      "frequency": 13,
+      "words": "nag, later, kame, cooking, shot"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-04-07",
+      "frequency": 11,
+      "words": "im, mentally, friends, applied, tips"
+    },
+    {
+      "topic_id": 7,
+      "bin": "2026-04-07",
+      "frequency": 20,
+      "words": "blocks, crs, consider putting, putting towels, towels crs"
+    },
+    {
+      "topic_id": 8,
+      "bin": "2026-04-07",
+      "frequency": 8,
+      "words": "doesnt, time, youre, life, people"
+    },
+    {
+      "topic_id": 9,
+      "bin": "2026-04-07",
+      "frequency": 8,
+      "words": "abis, sose, ranking, psyche, soss"
+    },
+    {
+      "topic_id": 10,
+      "bin": "2026-04-07",
+      "frequency": 11,
+      "words": "philippines, link, participants, form, everytime"
+    },
+    {
+      "topic_id": 11,
+      "bin": "2026-04-07",
+      "frequency": 9,
+      "words": "fair, forcerank evaluations, instead fair, forced ranking, god sometimes"
+    },
+    {
+      "topic_id": 12,
+      "bin": "2026-04-07",
+      "frequency": 7,
+      "words": "clothes, activity, go, break, box"
+    },
+    {
+      "topic_id": 13,
+      "bin": "2026-04-07",
+      "frequency": 8,
+      "words": "leadership, world turn, youre halata, good partners, glaring problems"
+    },
+    {
+      "topic_id": 14,
+      "bin": "2026-04-07",
+      "frequency": 8,
+      "words": "profs, mixed, mixed reviews, emilia, profs mixed"
+    },
+    {
+      "topic_id": 15,
+      "bin": "2026-04-07",
+      "frequency": 12,
+      "words": "taft, chewy chocolates, message anytime, im selling, anyone"
+    },
+    {
+      "topic_id": 16,
+      "bin": "2026-04-07",
+      "frequency": 6,
+      "words": "putok blockmate, activist partner, id two, nice way, nickels xd"
+    },
+    {
+      "topic_id": 17,
+      "bin": "2026-04-07",
+      "frequency": 4,
+      "words": "canvas, capable showing, thru past, take much, 28 wearing"
+    },
+    {
+      "topic_id": 18,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "ateneans everywhere, bi fun, basketball round, went viral, fawn"
+    },
+    {
+      "topic_id": 19,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "weekly netflix, someone psych, real ateneans, run weekly, say real"
+    },
+    {
+      "topic_id": 20,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "experiments, earphones, psych, pleeeaseee, 20 lunch"
+    },
+    {
+      "topic_id": 21,
+      "bin": "2026-04-07",
+      "frequency": 1,
+      "words": "way price, war oil, crisis people, hike, pedestrian sidewalks"
+    },
+    {
+      "topic_id": 22,
+      "bin": "2026-04-07",
+      "frequency": 6,
+      "words": "happy, im, trail, family, happy trail"
+    },
+    {
+      "topic_id": 23,
+      "bin": "2026-04-07",
+      "frequency": 8,
+      "words": "performative, yesmen humbled, abandoned pretends, yesmen, volunteers taking"
+    },
+    {
+      "topic_id": 24,
+      "bin": "2026-04-07",
+      "frequency": 2,
+      "words": "cliquish, 410, masarap, business cluster, cluster"
+    },
+    {
+      "topic_id": 25,
+      "bin": "2026-04-07",
+      "frequency": 6,
+      "words": "scholarship, acets, acets usually, yesterday formed, hahahahaha sarappp"
+    },
+    {
+      "topic_id": 26,
+      "bin": "2026-04-07",
+      "frequency": 3,
+      "words": "time early, early enlistment, zen garden, garden, zen"
+    },
+    {
+      "topic_id": 27,
+      "bin": "2026-04-07",
+      "frequency": 4,
+      "words": "career fair, parking, career, fair, guests"
+    },
+    {
+      "topic_id": 28,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "cosplay, smth, org, anyone, g7"
+    },
+    {
+      "topic_id": 29,
+      "bin": "2026-04-07",
+      "frequency": 3,
+      "words": "atenean friends, berchmans hall, berchmans, booth zen, sincerely commuter"
+    },
+    {
+      "topic_id": 30,
+      "bin": "2026-04-07",
+      "frequency": 1,
+      "words": "entire undergrad, undergrad population, dont cc, adding dont, cc entire"
+    },
+    {
+      "topic_id": 31,
+      "bin": "2026-04-07",
+      "frequency": 4,
+      "words": "arrrgh, arrrgh spongebob, whole team, whose dumbass, go stinkier"
+    },
+    {
+      "topic_id": 32,
+      "bin": "2026-04-07",
+      "frequency": 3,
+      "words": "aaa mr, single aaa, waffles katip, belgian waffles, belgian"
+    },
+    {
+      "topic_id": 33,
+      "bin": "2026-04-07",
+      "frequency": 3,
+      "words": "gmail, goddamn, call respondents, respondents, 20"
+    },
+    {
+      "topic_id": 34,
+      "bin": "2026-04-07",
+      "frequency": 2,
+      "words": "elections, free, seriously, free photobooth, voter turnout"
+    },
+    {
+      "topic_id": 35,
+      "bin": "2026-04-07",
+      "frequency": 1,
+      "words": "neglect person, neglect, whos avoidant, avoidant, person whos"
+    },
+    {
+      "topic_id": 36,
+      "bin": "2026-04-07",
+      "frequency": 6,
+      "words": "leon, cats bias, underrated song, drop mea, dogs cats"
+    },
+    {
+      "topic_id": 37,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "laude, management, polsci, accepted, majors"
+    },
+    {
+      "topic_id": 38,
+      "bin": "2026-04-07",
+      "frequency": 2,
+      "words": "since, maybe, somehow, gf, tell"
+    },
+    {
+      "topic_id": 39,
+      "bin": "2026-04-07",
+      "frequency": 1,
+      "words": "casts lately, casts, whats amount, amount crutches, crutches casts"
+    },
+    {
+      "topic_id": 40,
+      "bin": "2026-04-07",
+      "frequency": 5,
+      "words": "line, hygiene, shes, luck, knows"
+    },
+    {
+      "topic_id": 41,
+      "bin": "2026-04-07",
+      "frequency": 2,
+      "words": "pain, god, sin, lord, gods"
+    },
+    {
+      "topic_id": 42,
+      "bin": "2026-04-07",
+      "frequency": 3,
+      "words": "art anyone, anyone candidate, turned wallet, short happiness, sell art"
+    },
+    {
+      "topic_id": 43,
+      "bin": "2026-04-07",
+      "frequency": 2,
+      "words": "uh, abstain, seats, toilet, believe abstain"
+    }
+  ]
+}

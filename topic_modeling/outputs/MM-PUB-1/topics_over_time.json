@@ -1,0 +1,74 @@
+{
+  "n_bins": 6,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3578,
+  "topics_over_time": [
+    {
+      "topic_id": 1,
+      "bin": "2024-06-23",
+      "frequency": 1,
+      "words": "edible, edible prutas, prutas meet, dahon, dahon edible"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-09-17",
+      "frequency": 455,
+      "words": "up, im, miss, dont, people"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-09-17",
+      "frequency": 391,
+      "words": "up, miss, bang, crush, time"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-09-17",
+      "frequency": 23,
+      "words": "miss, newjeans, mez, crush, horanghae"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-09-17",
+      "frequency": 3,
+      "words": "miss, miss gino, hi mahal, gino, miss wonu"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-09-17",
+      "frequency": 3,
+      "words": "siguro, cant, friend, point, friends"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-07",
+      "frequency": 1363,
+      "words": "sucks, sucks sucks, up, im, dont"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-07",
+      "frequency": 1249,
+      "words": "up, crush, miss, hi, nag"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-07",
+      "frequency": 67,
+      "words": "miss, exo, crush, enhypen, vote"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-07",
+      "frequency": 7,
+      "words": "miss, miss baby, miss loves, miss prime, prime miss"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2026-01-07",
+      "frequency": 16,
+      "words": "friend, time, nag, since, best"
+    }
+  ]
+}

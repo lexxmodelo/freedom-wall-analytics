@@ -1,0 +1,56 @@
+Creative Commons Attribution-NonCommercial 4.0 International
+(CC BY-NC 4.0)
+
+Copyright (c) 2026 Albarida, I. A.; Burgos, M. J.; Calera, E. D. S.;
+Gapuz, E. J. C.; Llena, A.; Modelo, A. E. O.; Salda, J. S.;
+Viduya, H. E. (Saint Louis University)
+
+The data artifacts released alongside the manuscript "AI-Driven Topic Modeling
+and Multidimensional Sentiment Analysis of Student Discourse on Selected
+Philippine University Freedom Walls" — including the cleaned post corpus
+(preprocessing/output/), per-institution BERTopic outputs and topic labels
+(topic_modeling/outputs/), per-post Valence-Arousal-Dominance scores, the
+Human-in-the-Loop annotation set, and the dashboard data files — are licensed
+under the Creative Commons Attribution-NonCommercial 4.0 International License.
+
+This means you are free to:
+  - Share — copy and redistribute the material in any medium or format
+  - Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable
+    manner, but not in any way that suggests the licensor endorses you or your
+    use.
+  - NonCommercial — You may not use the material for commercial purposes.
+  - No additional restrictions — You may not apply legal terms or technological
+    measures that legally restrict others from doing anything the license
+    permits.
+
+Full license text: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+----
+
+ADDITIONAL CONDITIONS SPECIFIC TO THIS DATASET
+
+1. ANONYMIZATION INTEGRITY. You agree not to attempt to re-identify the source
+   institutions referenced by the regional cluster codes (e.g., MM-PSEC-1,
+   PROV-PUB-1) from the released artifacts, nor to combine the released
+   artifacts with external sources for that purpose. The school_alias field
+   has been deliberately stripped from the public release; do not infer or
+   reconstruct it.
+
+2. NO INDIVIDUAL-LEVEL INFERENCE. The corpus is a collection of anonymous
+   public posts. Per-post records reflect what was publicly written on the
+   relevant Freedom Wall pages, not the verified beliefs, behaviors, or
+   identities of any individual author. You agree not to use the data to
+   profile, identify, or surveil individual posters.
+
+3. ETHICAL USE. Use of the data is restricted to academic research, education,
+   and non-commercial scholarly inquiry consistent with the data-minimization
+   commitment articulated in the Method section of the accompanying manuscript
+   (see Ethical considerations). The raw scraped corpus before anonymization
+   is not released under any terms.
+
+4. CITATION. If you use this data in published work, please cite the
+   accompanying manuscript (see README.md for the citation block).

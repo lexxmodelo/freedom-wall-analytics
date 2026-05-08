@@ -4,12 +4,15 @@
 *.env
 
 # Per-run artifacts
-api_cache/
 checkpoints/
 results/
-merged_outputs/
 validation/*.json
 validation/*.jsonl
+# api_cache/ — sanitized cache (prompt_sha256 only) is the public
+# reproducibility audit trail. Tracked. Pre-sanitization backups excluded:
+api_cache/*.raw.bak
+# merged_outputs/ — public release artifact (deduped cross-researcher VAD
+# records). Tracked.
 
 # Python
 __pycache__/

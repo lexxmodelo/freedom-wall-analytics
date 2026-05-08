@@ -1,0 +1,1025 @@
+[
+  {
+    "topic_id": 0,
+    "label": "University Entrance Exam Concerns",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:31 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 391,
+        "total_tokens": 397,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "6ee698666d473f11760889f4e75fdaec46d6fba5feb24317304327e6b148a4d6",
+    "temporal_signature": {
+      "n_with_timestamp": 477,
+      "monthly_distribution": {
+        "2026-05": 4,
+        "2026-04": 168,
+        "2026-03": 52,
+        "2026-02": 140,
+        "2026-01": 113
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3488,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 1,
+    "label": "Relationship Concerns and Advice",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:31 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 397,
+        "total_tokens": 403,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "d3a5672b9e739d56bf8f8f659c9dfe653e41d0d72001fb8ff0fbd767e192b178",
+    "temporal_signature": {
+      "n_with_timestamp": 254,
+      "monthly_distribution": {
+        "2026-05": 2,
+        "2026-04": 61,
+        "2026-03": 28,
+        "2026-02": 99,
+        "2026-01": 64
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3622,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 2,
+    "label": "Selling Scientific Calculators",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 349,
+        "total_tokens": 355,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "135b3c39f488385069261fa9bd7b578afddd7ae875d469b144799dbb813e6973",
+    "temporal_signature": {
+      "n_with_timestamp": 179,
+      "monthly_distribution": {
+        "2026-03": 18,
+        "2026-02": 92,
+        "2026-01": 69
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5654,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 3,
+    "label": "Group Chat Requests",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 294,
+        "total_tokens": 298,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "20fbbe375b83ebeb7b6f7999ecb2a7fb20d3051a13575885913df890564e451f",
+    "temporal_signature": {
+      "n_with_timestamp": 169,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 11,
+        "2026-03": 4,
+        "2026-02": 76,
+        "2026-01": 77
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5302,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 4,
+    "label": "University Course Inquiry",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:35 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 348,
+        "total_tokens": 352,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "96358dceee84774b09ef131582b066bc9bfb620be09afb297c96d65717218c01",
+    "temporal_signature": {
+      "n_with_timestamp": 163,
+      "monthly_distribution": {
+        "2026-05": 2,
+        "2026-04": 57,
+        "2026-03": 25,
+        "2026-02": 49,
+        "2026-01": 30
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3288,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 5,
+    "label": "Student Concerns and Queries",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:36 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 378,
+        "total_tokens": 384,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "55fdf581e9decc46710db8bbb960e92032ecbdc63b21211bc07a45a589464554",
+    "temporal_signature": {
+      "n_with_timestamp": 111,
+      "monthly_distribution": {
+        "2026-03": 4,
+        "2026-02": 71,
+        "2026-01": 36
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.6414,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 6,
+    "label": "Student Life and Sentiments",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:36 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 408,
+        "total_tokens": 414,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "37f7ab057cf8cc59cef00ad8ed4ba72896f46a31aec3e0c1d52f2d37ac63d7b6",
+    "temporal_signature": {
+      "n_with_timestamp": 104,
+      "monthly_distribution": {
+        "2026-05": 3,
+        "2026-04": 37,
+        "2026-03": 17,
+        "2026-02": 31,
+        "2026-01": 16
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.3192,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 7,
+    "label": "University Group Join Requests",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:39 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 323,
+        "total_tokens": 328,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "6d12a5773e2da9f4b5402d95fd5f8291cc43f549a5e9b82b38489e7d0542b51d",
+    "temporal_signature": {
+      "n_with_timestamp": 102,
+      "monthly_distribution": {
+        "2026-04": 2,
+        "2026-03": 8,
+        "2026-02": 45,
+        "2026-01": 47
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5373,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 8,
+    "label": "Cold Weather Class Suspension",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:48 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 566,
+        "total_tokens": 571,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "26ad46ff70a016035f6e124973fc3007222d1d178f734ac84643e7cfa2708ec3",
+    "temporal_signature": {
+      "n_with_timestamp": 95,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 21,
+        "2026-03": 12,
+        "2026-02": 32,
+        "2026-01": 29
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3326,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 9,
+    "label": "Lost and Found Items",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:58:48 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 395,
+        "total_tokens": 400,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "a2e24df0400706de3342728534fd5c378807dec908830c140244555bdac0359d",
+    "temporal_signature": {
+      "n_with_timestamp": 66,
+      "monthly_distribution": {
+        "2026-04": 11,
+        "2026-03": 4,
+        "2026-02": 30,
+        "2026-01": 21
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.4667,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 10,
+    "label": "Student Marketplace Listings",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:59:09 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 428,
+        "total_tokens": 432,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "765b7ea60aeade2f2b10330e84e7e1959d86b2f3c64ed3bf6ab37dcca6088917",
+    "temporal_signature": {
+      "n_with_timestamp": 66,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 7,
+        "2026-02": 37,
+        "2026-01": 21
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5697,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 11,
+    "label": "Gnosis Churv User Discussions",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:19 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 397,
+        "total_tokens": 404,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "b18743707b8ad42bfa2363decbd5f1a08e6930ff34174e62d471c02f85d8d41c",
+    "temporal_signature": {
+      "n_with_timestamp": 61,
+      "monthly_distribution": {
+        "2026-04": 51,
+        "2026-03": 10
+      },
+      "concentrated_months": [
+        "2026-04"
+      ],
+      "gini": 0.7344,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 12,
+    "label": "Student Crush Confessions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:27 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 430,
+        "total_tokens": 435,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "b3333b286e2507fa07aa63d4796a6d724b01a64f088c409a6c50d04db6b1c240",
+    "temporal_signature": {
+      "n_with_timestamp": 61,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 6,
+        "2026-03": 8,
+        "2026-02": 34,
+        "2026-01": 12
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.4721,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 13,
+    "label": "University Student Emotional Reflections",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:59:41 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 362,
+        "total_tokens": 368,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "1b8ad45c1e0be0be9c1da6464dcabf79b73e481d3cccda28f7eb2d296afc1fed",
+    "temporal_signature": {
+      "n_with_timestamp": 57,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 13,
+        "2026-03": 8,
+        "2026-02": 21,
+        "2026-01": 14
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.3228,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 14,
+    "label": "Student Life Miscellaneous Concerns",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 07:59:57 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 494,
+        "total_tokens": 500,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "90cc5d0b2ffd8c84f92653b931a97e7326d204e9052e5b4ca4d615a6303fb381",
+    "temporal_signature": {
+      "n_with_timestamp": 45,
+      "monthly_distribution": {
+        "2026-04": 6,
+        "2026-03": 3,
+        "2026-02": 22,
+        "2026-01": 14
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.4889,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 15,
+    "label": "Churv Technical Issues",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:00:17 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 363,
+        "total_tokens": 368,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "9d133d807efa03ef1bdf31d47a586c3424bbca30aec934d161a21c13c7eb912f",
+    "temporal_signature": {
+      "n_with_timestamp": 38,
+      "monthly_distribution": {
+        "2026-05": 1,
+        "2026-04": 28,
+        "2026-03": 9
+      },
+      "concentrated_months": [
+        "2026-04"
+      ],
+      "gini": 0.6842,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 16,
+    "label": "Churv User Interactions",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:28 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 314,
+        "total_tokens": 320,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "8213e209cfc26d1baeb8cfb8de22ac1c5866383b4fd01f9e065fadc8a4f9afe8",
+    "temporal_signature": {
+      "n_with_timestamp": 38,
+      "monthly_distribution": {
+        "2026-05": 2,
+        "2026-04": 21,
+        "2026-03": 15
+      },
+      "concentrated_months": [
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.6,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 17,
+    "label": "University Student Activity Groups",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:31 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 297,
+        "total_tokens": 302,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "a6876ad3b58f93aba7f9fc25346e5a240066ffddb8754126fa42742b3dae79fd",
+    "temporal_signature": {
+      "n_with_timestamp": 35,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 5,
+        "2026-02": 19,
+        "2026-01": 10
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5371,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 18,
+    "label": "University Relationship Struggles",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 376,
+        "total_tokens": 382,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "a8a11e60440ec833a9e0c24c2da090f491153a974285a5ab781b9476c326f324",
+    "temporal_signature": {
+      "n_with_timestamp": 34,
+      "monthly_distribution": {
+        "2026-04": 9,
+        "2026-03": 8,
+        "2026-02": 9,
+        "2026-01": 8
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "gini": 0.2235,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 19,
+    "label": "CWTS Group Chat Requests",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:04 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 312,
+        "total_tokens": 318,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "e38c1f8d10548813a95a72b9d58b765e46d55a6c80582b6e6e912e92d085bad5",
+    "temporal_signature": {
+      "n_with_timestamp": 23,
+      "monthly_distribution": {
+        "2026-03": 1,
+        "2026-02": 11,
+        "2026-01": 11
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5739,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 20,
+    "label": "Academic Concerns and Leadership",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:06 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 328,
+        "total_tokens": 335,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "bf00fec1cfbd8af7275ad280ce8d31e764488888122c80722380f6adab7343e0",
+    "temporal_signature": {
+      "n_with_timestamp": 21,
+      "monthly_distribution": {
+        "2026-04": 11,
+        "2026-03": 3,
+        "2026-02": 4,
+        "2026-01": 3
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.4381,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 21,
+    "label": "Amusing Student Life Updates",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:09 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 452,
+        "total_tokens": 458,
+        "completion_tokens": 6,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "566c2cdc45966e1555475dcd9a19cd874f95ac8bc70ca7bbd597ed2c85ec41d5",
+    "temporal_signature": {
+      "n_with_timestamp": 21,
+      "monthly_distribution": {
+        "2026-04": 6,
+        "2026-03": 1,
+        "2026-02": 9,
+        "2026-01": 5
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.4381,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 22,
+    "label": "Student Resource Inquiries",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:32 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 332,
+        "total_tokens": 337,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "f1511b5e0d26637ba59a56a083dd4354334b02c9b5b541649f9cdf16fb1c1551",
+    "temporal_signature": {
+      "n_with_timestamp": 16,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 1,
+        "2026-02": 9,
+        "2026-01": 5
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.55,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 23,
+    "label": "Temu Referral Code Swap",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:36 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 304,
+        "total_tokens": 311,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "dfde44d31793739139fbdc96faf36e516d21546366e1d178efbe0a7b17ab661d",
+    "temporal_signature": {
+      "n_with_timestamp": 14,
+      "monthly_distribution": {
+        "2026-02": 14
+      },
+      "concentrated_months": [
+        "2026-02"
+      ],
+      "gini": 0.8,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 24,
+    "label": "TDP Scholarship Release Inquiries",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:49 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 349,
+        "total_tokens": 356,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "9997e9e96a5a3499003ac32efbbbb30d8aac625943f3f74efb6f1268b163a8c4",
+    "temporal_signature": {
+      "n_with_timestamp": 14,
+      "monthly_distribution": {
+        "2026-04": 1,
+        "2026-03": 1,
+        "2026-02": 8,
+        "2026-01": 4
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.5429,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 25,
+    "label": "Kpop Music and Tech Issues",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:50 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 376,
+        "total_tokens": 383,
+        "completion_tokens": 7,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "5eb0eccef8e3b809e46dab7c4d047b111d4f267d0fda3e9a18c1e2108a42af0a",
+    "temporal_signature": {
+      "n_with_timestamp": 13,
+      "monthly_distribution": {
+        "2026-04": 6,
+        "2026-02": 6,
+        "2026-01": 1
+      },
+      "concentrated_months": [
+        "2026-02",
+        "2026-04"
+      ],
+      "gini": 0.5538,
+      "is_event_driven": false
+    }
+  },
+  {
+    "topic_id": 26,
+    "label": "Temu GCash Cashback Invitation",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:01:52 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 427,
+        "total_tokens": 435,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "b3a884f7f73658cd0e283a2ac01f4e707587f17d7d3600d898557307d7d7b2fe",
+    "temporal_signature": {
+      "n_with_timestamp": 13,
+      "monthly_distribution": {
+        "2026-02": 13
+      },
+      "concentrated_months": [
+        "2026-02"
+      ],
+      "gini": 0.8,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 27,
+    "label": "Student Team Entry Discussions",
+    "flags": [
+      "EVENT_DRIVEN"
+    ],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:22:36 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 391,
+        "total_tokens": 396,
+        "completion_tokens": 5,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "2950c338ad53b7d3f1fcb52c4ca416a29519365c2a21de60abc0c9902082ff2d",
+    "temporal_signature": {
+      "n_with_timestamp": 11,
+      "monthly_distribution": {
+        "2026-02": 5,
+        "2026-01": 6
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.6182,
+      "is_event_driven": true
+    }
+  },
+  {
+    "topic_id": 28,
+    "label": "Flirtatious Student Confessions",
+    "flags": [],
+    "retries": 0,
+    "response_meta": {
+      "status_code": 200,
+      "headers": {
+        "date": "Wed, 06 May 2026 08:02:36 GMT"
+      },
+      "usage": {
+        "prompt_tokens": 409,
+        "total_tokens": 417,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "model": "meta/llama-3.3-70b-instruct"
+    },
+    "prompt_sha256": "331df3d59a13e8720b5e7eabe3416db8b3e5a44773350402b8eb023f1974543e",
+    "temporal_signature": {
+      "n_with_timestamp": 10,
+      "monthly_distribution": {
+        "2026-03": 2,
+        "2026-02": 5,
+        "2026-01": 3
+      },
+      "concentrated_months": [
+        "2026-01",
+        "2026-02"
+      ],
+      "gini": 0.52,
+      "is_event_driven": false
+    }
+  }
+]

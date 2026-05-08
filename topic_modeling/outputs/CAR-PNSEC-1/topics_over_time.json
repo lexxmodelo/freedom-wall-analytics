@@ -1,0 +1,608 @@
+{
+  "n_bins": 20,
+  "skipped": false,
+  "skipped_reason": null,
+  "n_docs_with_timestamps": 3991,
+  "topics_over_time": [
+    {
+      "topic_id": -1,
+      "bin": "2024-06-11",
+      "frequency": 1,
+      "words": "every, seamasara sea, seamasara, hue, hue pi"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-06-11",
+      "frequency": 78,
+      "words": "sns, nag, sea, sihtm, last"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-06-11",
+      "frequency": 24,
+      "words": "people, sihtm, made, time, cutiepiemo"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-06-11",
+      "frequency": 7,
+      "words": "momma, wallet, pano, momma boys, sea"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-06-11",
+      "frequency": 4,
+      "words": "ehhh, ehhh ehhh, girl, guard naiwan, whats up"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-06-11",
+      "frequency": 3,
+      "words": "ddalgi, silver, aquaflask, white, glasses noong"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-07-14",
+      "frequency": 2,
+      "words": "tsquare, canister, 150, archi, jacket"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-07-14",
+      "frequency": 161,
+      "words": "sns, hi, nag, sea, gc"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-07-14",
+      "frequency": 53,
+      "words": "looking, gc, im, first, lf"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-07-14",
+      "frequency": 7,
+      "words": "singgol, pangalan, sched, rmt, bsn"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-07-14",
+      "frequency": 3,
+      "words": "sns, whygeezz, join nmn, kamukha sns, dwight"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-07-14",
+      "frequency": 5,
+      "words": "kabisado, dragon, top, miss, room"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-08-16",
+      "frequency": 16,
+      "words": "sea, sea red, gizmo, sns, red"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-08-16",
+      "frequency": 757,
+      "words": "sns, nag, hi, building, crush"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-08-16",
+      "frequency": 214,
+      "words": "im, dont, youre, up, way"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-08-16",
+      "frequency": 79,
+      "words": "sns, sea, payong, nag, shout"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-08-16",
+      "frequency": 15,
+      "words": "rmt, wifiii, navy, stela, entry"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-08-16",
+      "frequency": 27,
+      "words": "hi, crush, entry, burger, building"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2024-08-16",
+      "frequency": 6,
+      "words": "beep, demure, pretty, ht clothier, clothier shop"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2024-08-16",
+      "frequency": 2,
+      "words": "tubes, pasalamat, dug, ugali, gurl"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-09-17",
+      "frequency": 11,
+      "words": "yu, met, momma, dika, matangkad"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-09-17",
+      "frequency": 361,
+      "words": "building, hi, nag, room, sns"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-09-17",
+      "frequency": 99,
+      "words": "hi, im, dont, youre, first"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-09-17",
+      "frequency": 37,
+      "words": "sea, wag, landi, floor, shout"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-09-17",
+      "frequency": 12,
+      "words": "congratulations, fan, ilang, back, son"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-09-17",
+      "frequency": 9,
+      "words": "hi, crush, wallet, room, office"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2024-09-17",
+      "frequency": 2,
+      "words": "blue file, file case, day, sns day, beep"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2024-09-17",
+      "frequency": 1,
+      "words": "bully, tas bully, tatanda work, grumadcharot mabait, bully teh"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-10-20",
+      "frequency": 6,
+      "words": "sacrifice, sim, attend, ado, extracurricular activity"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-10-20",
+      "frequency": 217,
+      "words": "sns, nag, wag, hi, day"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-10-20",
+      "frequency": 73,
+      "words": "im, dont, up, time, high"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-10-20",
+      "frequency": 12,
+      "words": "bracelet, 1st, emotional, partner, napupuno"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-10-20",
+      "frequency": 10,
+      "words": "agtatakaw, red egg, egg, kame, ti"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-10-20",
+      "frequency": 6,
+      "words": "kinawayan, yellow matabang, matabang, matabang dancer, nakared"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2024-10-20",
+      "frequency": 4,
+      "words": "beep, beep beep, beeep, beeep beep, beep beeep"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2024-10-20",
+      "frequency": 1,
+      "words": "second highest, cheater kablock, bsmls la, magsikap, pagiging immature"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-11-22",
+      "frequency": 1,
+      "words": "pencil 1st, 9th gen, 6th air, bagyew, kakarating hshshs"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-11-22",
+      "frequency": 45,
+      "words": "man, building, ulit, nakakita, ngiti"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-11-22",
+      "frequency": 28,
+      "words": "luggage, yogurt, found, need, let"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-11-22",
+      "frequency": 4,
+      "words": "ari maibalik, akoy buhay, nagmamay, nagmamay ari, building tabi"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-11-22",
+      "frequency": 2,
+      "words": "buko entry11611, epl, epl scjps, scjps pogi, entry11611"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2024-12-24",
+      "frequency": 6,
+      "words": "ti, yu, pay, ottog, aramid"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2024-12-24",
+      "frequency": 275,
+      "words": "nag, ask, hi, wag, sea"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2024-12-24",
+      "frequency": 124,
+      "words": "im, uniform, ask, people, up"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2024-12-24",
+      "frequency": 31,
+      "words": "sea, nag, pila, pra, alam"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2024-12-24",
+      "frequency": 15,
+      "words": "utang, nag, shout, iihi, lalaki"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2024-12-24",
+      "frequency": 6,
+      "words": "toh, im, wanna, building, entry11933"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-01-26",
+      "frequency": 2,
+      "words": "dagita, ti, kano, da, crim"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-01-26",
+      "frequency": 171,
+      "words": "nag, wag, hi, building, shout"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-01-26",
+      "frequency": 92,
+      "words": "im, up, youre, people, dont"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-01-26",
+      "frequency": 16,
+      "words": "driving, shout, medkit, crim grad, friend"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-01-26",
+      "frequency": 3,
+      "words": "ti, amoy, office, office etiquette, rupa ti"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-01-26",
+      "frequency": 5,
+      "words": "entry12406 engineering, entry12406, entry12334 kuyang, entry12334, entry12331 chanel"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-01-26",
+      "frequency": 3,
+      "words": "beep, polo, display, beep beep, touch"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-01-26",
+      "frequency": 1,
+      "words": "cheater, suspek, agkusit pananakot, uso met, kadagidiay agkusit"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-02-28",
+      "frequency": 10,
+      "words": "cheating, im, im sorry, everything, ti"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-02-28",
+      "frequency": 247,
+      "words": "nag, team, crim, hi, intrams"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-02-28",
+      "frequency": 100,
+      "words": "im, people, time, dont, youre"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-02-28",
+      "frequency": 23,
+      "words": "bida, team, wag, nmn, shoutout"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-02-28",
+      "frequency": 7,
+      "words": "pair, bari, burrito legacy, burrito, wifi"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-02-28",
+      "frequency": 4,
+      "words": "entry12458 kuyang, floor nandun, entry12574, nameplate csvtany, entry12574 hi"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-02-28",
+      "frequency": 4,
+      "words": "polo, beep, malinis, price, 64gb"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-02-28",
+      "frequency": 2,
+      "words": "score, letrang, rinig, bibig, magician"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2025-04-01",
+      "frequency": 6,
+      "words": "cookies, nips, miss beautiful, lakaw, duggong"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-04-01",
+      "frequency": 138,
+      "words": "nag, hi, crim, shout, wag"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-04-01",
+      "frequency": 59,
+      "words": "peace, youre, im, way, see"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-04-01",
+      "frequency": 13,
+      "words": "sns, mu, den, floor, nag"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2025-04-01",
+      "frequency": 4,
+      "words": "tocilog nag, entry13065 puro, entry12926, entry12926 ms, entry12940"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-04-01",
+      "frequency": 4,
+      "words": "yen, nag, ms, hi, entry13022 hi"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-04-01",
+      "frequency": 1,
+      "words": "ipad kid, kid, ipad, mature, interesting time"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-05-04",
+      "frequency": 21,
+      "words": "nag, tnga, shout, cr, ulet"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-05-04",
+      "frequency": 12,
+      "words": "someone, love, up, im, people"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-05-04",
+      "frequency": 1,
+      "words": "don, babae, lalaki, elyu nbm, entry13086 shoutout"
+    },
+    {
+      "topic_id": 5,
+      "bin": "2025-05-04",
+      "frequency": 1,
+      "words": "jacket, 1st interested, cargo, cargo pants, apronwith cargo"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2025-05-04",
+      "frequency": 1,
+      "words": "score, mataas score, mataas, yjng, bagsak fair"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-06-06",
+      "frequency": 19,
+      "words": "nag, tas, ex, work, wag"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-06-06",
+      "frequency": 8,
+      "words": "someone, up, said, things, relationship"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-06-06",
+      "frequency": 1,
+      "words": "sistema hard, feels listening, sasabihin ayusin, sea babago, ayusin maayos"
+    },
+    {
+      "topic_id": 4,
+      "bin": "2025-06-06",
+      "frequency": 1,
+      "words": "javee, bakla ps, attention javee, javee bakla, javee javee"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-07-08",
+      "frequency": 13,
+      "words": "tas, special, sasabihin, intern, dentistry"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-07-08",
+      "frequency": 6,
+      "words": "convo, joke, pesos, im, tell"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-07-08",
+      "frequency": 1,
+      "words": "fyang, music kilometro, kilometro fyang, kilometro, background music"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-08-10",
+      "frequency": 8,
+      "words": "leader, pabigat, buhay, girl, up"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-08-10",
+      "frequency": 6,
+      "words": "up, day, friend, cheat, things"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-08-10",
+      "frequency": 2,
+      "words": "tatagos, rr bball, entry13182, highschoolteam, nahiya kumukuha"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-09-12",
+      "frequency": 10,
+      "words": "demerits, okay, good, sabay, hate"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-09-12",
+      "frequency": 1,
+      "words": "hes, hope, time, connection, weeks"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-09-12",
+      "frequency": 1,
+      "words": "red flag, flag, red, friend saka, nag agree"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2025-11-16",
+      "frequency": 11,
+      "words": "nag, ayaw, nagpprocess, nagpprocess id, volume"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2025-11-16",
+      "frequency": 8,
+      "words": "ai, fckg, dont, im, didnt"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2025-11-16",
+      "frequency": 1,
+      "words": "research, entry13221 research, alagaan research, bubuhatin, research kagrupo"
+    },
+    {
+      "topic_id": -1,
+      "bin": "2026-01-20",
+      "frequency": 1,
+      "words": "idi, utang, met, met utang, scjps agbayad"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-01-20",
+      "frequency": 40,
+      "words": "day, nag, intrams, event, since"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-01-20",
+      "frequency": 19,
+      "words": "up, dont, man, people, think"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-01-20",
+      "frequency": 2,
+      "words": "cr legacy, multo, cr, ayaw, legacy building"
+    },
+    {
+      "topic_id": 3,
+      "bin": "2026-01-20",
+      "frequency": 1,
+      "words": "vending, entry13272 chucky, entry13272, putik nastuck, nastuck"
+    },
+    {
+      "topic_id": 6,
+      "bin": "2026-01-20",
+      "frequency": 2,
+      "words": "housemate, utk, puro, abala housemate, yayabngan ninyo"
+    },
+    {
+      "topic_id": 0,
+      "bin": "2026-02-22",
+      "frequency": 13,
+      "words": "window, clearance, cut off, cut, ayaw ibalik"
+    },
+    {
+      "topic_id": 1,
+      "bin": "2026-02-22",
+      "frequency": 2,
+      "words": "partner, youre, friends, else partner, friend enjoys"
+    },
+    {
+      "topic_id": 2,
+      "bin": "2026-02-22",
+      "frequency": 1,
+      "words": "ubrr, scholarship, inis, bagsak, scholarship sainyo"
+    }
+  ]
+}

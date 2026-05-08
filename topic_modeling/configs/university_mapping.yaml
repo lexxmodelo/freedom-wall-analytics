@@ -3,99 +3,102 @@
 # Source files: preprocessing/output/*.json (10 files)
 # Base scheme: methodology_changes.md §2.4 (12 institutions across MM/PROV/CAR).
 #
-# EXTENSION TO §2.4 (per user directive 2026-05-05; see action_log.md ACTION-002):
-#   - PROV-PNSEC-1 (formerly mis-coded CAR-PNSEC-2) added as the second CALABARZON
-#     slot for LPU-Batangas; the original CAR-PNSEC-2 code mis-located a Batangas
-#     campus in the Cordillera Administrative Region.
-#   - MIN cluster added for Mindanao institutions; MIN-PUB-1 = CSU.
+# REGIONAL ANONYMIZATION NOTE
+# This file ships in the public repository with the school_alias field stripped
+# (set to null). The cluster code, region, and confidence remain visible because
+# they are referenced by the manuscript and by every downstream artifact. Team
+# members who need the alias-aware view during local development can drop a
+# `university_mapping.local.yaml` next to this file (gitignored) with entries
+# of the form:
 #
-# CONFIRMED:
-#   SLU      → CAR-PSEC-1     (pilot baseline; Saint Louis University Baguio, Catholic)
-#   FW-05    → PROV-PNSEC-1   (Lyceum of the Philippines Batangas, CALABARZON; methodology extension)
-#   FW-06    → MIN-PUB-1      (Caraga State University; methodology extension — new MIN cluster)
+#     overrides:
+#       MM-PSEC-1: { school_alias: <ALIAS> }
+#       MM-PUB-1:  { school_alias: <ALIAS> }
+#       ...
 #
-# PROVISIONAL (drafted from preprocessing/action_log.md ACTION-001 inferences;
-# confirm before full-corpus execution if precise mapping matters):
-#   FW-01 = ADMU     → MM-PSEC-1     (Catholic, NCR)
-#   FW-02 = UPD      → MM-PUB-1      (state, NCR)
-#   FW-03 = FEU      → MM-PNSEC-1    (private non-sectarian, NCR)
-#   FW-04 = UPLB     → PROV-PUB-1    (state, Los Baños — Calabarzon)
-#   FW-07 = UPB      → CAR-PUB-1     (UP Baguio, state)
-#   FW-08 = BSU      → CAR-PUB-2     (Benguet State, state)
-#   FW-09 = UB       → CAR-PNSEC-1   (University of Baguio, private non-sectarian)
+# The dashboard ETL (`build_dashboard_data.py`) reads the override file when
+# present and merges it into the loaded mapping; production builds run without
+# it and produce alias-free dashboard data.
 #
-# Pipeline behavior: pre-flight refuses to run if any assigned file is unmapped, has
-# code "TBD", or is marked active: false. Toggle active: false to exclude a file.
+# SCHEME EXTENSIONS (per action_log.md ACTION-002):
+#   - PROV-PNSEC-1 (formerly mis-coded CAR-PNSEC-2) is the second CALABARZON
+#     private non-sectarian slot; the original CAR-PNSEC-2 code mis-located a
+#     CALABARZON campus in the Cordillera Administrative Region.
+#   - MIN cluster added for the single Mindanao institution (MIN-PUB-1).
+#
+# Pipeline behavior: pre-flight refuses to run if any assigned file is
+# unmapped, has code "TBD", or is marked active: false. Toggle active: false
+# to exclude a file.
 
 mappings:
   FW-01_cleaned.json:
     code: MM-PSEC-1
-    school_alias: ADMU
+    school_alias: null
     region: NCR
     confidence: provisional
     active: true
 
   FW-02_cleaned.json:
     code: MM-PUB-1
-    school_alias: UPD
+    school_alias: null
     region: NCR
     confidence: provisional
     active: true
 
   FW-03_cleaned.json:
     code: MM-PNSEC-1
-    school_alias: FEU
+    school_alias: null
     region: NCR
     confidence: provisional
     active: true
 
   FW-04_cleaned.json:
     code: PROV-PUB-1
-    school_alias: UPLB
+    school_alias: null
     region: CALABARZON
     confidence: provisional
     active: true
 
   FW-05_cleaned.json:
     code: PROV-PNSEC-1
-    school_alias: LPU-B
+    school_alias: null
     region: CALABARZON
     confidence: extension_confirmed
     active: true
-    note: "Methodology §2.4 extension: adds the second CALABARZON private non-sectarian slot for Lyceum of the Philippines Batangas. Originally mis-coded as CAR-PNSEC-2 (Cordillera) before the regional reclassification was caught during the Fig 12 audit. See action_log.md ACTION-002."
+    note: "Methodology §2.4 extension: second CALABARZON private non-sectarian slot. Originally mis-coded as CAR-PNSEC-2 before the regional reclassification was caught during the Fig 12 audit. See action_log.md ACTION-002."
 
   FW-06_cleaned.json:
     code: MIN-PUB-1
-    school_alias: CSU
+    school_alias: null
     region: CARAGA
     confidence: extension_confirmed
     active: true
-    note: "Methodology §2.4 extension: adds new MIN cluster for Mindanao (Caraga State University, state). See action_log.md ACTION-002."
+    note: "Methodology §2.4 extension: new MIN cluster for the single Mindanao institution. See action_log.md ACTION-002."
 
   FW-07_cleaned.json:
     code: CAR-PUB-1
-    school_alias: UPB
+    school_alias: null
     region: CAR
     confidence: provisional
     active: true
 
   FW-08_cleaned.json:
     code: CAR-PUB-2
-    school_alias: BSU
+    school_alias: null
     region: CAR
     confidence: provisional
     active: true
 
   FW-09_cleaned.json:
     code: CAR-PNSEC-1
-    school_alias: UB
+    school_alias: null
     region: CAR
     confidence: provisional
     active: true
 
   SLU_cleaned.json:
     code: CAR-PSEC-1
-    school_alias: SLU
+    school_alias: null
     region: CAR
     confidence: confirmed
     active: true
